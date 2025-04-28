@@ -54,12 +54,12 @@ export default {
 					foreground: 'hsl(var(--card-foreground))'
 				},
 				spendly: {
-					green: '#38D67F',
-					blue: '#4C7BFF',
-					purple: '#7B61FF',
-					pink: '#FF61D5',
-					light: '#F5FAFF',
-					dark: '#0A1F44'
+					green: '#F2CA3C', // Changed to yellow
+					blue: '#FFB347', // Changed to orange-yellow
+					purple: '#EEBA4C', // Changed to golden yellow
+					pink: '#F8D776', // Changed to light yellow
+					light: '#FEF9E7', // Light yellow background
+					dark: '#8A5D19' // Darkened shade for text
 				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',

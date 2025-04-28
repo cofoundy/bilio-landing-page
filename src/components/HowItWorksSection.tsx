@@ -9,21 +9,21 @@ const HowItWorksSection = () => {
       title: "Registra tu gasto enviando un mensaje",
       description: "Simplemente envía un mensaje a Spendly con el monto y descripción de tu gasto o ingreso.",
       icon: MessageSquare,
-      color: "from-spendly-blue to-spendly-purple"
+      color: "from-spendly-blue to-spendly-green"
     },
     {
       id: 2,
       title: "Spendly lo categoriza automáticamente",
       description: "Nuestra IA detecta la categoría del gasto y lo registra en el lugar correcto.",
       icon: FileText,
-      color: "from-spendly-purple to-spendly-pink"
+      color: "from-spendly-green to-spendly-purple"
     },
     {
       id: 3,
       title: "Recibe reportes diarios y recomendaciones",
       description: "Obtén análisis periódicos de tus finanzas y consejos personalizados para mejorar.",
       icon: CalendarDays,
-      color: "from-spendly-pink to-spendly-blue"
+      color: "from-spendly-purple to-spendly-pink"
     }
   ];
 
