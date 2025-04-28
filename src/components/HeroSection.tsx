@@ -6,15 +6,15 @@ import { ArrowRight, MessageSquare } from "lucide-react";
 const HeroSection = () => {
   return (
     <section className="pt-32 pb-20 relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute -top-24 -right-24 w-96 h-96 bg-spendly-blue opacity-10 rounded-full blur-3xl animate-pulse-soft"></div>
-      <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-spendly-green opacity-10 rounded-full blur-3xl animate-pulse-soft" style={{ animationDelay: "1s" }}></div>
+      {/* Modified background decoration to avoid covering corners */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-spendly-blue opacity-5 rounded-full blur-3xl animate-pulse-soft"></div>
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-spendly-green opacity-5 rounded-full blur-3xl animate-pulse-soft" style={{ animationDelay: "1s" }}></div>
       
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 relative z-10">
         <div className="flex flex-col lg:flex-row items-center gap-12">
           {/* Left side content */}
           <div className="lg:w-1/2 space-y-6 animate-slide-down">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-spendly-dark">
               Toma el control de tus finanzas. <span className="gradient-text">Rápido. Simple.</span> Desde WhatsApp.
             </h1>
             
