@@ -22,7 +22,7 @@ const testimonials = [
 
 const TestimonialsSection = () => {
   return (
-    <section className="py-20 bg-gradient-to-br from-spendly-blue/5 to-spendly-green/5">
+    <section className="py-20 bg-gradient-to-br from-spendly-emerald/5 to-spendly-aqua/5">
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
@@ -46,7 +46,7 @@ const TestimonialsSection = () => {
                   "{testimonial.quote}"
                 </blockquote>
                 <div className="flex items-center">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-r from-spendly-blue to-spendly-green flex items-center justify-center text-white font-bold">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-r from-spendly-emerald to-spendly-aqua flex items-center justify-center text-white font-bold">
                     {testimonial.author[0]}
                   </div>
                   <div className="ml-3">

@@ -78,7 +78,7 @@ const PricingSection = () => {
                 <ul className="space-y-3 mb-8">
                   {plan.features.map((feature, index) => (
                     <li key={index} className="flex items-start">
-                      <Check className="h-5 w-5 text-spendly-green mt-0.5 flex-shrink-0" />
+                      <Check className="h-5 w-5 text-spendly-emerald mt-0.5 flex-shrink-0" />
                       <span className="ml-3 text-gray-600">{feature}</span>
                     </li>
                   ))}

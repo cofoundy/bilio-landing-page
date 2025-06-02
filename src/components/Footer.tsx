@@ -9,10 +9,12 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <div className="h-8 w-8 rounded-full bg-gradient-to-r from-spendly-blue to-spendly-green flex items-center justify-center">
-                <span className="text-white font-bold text-sm">S</span>
-              </div>
-              <span className="font-bold text-xl">Spendly</span>
+              <img 
+                src="/logo_spendly.png" 
+                alt="Spendly Logo" 
+                className="h-8 w-auto"
+              />
+              <span className="font-bold text-xl text-spendly-dark">Spendly</span>
             </div>
             <p className="text-gray-600 mb-4">
               Tu asistente financiero personal a través de WhatsApp. Toma el control de tus finanzas de forma sencilla.

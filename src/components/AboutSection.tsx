@@ -19,10 +19,10 @@ const AboutSection = () => {
         <div className="flex flex-col md:flex-row items-center justify-center gap-10">
           <div className="md:w-1/2 flex justify-center">
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-tr from-spendly-purple to-spendly-pink rounded-full blur-xl opacity-20 animate-pulse-soft"></div>
+              <div className="absolute inset-0 bg-gradient-to-tr from-spendly-aqua to-spendly-lime rounded-full blur-xl opacity-20 animate-pulse-soft"></div>
               <div className="relative bg-white rounded-3xl p-8 shadow-xl">
                 <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-r from-spendly-blue to-spendly-green flex items-center justify-center">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-r from-spendly-emerald to-spendly-aqua flex items-center justify-center">
                     <MessageSquare className="h-6 w-6 text-white" />
                   </div>
                   <div>
@@ -36,7 +36,7 @@ const AboutSection = () => {
                     <p className="text-gray-800">Hola, ¿cómo puedo ayudarte a administrar tus finanzas hoy?</p>
                   </div>
                   
-                  <div className="bg-spendly-blue bg-opacity-10 p-3 rounded-lg rounded-tr-none ml-auto">
+                  <div className="bg-spendly-emerald bg-opacity-10 p-3 rounded-lg rounded-tr-none ml-auto">
                     <p className="text-gray-800">Quiero registrar un gasto de $50 en restaurante</p>
                   </div>
                   
@@ -45,7 +45,7 @@ const AboutSection = () => {
                     <p className="text-gray-600 text-sm mt-1">Este mes llevas $180 gastados en restaurantes.</p>
                   </div>
                   
-                  <div className="bg-spendly-blue bg-opacity-10 p-3 rounded-lg rounded-tr-none ml-auto">
+                  <div className="bg-spendly-emerald bg-opacity-10 p-3 rounded-lg rounded-tr-none ml-auto">
                     <p className="text-gray-800">¿Cuál es mi categoría con más gastos?</p>
                   </div>
                   
@@ -66,20 +66,20 @@ const AboutSection = () => {
             </p>
             <ul className="space-y-4">
               <li className="flex items-start">
-                <div className="flex-shrink-0 h-6 w-6 rounded-full bg-spendly-green bg-opacity-20 flex items-center justify-center mt-1">
-                  <span className="text-spendly-green text-sm">✓</span>
+                <div className="flex-shrink-0 h-6 w-6 rounded-full bg-spendly-emerald bg-opacity-20 flex items-center justify-center mt-1">
+                  <span className="text-spendly-emerald text-sm">✓</span>
                 </div>
                 <span className="ml-3 text-gray-600">Registra gastos e ingresos con mensajes simples</span>
               </li>
               <li className="flex items-start">
-                <div className="flex-shrink-0 h-6 w-6 rounded-full bg-spendly-green bg-opacity-20 flex items-center justify-center mt-1">
-                  <span className="text-spendly-green text-sm">✓</span>
+                <div className="flex-shrink-0 h-6 w-6 rounded-full bg-spendly-emerald bg-opacity-20 flex items-center justify-center mt-1">
+                  <span className="text-spendly-emerald text-sm">✓</span>
                 </div>
                 <span className="ml-3 text-gray-600">Recibe alertas cuando te acerques a tus límites de gasto</span>
               </li>
               <li className="flex items-start">
-                <div className="flex-shrink-0 h-6 w-6 rounded-full bg-spendly-green bg-opacity-20 flex items-center justify-center mt-1">
-                  <span className="text-spendly-green text-sm">✓</span>
+                <div className="flex-shrink-0 h-6 w-6 rounded-full bg-spendly-emerald bg-opacity-20 flex items-center justify-center mt-1">
+                  <span className="text-spendly-emerald text-sm">✓</span>
                 </div>
                 <span className="ml-3 text-gray-600">Categorización automática con inteligencia artificial</span>
               </li>

@@ -53,9 +53,19 @@ const CTASection = () => {
       <Dialog open={isModalOpen} onOpenChange={(open) => !open && closeModal()}>
         <DialogContent className="max-w-3xl max-h-[95vh] overflow-hidden p-0">
           <DialogHeader className="p-6 pb-0">
-            <DialogTitle className="text-2xl font-bold text-center">
-              Únete a la lista de espera de Spendly
-            </DialogTitle>
+            <div className="flex flex-col items-center gap-3">
+              <div className="flex items-center gap-3">
+                <img 
+                  src="/logo_spendly.png" 
+                  alt="Spendly Logo" 
+                  className="h-8 w-auto"
+                />
+                <span className="text-xl font-bold text-spendly-dark">Spendly</span>
+              </div>
+              <DialogTitle className="text-2xl font-bold text-center">
+                Únete a la lista de espera de Spendly
+              </DialogTitle>
+            </div>
           </DialogHeader>
           <div className="p-6 pt-2">
             <iframe 

@@ -38,29 +38,39 @@ const BenefitsSection = () => {
   ];
 
   return (
-    <section id="benefits" className="py-20 bg-spendly-light">
+    <section id="benefits" className="py-24 section-premium">
       <div className="container mx-auto px-4">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            <span className="gradient-text">Beneficios principales</span>
+        <div className="text-center max-w-4xl mx-auto mb-20 animate-fade-in">
+          <h2 className="text-4xl md:text-5xl font-bold mb-8 tracking-tight">
+            <span className="text-premium">Beneficios principales</span>
           </h2>
-          <p className="text-xl text-gray-600">
+          <p className="text-xl text-gray-600 leading-relaxed font-medium max-w-2xl mx-auto">
             Controla tus finanzas de forma inteligente y disfruta de una experiencia sencilla y efectiva.
           </p>
         </div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
           {benefits.map((benefit, i) => (
-            <Card key={i} className="overflow-hidden border-none shadow-lg hover:shadow-xl transition-all duration-300 animate-slide-up" style={{ animationDelay: `${i * 0.1}s` }}>
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-spendly-blue to-spendly-green opacity-10 rounded-bl-full"></div>
-              <CardContent className="p-8">
-                <div className="mb-5 inline-flex p-3 rounded-full bg-spendly-blue bg-opacity-10">
-                  <benefit.icon className="h-6 w-6 text-spendly-blue" />
+            <div key={i} className="card-premium p-8 group animate-scale-in" style={{ animationDelay: `${i * 0.15}s` }}>
+              <div className="text-center space-y-6 relative">
+                {/* Background glow effect */}
+                <div className="absolute -inset-4 bg-gradient-to-br from-spendly-emerald/5 to-spendly-aqua/10 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                <div className="relative">
+                  <div className="mx-auto w-20 h-20 rounded-2xl bg-gradient-to-br from-spendly-emerald to-spendly-teal flex items-center justify-center shadow-xl group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+                    <benefit.icon className="w-10 h-10 text-white" />
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold mb-3">{benefit.title}</h3>
-                <p className="text-gray-600">{benefit.description}</p>
-              </CardContent>
-            </Card>
+                
+                <div className="space-y-4 relative">
+                  <h3 className="text-xl font-bold text-spendly-dark leading-tight">{benefit.title}</h3>
+                  <p className="text-gray-600 leading-relaxed text-sm">{benefit.description}</p>
+                </div>
+                
+                {/* Premium accent line */}
+                <div className="w-12 h-1 bg-gradient-to-r from-spendly-emerald to-spendly-teal rounded-full mx-auto group-hover:w-20 transition-all duration-300 relative"></div>
+              </div>
+            </div>
           ))}
         </div>
       </div>
