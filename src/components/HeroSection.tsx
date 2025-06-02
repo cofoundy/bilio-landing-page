@@ -2,6 +2,7 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, MessageSquare } from "lucide-react";
+import { scrollToSectionAndOpenModal } from "@/hooks/useBetaModal";
 
 const HeroSection = () => {
   return (
@@ -23,7 +24,11 @@ const HeroSection = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <Button className="gradient-bg text-white text-lg py-6 px-8" size="lg">
+              <Button 
+                onClick={scrollToSectionAndOpenModal}
+                className="gradient-bg text-white text-lg py-6 px-8" 
+                size="lg"
+              >
                 Únete a la beta privada
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>

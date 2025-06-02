@@ -7,7 +7,7 @@ const HowItWorksSection = () => {
     {
       id: 1,
       title: "Registra tu gasto enviando un mensaje",
-      description: "Simplemente envía un mensaje a Spendly con el monto y descripción de tu gasto o ingreso.",
+      description: "Simplemente envía un mensaje o audio a Spendly con el monto y descripción de tu gasto o ingreso.",
       icon: MessageSquare,
       color: "from-spendly-blue to-spendly-purple"
     },

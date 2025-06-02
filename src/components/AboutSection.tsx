@@ -83,12 +83,12 @@ const AboutSection = () => {
                 </div>
                 <span className="ml-3 text-gray-600">Categorización automática con inteligencia artificial</span>
               </li>
-              <li className="flex items-start">
+              {/* <li className="flex items-start">
                 <div className="flex-shrink-0 h-6 w-6 rounded-full bg-spendly-green bg-opacity-20 flex items-center justify-center mt-1">
                   <span className="text-spendly-green text-sm">✓</span>
                 </div>
                 <span className="ml-3 text-gray-600">Integración opcional con tu banco para mejor seguimiento</span>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>

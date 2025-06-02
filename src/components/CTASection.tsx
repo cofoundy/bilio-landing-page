@@ -1,11 +1,23 @@
 
-import React from "react";
+import React, { useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { MessageSquare } from "lucide-react";
+import { useBetaModal } from "@/hooks/useBetaModal";
 
 const CTASection = () => {
+  const { isModalOpen, openModal, closeModal } = useBetaModal();
+  const [iframeKey, setIframeKey] = React.useState(0);
+
+  useEffect(() => {
+    // Reload iframe when modal opens to ensure proper loading
+    if (isModalOpen) {
+      setIframeKey(prev => prev + 1);
+    }
+  }, [isModalOpen]);
+
   return (
-    <section className="py-20">
+    <section id="cta-section" className="py-20">
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto bg-gradient-to-r from-spendly-blue to-spendly-green rounded-3xl overflow-hidden shadow-xl">
           <div className="relative p-12 md:p-16">
@@ -24,7 +36,10 @@ const CTASection = () => {
               </div>
               
               <div>
-                <Button className="bg-white text-spendly-blue hover:bg-white/90 hover:text-spendly-blue text-lg py-6 px-8 flex items-center space-x-2">
+                <Button 
+                  onClick={openModal}
+                  className="bg-white text-spendly-blue hover:bg-white/90 hover:text-spendly-blue text-lg py-6 px-8 flex items-center space-x-2"
+                >
                   <MessageSquare className="h-5 w-5" />
                   <span>Únete a la beta privada</span>
                 </Button>
@@ -33,6 +48,32 @@ const CTASection = () => {
           </div>
         </div>
       </div>
+
+      {/* Modal with Tally Form */}
+      <Dialog open={isModalOpen} onOpenChange={(open) => !open && closeModal()}>
+        <DialogContent className="max-w-3xl max-h-[95vh] overflow-hidden p-0">
+          <DialogHeader className="p-6 pb-0">
+            <DialogTitle className="text-2xl font-bold text-center">
+              Únete a la lista de espera de Spendly
+            </DialogTitle>
+          </DialogHeader>
+          <div className="p-6 pt-2">
+            <iframe 
+              key={iframeKey}
+              src="https://tally.so/embed/w7zzOa?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" 
+              width="100%" 
+              height="500" 
+              frameBorder="0" 
+              marginHeight={0}
+              marginWidth={0}
+              title="Únete a la lista de espera de Spendly"
+              className="border-0 rounded-lg"
+              style={{ minHeight: '500px' }}
+              allow="payment"
+            />
+          </div>
+        </DialogContent>
+      </Dialog>
     </section>
   );
 };
