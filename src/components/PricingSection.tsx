@@ -1,102 +1,140 @@
-
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
+import { scrollToSectionAndOpenModal } from "@/hooks/useBetaModal";
 
 const PricingSection = () => {
   const plans = [
     {
-      name: "Gratuito",
-      price: "S/0",
-      description: "Perfecto para comenzar a controlar tus finanzas",
+      name: "Básico",
+      price: "Gratis",
+      period: "por siempre",
+      description: "Perfecto para comenzar a organizar tus finanzas",
       features: [
-        "Registro de gastos e ingresos ilimitados",
+        "Registro de gastos ilimitado",
         "Categorización automática",
-        "Reportes diarios básicos",
-        "Soporte por WhatsApp",
+        "Reportes mensuales",
+        "Análisis básico de gastos",
+        "Soporte por WhatsApp"
       ],
-      cta: "Comenzar gratis",
       popular: false,
-      disabled: false
+      glowColor: "spendly-blue"
     },
     {
       name: "Premium",
-      price: "S/19.90",
-      period: "/mes",
-      description: "Para quienes desean un control financiero completo",
+      price: "S/19",
+      period: "por mes",
+      description: "Para usuarios que quieren el control total de sus finanzas",
       features: [
-        "Todo lo del plan Gratuito",
-        "Reportes semanales y mensuales detallados",
-        "Establecimiento de metas financieras",
-        "Predicciones de gastos con IA",
-        "Exportación de datos en Excel/PDF",
-        "Acceso anticipado a nuevas funciones"
+        "Todo lo del plan Básico",
+        "Reportes diarios y personalizados",
+        "Alertas de gastos inteligentes",
+        "Integración con bancos (próximamente)",
+        "Dashboard web completo",
+        "Consejos de ahorro IA",
+        "Soporte prioritario"
       ],
-      cta: "Próximamente",
       popular: true,
-      disabled: true
+      glowColor: "spendly-purple"
+    },
+    {
+      name: "Empresarial",
+      price: "S/99",
+      period: "por mes",
+      description: "Ideal para equipos y pequeñas empresas",
+      features: [
+        "Todo lo del plan Premium",
+        "Múltiples usuarios",
+        "Control de gastos por equipo",
+        "Reportes avanzados",
+        "Integración con sistemas contables",
+        "Gestor de cuenta dedicado",
+        "Facturación empresarial"
+      ],
+      popular: false,
+      glowColor: "spendly-gold"
     }
   ];
 
   return (
-    <section id="pricing" className="py-20">
-      <div className="container mx-auto px-4">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            <span className="gradient-text">Planes y precios</span>
+    <section id="pricing" className="py-24 section-premium">
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="text-center max-w-4xl mx-auto mb-20 animate-fade-in">
+          <h2 className="text-4xl md:text-5xl font-bold mb-8 tracking-tight text-glow">
+            <span className="text-premium">Planes y precios</span>
           </h2>
-          <p className="text-xl text-gray-600">
-            Elige el plan que mejor se adapte a tus necesidades financieras
+          <p className="text-xl text-gray-400 leading-relaxed font-medium max-w-2xl mx-auto">
+            Elige el plan que mejor se adapte a tus necesidades. Puedes cambiar o cancelar en cualquier momento.
           </p>
         </div>
-        
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          {plans.map((plan, i) => (
-            <div 
-              key={i}
-              className={`rounded-2xl overflow-hidden transition-all duration-300 animate-slide-up ${
-                plan.popular 
-                  ? 'border-2 border-spendly-blue shadow-xl relative' 
-                  : 'border border-gray-200 shadow-lg'
-              }`} 
-              style={{ animationDelay: `${i * 0.2}s` }}
+
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {plans.map((plan, index) => (
+            <div
+              key={index}
+              className={`card-premium p-8 relative group animate-scale-in ${
+                plan.popular ? 'ring-2 ring-spendly-purple ring-opacity-50 scale-105' : ''
+              }`}
+              style={{ animationDelay: `${index * 0.2}s` }}
             >
               {plan.popular && (
-                <div className="absolute top-5 right-5">
-                  <span className="bg-spendly-blue text-white text-xs font-bold px-3 py-1 rounded-full">Popular</span>
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                  <span className="bg-gradient-to-r from-spendly-purple to-spendly-pink text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg shadow-spendly-purple/30">
+                    Más Popular
+                  </span>
                 </div>
               )}
-              
-              <div className="p-8">
-                <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
-                <div className="flex items-end mb-4">
-                  <span className="text-4xl font-bold">{plan.price}</span>
-                  {plan.period && <span className="text-gray-500 ml-1">{plan.period}</span>}
+
+              <div className="space-y-6">
+                <div>
+                  <h3 className="text-2xl font-bold text-white text-glow mb-2">{plan.name}</h3>
+                  <p className="text-gray-400 text-sm">{plan.description}</p>
                 </div>
-                <p className="text-gray-600 mb-6">{plan.description}</p>
-                
-                <ul className="space-y-3 mb-8">
-                  {plan.features.map((feature, index) => (
-                    <li key={index} className="flex items-start">
-                      <Check className="h-5 w-5 text-spendly-emerald mt-0.5 flex-shrink-0" />
-                      <span className="ml-3 text-gray-600">{feature}</span>
-                    </li>
+
+                <div className="flex items-baseline gap-2">
+                  <span className="text-4xl font-bold text-white text-glow">{plan.price}</span>
+                  <span className="text-gray-400 text-sm">{plan.period}</span>
+                </div>
+
+                <div className="space-y-4">
+                  {plan.features.map((feature, featureIndex) => (
+                    <div key={featureIndex} className="flex items-center gap-3">
+                      <div className={`flex-shrink-0 w-5 h-5 rounded-full bg-${plan.glowColor}/20 flex items-center justify-center border border-${plan.glowColor}/40`}>
+                        <Check className={`w-3 h-3 text-${plan.glowColor}`} />
+                      </div>
+                      <span className="text-gray-400 text-sm">{feature}</span>
+                    </div>
                   ))}
-                </ul>
-                
-                <Button 
-                  className={`w-full py-6 ${
-                    plan.popular 
-                      ? 'gradient-bg text-white' 
-                      : 'bg-spendly-blue bg-opacity-10 text-spendly-blue hover:bg-spendly-blue hover:text-white'
+                </div>
+
+                <Button
+                  onClick={scrollToSectionAndOpenModal}
+                  className={`w-full py-3 font-semibold transition-all duration-300 hover:scale-105 ${
+                    plan.popular
+                      ? 'btn-premium text-white'
+                      : 'bg-gray-800 text-white border border-gray-600 hover:bg-gray-700 hover:border-spendly-purple/50'
                   }`}
-                  disabled={plan.disabled}
+                  style={plan.popular ? {} : { boxShadow: '0 0 20px rgba(124, 58, 237, 0.1)' }}
                 >
-                  {plan.cta}
+                  {plan.price === "Gratis" ? "Comenzar Gratis" : "Elegir Plan"}
                 </Button>
               </div>
+
+              {/* Glow effect for popular plan */}
+              {plan.popular && (
+                <div className="absolute -inset-1 bg-gradient-to-r from-spendly-purple/20 to-spendly-pink/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
+              )}
             </div>
           ))}
+        </div>
+
+        <div className="text-center mt-16">
+          <p className="text-gray-400 text-sm mb-4">
+            ¿Necesitas algo diferente? Contáctanos para planes personalizados.
+          </p>
+          <p className="text-gray-500 text-xs">
+            Todos los planes incluyen 30 días de prueba gratuita. Sin compromisos.
+          </p>
         </div>
       </div>
     </section>

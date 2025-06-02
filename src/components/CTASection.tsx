@@ -1,4 +1,3 @@
-
 import React, { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
@@ -17,17 +16,20 @@ const CTASection = () => {
   }, [isModalOpen]);
 
   return (
-    <section id="cta-section" className="py-20">
+    <section id="cta-section" className="py-20 bg-black relative">
       <div className="container mx-auto px-4">
-        <div className="max-w-5xl mx-auto bg-gradient-to-r from-spendly-blue to-spendly-green rounded-3xl overflow-hidden shadow-xl">
-          <div className="relative p-12 md:p-16">
-            {/* Background decoration */}
-            <div className="absolute -top-24 -right-24 w-80 h-80 bg-white opacity-10 rounded-full"></div>
-            <div className="absolute -bottom-24 -left-24 w-80 h-80 bg-white opacity-10 rounded-full"></div>
+        <div className="max-w-5xl mx-auto relative overflow-hidden rounded-3xl">
+          {/* Premium vibrant background with enhanced glow */}
+          <div className="absolute inset-0 bg-gradient-to-br from-spendly-purple-deep via-spendly-purple to-spendly-blue"></div>
+          <div className="absolute inset-0 bg-gradient-to-tr from-spendly-pink/60 to-transparent"></div>
+          <div className="absolute -top-40 -right-40 w-96 h-96 bg-spendly-cyan/30 rounded-full blur-3xl animate-float" style={{ boxShadow: '0 0 100px rgba(6, 182, 212, 0.3)' }}></div>
+          <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-spendly-gold/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s', boxShadow: '0 0 100px rgba(245, 158, 11, 0.2)' }}></div>
+          
+          <div className="relative p-12 md:p-16" style={{ background: 'linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.2))' }}>
             
             <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-10">
               <div className="md:w-2/3">
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 text-glow">
                   ¡Empieza a controlar tus finanzas hoy mismo!
                 </h2>
                 <p className="text-white/90 text-lg max-w-lg">
@@ -38,7 +40,8 @@ const CTASection = () => {
               <div>
                 <Button 
                   onClick={openModal}
-                  className="bg-white text-spendly-blue hover:bg-white/90 hover:text-spendly-blue text-lg py-6 px-8 flex items-center space-x-2"
+                  className="bg-white text-spendly-purple hover:bg-white/90 hover:text-spendly-purple text-lg py-6 px-8 flex items-center space-x-2 font-bold shadow-2xl transition-all duration-300 hover:scale-105"
+                  style={{ boxShadow: '0 0 30px rgba(255, 255, 255, 0.3), 0 20px 40px rgba(0, 0, 0, 0.3)' }}
                 >
                   <MessageSquare className="h-5 w-5" />
                   <span>Únete a la beta privada</span>
@@ -49,10 +52,10 @@ const CTASection = () => {
         </div>
       </div>
 
-      {/* Modal with Tally Form */}
+      {/* Modal with Tally Form - Dark Theme */}
       <Dialog open={isModalOpen} onOpenChange={(open) => !open && closeModal()}>
-        <DialogContent className="max-w-3xl max-h-[95vh] overflow-hidden p-0">
-          <DialogHeader className="p-6 pb-0">
+        <DialogContent className="max-w-3xl max-h-[95vh] overflow-hidden p-0  border border-gray-700">
+          <DialogHeader className="p-6 pb-0 ">
             <div className="flex flex-col items-center gap-3">
               <div className="flex items-center gap-3">
                 <img 
@@ -60,9 +63,9 @@ const CTASection = () => {
                   alt="Spendly Logo" 
                   className="h-8 w-auto"
                 />
-                <span className="text-xl font-bold text-spendly-dark">Spendly</span>
+                <span className="text-xl font-bold text-black">Spendly</span>
               </div>
-              <DialogTitle className="text-2xl font-bold text-center">
+              <DialogTitle className="text-2xl font-bold text-center text-black">
                 Únete a la lista de espera de Spendly
               </DialogTitle>
             </div>

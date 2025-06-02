@@ -54,22 +54,27 @@ export default {
 					foreground: 'hsl(var(--card-foreground))'
 				},
 				spendly: {
-					// Colores sólidos principales
-					'deep-green': '#013220',        // Verde oscuro profundo
-					'emerald': '#006B3C',           // Verde esmeralda  
-					'teal': '#008080',              // Verde azulado
-					'aqua': '#40E0D0',              // Aguamarina brillante
-					'lime': '#7CFC00',              // Verde lima
-					'gold': '#FFD700',              // Amarillo dorado
-					'soft-yellow': '#F5DEB3',       // Amarillo suave
+					// Nueva paleta vibrante estilo Stripe
+					'purple-deep': '#4C1D95',       // Púrpura profundo
+					'purple': '#7C3AED',            // Púrpura vibrante
+					'pink': '#EC4899',              // Rosa/magenta brillante
+					'blue': '#3B82F6',              // Azul eléctrico
+					'cyan': '#06B6D4',              // Cian brillante
+					'gold': '#F59E0B',              // Dorado brillante
+					'yellow': '#FCD34D',            // Amarillo cálido
+					'orange': '#F97316',            // Naranja coral
 					
-					// Colores legacy para compatibilidad
-					green: '#006B3C',               // Verde esmeralda como principal
-					blue: '#008080',                // Verde azulado como azul
-					purple: '#40E0D0',              // Aguamarina como púrpura
-					pink: '#7CFC00',                // Verde lima como rosa
-					light: '#F5FAFF',               // Mantener el light
-					dark: '#013220'                 // Verde oscuro profundo como dark
+					// Colores legacy actualizados para compatibilidad
+					'deep-green': '#4C1D95',        // Púrpura profundo como verde oscuro
+					'emerald': '#7C3AED',           // Púrpura como esmeralda
+					'teal': '#06B6D4',              // Cian como teal
+					'aqua': '#3B82F6',              // Azul como aqua
+					'lime': '#F59E0B',              // Dorado como lima
+					'soft-yellow': '#FEF3C7',       // Amarillo suave
+					
+					// Valores legacy (manteniendo únicos)
+					light: '#F8FAFC',               // Gris muy claro
+					dark: '#1E293B'                 // Gris oscuro moderno
 				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
