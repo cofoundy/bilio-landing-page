@@ -6,23 +6,23 @@ const HowItWorksSection = () => {
     {
       id: 1,
       title: "Registra tu gasto enviando un mensaje",
-      description: "Simplemente envía un mensaje o audio a Spendly con el monto y descripción de tu gasto o ingreso.",
+      description: "Simplemente envía un mensaje o audio a Bilio con el monto y descripción de tu gasto o ingreso.",
       icon: MessageSquare,
-      color: "from-spendly-purple to-spendly-pink"
+      color: "from-Bilio-purple to-Bilio-pink"
     },
     {
       id: 2,
-      title: "Spendly lo categoriza automáticamente",
+      title: "Bilio lo categoriza automáticamente",
       description: "Nuestra IA detecta la categoría del gasto y lo registra en el lugar correcto.",
       icon: FileText,
-      color: "from-spendly-blue to-spendly-cyan"
+      color: "from-Bilio-blue to-Bilio-cyan"
     },
     {
       id: 3,
       title: "Recibe reportes diarios y recomendaciones",
       description: "Obtén análisis periódicos de tus finanzas y consejos personalizados para mejorar.",
       icon: CalendarDays,
-      color: "from-spendly-gold to-spendly-orange"
+      color: "from-Bilio-gold to-Bilio-orange"
     }
   ];
 
@@ -34,13 +34,13 @@ const HowItWorksSection = () => {
             <span className="text-premium">¿Cómo funciona?</span>
           </h2>
           <p className="text-xl text-gray-400 leading-relaxed font-medium max-w-2xl mx-auto">
-            Spendly es increíblemente sencillo de usar. Sigue estos tres simples pasos:
+            Bilio es increíblemente sencillo de usar. Sigue estos tres simples pasos:
           </p>
         </div>
         
         <div className="relative">
           {/* Enhanced connecting line with glow */}
-          <div className="hidden lg:block absolute top-1/2 left-[10%] right-[10%] h-0.5 bg-gradient-to-r from-spendly-purple via-spendly-pink to-spendly-gold transform -translate-y-1/2 z-0 opacity-40 animate-gradient-shift shadow-lg shadow-spendly-purple/20"></div>
+          <div className="hidden lg:block absolute top-1/2 left-[10%] right-[10%] h-0.5 bg-gradient-to-r from-Bilio-purple via-Bilio-pink to-Bilio-gold transform -translate-y-1/2 z-0 opacity-40 animate-gradient-shift shadow-lg shadow-Bilio-purple/20"></div>
           <div className="hidden lg:block absolute top-1/2 left-[10%] right-[10%] h-px bg-gradient-to-r from-transparent via-white/20 to-transparent transform -translate-y-1/2 z-0 opacity-80"></div>
           
           <div className="grid md:grid-cols-3 gap-10 relative z-10">
@@ -50,14 +50,14 @@ const HowItWorksSection = () => {
                   <step.icon className="h-10 w-10 text-white" />
                 </div>
                 
-                <div className="bg-gradient-to-r from-spendly-purple/5 to-spendly-pink/10 absolute -right-6 -bottom-6 w-40 h-40 rounded-full blur-2xl opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
+                <div className="bg-gradient-to-r from-Bilio-purple/5 to-Bilio-pink/10 absolute -right-6 -bottom-6 w-40 h-40 rounded-full blur-2xl opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
                 
                 <div className="space-y-4">
                   <div className="flex items-center gap-4 mb-4">
-                    <span className="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-r from-spendly-purple to-spendly-blue text-white text-lg font-bold shadow-lg shadow-spendly-purple/30">
+                    <span className="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-r from-Bilio-purple to-Bilio-blue text-white text-lg font-bold shadow-lg shadow-Bilio-purple/30">
                       {step.id}
                     </span>
-                    <div className="w-12 h-1 bg-gradient-to-r from-spendly-purple to-spendly-blue rounded-full shadow-md shadow-spendly-purple/30"></div>
+                    <div className="w-12 h-1 bg-gradient-to-r from-Bilio-purple to-Bilio-blue rounded-full shadow-md shadow-Bilio-purple/30"></div>
                   </div>
                   
                   <h3 className="text-xl font-bold text-white mb-3 leading-tight text-glow">

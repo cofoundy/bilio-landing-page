@@ -20,10 +20,10 @@ const CTASection = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto relative overflow-hidden rounded-3xl">
           {/* Premium vibrant background with enhanced glow */}
-          <div className="absolute inset-0 bg-gradient-to-br from-spendly-purple-deep via-spendly-purple to-spendly-blue"></div>
-          <div className="absolute inset-0 bg-gradient-to-tr from-spendly-pink/60 to-transparent"></div>
-          <div className="absolute -top-40 -right-40 w-96 h-96 bg-spendly-cyan/30 rounded-full blur-3xl animate-float" style={{ boxShadow: '0 0 100px rgba(6, 182, 212, 0.3)' }}></div>
-          <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-spendly-gold/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s', boxShadow: '0 0 100px rgba(245, 158, 11, 0.2)' }}></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-Bilio-purple-deep via-Bilio-purple to-Bilio-blue"></div>
+          <div className="absolute inset-0 bg-gradient-to-tr from-Bilio-pink/60 to-transparent"></div>
+          <div className="absolute -top-40 -right-40 w-96 h-96 bg-Bilio-cyan/30 rounded-full blur-3xl animate-float" style={{ boxShadow: '0 0 100px rgba(6, 182, 212, 0.3)' }}></div>
+          <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-Bilio-gold/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s', boxShadow: '0 0 100px rgba(245, 158, 11, 0.2)' }}></div>
           
           <div className="relative p-12 md:p-16" style={{ background: 'linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.2))' }}>
             
@@ -33,14 +33,14 @@ const CTASection = () => {
                   ¡Empieza a controlar tus finanzas hoy mismo!
                 </h2>
                 <p className="text-white/90 text-lg max-w-lg">
-                  Únete a la beta privada de Spendly y sé de los primeros en experimentar una nueva forma de manejar tu dinero.
+                  Únete a la beta privada de Bilio y sé de los primeros en experimentar una nueva forma de manejar tu dinero.
                 </p>
               </div>
               
               <div>
                 <Button 
                   onClick={openModal}
-                  className="bg-white text-spendly-purple hover:bg-white/90 hover:text-spendly-purple text-lg py-6 px-8 flex items-center space-x-2 font-bold shadow-2xl transition-all duration-300 hover:scale-105"
+                  className="bg-white text-Bilio-purple hover:bg-white/90 hover:text-Bilio-purple text-lg py-6 px-8 flex items-center space-x-2 font-bold shadow-2xl transition-all duration-300 hover:scale-105"
                   style={{ boxShadow: '0 0 30px rgba(255, 255, 255, 0.3), 0 20px 40px rgba(0, 0, 0, 0.3)' }}
                 >
                   <MessageSquare className="h-5 w-5" />
@@ -59,14 +59,14 @@ const CTASection = () => {
             <div className="flex flex-col items-center gap-3">
               <div className="flex items-center gap-3">
                 <img 
-                  src="/logo_spendly.png" 
-                  alt="Spendly Logo" 
+                  src="/logoBilio.png" 
+                  alt="Bilio Logo" 
                   className="h-8 w-auto"
                 />
-                <span className="text-xl font-bold text-black">Spendly</span>
+                <span className="text-xl font-bold text-black">Bilio</span>
               </div>
               <DialogTitle className="text-2xl font-bold text-center text-black">
-                Únete a la lista de espera de Spendly
+                Únete a la lista de espera de Bilio
               </DialogTitle>
             </div>
           </DialogHeader>
@@ -79,7 +79,7 @@ const CTASection = () => {
               frameBorder="0" 
               marginHeight={0}
               marginWidth={0}
-              title="Únete a la lista de espera de Spendly"
+              title="Únete a la lista de espera de Bilio"
               className="border-0 rounded-lg"
               style={{ minHeight: '500px' }}
               allow="payment"

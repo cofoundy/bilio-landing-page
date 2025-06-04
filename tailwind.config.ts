@@ -53,7 +53,7 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				spendly: {
+				Bilio: {
 					// Nueva paleta vibrante estilo Stripe
 					'purple-deep': '#4C1D95',       // Púrpura profundo
 					'purple': '#7C3AED',            // Púrpura vibrante

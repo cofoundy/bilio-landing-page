@@ -10,40 +10,40 @@ const NavigationHeader = () => {
           <div className="flex items-center gap-3">
             <div className="relative">
               <img 
-                src="/logo_spendly.png" 
-                alt="Spendly Logo" 
+                src="/logoBilio.png" 
+                alt="Bilio Logo" 
                 className="h-10 w-auto transition-all duration-500 group-hover:scale-105 filter brightness-0 invert"
               />
               <div className="absolute inset-0 rounded-lg blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 -inset-1 bg-white/20"></div>
             </div>
-            <span className="font-bold text-2xl transition-all duration-500 text-glow text-white hover:text-spendly-yellow drop-shadow-lg">
-              Spendly
+            <span className="font-bold text-2xl transition-all duration-500 text-glow text-white hover:text-Bilio-yellow drop-shadow-lg">
+              Bilio
             </span>
           </div>
         </a>
         
         <nav className="hidden md:flex items-center space-x-8 text-sm font-semibold">
-          <a href="#how-it-works" className="transition-all duration-500 hover:scale-105 relative group text-white/90 hover:text-spendly-purple drop-shadow-lg text-glow">
+          <a href="#how-it-works" className="transition-all duration-500 hover:scale-105 relative group text-white/90 hover:text-Bilio-purple drop-shadow-lg text-glow">
             ¿Cómo funciona?
-            <span className="absolute -bottom-1 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300 bg-spendly-purple shadow-lg shadow-spendly-purple/50"></span>
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300 bg-Bilio-purple shadow-lg shadow-Bilio-purple/50"></span>
           </a>
-          <a href="#benefits" className="transition-all duration-500 hover:scale-105 relative group text-white/90 hover:text-spendly-pink drop-shadow-lg text-glow-pink">
+          <a href="#benefits" className="transition-all duration-500 hover:scale-105 relative group text-white/90 hover:text-Bilio-pink drop-shadow-lg text-glow-pink">
             Beneficios
-            <span className="absolute -bottom-1 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300 bg-spendly-pink shadow-lg shadow-spendly-pink/50"></span>
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300 bg-Bilio-pink shadow-lg shadow-Bilio-pink/50"></span>
           </a>
-          <a href="#pricing" className="transition-all duration-500 hover:scale-105 relative group text-white/90 hover:text-spendly-blue drop-shadow-lg text-glow-blue">
+          <a href="#pricing" className="transition-all duration-500 hover:scale-105 relative group text-white/90 hover:text-Bilio-blue drop-shadow-lg text-glow-blue">
             Planes
-            <span className="absolute -bottom-1 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300 bg-spendly-blue shadow-lg shadow-spendly-blue/50"></span>
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300 bg-Bilio-blue shadow-lg shadow-Bilio-blue/50"></span>
           </a>
-          <a href="#faq" className="transition-all duration-500 hover:scale-105 relative group text-white/90 hover:text-spendly-cyan drop-shadow-lg text-glow">
+          <a href="#faq" className="transition-all duration-500 hover:scale-105 relative group text-white/90 hover:text-Bilio-cyan drop-shadow-lg text-glow">
             FAQ
-            <span className="absolute -bottom-1 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300 bg-spendly-cyan shadow-lg shadow-spendly-cyan/50"></span>
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300 bg-Bilio-cyan shadow-lg shadow-Bilio-cyan/50"></span>
           </a>
         </nav>
         
         <Button 
           onClick={scrollToSectionAndOpenModal}
-          className="px-8 py-3 font-semibold group transition-all duration-500 hover:scale-105 bg-white/20 backdrop-blur-sm border border-white/30 text-white hover:bg-white hover:text-spendly-purple"
+          className="px-8 py-3 font-semibold group transition-all duration-500 hover:scale-105 bg-white/20 backdrop-blur-sm border border-white/30 text-white hover:bg-white hover:text-Bilio-purple"
         >
           Únete a la beta
           <span className="ml-2 group-hover:translate-x-1 transition-transform duration-300 inline-block">→</span>

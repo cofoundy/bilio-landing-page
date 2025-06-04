@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 
 const testimonials = [
   {
-    quote: "Spendly ha cambiado mi forma de administrar mi dinero. Finalmente tengo control de mis finanzas sin tener que entrar a apps complicadas.",
+    quote: "Bilio ha cambiado mi forma de administrar mi dinero. Finalmente tengo control de mis finanzas sin tener que entrar a apps complicadas.",
     author: "Ana López",
     role: "Freelancer"
   },
@@ -22,14 +22,14 @@ const testimonials = [
 
 const TestimonialsSection = () => {
   return (
-    <section className="py-20 bg-gradient-to-br from-spendly-emerald/5 to-spendly-aqua/5">
+    <section className="py-20 bg-gradient-to-br from-Bilio-emerald/5 to-Bilio-aqua/5">
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             <span className="gradient-text">Lo que dicen nuestros usuarios</span>
           </h2>
           <p className="text-xl text-gray-600">
-            Testimonios de personas que ya están tomando control de sus finanzas con Spendly
+            Testimonios de personas que ya están tomando control de sus finanzas con Bilio
           </p>
         </div>
         
@@ -46,7 +46,7 @@ const TestimonialsSection = () => {
                   "{testimonial.quote}"
                 </blockquote>
                 <div className="flex items-center">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-r from-spendly-emerald to-spendly-aqua flex items-center justify-center text-white font-bold">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-r from-Bilio-emerald to-Bilio-aqua flex items-center justify-center text-white font-bold">
                     {testimonial.author[0]}
                   </div>
                   <div className="ml-3">

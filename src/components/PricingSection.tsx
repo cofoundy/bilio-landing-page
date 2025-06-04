@@ -18,7 +18,7 @@ const PricingSection = () => {
         "Soporte por WhatsApp"
       ],
       popular: false,
-      glowColor: "spendly-blue"
+      glowColor: "Bilio-blue"
     },
     {
       name: "Premium",
@@ -35,7 +35,7 @@ const PricingSection = () => {
         "Soporte prioritario"
       ],
       popular: true,
-      glowColor: "spendly-purple"
+      glowColor: "Bilio-purple"
     },
     {
       name: "Empresarial",
@@ -52,7 +52,7 @@ const PricingSection = () => {
         "Facturación empresarial"
       ],
       popular: false,
-      glowColor: "spendly-gold"
+      glowColor: "Bilio-gold"
     }
   ];
 
@@ -73,13 +73,13 @@ const PricingSection = () => {
             <div
               key={index}
               className={`card-premium p-8 relative group animate-scale-in ${
-                plan.popular ? 'ring-2 ring-spendly-purple ring-opacity-50 scale-105' : ''
+                plan.popular ? 'ring-2 ring-Bilio-purple ring-opacity-50 scale-105' : ''
               }`}
               style={{ animationDelay: `${index * 0.2}s` }}
             >
               {plan.popular && (
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                  <span className="bg-gradient-to-r from-spendly-purple to-spendly-pink text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg shadow-spendly-purple/30">
+                  <span className="bg-gradient-to-r from-Bilio-purple to-Bilio-pink text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg shadow-Bilio-purple/30">
                     Más Popular
                   </span>
                 </div>
@@ -112,7 +112,7 @@ const PricingSection = () => {
                   className={`w-full py-3 font-semibold transition-all duration-300 hover:scale-105 ${
                     plan.popular
                       ? 'btn-premium text-white'
-                      : 'bg-gray-800 text-white border border-gray-600 hover:bg-gray-700 hover:border-spendly-purple/50'
+                      : 'bg-gray-800 text-white border border-gray-600 hover:bg-gray-700 hover:border-Bilio-purple/50'
                   }`}
                   style={plan.popular ? {} : { boxShadow: '0 0 20px rgba(124, 58, 237, 0.1)' }}
                 >
@@ -122,7 +122,7 @@ const PricingSection = () => {
 
               {/* Glow effect for popular plan */}
               {plan.popular && (
-                <div className="absolute -inset-1 bg-gradient-to-r from-spendly-purple/20 to-spendly-pink/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
+                <div className="absolute -inset-1 bg-gradient-to-r from-Bilio-purple/20 to-Bilio-pink/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
               )}
             </div>
           ))}

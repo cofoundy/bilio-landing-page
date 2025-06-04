@@ -87,27 +87,27 @@
   }
   
   .gradient-text {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-spendly-purple via-spendly-pink to-spendly-gold;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-Bilio-purple via-Bilio-pink to-Bilio-gold;
   }
   
   .gradient-bg {
-    @apply bg-gradient-to-r from-spendly-purple to-spendly-blue;
+    @apply bg-gradient-to-r from-Bilio-purple to-Bilio-blue;
   }
   
   .gradient-bg-primary {
-    @apply bg-gradient-to-r from-spendly-purple-deep to-spendly-purple;
+    @apply bg-gradient-to-r from-Bilio-purple-deep to-Bilio-purple;
   }
   
   .gradient-bg-secondary {
-    @apply bg-gradient-to-r from-spendly-blue to-spendly-cyan;
+    @apply bg-gradient-to-r from-Bilio-blue to-Bilio-cyan;
   }
   
   .gradient-bg-accent {
-    @apply bg-gradient-to-r from-spendly-pink to-spendly-orange;
+    @apply bg-gradient-to-r from-Bilio-pink to-Bilio-orange;
   }
   
   .gradient-bg-futuristic {
-    @apply bg-gradient-to-r from-spendly-purple via-spendly-cyan to-spendly-gold;
+    @apply bg-gradient-to-r from-Bilio-purple via-Bilio-cyan to-Bilio-gold;
   }
   
   .gradient-card {

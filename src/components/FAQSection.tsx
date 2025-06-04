@@ -6,28 +6,28 @@ const FAQSection = () => {
 
   const faqs = [
     {
-      question: "¿Cómo funciona Spendly?",
-      answer: "Spendly es un bot de WhatsApp que te ayuda a registrar y categorizar tus gastos automáticamente. Simplemente envías un mensaje con tu gasto (ej: 'Gasté S/50 en almuerzo') y Spendly lo registra, categoriza y te ayuda a hacer seguimiento de tus finanzas."
+      question: "¿Cómo funciona Bilio?",
+      answer: "Bilio es un bot de WhatsApp que te ayuda a registrar y categorizar tus gastos automáticamente. Simplemente envías un mensaje con tu gasto (ej: 'Gasté S/50 en almuerzo') y Bilio lo registra, categoriza y te ayuda a hacer seguimiento de tus finanzas."
     },
     {
       question: "¿Es seguro compartir mi información financiera?",
-      answer: "Absolutamente. Spendly utiliza encriptación de extremo a extremo y no almacena información sensible como números de cuentas bancarias. Solo procesamos los datos de gastos que tú decides compartir voluntariamente para darte mejores reportes."
+      answer: "Absolutamente. Bilio utiliza encriptación de extremo a extremo y no almacena información sensible como números de cuentas bancarias. Solo procesamos los datos de gastos que tú decides compartir voluntariamente para darte mejores reportes."
     },
     {
-      question: "¿Cuánto cuesta usar Spendly?",
-      answer: "Spendly tiene un plan gratuito que incluye registro ilimitado de gastos, categorización automática y reportes básicos. También ofrecemos planes premium con funciones avanzadas como reportes detallados, análisis de IA y más."
+      question: "¿Cuánto cuesta usar Bilio?",
+      answer: "Bilio tiene un plan gratuito que incluye registro ilimitado de gastos, categorización automática y reportes básicos. También ofrecemos planes premium con funciones avanzadas como reportes detallados, análisis de IA y más."
     },
     {
-      question: "¿Puedo usar Spendly en grupo familiar?",
+      question: "¿Puedo usar Bilio en grupo familiar?",
       answer: "¡Sí! Los planes premium y empresarial permiten múltiples usuarios, perfecto para familias o equipos que quieren hacer seguimiento conjunto de sus gastos y presupuestos."
     },
     {
-      question: "¿Spendly se conecta con mi banco?",
+      question: "¿Bilio se conecta con mi banco?",
       answer: "Actualmente trabajamos en integración con bancos peruanos principales. Por ahora, el registro es manual a través de WhatsApp, pero pronto podrás conectar tus cuentas para un seguimiento automático más completo."
     },
     {
       question: "¿Qué pasa si me equivoco en un gasto?",
-      answer: "Puedes corregir cualquier gasto fácilmente enviando un mensaje a Spendly. Por ejemplo: 'Corrige el gasto de ayer, fueron S/45 no S/50'. El bot actualizará automáticamente tu registro."
+      answer: "Puedes corregir cualquier gasto fácilmente enviando un mensaje a Bilio. Por ejemplo: 'Corrige el gasto de ayer, fueron S/45 no S/50'. El bot actualizará automáticamente tu registro."
     },
     {
       question: "¿Puedo exportar mis datos?",
@@ -47,7 +47,7 @@ const FAQSection = () => {
             <span className="text-premium">Preguntas frecuentes</span>
           </h2>
           <p className="text-xl text-gray-400 leading-relaxed font-medium max-w-2xl mx-auto">
-            Encuentra respuestas a las preguntas más comunes sobre Spendly
+            Encuentra respuestas a las preguntas más comunes sobre Bilio
           </p>
         </div>
 
@@ -63,14 +63,14 @@ const FAQSection = () => {
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
               >
                 <div className="flex justify-between items-center">
-                  <h3 className="text-lg font-semibold text-white text-glow group-hover:text-spendly-purple transition-colors duration-300">
+                  <h3 className="text-lg font-semibold text-white text-glow group-hover:text-Bilio-purple transition-colors duration-300">
                     {faq.question}
                   </h3>
                   <div className="ml-4 flex-shrink-0">
                     {openIndex === index ? (
-                      <ChevronUp className="h-5 w-5 text-spendly-purple" />
+                      <ChevronUp className="h-5 w-5 text-Bilio-purple" />
                     ) : (
-                      <ChevronDown className="h-5 w-5 text-gray-400 group-hover:text-spendly-purple transition-colors duration-300" />
+                      <ChevronDown className="h-5 w-5 text-gray-400 group-hover:text-Bilio-purple transition-colors duration-300" />
                     )}
                   </div>
                 </div>
@@ -78,7 +78,7 @@ const FAQSection = () => {
               
               {openIndex === index && (
                 <div className="px-6 pb-6 animate-fade-in">
-                  <div className="w-full h-px bg-gradient-to-r from-transparent via-spendly-purple/30 to-transparent mb-4"></div>
+                  <div className="w-full h-px bg-gradient-to-r from-transparent via-Bilio-purple/30 to-transparent mb-4"></div>
                   <p className="text-gray-400 leading-relaxed">
                     {faq.answer}
                   </p>
@@ -86,7 +86,7 @@ const FAQSection = () => {
               )}
 
               {/* Subtle glow on hover */}
-              <div className="absolute -inset-1 bg-gradient-to-r from-spendly-purple/10 to-spendly-pink/10 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
+              <div className="absolute -inset-1 bg-gradient-to-r from-Bilio-purple/10 to-Bilio-pink/10 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
             </div>
           ))}
         </div>

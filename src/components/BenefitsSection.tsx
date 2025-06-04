@@ -8,38 +8,38 @@ const BenefitsSection = () => {
       icon: MessageSquare,
       title: "Registro de gastos fácil y rápido",
       description: "Registra gastos con un simple mensaje de WhatsApp, sin necesidad de abrir otra aplicación.",
-      glowColor: "spendly-purple"
-    },
-    {
-      icon: FileText,
-      title: "Reportes diarios y mensuales claros",
-      description: "Obtén reportes visuales y fáciles de entender sobre tus gastos, ingresos y hábitos financieros.",
-      glowColor: "spendly-pink"
-    },
-    {
-      icon: User,
-      title: "Consejos personalizados de ahorro",
-      description: "Recibe recomendaciones basadas en tu comportamiento financiero para mejorar tus hábitos.",
-      glowColor: "spendly-blue"
-    },
-    {
-      icon: Check,
-      title: "Sin necesidad de instalar apps nuevas",
-      description: "Utiliza WhatsApp, la app de mensajería que ya usas todos los días.",
-      glowColor: "spendly-cyan"
+      glowColor: "Bilio-purple"
     },
     {
       icon: Calendar,
       title: "Plataforma web para análisis detallado",
       description: "Accede a una plataforma web para ver todos tus datos financieros en detalle.",
-      glowColor: "spendly-gold"
+      glowColor: "Bilio-gold"
     },
     {
-      icon: Plus,
-      title: "Integración con tus cuentas bancarias",
-      description: "Conecta tus cuentas para un seguimiento automático y completo de tus finanzas (próximamente).",
-      glowColor: "spendly-orange"
-    }
+      icon: User,
+      title: "Consejos personalizados de ahorro",
+      description: "Recibe recomendaciones basadas en tu comportamiento financiero para mejorar tus hábitos.",
+      glowColor: "Bilio-blue"
+    },
+    // {
+    //   icon: Check,
+    //   title: "Sin necesidad de instalar apps nuevas",
+    //   description: "Utiliza WhatsApp, la app de mensajería que ya usas todos los días.",
+    //   glowColor: "Bilio-cyan"
+    // },
+    // {
+    //   icon: Calendar,
+    //   title: "Plataforma web para análisis detallado",
+    //   description: "Accede a una plataforma web para ver todos tus datos financieros en detalle.",
+    //   glowColor: "Bilio-gold"
+    // },
+    // {
+    //   icon: Plus,
+    //   title: "Integración con tus cuentas bancarias",
+    //   description: "Conecta tus cuentas para un seguimiento automático y completo de tus finanzas (próximamente).",
+    //   glowColor: "Bilio-orange"
+    // }
   ];
 
   return (
@@ -62,7 +62,7 @@ const BenefitsSection = () => {
                 <div className={`absolute -inset-4 bg-gradient-to-br from-${benefit.glowColor}/5 to-${benefit.glowColor}/10 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
                 
                 <div className="relative">
-                  <div className="mx-auto w-20 h-20 rounded-2xl bg-gradient-to-br from-spendly-purple to-spendly-blue flex items-center justify-center shadow-xl group-hover:scale-110 group-hover:rotate-3 transition-all duration-300" style={{ boxShadow: '0 0 30px rgba(124, 58, 237, 0.3)' }}>
+                  <div className="mx-auto w-20 h-20 rounded-2xl bg-gradient-to-br from-Bilio-purple to-Bilio-blue flex items-center justify-center shadow-xl group-hover:scale-110 group-hover:rotate-3 transition-all duration-300" style={{ boxShadow: '0 0 30px rgba(124, 58, 237, 0.3)' }}>
                     <benefit.icon className="w-10 h-10 text-white" />
                   </div>
                 </div>
@@ -73,7 +73,7 @@ const BenefitsSection = () => {
                 </div>
                 
                 {/* Premium accent line with glow */}
-                <div className="w-12 h-1 bg-gradient-to-r from-spendly-purple to-spendly-blue rounded-full mx-auto group-hover:w-20 transition-all duration-300 relative shadow-md shadow-spendly-purple/30"></div>
+                <div className="w-12 h-1 bg-gradient-to-r from-Bilio-purple to-Bilio-blue rounded-full mx-auto group-hover:w-20 transition-all duration-300 relative shadow-md shadow-Bilio-purple/30"></div>
               </div>
             </div>
           ))}
