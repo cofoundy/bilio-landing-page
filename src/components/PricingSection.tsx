@@ -18,7 +18,8 @@ const PricingSection = () => {
         "Soporte por WhatsApp"
       ],
       popular: false,
-      glowColor: "Bilio-blue"
+      accentColor: "Bilio-green",
+      glowColor: "Bilio-green"
     },
     {
       name: "Premium",
@@ -35,7 +36,8 @@ const PricingSection = () => {
         "Soporte prioritario"
       ],
       popular: true,
-      glowColor: "Bilio-purple"
+      accentColor: "Bilio-yellow",
+      glowColor: "Bilio-yellow"
     },
     {
       name: "Empresarial",
@@ -52,18 +54,19 @@ const PricingSection = () => {
         "Facturación empresarial"
       ],
       popular: false,
-      glowColor: "Bilio-gold"
+      accentColor: "Bilio-blue",
+      glowColor: "Bilio-blue"
     }
   ];
 
   return (
-    <section id="pricing" className="py-24 section-premium">
+    <section id="pricing" className="py-24 bg-Bilio-gray-50">
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center max-w-4xl mx-auto mb-20 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold mb-8 tracking-tight text-glow">
-            <span className="text-premium">Planes y precios</span>
+          <h2 className="text-4xl md:text-5xl font-bold mb-8 tracking-tight text-Bilio-gray-900">
+            <span className="text-Bilio-blue">Planes y precios</span>
           </h2>
-          <p className="text-xl text-gray-400 leading-relaxed font-medium max-w-2xl mx-auto">
+          <p className="text-xl text-Bilio-gray-600 leading-relaxed font-medium max-w-2xl mx-auto">
             Elige el plan que mejor se adapte a tus necesidades. Puedes cambiar o cancelar en cualquier momento.
           </p>
         </div>
@@ -73,13 +76,13 @@ const PricingSection = () => {
             <div
               key={index}
               className={`card-premium p-8 relative group animate-scale-in ${
-                plan.popular ? 'ring-2 ring-Bilio-purple ring-opacity-50 scale-105' : ''
+                plan.popular ? 'ring-2 ring-Bilio-yellow ring-opacity-50 scale-105' : ''
               }`}
               style={{ animationDelay: `${index * 0.2}s` }}
             >
               {plan.popular && (
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                  <span className="bg-gradient-to-r from-Bilio-purple to-Bilio-pink text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg shadow-Bilio-purple/30">
+                  <span className={`bg-${plan.accentColor} text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg shadow-${plan.glowColor}/30`}>
                     Más Popular
                   </span>
                 </div>
@@ -87,22 +90,22 @@ const PricingSection = () => {
 
               <div className="space-y-6">
                 <div>
-                  <h3 className="text-2xl font-bold text-white text-glow mb-2">{plan.name}</h3>
-                  <p className="text-gray-400 text-sm">{plan.description}</p>
+                  <h3 className="text-2xl font-bold text-Bilio-gray-900 mb-2">{plan.name}</h3>
+                  <p className="text-Bilio-gray-600 text-sm">{plan.description}</p>
                 </div>
 
                 <div className="flex items-baseline gap-2">
-                  <span className="text-4xl font-bold text-white text-glow">{plan.price}</span>
-                  <span className="text-gray-400 text-sm">{plan.period}</span>
+                  <span className="text-4xl font-bold text-Bilio-gray-900">{plan.price}</span>
+                  <span className="text-Bilio-gray-600 text-sm">{plan.period}</span>
                 </div>
 
                 <div className="space-y-4">
                   {plan.features.map((feature, featureIndex) => (
                     <div key={featureIndex} className="flex items-center gap-3">
-                      <div className={`flex-shrink-0 w-5 h-5 rounded-full bg-${plan.glowColor}/20 flex items-center justify-center border border-${plan.glowColor}/40`}>
-                        <Check className={`w-3 h-3 text-${plan.glowColor}`} />
+                      <div className={`flex-shrink-0 w-5 h-5 rounded-full bg-${plan.accentColor}/20 flex items-center justify-center border border-${plan.accentColor}/40`}>
+                        <Check className={`w-3 h-3 text-${plan.accentColor}`} />
                       </div>
-                      <span className="text-gray-400 text-sm">{feature}</span>
+                      <span className="text-Bilio-gray-600 text-sm">{feature}</span>
                     </div>
                   ))}
                 </div>
@@ -112,9 +115,9 @@ const PricingSection = () => {
                   className={`w-full py-3 font-semibold transition-all duration-300 hover:scale-105 ${
                     plan.popular
                       ? 'btn-premium text-white'
-                      : 'bg-gray-800 text-white border border-gray-600 hover:bg-gray-700 hover:border-Bilio-purple/50'
+                      : 'bg-white text-Bilio-gray-700 border border-Bilio-gray-300 hover:bg-Bilio-gray-50 hover:border-Bilio-blue/50'
                   }`}
-                  style={plan.popular ? {} : { boxShadow: '0 0 20px rgba(124, 58, 237, 0.1)' }}
+                  style={plan.popular ? {} : { boxShadow: '0 0 20px rgba(255, 199, 0, 0.1)' }}
                 >
                   {plan.price === "Gratis" ? "Comenzar Gratis" : "Elegir Plan"}
                 </Button>
@@ -122,17 +125,17 @@ const PricingSection = () => {
 
               {/* Glow effect for popular plan */}
               {plan.popular && (
-                <div className="absolute -inset-1 bg-gradient-to-r from-Bilio-purple/20 to-Bilio-pink/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
+                <div className={`absolute -inset-1 bg-${plan.accentColor}/15 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10`}></div>
               )}
             </div>
           ))}
         </div>
 
         <div className="text-center mt-16">
-          <p className="text-gray-400 text-sm mb-4">
+          <p className="text-Bilio-gray-600 text-sm mb-4">
             ¿Necesitas algo diferente? Contáctanos para planes personalizados.
           </p>
-          <p className="text-gray-500 text-xs">
+          <p className="text-Bilio-gray-500 text-xs">
             Todos los planes incluyen 30 días de prueba gratuita. Sin compromisos.
           </p>
         </div>

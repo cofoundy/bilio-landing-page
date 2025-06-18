@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -54,27 +53,52 @@ export default {
 					foreground: 'hsl(var(--card-foreground))'
 				},
 				Bilio: {
-					// Nueva paleta vibrante estilo Stripe
-					'purple-deep': '#4C1D95',       // Púrpura profundo
-					'purple': '#7C3AED',            // Púrpura vibrante
-					'pink': '#EC4899',              // Rosa/magenta brillante
-					'blue': '#3B82F6',              // Azul eléctrico
-					'cyan': '#06B6D4',              // Cian brillante
-					'gold': '#F59E0B',              // Dorado brillante
-					'yellow': '#FCD34D',            // Amarillo cálido
-					'orange': '#F97316',            // Naranja coral
+					// New light mode palette
+					'yellow': '#FFC700',            // Primary/Logo color
+					'yellow-light': '#FFD633',      // Lighter shade
+					'yellow-dark': '#E6B300',       // Darker shade
+					'yellow-soft': '#FFF9E6',       // Very soft yellow for backgrounds
 					
-					// Colores legacy actualizados para compatibilidad
-					'deep-green': '#4C1D95',        // Púrpura profundo como verde oscuro
-					'emerald': '#7C3AED',           // Púrpura como esmeralda
-					'teal': '#06B6D4',              // Cian como teal
-					'aqua': '#3B82F6',              // Azul como aqua
-					'lime': '#F59E0B',              // Dorado como lima
-					'soft-yellow': '#FEF3C7',       // Amarillo suave
+					'blue': '#002F6C',              // Dark blue
+					'blue-light': '#1A4A8A',        // Lighter shade
+					'blue-dark': '#001F4A',         // Darker shade
+					'blue-soft': '#E6F0FF',         // Very soft blue for backgrounds
 					
-					// Valores legacy (manteniendo únicos)
-					light: '#F8FAFC',               // Gris muy claro
-					dark: '#1E293B'                 // Gris oscuro moderno
+					'green': '#0AAD6E',             // Green accent
+					'green-light': '#2BC085',       // Lighter shade
+					'green-dark': '#088A57',        // Darker shade
+					'green-soft': '#E8F7F1',        // Very soft green for backgrounds
+					
+					// Additional neutral colors for light mode
+					'gray-50': '#FAFAFA',
+					'gray-100': '#F5F5F5',
+					'gray-200': '#E5E5E5',
+					'gray-300': '#D4D4D4',
+					'gray-400': '#A3A3A3',
+					'gray-500': '#737373',
+					'gray-600': '#525252',
+					'gray-700': '#404040',
+					'gray-800': '#262626',
+					'gray-900': '#171717',
+					
+					// Legacy compatibility colors (mapped to new palette)
+					'purple-deep': '#002F6C',       // Dark blue as purple
+					'purple': '#1A4A8A',            // Light blue as purple
+					'pink': '#0AAD6E',              // Green as pink
+					'cyan': '#2BC085',              // Light green as cyan
+					'gold': '#FFC700',              // Yellow as gold
+					'orange': '#E6B300',            // Dark yellow as orange
+					
+					// Additional legacy mappings
+					'deep-green': '#088A57',
+					'emerald': '#0AAD6E',
+					'teal': '#2BC085',
+					'aqua': '#1A4A8A',
+					'lime': '#FFC700',
+					'soft-yellow': '#FFF9E6',
+					
+					light: '#FFFFFF',               // White
+					dark: '#171717'                 // Very dark gray
 				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
@@ -143,8 +167,8 @@ export default {
 					'100%': { transform: 'translateX(100%)' }
 				},
 				'glow': {
-					'0%, 100%': { boxShadow: '0 0 20px rgba(0, 107, 60, 0.3)' },
-					'50%': { boxShadow: '0 0 40px rgba(127, 252, 0, 0.4)' }
+					'0%, 100%': { boxShadow: '0 0 20px rgba(255, 199, 0, 0.3)' },
+					'50%': { boxShadow: '0 0 40px rgba(255, 199, 0, 0.4)' }
 				}
 			},
 			animation: {

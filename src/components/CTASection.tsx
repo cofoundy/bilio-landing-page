@@ -16,20 +16,20 @@ const CTASection = () => {
   }, [isModalOpen]);
 
   return (
-    <section id="cta-section" className="py-20 bg-black relative">
+    <section id="cta-section" className="py-20 bg-white relative">
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto relative overflow-hidden rounded-3xl">
-          {/* Premium vibrant background with enhanced glow */}
-          <div className="absolute inset-0 bg-gradient-to-br from-Bilio-purple-deep via-Bilio-purple to-Bilio-blue"></div>
-          <div className="absolute inset-0 bg-gradient-to-tr from-Bilio-pink/60 to-transparent"></div>
-          <div className="absolute -top-40 -right-40 w-96 h-96 bg-Bilio-cyan/30 rounded-full blur-3xl animate-float" style={{ boxShadow: '0 0 100px rgba(6, 182, 212, 0.3)' }}></div>
-          <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-Bilio-gold/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s', boxShadow: '0 0 100px rgba(245, 158, 11, 0.2)' }}></div>
+          {/* Premium background with individual colors */}
+          <div className="absolute inset-0 bg-Bilio-blue"></div>
+          <div className="absolute inset-0 bg-Bilio-green/60 mix-blend-multiply"></div>
+          <div className="absolute -top-40 -right-40 w-96 h-96 bg-Bilio-yellow/30 rounded-full blur-3xl animate-float" style={{ boxShadow: '0 0 100px rgba(255, 199, 0, 0.3)' }}></div>
+          <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-Bilio-green/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s', boxShadow: '0 0 100px rgba(10, 173, 110, 0.2)' }}></div>
           
-          <div className="relative p-12 md:p-16" style={{ background: 'linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.2))' }}>
+          <div className="relative p-12 md:p-16" style={{ background: 'linear-gradient(rgba(255,255,255,0.1), rgba(255,255,255,0.2))' }}>
             
             <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-10">
               <div className="md:w-2/3">
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 text-glow">
+                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
                   ¡Empieza a controlar tus finanzas hoy mismo!
                 </h2>
                 <p className="text-white/90 text-lg max-w-lg">
@@ -40,7 +40,7 @@ const CTASection = () => {
               <div>
                 <Button 
                   onClick={openModal}
-                  className="bg-white text-Bilio-purple hover:bg-white/90 hover:text-Bilio-purple text-lg py-6 px-8 flex items-center space-x-2 font-bold shadow-2xl transition-all duration-300 hover:scale-105"
+                  className="bg-white text-Bilio-blue hover:bg-white/90 hover:text-Bilio-blue text-lg py-6 px-8 flex items-center space-x-2 font-bold shadow-2xl transition-all duration-300 hover:scale-105"
                   style={{ boxShadow: '0 0 30px rgba(255, 255, 255, 0.3), 0 20px 40px rgba(0, 0, 0, 0.3)' }}
                 >
                   <MessageSquare className="h-5 w-5" />
@@ -52,10 +52,10 @@ const CTASection = () => {
         </div>
       </div>
 
-      {/* Modal with Tally Form - Dark Theme */}
+      {/* Modal with Tally Form - Light Theme */}
       <Dialog open={isModalOpen} onOpenChange={(open) => !open && closeModal()}>
-        <DialogContent className="max-w-3xl max-h-[95vh] overflow-hidden p-0  border border-gray-700">
-          <DialogHeader className="p-6 pb-0 ">
+        <DialogContent className="max-w-3xl max-h-[95vh] overflow-hidden p-0 border border-Bilio-gray-300">
+          <DialogHeader className="p-6 pb-0">
             <div className="flex flex-col items-center gap-3">
               <div className="flex items-center gap-3">
                 <img 
@@ -63,9 +63,9 @@ const CTASection = () => {
                   alt="Bilio Logo" 
                   className="h-8 w-auto"
                 />
-                <span className="text-xl font-bold text-black">Bilio</span>
+                <span className="text-xl font-bold text-Bilio-gray-900">Bilio</span>
               </div>
-              <DialogTitle className="text-2xl font-bold text-center text-black">
+              <DialogTitle className="text-2xl font-bold text-center text-Bilio-gray-900">
                 Únete a la lista de espera de Bilio
               </DialogTitle>
             </div>

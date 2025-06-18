@@ -21,10 +21,7 @@ const FAQSection = () => {
       question: "¿Puedo usar Bilio en grupo familiar?",
       answer: "¡Sí! Los planes premium y empresarial permiten múltiples usuarios, perfecto para familias o equipos que quieren hacer seguimiento conjunto de sus gastos y presupuestos."
     },
-    {
-      question: "¿Bilio se conecta con mi banco?",
-      answer: "Actualmente trabajamos en integración con bancos peruanos principales. Por ahora, el registro es manual a través de WhatsApp, pero pronto podrás conectar tus cuentas para un seguimiento automático más completo."
-    },
+    
     {
       question: "¿Qué pasa si me equivoco en un gasto?",
       answer: "Puedes corregir cualquier gasto fácilmente enviando un mensaje a Bilio. Por ejemplo: 'Corrige el gasto de ayer, fueron S/45 no S/50'. El bot actualizará automáticamente tu registro."
@@ -40,13 +37,13 @@ const FAQSection = () => {
   ];
 
   return (
-    <section id="faq" className="py-24 section-premium">
+    <section id="faq" className="py-24 bg-white">
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center max-w-4xl mx-auto mb-20 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold mb-8 tracking-tight text-glow">
-            <span className="text-premium">Preguntas frecuentes</span>
+          <h2 className="text-4xl md:text-5xl font-bold mb-8 tracking-tight text-Bilio-gray-900">
+            <span className="text-Bilio-blue">Preguntas frecuentes</span>
           </h2>
-          <p className="text-xl text-gray-400 leading-relaxed font-medium max-w-2xl mx-auto">
+          <p className="text-xl text-Bilio-gray-600 leading-relaxed font-medium max-w-2xl mx-auto">
             Encuentra respuestas a las preguntas más comunes sobre Bilio
           </p>
         </div>
@@ -63,14 +60,14 @@ const FAQSection = () => {
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
               >
                 <div className="flex justify-between items-center">
-                  <h3 className="text-lg font-semibold text-white text-glow group-hover:text-Bilio-purple transition-colors duration-300">
+                  <h3 className="text-lg font-semibold text-Bilio-gray-900 group-hover:text-Bilio-blue transition-colors duration-300">
                     {faq.question}
                   </h3>
                   <div className="ml-4 flex-shrink-0">
                     {openIndex === index ? (
-                      <ChevronUp className="h-5 w-5 text-Bilio-purple" />
+                      <ChevronUp className="h-5 w-5 text-Bilio-blue" />
                     ) : (
-                      <ChevronDown className="h-5 w-5 text-gray-400 group-hover:text-Bilio-purple transition-colors duration-300" />
+                      <ChevronDown className="h-5 w-5 text-Bilio-gray-600 group-hover:text-Bilio-blue transition-colors duration-300" />
                     )}
                   </div>
                 </div>
@@ -78,24 +75,24 @@ const FAQSection = () => {
               
               {openIndex === index && (
                 <div className="px-6 pb-6 animate-fade-in">
-                  <div className="w-full h-px bg-gradient-to-r from-transparent via-Bilio-purple/30 to-transparent mb-4"></div>
-                  <p className="text-gray-400 leading-relaxed">
+                  <div className="w-full h-px bg-Bilio-yellow/30 mb-4"></div>
+                  <p className="text-Bilio-gray-600 leading-relaxed">
                     {faq.answer}
                   </p>
                 </div>
               )}
 
               {/* Subtle glow on hover */}
-              <div className="absolute -inset-1 bg-gradient-to-r from-Bilio-purple/10 to-Bilio-pink/10 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
+              <div className="absolute -inset-1 bg-Bilio-yellow/8 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
             </div>
           ))}
         </div>
 
         <div className="text-center mt-16">
-          <p className="text-gray-400 mb-4">
+          <p className="text-Bilio-gray-600 mb-4">
             ¿No encuentras la respuesta que buscas?
           </p>
-          <p className="text-gray-500 text-sm">
+          <p className="text-Bilio-gray-500 text-sm">
             Escríbenos a nuestro WhatsApp y te ayudaremos personalmente
           </p>
         </div>
