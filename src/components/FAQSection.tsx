@@ -36,68 +36,90 @@ const FAQSection = () => {
     }
   ];
 
+  // Generate FAQ structured data
+  const faqStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  };
+
   return (
-    <section id="faq" className="py-24 bg-white">
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center max-w-4xl mx-auto mb-20 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold mb-8 tracking-tight text-Bilio-gray-900">
-            <span className="text-Bilio-blue">Preguntas frecuentes</span>
-          </h2>
-          <p className="text-xl text-Bilio-gray-600 leading-relaxed font-medium max-w-2xl mx-auto">
-            Encuentra respuestas a las preguntas más comunes sobre Bilio
-          </p>
-        </div>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(faqStructuredData)
+        }}
+      />
+      <section id="faq" className="py-24 bg-white">
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center max-w-4xl mx-auto mb-20 animate-fade-in">
+            <h2 className="text-4xl md:text-5xl font-bold mb-8 tracking-tight text-Bilio-gray-900">
+              <span className="text-Bilio-blue">Preguntas frecuentes</span>
+            </h2>
+            <p className="text-xl text-Bilio-gray-600 leading-relaxed font-medium max-w-2xl mx-auto">
+              Encuentra respuestas a las preguntas más comunes sobre Bilio
+            </p>
+          </div>
 
-        <div className="max-w-4xl mx-auto space-y-6">
-          {faqs.map((faq, index) => (
-            <div
-              key={index}
-              className="card-premium transition-all duration-300 animate-scale-in group"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <button
-                className="w-full p-6 text-left focus:outline-none group"
-                onClick={() => setOpenIndex(openIndex === index ? null : index)}
+          <div className="max-w-4xl mx-auto space-y-6">
+            {faqs.map((faq, index) => (
+              <div
+                key={index}
+                className="card-premium transition-all duration-300 animate-scale-in group"
+                style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="flex justify-between items-center">
-                  <h3 className="text-lg font-semibold text-Bilio-gray-900 group-hover:text-Bilio-blue transition-colors duration-300">
-                    {faq.question}
-                  </h3>
-                  <div className="ml-4 flex-shrink-0">
-                    {openIndex === index ? (
-                      <ChevronUp className="h-5 w-5 text-Bilio-blue" />
-                    ) : (
-                      <ChevronDown className="h-5 w-5 text-Bilio-gray-600 group-hover:text-Bilio-blue transition-colors duration-300" />
-                    )}
+                <button
+                  className="w-full p-6 text-left focus:outline-none group"
+                  onClick={() => setOpenIndex(openIndex === index ? null : index)}
+                >
+                  <div className="flex justify-between items-center">
+                    <h3 className="text-lg font-semibold text-Bilio-gray-900 group-hover:text-Bilio-blue transition-colors duration-300">
+                      {faq.question}
+                    </h3>
+                    <div className="ml-4 flex-shrink-0">
+                      {openIndex === index ? (
+                        <ChevronUp className="h-5 w-5 text-Bilio-blue" />
+                      ) : (
+                        <ChevronDown className="h-5 w-5 text-Bilio-gray-600 group-hover:text-Bilio-blue transition-colors duration-300" />
+                      )}
+                    </div>
                   </div>
-                </div>
-              </button>
-              
-              {openIndex === index && (
-                <div className="px-6 pb-6 animate-fade-in">
-                  <div className="w-full h-px bg-Bilio-yellow/30 mb-4"></div>
-                  <p className="text-Bilio-gray-600 leading-relaxed">
-                    {faq.answer}
-                  </p>
-                </div>
-              )}
+                </button>
+                
+                {openIndex === index && (
+                  <div className="px-6 pb-6 animate-fade-in">
+                    <div className="w-full h-px bg-Bilio-yellow/30 mb-4"></div>
+                    <p className="text-Bilio-gray-600 leading-relaxed">
+                      {faq.answer}
+                    </p>
+                  </div>
+                )}
 
-              {/* Subtle glow on hover */}
-              <div className="absolute -inset-1 bg-Bilio-yellow/8 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
-            </div>
-          ))}
-        </div>
+                {/* Subtle glow on hover */}
+                <div className="absolute -inset-1 bg-Bilio-yellow/8 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
+              </div>
+            ))}
+          </div>
 
-        <div className="text-center mt-16">
-          <p className="text-Bilio-gray-600 mb-4">
-            ¿No encuentras la respuesta que buscas?
-          </p>
-          <p className="text-Bilio-gray-500 text-sm">
-            Escríbenos a nuestro WhatsApp y te ayudaremos personalmente
-          </p>
+          <div className="text-center mt-16">
+            <p className="text-Bilio-gray-600 mb-4">
+              ¿No encuentras la respuesta que buscas?
+            </p>
+            <p className="text-Bilio-gray-500 text-sm">
+              Escríbenos a nuestro WhatsApp y te ayudaremos personalmente
+            </p>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 

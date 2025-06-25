@@ -10,19 +10,23 @@ import PricingSection from "@/components/PricingSection";
 import FAQSection from "@/components/FAQSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
+import SEOHead from "@/components/SEOHead";
 
 const Index = () => {
   return (
     <div className="min-h-screen">
+      <SEOHead />
       <NavigationHeader />
-      <HeroSection />
-      <AboutSection />
-      {/* <HowItWorksSection /> */}
-      <BenefitsSection />
-      {/* <TestimonialsSection /> */}
-      <PricingSection />
-      <FAQSection />
-      <CTASection />
+      <main role="main">
+        <HeroSection />
+        <AboutSection />
+        {/* <HowItWorksSection /> */}
+        <BenefitsSection />
+        {/* <TestimonialsSection /> */}
+        <PricingSection />
+        <FAQSection />
+        <CTASection />
+      </main>
       <Footer />
     </div>
   );

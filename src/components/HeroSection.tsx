@@ -74,7 +74,7 @@ const HeroSection = () => {
         <div className="flex flex-col lg:flex-row items-center gap-12">
           {/* Left side content */}
           <div className="lg:w-1/2 space-y-8 animate-slide-in-left">
-            <div className="space-y-6">
+            <header className="space-y-6">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] text-Bilio-gray-900 tracking-tight">
                 Toma el control de tus finanzas.{" "}
                 <span className="text-Bilio-blue font-black">
@@ -86,7 +86,7 @@ const HeroSection = () => {
               <p className="text-xl text-Bilio-gray-600 max-w-lg leading-relaxed font-medium">
                 Registra tus gastos en segundos, recibe reportes automáticos y mejora tus finanzas día a día.
               </p>
-            </div>
+            </header>
             
             <div className="flex flex-col sm:flex-row gap-4 pt-6">
               <Button 

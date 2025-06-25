@@ -2,8 +2,26 @@ import React from "react";
 import { MessageSquare, Mail, MapPin } from "lucide-react";
 
 const Footer = () => {
+  // Footer structured data
+  const footerStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "WPFooter",
+    "copyrightYear": "2025",
+    "copyrightHolder": {
+      "@type": "Organization",
+      "name": "Bilio"
+    }
+  };
+
   return (
-    <footer className="bg-Bilio-gray-50 relative border-t border-Bilio-gray-200">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(footerStructuredData)
+        }}
+      />
+      <footer className="bg-Bilio-gray-50 relative border-t border-Bilio-gray-200" role="contentinfo">
       <div className="container mx-auto px-4 py-16 relative z-10">
         <div className="grid md:grid-cols-4 gap-8">
           {/* Logo y descripción */}
@@ -40,22 +58,22 @@ const Footer = () => {
             <h3 className="text-lg font-semibold text-Bilio-gray-900 mb-6">Enlaces rápidos</h3>
             <ul className="space-y-4">
               <li>
-                <a href="#how-it-works" className="text-Bilio-gray-600 hover:text-Bilio-blue transition-colors duration-300">
+                <a href="#about" className="text-Bilio-gray-600 hover:text-Bilio-blue transition-colors duration-300" aria-label="Ir a la sección Acerca de Bilio">
                   ¿Cómo funciona?
                 </a>
               </li>
               <li>
-                <a href="#benefits" className="text-Bilio-gray-600 hover:text-Bilio-green transition-colors duration-300">
+                <a href="#benefits" className="text-Bilio-gray-600 hover:text-Bilio-green transition-colors duration-300" aria-label="Ir a la sección Beneficios">
                   Beneficios
                 </a>
               </li>
               <li>
-                <a href="#pricing" className="text-Bilio-gray-600 hover:text-Bilio-yellow-dark transition-colors duration-300">
+                <a href="#pricing" className="text-Bilio-gray-600 hover:text-Bilio-yellow-dark transition-colors duration-300" aria-label="Ir a la sección Planes y precios">
                   Planes
                 </a>
               </li>
               <li>
-                <a href="#faq" className="text-Bilio-gray-600 hover:text-Bilio-blue-light transition-colors duration-300">
+                <a href="#faq" className="text-Bilio-gray-600 hover:text-Bilio-blue-light transition-colors duration-300" aria-label="Ir a la sección Preguntas frecuentes">
                   FAQ
                 </a>
               </li>
@@ -102,10 +120,11 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Efecto de glow sutil en el fondo */}
-      <div className="absolute inset-0 bg-gradient-to-t from-white via-Bilio-gray-50 to-transparent opacity-80"></div>
-      <div className="absolute bottom-0 left-1/4 w-1/2 h-32 bg-gradient-to-t from-Bilio-yellow/5 to-transparent blur-3xl"></div>
-    </footer>
+        {/* Efecto de glow sutil en el fondo */}
+        <div className="absolute inset-0 bg-gradient-to-t from-white via-Bilio-gray-50 to-transparent opacity-80"></div>
+        <div className="absolute bottom-0 left-1/4 w-1/2 h-32 bg-gradient-to-t from-Bilio-yellow/5 to-transparent blur-3xl"></div>
+      </footer>
+    </>
   );
 };
 

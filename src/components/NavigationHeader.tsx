@@ -22,20 +22,20 @@ const NavigationHeader = () => {
           </div>
         </a>
         
-        <nav className="hidden md:flex items-center space-x-8 text-sm font-semibold">
-          <a href="#how-it-works" className="transition-all duration-500 hover:scale-105 relative group text-Bilio-gray-700 hover:text-Bilio-blue drop-shadow-sm">
+        <nav className="hidden md:flex items-center space-x-8 text-sm font-semibold" role="navigation" aria-label="Navegación principal">
+          <a href="#about" className="transition-all duration-500 hover:scale-105 relative group text-Bilio-gray-700 hover:text-Bilio-blue drop-shadow-sm" aria-label="Ir a la sección Acerca de Bilio">
             ¿Cómo funciona?
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300 bg-Bilio-blue shadow-lg shadow-Bilio-blue/50"></span>
           </a>
-          <a href="#benefits" className="transition-all duration-500 hover:scale-105 relative group text-Bilio-gray-700 hover:text-Bilio-green drop-shadow-sm">
+          <a href="#benefits" className="transition-all duration-500 hover:scale-105 relative group text-Bilio-gray-700 hover:text-Bilio-green drop-shadow-sm" aria-label="Ir a la sección Beneficios">
             Beneficios
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300 bg-Bilio-green shadow-lg shadow-Bilio-green/50"></span>
           </a>
-          <a href="#pricing" className="transition-all duration-500 hover:scale-105 relative group text-Bilio-gray-700 hover:text-Bilio-yellow-dark drop-shadow-sm">
+          <a href="#pricing" className="transition-all duration-500 hover:scale-105 relative group text-Bilio-gray-700 hover:text-Bilio-yellow-dark drop-shadow-sm" aria-label="Ir a la sección Planes y precios">
             Planes
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300 bg-Bilio-yellow shadow-lg shadow-Bilio-yellow/50"></span>
           </a>
-          <a href="#faq" className="transition-all duration-500 hover:scale-105 relative group text-Bilio-gray-700 hover:text-Bilio-blue-light drop-shadow-sm">
+          <a href="#faq" className="transition-all duration-500 hover:scale-105 relative group text-Bilio-gray-700 hover:text-Bilio-blue-light drop-shadow-sm" aria-label="Ir a la sección Preguntas frecuentes">
             FAQ
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300 bg-Bilio-blue-light shadow-lg shadow-Bilio-blue-light/50"></span>
           </a>
