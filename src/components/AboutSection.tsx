@@ -2,7 +2,7 @@ import React from "react";
 
 const AboutSection = () => {
   return (
-    <section className="py-20 bg-gradient-to-b from-white to-Bilio-gray-50 relative overflow-hidden">
+    <section id="about" className="py-20 bg-gradient-to-b from-white to-Bilio-gray-50 relative overflow-hidden">
       {/* Subtle background decoration with individual colors */}
       <div className="absolute top-20 right-10 w-64 h-64 bg-Bilio-yellow/10 rounded-full blur-3xl"></div>
       <div className="absolute bottom-20 left-10 w-48 h-48 bg-Bilio-green/10 rounded-full blur-3xl"></div>

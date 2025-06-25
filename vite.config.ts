@@ -19,4 +19,25 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    // SEO and Performance optimizations
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+          router: ['react-router-dom'],
+          ui: ['@radix-ui/react-accordion', '@radix-ui/react-dialog', '@radix-ui/react-popover'],
+        },
+      },
+    },
+    // Optimize assets
+    assetsInlineLimit: 4096,
+    // Enable source maps for better debugging
+    sourcemap: mode === 'development',
+  },
+  // PWA and SEO optimizations
+  define: {
+    // Ensure process.env is available
+    'process.env': {},
+  },
 }));
