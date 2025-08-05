@@ -1,0 +1,19 @@
+{
+  "title": "¿Cómo funciona",
+  "titleHighlight": "Bilio",
+  "subtitle": "Gestionar tus finanzas nunca fue tan simple. Con solo escribir a WhatsApp, tendrás el control total de tus gastos e ingresos.",
+  "steps": {
+    "step1": {
+      "title": "Escribe tu gasto",
+      "description": "Simplemente envía un mensaje: \"Gasté S/50 en supermercado\" y Bilio registrará automáticamente tu gasto."
+    },
+    "step2": {
+      "title": "Categorización automática",
+      "description": "Bilio identifica la categoría de tu gasto automáticamente y te sugiere cómo optimizar tu presupuesto."
+    },
+    "step3": {
+      "title": "Recibe insights",
+      "description": "Obtén reportes detallados, alertas de presupuesto y consejos personalizados para mejorar tu salud financiera."
+    }
+  }
+}

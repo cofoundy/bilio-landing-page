@@ -1,0 +1,57 @@
+{
+  "title": "Planes y precios",
+  "subtitle": "Elige el plan que mejor se adapte a tus necesidades. Puedes cambiar o cancelar en cualquier momento.",
+  "popularLabel": "Más Popular",
+  "plans": {
+    "basic": {
+      "name": "Básico",
+      "price": "Gratis",
+      "period": "por siempre",
+      "description": "Perfecto para comenzar a organizar tus finanzas",
+      "features": [
+        "Registro de gastos ilimitado",
+        "Categorización automática",
+        "Reportes mensuales",
+        "Análisis básico de gastos",
+        "Soporte por WhatsApp"
+      ],
+      "button": "Comenzar Gratis"
+    },
+    "premium": {
+      "name": "Premium",
+      "price": "S/19",
+      "period": "por mes",
+      "description": "Para usuarios que quieren el control total de sus finanzas",
+      "features": [
+        "Todo lo del plan Básico",
+        "Reportes diarios y personalizados",
+        "Alertas de gastos inteligentes",
+        "Integración con bancos (próximamente)",
+        "Dashboard web completo",
+        "Consejos de ahorro IA",
+        "Soporte prioritario"
+      ],
+      "button": "Elegir Plan"
+    },
+    "enterprise": {
+      "name": "Empresarial",
+      "price": "S/99",
+      "period": "por mes",
+      "description": "Ideal para equipos y pequeñas empresas",
+      "features": [
+        "Todo lo del plan Premium",
+        "Múltiples usuarios",
+        "Control de gastos por equipo",
+        "Reportes avanzados",
+        "Integración con sistemas contables",
+        "Gestor de cuenta dedicado",
+        "Facturación empresarial"
+      ],
+      "button": "Elegir Plan"
+    }
+  },
+  "footer": {
+    "customPlan": "¿Necesitas algo diferente? Contáctanos para planes personalizados.",
+    "trial": "Todos los planes incluyen 30 días de prueba gratuita. Sin compromisos."
+  }
+}

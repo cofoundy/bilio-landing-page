@@ -1,0 +1,33 @@
+{
+  "description": "Tu asistente financiero inteligente en WhatsApp. Registra gastos, recibe reportes automáticos y mejora tus finanzas día a día.",
+  "contact": {
+    "whatsapp": "WhatsApp: +51 963394426",
+    "email": "info@bilio.lat",
+    "location": "Lima, Perú"
+  },
+  "quickLinks": {
+    "title": "Enlaces rápidos",
+    "howItWorks": "¿Cómo funciona?",
+    "benefits": "Beneficios",
+    "plans": "Planes",
+    "faq": "FAQ"
+  },
+  "legal": {
+    "title": "Legal",
+    "privacy": "Privacidad",
+    "terms": "Términos de uso",
+    "cookies": "Cookies",
+    "support": "Soporte"
+  },
+  "copyright": {
+    "text": "© 2025 Bilio. Todos los derechos reservados.",
+    "madeWith": "Hecho con {{heart}} en Lima, Perú"
+  },
+  "ariaLabels": {
+    "logo": "Bilio Logo",
+    "aboutSection": "Ir a la sección Acerca de Bilio",
+    "benefitsSection": "Ir a la sección Beneficios",
+    "pricingSection": "Ir a la sección Planes y precios",
+    "faqSection": "Ir a la sección Preguntas frecuentes"
+  }
+}

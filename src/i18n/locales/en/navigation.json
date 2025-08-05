@@ -1,0 +1,20 @@
+{
+  "brand": "Bilio",
+  "menu": {
+    "howItWorks": "How it Works",
+    "benefits": "Benefits",
+    "plans": "Plans",
+    "faq": "FAQ"
+  },
+  "actions": {
+    "joinBeta": "Join Beta"
+  },
+  "ariaLabels": {
+    "logo": "Bilio Logo",
+    "mainNav": "Main navigation",
+    "aboutSection": "Go to About Bilio section",
+    "benefitsSection": "Go to Benefits section",
+    "pricingSection": "Go to Plans and pricing section",
+    "faqSection": "Go to Frequently asked questions section"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "meta": {
+    "title": "Bilio | Your AI Financial Assistant on WhatsApp",
+    "description": "Control your finances from WhatsApp. Track expenses, receive automatic reports and improve your financial health with artificial intelligence.",
+    "keywords": "personal finance, WhatsApp, expenses, budget, savings, USA, dollars, financial control, AI assistant",
+    "author": "Bilio"
+  },
+  "openGraph": {
+    "title": "Bilio - Intelligent Financial Assistant",
+    "description": "Transform your relationship with money. Track expenses from WhatsApp and get personalized insights to improve your finances.",
+    "siteName": "Bilio"
+  },
+  "structured": {
+    "organizationName": "Bilio",
+    "organizationDescription": "AI-powered financial assistant for WhatsApp",
+    "serviceDescription": "WhatsApp financial assistant for expense tracking and personal finance management"
+  }
+}

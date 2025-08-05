@@ -1,0 +1,20 @@
+{
+  "title": "How does",
+  "titleHighlight": "Bilio",
+  "titleSuffix": "work?",
+  "subtitle": "Managing your finances has never been this simple. Just by writing to WhatsApp, you'll have total control of your expenses and income.",
+  "steps": {
+    "step1": {
+      "title": "Write your expense",
+      "description": "Simply send a message: \"Spent $50 at supermarket\" and Bilio will automatically record your expense."
+    },
+    "step2": {
+      "title": "Automatic categorization",
+      "description": "Bilio identifies your expense category automatically and suggests how to optimize your budget."
+    },
+    "step3": {
+      "title": "Receive insights",
+      "description": "Get detailed reports, budget alerts and personalized advice to improve your financial health."
+    }
+  }
+}

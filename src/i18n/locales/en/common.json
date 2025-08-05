@@ -1,0 +1,39 @@
+{
+  "buttons": {
+    "joinBeta": "Join Private Beta",
+    "watchDemo": "Watch Demo",
+    "getStarted": "Get Started",
+    "learnMore": "Learn More",
+    "readMore": "Read More",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "loading": "Loading...",
+    "tryFree": "Try Free",
+    "signUp": "Sign Up",
+    "login": "Log In"
+  },
+  "currency": {
+    "pen": "PEN",
+    "usd": "USD",
+    "eur": "EUR"
+  },
+  "time": {
+    "daily": "Daily",
+    "weekly": "Weekly",
+    "monthly": "Monthly",
+    "yearly": "Yearly"
+  },
+  "common": {
+    "and": "and",
+    "or": "or",
+    "yes": "Yes",
+    "no": "No",
+    "free": "Free",
+    "premium": "Premium",
+    "basic": "Basic",
+    "advanced": "Advanced",
+    "unlimited": "Unlimited"
+  }
+}

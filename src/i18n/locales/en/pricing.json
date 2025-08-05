@@ -1,0 +1,57 @@
+{
+  "title": "Plans and Pricing",
+  "subtitle": "Choose the plan that best fits your needs. You can change or cancel at any time.",
+  "popularLabel": "Most Popular",
+  "plans": {
+    "basic": {
+      "name": "Basic",
+      "price": "Free",
+      "period": "forever",
+      "description": "Perfect to start organizing your finances",
+      "features": [
+        "Unlimited expense tracking",
+        "Automatic categorization",
+        "Monthly reports",
+        "Basic expense analysis",
+        "WhatsApp support"
+      ],
+      "button": "Start Free"
+    },
+    "premium": {
+      "name": "Premium",
+      "price": "$19",
+      "period": "per month",
+      "description": "For users who want total control of their finances",
+      "features": [
+        "Everything in Basic plan",
+        "Daily and personalized reports",
+        "Smart expense alerts",
+        "Bank integration (coming soon)",
+        "Complete web dashboard",
+        "AI savings advice",
+        "Priority support"
+      ],
+      "button": "Choose Plan"
+    },
+    "enterprise": {
+      "name": "Enterprise",
+      "price": "$99",
+      "period": "per month",
+      "description": "Ideal for teams and small businesses",
+      "features": [
+        "Everything in Premium plan",
+        "Multiple users",
+        "Team expense control",
+        "Advanced reports",
+        "Accounting system integration",
+        "Dedicated account manager",
+        "Enterprise billing"
+      ],
+      "button": "Choose Plan"
+    }
+  },
+  "footer": {
+    "customPlan": "Need something different? Contact us for custom plans.",
+    "trial": "All plans include 30 days free trial. No commitments."
+  }
+}

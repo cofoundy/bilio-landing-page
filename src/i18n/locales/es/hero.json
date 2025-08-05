@@ -1,0 +1,24 @@
+{
+  "headline": {
+    "main": "Toma el control de tus finanzas.",
+    "highlight": "Rápido. Simple.",
+    "suffix": "Desde WhatsApp."
+  },
+  "subtitle": "Registra tus gastos en segundos, recibe reportes automáticos y mejora tus finanzas día a día.",
+  "whatsapp": {
+    "botName": "Bilio Bot",
+    "greeting": "¡Hola! Soy Bilio, tu asistente financiero. ¿En qué puedo ayudarte hoy?",
+    "userExpenseMessage": "Gasté S/35 en almuerzo",
+    "botConfirmation": "¡Registrado! S/35 en categoría \"Alimentación\".",
+    "userReportRequest": "Muéstrame mi reporte semanal",
+    "botReportResponse": "Aquí tienes tu reporte semanal:",
+    "chartLabel": "📊 Gráfico del reporte semanal",
+    "timestamps": {
+      "greeting": "10:30",
+      "expense": "10:31",
+      "confirmation": "10:31",
+      "report": "10:32",
+      "chart": "10:33"
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "description": "Your intelligent financial assistant on WhatsApp. Record expenses, receive automatic reports and improve your finances day by day.",
+  "contact": {
+    "whatsapp": "WhatsApp: +1 (555) 123-4567",
+    "email": "info@bilio.com",
+    "location": "New York, USA"
+  },
+  "quickLinks": {
+    "title": "Quick Links",
+    "howItWorks": "How it Works",
+    "benefits": "Benefits",
+    "plans": "Plans",
+    "faq": "FAQ"
+  },
+  "legal": {
+    "title": "Legal",
+    "privacy": "Privacy",
+    "terms": "Terms of Use",
+    "cookies": "Cookies",
+    "support": "Support"
+  },
+  "copyright": {
+    "text": "© 2025 Bilio. All rights reserved.",
+    "madeWith": "Made with {{heart}} in New York, USA"
+  },
+  "ariaLabels": {
+    "logo": "Bilio Logo",
+    "aboutSection": "Go to About Bilio section",
+    "benefitsSection": "Go to Benefits section",
+    "pricingSection": "Go to Plans and pricing section",
+    "faqSection": "Go to Frequently asked questions section"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "title": "Frequently Asked Questions",
+  "subtitle": "Find answers to common questions about Bilio, the AI financial assistant for WhatsApp",
+  "contact": {
+    "notFound": "Can't find the answer you're looking for?",
+    "supportMessage": "Contact us on WhatsApp and we'll help you personally",
+    "contactButton": "Contact Support"
+  },
+  "questions": [
+    {
+      "question": "How does Bilio work?",
+      "answer": "Bilio is a WhatsApp bot that helps you track and categorize your expenses automatically. Simply send a message with your expense (e.g., 'Spent $20 on lunch') and Bilio will record it, categorize it, and help you track your finances.",
+      "category": "basics"
+    },
+    {
+      "question": "Is it safe to share my financial information?",
+      "answer": "Absolutely. Bilio uses end-to-end encryption and doesn't store sensitive information like bank account numbers. We only process expense data that you voluntarily choose to share to give you better reports.",
+      "category": "security"
+    },
+    {
+      "question": "How much does Bilio cost?",
+      "answer": "Bilio has a free plan that includes unlimited expense tracking, automatic categorization, and basic reports. We also offer premium plans with advanced features like detailed reports, AI analysis, and more.",
+      "category": "pricing"
+    },
+    {
+      "question": "Can I use Bilio for family budgeting?",
+      "answer": "Yes! Premium and business plans allow multiple users, perfect for families or teams who want to track their expenses and budgets together.",
+      "category": "features"
+    },
+    {
+      "question": "What if I make a mistake with an expense?",
+      "answer": "You can easily correct any expense by sending a message to Bilio. For example: 'Correct yesterday's expense, it was $45 not $50'. The bot will automatically update your record.",
+      "category": "usage"
+    },
+    {
+      "question": "Can I export my data?",
+      "answer": "Yes, with premium plans you can export all your data in Excel and PDF formats for personal use or to share with your accountant.",
+      "category": "features"
+    },
+    {
+      "question": "Is there a limit to how many expenses I can track?",
+      "answer": "No limits on any plan. You can track as many expenses as you need, without restrictions.",
+      "category": "usage"
+    },
+    {
+      "question": "Does Bilio work with US banks?",
+      "answer": "Currently, Bilio requires manual expense entry through WhatsApp. We're working on US bank integrations for future releases. The manual approach actually helps you stay more conscious of your spending.",
+      "category": "integration"
+    }
+  ]
+}

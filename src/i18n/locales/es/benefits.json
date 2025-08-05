@@ -1,0 +1,18 @@
+{
+  "title": "Beneficios principales",
+  "subtitle": "Controla tus finanzas de forma inteligente y disfruta de una experiencia sencilla y efectiva.",
+  "items": [
+    {
+      "title": "Registro de gastos fácil y rápido",
+      "description": "Registra gastos con un simple mensaje de WhatsApp, sin necesidad de abrir otra aplicación."
+    },
+    {
+      "title": "Plataforma web para análisis detallado",
+      "description": "Accede a una plataforma web para ver todos tus datos financieros en detalle."
+    },
+    {
+      "title": "Consejos personalizados de ahorro",
+      "description": "Recibe recomendaciones basadas en tu comportamiento financiero para mejorar tus hábitos."
+    }
+  ]
+}
