@@ -1,5 +1,6 @@
 import React from "react";
 import { useLocation, Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { ArrowLeft, Check, MessageCircle, Star, ArrowRight, Users, Shield } from "lucide-react";
 import { getUseCaseData } from "@/data/useCases";
 import NavigationHeader from "@/components/NavigationHeader";
@@ -13,6 +14,7 @@ const UseCasePage = () => {
   const location = useLocation();
   const slug = location.pathname.substring(1); // Remove leading slash
   const useCase = getUseCaseData(slug);
+  const { t } = useTranslation('useCases');
 
   if (!useCase) {
     return <NotFound />;
@@ -65,7 +67,7 @@ const UseCasePage = () => {
   const howToStructuredData = {
     "@context": "https://schema.org",
     "@type": "HowTo",
-    "name": `Cómo usar ${useCase.hero.headline}`,
+    "name": `${t('howItWorksSteps')} ${useCase.hero.headline}`,
     "description": useCase.hero.subheadline,
     "step": useCase.howItWorks.map(step => ({
       "@type": "HowToStep",
@@ -155,7 +157,7 @@ const UseCasePage = () => {
         {/* Back navigation */}
         <Link to="/" className="inline-flex items-center text-Bilio-blue hover:text-Bilio-blue/80 mb-8">
           <ArrowLeft size={16} className="mr-2" />
-          Volver al inicio
+          {t('backToHome')}
         </Link>
 
         {/* Hero Section */}
@@ -172,7 +174,7 @@ const UseCasePage = () => {
             <Card className="bg-red-50 border-red-200">
               <CardHeader>
                 <CardTitle className="text-red-700 flex items-center">
-                  ❌ El Problema
+                  ❌ {t('problem')}
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -183,7 +185,7 @@ const UseCasePage = () => {
             <Card className="bg-green-50 border-green-200">
               <CardHeader>
                 <CardTitle className="text-green-700 flex items-center">
-                  ✅ La Solución
+                  ✅ {t('solution')}
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -194,14 +196,14 @@ const UseCasePage = () => {
 
           <Button size="lg" className="bg-Bilio-blue hover:bg-Bilio-blue/90 text-white">
             <MessageCircle size={20} className="mr-2" />
-            Comenzar Gratis en WhatsApp
+            {t('startFreeWhatsApp')}
           </Button>
         </section>
 
         {/* Benefits */}
         <section className="mb-16">
           <h2 className="text-3xl font-bold text-center mb-12 text-Bilio-gray-900">
-            Por qué funciona mejor que otras soluciones
+            {t('whyBetter')}
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {useCase.benefits.map((benefit, index) => (
@@ -225,7 +227,7 @@ const UseCasePage = () => {
         {/* How It Works */}
         <section className="mb-16">
           <h2 className="text-3xl font-bold text-center mb-12 text-Bilio-gray-900">
-            Cómo funciona paso a paso
+            {t('howItWorksSteps')}
           </h2>
           <div className="max-w-4xl mx-auto">
             {useCase.howItWorks.map((step, index) => (
@@ -246,7 +248,7 @@ const UseCasePage = () => {
                       </p>
                       <div className="bg-gray-100 rounded-lg p-3">
                         <p className="text-sm text-Bilio-gray-700 italic">
-                          <strong>Ejemplo:</strong> {step.example}
+                          <strong>{t('exampleLabel')}</strong> {step.example}
                         </p>
                       </div>
                     </div>
@@ -260,7 +262,7 @@ const UseCasePage = () => {
         {/* Testimonials */}
         <section className="mb-16">
           <h2 className="text-3xl font-bold text-center mb-12 text-Bilio-gray-900">
-            Casos de éxito reales
+            {t('successCases')}
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {useCase.testimonials.map((testimonial, index) => (
@@ -293,7 +295,7 @@ const UseCasePage = () => {
         {/* FAQ */}
         <section className="mb-16">
           <h2 className="text-3xl font-bold text-center mb-12 text-Bilio-gray-900">
-            Preguntas frecuentes
+            {t('faq')}
           </h2>
           <div className="max-w-4xl mx-auto space-y-6">
             {useCase.faq.map((item, index) => (
@@ -314,7 +316,7 @@ const UseCasePage = () => {
         {/* Related Pages */}
         <section className="mb-16">
           <h2 className="text-3xl font-bold text-center mb-12 text-Bilio-gray-900">
-            También te puede interesar
+            {t('relatedPages')}
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {useCase.relatedPages.map((page, index) => (
@@ -325,7 +327,7 @@ const UseCasePage = () => {
                   </h3>
                   <Link to={page}>
                     <Button variant="ghost" size="sm" className="w-full group-hover:bg-Bilio-blue group-hover:text-white transition-all">
-                      Ver más
+                      {t('seeMore')}
                       <ArrowRight size={16} className="ml-2" />
                     </Button>
                   </Link>
@@ -340,24 +342,24 @@ const UseCasePage = () => {
           <Card className="bg-gradient-to-r from-Bilio-blue to-Bilio-blue/80 text-white max-w-3xl mx-auto">
             <CardContent className="p-12">
               <h3 className="text-3xl font-bold mb-6">
-                ¿Listo para revolucionar tus finanzas?
+                {t('readyToRevolutionize')}
               </h3>
               <p className="text-xl mb-8 opacity-90">
-                Únete a miles de usuarios que ya mejoraron sus finanzas con {useCase.hero.headline.toLowerCase()}
+                {t('joinThousands')} {useCase.hero.headline.toLowerCase()}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" variant="secondary" className="bg-white text-Bilio-blue hover:bg-gray-100">
                   <MessageCircle size={20} className="mr-2" />
-                  Comenzar Gratis
+                  {t('startFree')}
                 </Button>
                 <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-Bilio-blue">
                   <Users size={20} className="mr-2" />
-                  Ver Testimonios
+                  {t('seeTestimonials')}
                 </Button>
               </div>
               <div className="flex items-center justify-center mt-6 text-sm opacity-75">
                 <Shield size={16} className="mr-2" />
-                Gratis para siempre • Sin tarjeta de crédito
+                {t('freeForever')}
               </div>
             </CardContent>
           </Card>

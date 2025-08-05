@@ -1,40 +1,24 @@
 
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
-
-const testimonials = [
-  {
-    quote: "Bilio ha cambiado mi forma de administrar mi dinero. Finalmente tengo control de mis finanzas sin tener que entrar a apps complicadas.",
-    author: "Ana López",
-    role: "Freelancer"
-  },
-  {
-    quote: "Poder registrar mis gastos por WhatsApp es una maravilla. Las notificaciones diarias me ayudan a mantener mis finanzas bajo control.",
-    author: "Carlos Mendoza",
-    role: "Profesional"
-  },
-  {
-    quote: "Al fin una app financiera que no me da pereza usar. Los reportes semanales son súper útiles para identificar en qué gasto de más.",
-    author: "María Torres",
-    role: "Emprendedora"
-  }
-];
+import { useTranslation } from "react-i18next";
 
 const TestimonialsSection = () => {
+  const { t } = useTranslation('testimonials');
   return (
     <section className="py-20 bg-gradient-to-br from-Bilio-emerald/5 to-Bilio-aqua/5">
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            <span className="gradient-text">Lo que dicen nuestros usuarios</span>
+            <span className="gradient-text">{t('title')}</span>
           </h2>
           <p className="text-xl text-gray-600">
-            Testimonios de personas que ya están tomando control de sus finanzas con Bilio
+            {t('subtitle')}
           </p>
         </div>
         
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {testimonials.map((testimonial, i) => (
+          {t('testimonials', { returnObjects: true }).map((testimonial: any, i: number) => (
             <Card key={i} className="border-none shadow-lg animate-slide-up" style={{ animationDelay: `${i * 0.2}s` }}>
               <CardContent className="p-8">
                 <div className="mb-6">

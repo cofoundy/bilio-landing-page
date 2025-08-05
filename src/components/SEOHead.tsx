@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface SEOHeadProps {
   title?: string;
@@ -9,39 +10,45 @@ interface SEOHeadProps {
 }
 
 const SEOHead = ({ 
-  title = "Bilio | Tu asistente financiero en WhatsApp",
-  description = "Bilio es tu asistente financiero en WhatsApp: registra tus gastos, categorízalos automáticamente y recibe reportes personalizados.",
-  keywords = "finanzas personales, control de gastos, WhatsApp bot, presupuesto, ahorro, gestión financiera, reportes financieros, categorización automática, asistente financiero",
+  title,
+  description,
+  keywords,
   ogImage = "https://bilio.lat/logoBilio.png",
   canonical = "https://bilio.lat/"
 }: SEOHeadProps) => {
+  const { t } = useTranslation('seo');
+  
+  // Use translation defaults if not provided
+  const finalTitle = title || t('meta.title');
+  const finalDescription = description || t('meta.description');
+  const finalKeywords = keywords || t('meta.keywords');
   
   useEffect(() => {
     // Update document title
-    document.title = title;
+    document.title = finalTitle;
     
     // Update meta description
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', description);
+      metaDescription.setAttribute('content', finalDescription);
     }
     
     // Update meta keywords
     const metaKeywords = document.querySelector('meta[name="keywords"]');
     if (metaKeywords) {
-      metaKeywords.setAttribute('content', keywords);
+      metaKeywords.setAttribute('content', finalKeywords);
     }
     
     // Update Open Graph title
     const ogTitle = document.querySelector('meta[property="og:title"]');
     if (ogTitle) {
-      ogTitle.setAttribute('content', title);
+      ogTitle.setAttribute('content', finalTitle);
     }
     
     // Update Open Graph description
     const ogDescription = document.querySelector('meta[property="og:description"]');
     if (ogDescription) {
-      ogDescription.setAttribute('content', description);
+      ogDescription.setAttribute('content', finalDescription);
     }
     
     // Update Open Graph image
@@ -62,12 +69,12 @@ const SEOHead = ({
     // Update Twitter meta tags
     const twitterTitle = document.querySelector('meta[property="twitter:title"]');
     if (twitterTitle) {
-      twitterTitle.setAttribute('content', title);
+      twitterTitle.setAttribute('content', finalTitle);
     }
     
     const twitterDescription = document.querySelector('meta[property="twitter:description"]');
     if (twitterDescription) {
-      twitterDescription.setAttribute('content', description);
+      twitterDescription.setAttribute('content', finalDescription);
     }
     
     const twitterImage = document.querySelector('meta[property="twitter:image"]');
@@ -75,7 +82,7 @@ const SEOHead = ({
       twitterImage.setAttribute('content', ogImage);
     }
     
-  }, [title, description, keywords, ogImage, canonical]);
+  }, [finalTitle, finalDescription, finalKeywords, ogImage, canonical]);
 
   return null; // This component doesn't render anything
 };

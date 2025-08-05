@@ -1,26 +1,29 @@
 import React from "react";
 import { ArrowRight, MessageSquare, CalendarDays, FileText } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const HowItWorksSection = () => {
+  const { t } = useTranslation('howItWorks');
+  
   const steps = [
     {
       id: 1,
-      title: "Registra tu gasto enviando un mensaje",
-      description: "Simplemente envía un mensaje o audio a Bilio con el monto y descripción de tu gasto o ingreso.",
+      title: t('steps.step1.title'),
+      description: t('steps.step1.description'),
       icon: MessageSquare,
       color: "from-Bilio-purple to-Bilio-pink"
     },
     {
       id: 2,
-      title: "Bilio lo categoriza automáticamente",
-      description: "Nuestra IA detecta la categoría del gasto y lo registra en el lugar correcto.",
+      title: t('steps.step2.title'),
+      description: t('steps.step2.description'),
       icon: FileText,
       color: "from-Bilio-blue to-Bilio-cyan"
     },
     {
       id: 3,
-      title: "Recibe reportes diarios y recomendaciones",
-      description: "Obtén análisis periódicos de tus finanzas y consejos personalizados para mejorar.",
+      title: t('steps.step3.title'),
+      description: t('steps.step3.description'),
       icon: CalendarDays,
       color: "from-Bilio-gold to-Bilio-orange"
     }
@@ -31,10 +34,10 @@ const HowItWorksSection = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center max-w-4xl mx-auto mb-20 animate-fade-in">
           <h2 className="text-4xl md:text-5xl font-bold mb-8 tracking-tight text-glow">
-            <span className="text-premium">¿Cómo funciona?</span>
+            <span className="text-premium">{t('title')}</span>
           </h2>
           <p className="text-xl text-gray-400 leading-relaxed font-medium max-w-2xl mx-auto">
-            Bilio es increíblemente sencillo de usar. Sigue estos tres simples pasos:
+            {t('subtitle')}
           </p>
         </div>
         

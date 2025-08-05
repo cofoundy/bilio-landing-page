@@ -1,5 +1,6 @@
 import React from "react";
 import { useLocation, Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { ArrowLeft, Check, X, Star, Crown, Shield, Zap } from "lucide-react";
 import { getComparisonData } from "@/data/comparisons";
 import NavigationHeader from "@/components/NavigationHeader";
@@ -14,6 +15,7 @@ const ComparisonPage = () => {
   const location = useLocation();
   const slug = location.pathname.substring(1); // Remove leading slash
   const comparison = getComparisonData(slug);
+  const { t } = useTranslation('comparison');
 
   if (!comparison) {
     return <NotFound />;
@@ -143,7 +145,7 @@ const ComparisonPage = () => {
         {/* Back navigation */}
         <Link to="/" className="inline-flex items-center text-Bilio-blue hover:text-Bilio-blue/80 mb-8">
           <ArrowLeft size={16} className="mr-2" />
-          Volver al inicio
+          {t('backToHome')}
         </Link>
 
         {/* Header */}
@@ -197,7 +199,7 @@ const ComparisonPage = () => {
                 </div>
                 <div className="pt-4">
                   <p className="text-sm text-Bilio-gray-600 mb-2">
-                    <strong>Mejor para:</strong> {comparison.bilio.targetAudience}
+                    <strong>{t('betterFor')}</strong> {comparison.bilio.targetAudience}
                   </p>
                   <p className="text-sm text-Bilio-gray-600">
                     <strong>Plataformas:</strong> {comparison.bilio.platforms.join(', ')}
@@ -240,7 +242,7 @@ const ComparisonPage = () => {
                 </div>
                 <div className="pt-4">
                   <p className="text-sm text-Bilio-gray-600 mb-2">
-                    <strong>Mejor para:</strong> {comparison.competitor.targetAudience}
+                    <strong>{t('betterFor')}</strong> {comparison.competitor.targetAudience}
                   </p>
                   <p className="text-sm text-Bilio-gray-600">
                     <strong>Plataformas:</strong> {comparison.competitor.platforms.join(', ')}
@@ -358,7 +360,7 @@ const ComparisonPage = () => {
               </p>
               <Button size="lg" variant="secondary" className="bg-white text-Bilio-blue hover:bg-gray-100">
                 <Zap size={20} className="mr-2" />
-                Comenzar Gratis en WhatsApp
+{t('startFreeWhatsApp')}
               </Button>
             </CardContent>
           </Card>

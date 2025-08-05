@@ -23,6 +23,18 @@ import footerES from './locales/es/footer.json';
 import footerEN from './locales/en/footer.json';
 import seoES from './locales/es/seo.json';
 import seoEN from './locales/en/seo.json';
+import howItWorksES from './locales/es/howItWorks.json';
+import howItWorksEN from './locales/en/howItWorks.json';
+import testimonialsES from './locales/es/testimonials.json';
+import testimonialsEN from './locales/en/testimonials.json';
+import notFoundES from './locales/es/notFound.json';
+import notFoundEN from './locales/en/notFound.json';
+import useCasesES from './locales/es/useCases.json';
+import useCasesEN from './locales/en/useCases.json';
+import comparisonES from './locales/es/comparison.json';
+import comparisonEN from './locales/en/comparison.json';
+import blogES from './locales/es/blog.json';
+import blogEN from './locales/en/blog.json';
 
 // Initialize resources synchronously
 const resources = {
@@ -37,6 +49,12 @@ const resources = {
     cta: ctaEN,
     footer: footerEN,
     seo: seoEN,
+    howItWorks: howItWorksEN,
+    testimonials: testimonialsEN,
+    notFound: notFoundEN,
+    useCases: useCasesEN,
+    comparison: comparisonEN,
+    blog: blogEN,
   },
   es: {
     common: commonES,
@@ -49,6 +67,12 @@ const resources = {
     cta: ctaES,
     footer: footerES,
     seo: seoES,
+    howItWorks: howItWorksES,
+    testimonials: testimonialsES,
+    notFound: notFoundES,
+    useCases: useCasesES,
+    comparison: comparisonES,
+    blog: blogES,
   },
 };
 
@@ -74,7 +98,7 @@ i18n
 
     // Namespace configuration
     defaultNS: 'common',
-    ns: ['common', 'hero', 'navigation', 'about', 'benefits', 'pricing', 'faq', 'cta', 'footer', 'seo'],
+    ns: ['common', 'hero', 'navigation', 'about', 'benefits', 'pricing', 'faq', 'cta', 'footer', 'seo', 'howItWorks', 'testimonials', 'notFound', 'useCases', 'comparison', 'blog'],
 
     // Missing key handling
     saveMissing: process.env.NODE_ENV === 'development',

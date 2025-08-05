@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Calendar, Clock, ArrowRight, User } from "lucide-react";
 import { BLOG_POSTS, BLOG_CATEGORIES, getFeaturedPosts, getPostsByCategory } from "@/data/blog";
 import NavigationHeader from "@/components/NavigationHeader";
@@ -9,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 const BlogIndex = () => {
+  const { t } = useTranslation('blog');
   const featuredPosts = getFeaturedPosts();
   const categories = BLOG_CATEGORIES;
 
@@ -16,7 +18,7 @@ const BlogIndex = () => {
   const blogStructuredData = {
     "@context": "https://schema.org",
     "@type": "Blog",
-    "name": "Blog Bilio",
+    "name": t('title'),
     "description": "Consejos de finanzas personales, control de gastos y tecnología financiera",
     "url": "https://bilio.lat/blog",
     "publisher": {
@@ -45,7 +47,7 @@ const BlogIndex = () => {
 
   React.useEffect(() => {
     // Update SEO meta tags
-    document.title = "Blog Bilio | Consejos de Finanzas Personales y IA";
+    document.title = t('pageTitle');
     
     const updateMetaTag = (name: string, content: string) => {
       let tag = document.querySelector(`meta[name="${name}"]`);
@@ -80,7 +82,7 @@ const BlogIndex = () => {
         {/* Hero Section */}
         <section className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold mb-6 text-Bilio-gray-900">
-            Blog <span className="text-Bilio-blue">Bilio</span>
+{t('title')}
           </h1>
           <p className="text-xl text-Bilio-gray-600 max-w-3xl mx-auto mb-8">
             Consejos expertos sobre finanzas personales, control de gastos con IA y la revolución de la tecnología financiera
@@ -89,7 +91,7 @@ const BlogIndex = () => {
 
         {/* Featured Posts */}
         <section className="mb-16">
-          <h2 className="text-3xl font-bold mb-8 text-Bilio-gray-900">Artículos Destacados</h2>
+          <h2 className="text-3xl font-bold mb-8 text-Bilio-gray-900">{t('featuredArticles')}</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {featuredPosts.map((post) => (
               <Card key={post.slug} className="group hover:shadow-lg transition-all duration-300 border-0 bg-white/80 backdrop-blur-sm">
@@ -130,7 +132,7 @@ const BlogIndex = () => {
                   </div>
                   <Link to={`/blog/${post.slug}`}>
                     <Button variant="ghost" className="w-full group-hover:bg-Bilio-blue group-hover:text-white transition-all">
-                      Leer artículo
+{t('readArticle')}
                       <ArrowRight size={16} className="ml-2" />
                     </Button>
                   </Link>
@@ -170,7 +172,7 @@ const BlogIndex = () => {
 
         {/* All Posts */}
         <section>
-          <h2 className="text-3xl font-bold mb-8 text-Bilio-gray-900">Todos los Artículos</h2>
+          <h2 className="text-3xl font-bold mb-8 text-Bilio-gray-900">{t('allArticles')}</h2>
           <div className="space-y-6">
             {BLOG_POSTS.map((post) => (
               <Card key={post.slug} className="group hover:shadow-lg transition-all duration-300 border-0 bg-white/80 backdrop-blur-sm">
@@ -213,7 +215,7 @@ const BlogIndex = () => {
                     <div className="md:ml-6">
                       <Link to={`/blog/${post.slug}`}>
                         <Button variant="outline" className="group-hover:bg-Bilio-blue group-hover:text-white group-hover:border-Bilio-blue transition-all">
-                          Leer más
+{t('readMore')}
                           <ArrowRight size={16} className="ml-2" />
                         </Button>
                       </Link>
