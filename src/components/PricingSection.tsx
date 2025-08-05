@@ -20,40 +20,26 @@ const PricingSection = () => {
       buttonText: t('plans.basic.button')
     },
     {
-      name: "Premium",
-      price: "S/19",
-      period: "por mes",
-      description: "Para usuarios que quieren el control total de sus finanzas",
-      features: [
-        "Todo lo del plan Básico",
-        "Reportes diarios y personalizados",
-        "Alertas de gastos inteligentes",
-        "Integración con bancos (próximamente)",
-        "Dashboard web completo",
-        "Consejos de ahorro IA",
-        "Soporte prioritario"
-      ],
+      name: t('plans.premium.name'),
+      price: t('plans.premium.price'),
+      period: t('plans.premium.period'),
+      description: t('plans.premium.description'),
+      features: t('plans.premium.features', { returnObjects: true }) as string[],
       popular: true,
       accentColor: "Bilio-yellow",
-      glowColor: "Bilio-yellow"
+      glowColor: "Bilio-yellow",
+      buttonText: t('plans.premium.button')
     },
     {
-      name: "Empresarial",
-      price: "S/99",
-      period: "por mes",
-      description: "Ideal para equipos y pequeñas empresas",
-      features: [
-        "Todo lo del plan Premium",
-        "Múltiples usuarios",
-        "Control de gastos por equipo",
-        "Reportes avanzados",
-        "Integración con sistemas contables",
-        "Gestor de cuenta dedicado",
-        "Facturación empresarial"
-      ],
+      name: t('plans.enterprise.name'),
+      price: t('plans.enterprise.price'),
+      period: t('plans.enterprise.period'),
+      description: t('plans.enterprise.description'),
+      features: t('plans.enterprise.features', { returnObjects: true }) as string[],
       popular: false,
       accentColor: "Bilio-blue",
-      glowColor: "Bilio-blue"
+      glowColor: "Bilio-blue",
+      buttonText: t('plans.enterprise.button')
     }
   ];
 
@@ -112,7 +98,7 @@ const PricingSection = () => {
                 {plan.popular && (
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                     <span className={`bg-${plan.accentColor} text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg shadow-${plan.glowColor}/30`}>
-                      Más Popular
+                      {t('popularLabel')}
                     </span>
                   </div>
                 )}
@@ -148,7 +134,7 @@ const PricingSection = () => {
                     }`}
                     style={plan.popular ? {} : { boxShadow: '0 0 20px rgba(255, 199, 0, 0.1)' }}
                   >
-                    {plan.price === "Gratis" ? "Comenzar Gratis" : "Elegir Plan"}
+                    {plan.buttonText || t('plans.basic.button')}
                   </Button>
                 </div>
 
@@ -162,10 +148,10 @@ const PricingSection = () => {
 
           <div className="text-center mt-16">
             <p className="text-Bilio-gray-600 text-sm mb-4">
-              ¿Necesitas algo diferente? Contáctanos para planes personalizados.
+              {t('footer.customPlan')}
             </p>
             <p className="text-Bilio-gray-500 text-xs">
-              Todos los planes incluyen 30 días de prueba gratuita. Sin compromisos.
+              {t('footer.trial')}
             </p>
           </div>
         </div>
