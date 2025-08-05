@@ -1,33 +1,182 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" 
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- Main homepage -->
   <url>
     <loc>https://bilio.lat/</loc>
-    <lastmod>2024-12-19</lastmod>
+    <lastmod>2024-12-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="es-PE" href="https://bilio.lat/" />
+    <xhtml:link rel="alternate" hreflang="es-CO" href="https://bilio.lat/colombia" />
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://bilio.lat/mexico" />
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://bilio.app/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://bilio.lat/" />
+    <image:image>
+      <image:loc>https://bilio.lat/logoBilio.png</image:loc>
+      <image:title>Bilio - Tu Asistente Financiero IA</image:title>
+    </image:image>
   </url>
+
+  <!-- Location-specific pages -->
   <url>
-    <loc>https://bilio.lat/#about</loc>
-    <lastmod>2024-12-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bilio.lat/#benefits</loc>
-    <lastmod>2024-12-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bilio.lat/#pricing</loc>
-    <lastmod>2024-12-19</lastmod>
+    <loc>https://bilio.lat/peru</loc>
+    <lastmod>2024-12-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="es-PE" href="https://bilio.lat/peru" />
   </url>
+  
   <url>
-    <loc>https://bilio.lat/#faq</loc>
+    <loc>https://bilio.lat/colombia</loc>
+    <lastmod>2024-12-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="es-CO" href="https://bilio.lat/colombia" />
+  </url>
+  
+  <url>
+    <loc>https://bilio.lat/mexico</loc>
+    <lastmod>2024-12-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="es-MX" href="https://bilio.lat/mexico" />
+  </url>
+  
+  <url>
+    <loc>https://bilio.app/</loc>
+    <lastmod>2024-12-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://bilio.app/" />
+  </url>
+
+  <!-- Blog section -->
+  <url>
+    <loc>https://bilio.lat/blog</loc>
+    <lastmod>2024-12-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Blog posts -->
+  <url>
+    <loc>https://bilio.lat/blog/como-controlar-gastos-whatsapp</loc>
+    <lastmod>2024-12-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://bilio.lat/blog/ia-finanzas-personales-futuro</loc>
     <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://bilio.lat/blog/presupuesto-personal-2025</loc>
+    <lastmod>2024-12-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Use case pages -->
+  <url>
+    <loc>https://bilio.lat/expense-tracking</loc>
+    <lastmod>2024-12-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://bilio.lat/og-images/bilio-expense-tracking.png</image:loc>
+      <image:title>Control de Gastos Inteligente con IA</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://bilio.lat/financial-coaching</loc>
+    <lastmod>2024-12-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://bilio.lat/og-images/bilio-financial-coaching.png</image:loc>
+      <image:title>Coaching Financiero Personalizado con IA</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://bilio.lat/whatsapp-finance</loc>
+    <lastmod>2024-12-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://bilio.lat/og-images/bilio-whatsapp-finance.png</image:loc>
+      <image:title>Finanzas Personales en WhatsApp</image:title>
+    </image:image>
+  </url>
+
+  <!-- Comparison pages -->
+  <url>
+    <loc>https://bilio.lat/bilio-vs-mint</loc>
+    <lastmod>2024-12-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://bilio.lat/og-images/bilio-vs-mint.png</image:loc>
+      <image:title>Bilio vs Mint Comparison</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://bilio.lat/bilio-vs-cleo</loc>
+    <lastmod>2024-12-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://bilio.lat/og-images/bilio-vs-cleo.png</image:loc>
+      <image:title>Bilio vs Cleo Comparison</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://bilio.lat/bilio-vs-ynab</loc>
+    <lastmod>2024-12-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://bilio.lat/og-images/bilio-vs-ynab.png</image:loc>
+      <image:title>Bilio vs YNAB Comparison</image:title>
+    </image:image>
+  </url>
+
+  <!-- Section anchors from main page -->
+  <url>
+    <loc>https://bilio.lat/#about</loc>
+    <lastmod>2024-12-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bilio.lat/#benefits</loc>
+    <lastmod>2024-12-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bilio.lat/#pricing</loc>
+    <lastmod>2024-12-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://bilio.lat/#faq</loc>
+    <lastmod>2024-12-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
 </urlset> 

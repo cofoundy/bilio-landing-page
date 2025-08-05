@@ -1,8 +1,10 @@
 User-agent: Googlebot
 Allow: /
+Crawl-delay: 1
 
 User-agent: Bingbot
 Allow: /
+Crawl-delay: 1
 
 User-agent: Twitterbot
 Allow: /
@@ -10,11 +12,39 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
-User-agent: *
+User-agent: LinkedInBot
 Allow: /
 
-# Sitemap location
-Sitemap: https://bilio.lat/sitemap.xml
+User-agent: WhatsApp
+Allow: /
 
-# Additional directives
-Crawl-delay: 1
+User-agent: *
+Allow: /
+Crawl-delay: 2
+
+# Disallow admin or temporary paths (if any)
+Disallow: /admin/
+Disallow: /api/
+Disallow: /*.json$
+Disallow: /*?*
+
+# Allow specific important pages
+Allow: /peru
+Allow: /colombia  
+Allow: /mexico
+Allow: /us
+Allow: /blog
+Allow: /expense-tracking
+Allow: /financial-coaching
+Allow: /whatsapp-finance
+Allow: /bilio-vs-mint
+Allow: /bilio-vs-cleo
+Allow: /bilio-vs-ynab
+
+# Sitemap locations
+Sitemap: https://bilio.lat/sitemap.xml
+Sitemap: https://bilio.lat/sitemap-blog.xml
+Sitemap: https://bilio.lat/sitemap-locations.xml
+
+# Additional SEO directives
+Host: https://bilio.lat
