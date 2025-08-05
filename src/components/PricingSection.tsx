@@ -1,25 +1,23 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
 import { scrollToSectionAndOpenModal } from "@/hooks/useBetaModal";
 
 const PricingSection = () => {
+  const { t } = useTranslation('pricing');
+  
   const plans = [
     {
-      name: "Básico",
-      price: "Gratis",
-      period: "por siempre",
-      description: "Perfecto para comenzar a organizar tus finanzas",
-      features: [
-        "Registro de gastos ilimitado",
-        "Categorización automática",
-        "Reportes mensuales",
-        "Análisis básico de gastos",
-        "Soporte por WhatsApp"
-      ],
+      name: t('plans.basic.name'),
+      price: t('plans.basic.price'),
+      period: t('plans.basic.period'),
+      description: t('plans.basic.description'),
+      features: t('plans.basic.features', { returnObjects: true }) as string[],
       popular: false,
       accentColor: "Bilio-green",
-      glowColor: "Bilio-green"
+      glowColor: "Bilio-green",
+      buttonText: t('plans.basic.button')
     },
     {
       name: "Premium",
@@ -95,10 +93,10 @@ const PricingSection = () => {
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center max-w-4xl mx-auto mb-20 animate-fade-in">
             <h2 className="text-4xl md:text-5xl font-bold mb-8 tracking-tight text-Bilio-gray-900">
-              <span className="text-Bilio-blue">Planes y precios</span>
+              <span className="text-Bilio-blue">{t('title')}</span>
             </h2>
             <p className="text-xl text-Bilio-gray-600 leading-relaxed font-medium max-w-2xl mx-auto">
-              Elige el plan que mejor se adapte a tus necesidades. Puedes cambiar o cancelar en cualquier momento.
+              {t('subtitle')}
             </p>
           </div>
 

@@ -1,9 +1,12 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, MessageSquare } from "lucide-react";
 import { scrollToSectionAndOpenModal } from "@/hooks/useBetaModal";
 
 const HeroSection = () => {
+  const { t } = useTranslation(['hero', 'common']);
+  
   return (
     <section className="pt-32 pb-20 bg-white relative overflow-hidden">
       {/* Light background with subtle gradients */}
@@ -76,15 +79,15 @@ const HeroSection = () => {
           <div className="lg:w-1/2 space-y-8 animate-slide-in-left">
             <header className="space-y-6">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] text-Bilio-gray-900 tracking-tight">
-                Toma el control de tus finanzas.{" "}
+                {t('hero:headline.main')}{" "}
                 <span className="text-Bilio-blue font-black">
-                  Rápido. Simple.
+                  {t('hero:headline.highlight')}
                 </span>{" "}
-                Desde WhatsApp.
+                {t('hero:headline.suffix')}
               </h1>
               
               <p className="text-xl text-Bilio-gray-600 max-w-lg leading-relaxed font-medium">
-                Registra tus gastos en segundos, recibe reportes automáticos y mejora tus finanzas día a día.
+                {t('hero:subtitle')}
               </p>
             </header>
             
@@ -94,7 +97,7 @@ const HeroSection = () => {
                 className="btn-premium text-lg py-6 px-8 font-bold group transition-all duration-300 hover:scale-105" 
                 size="lg"
               >
-                Únete a la beta privada
+                {t('common:buttons.joinBeta')}
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
               </Button>
               <Button 
@@ -102,7 +105,7 @@ const HeroSection = () => {
                 className="border-2 border-Bilio-blue/30 text-Bilio-gray-700 hover:text-Bilio-blue hover:bg-Bilio-blue-soft/50 py-6 px-8 font-semibold transition-all duration-300 hover:border-Bilio-blue/60 backdrop-blur-sm bg-white/80" 
                 size="lg"
               >
-                Ver demo
+                {t('common:buttons.watchDemo')}
               </Button>
             </div>
           </div>
@@ -125,7 +128,7 @@ const HeroSection = () => {
                       className="h-full w-auto"
                     />
                   </div>
-                  <span className="font-medium text-white">Bilio Bot</span>
+                  <span className="font-medium text-white">{t('hero:whatsapp.botName')}</span>
                 </div>
                 
                 {/* Chat conversation with authentic WhatsApp styling */}
@@ -133,37 +136,37 @@ const HeroSection = () => {
                      style={{ backgroundImage: "url('data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"40\" height=\"40\" viewBox=\"0 0 40 40\"><rect width=\"40\" height=\"40\" fill=\"%23E5DDD5\"/><circle cx=\"20\" cy=\"20\" r=\"0.5\" fill=\"%23D1C7BD\" opacity=\"0.3\"/></svg>')" }}>
                   {/* Bot message - WhatsApp received message style */}
                   <div className="bg-white rounded-2xl rounded-tl-sm p-4 max-w-[85%] shadow-sm">
-                    <p className="text-gray-800 text-sm font-normal">¡Hola! Soy Bilio, tu asistente financiero. ¿En qué puedo ayudarte hoy?</p>
-                    <p className="text-xs text-gray-500 mt-1 text-right">10:30</p>
+                    <p className="text-gray-800 text-sm font-normal">{t('hero:whatsapp.greeting')}</p>
+                    <p className="text-xs text-gray-500 mt-1 text-right">{t('hero:whatsapp.timestamps.greeting')}</p>
                   </div>
                   
                   {/* User message - WhatsApp sent message style */}
                   <div className="bg-[#DCF8C6] rounded-2xl rounded-tr-sm p-4 ml-auto max-w-[75%] shadow-sm">
-                    <p className="text-gray-800 font-normal text-sm">Gasté S/35 en almuerzo</p>
-                    <p className="text-xs text-gray-600 mt-1 text-right">10:31 ✓✓</p>
+                    <p className="text-gray-800 font-normal text-sm">{t('hero:whatsapp.userExpenseMessage')}</p>
+                    <p className="text-xs text-gray-600 mt-1 text-right">{t('hero:whatsapp.timestamps.expense')} ✓✓</p>
                   </div>
                   
                   {/* Bot response */}
                   <div className="bg-white rounded-2xl rounded-tl-sm p-4 max-w-[85%] shadow-sm">
-                    <p className="text-gray-800 font-normal text-sm">¡Registrado! S/35 en categoría "Alimentación".</p>
+                    <p className="text-gray-800 font-normal text-sm">{t('hero:whatsapp.botConfirmation')}</p>
                     
-                    <p className="text-xs text-gray-500 mt-1 text-right">10:31</p>
+                    <p className="text-xs text-gray-500 mt-1 text-right">{t('hero:whatsapp.timestamps.confirmation')}</p>
                   </div>
                   
                   {/* User message */}
                   <div className="bg-[#DCF8C6] rounded-2xl rounded-tr-sm p-4 ml-auto max-w-[75%] shadow-sm">
-                    <p className="text-gray-800 font-normal text-sm">Muéstrame mi reporte semanal</p>
-                    <p className="text-xs text-gray-600 mt-1 text-right">10:32 ✓✓</p>
+                    <p className="text-gray-800 font-normal text-sm">{t('hero:whatsapp.userReportRequest')}</p>
+                    <p className="text-xs text-gray-600 mt-1 text-right">{t('hero:whatsapp.timestamps.report')} ✓✓</p>
                   </div>
                   
                   {/* Bot response with chart */}
                   <div className="bg-white rounded-2xl rounded-tl-sm p-4 max-w-[85%] shadow-sm space-y-3">
-                    <p className="text-gray-800 font-normal text-sm">Aquí tienes tu reporte semanal:</p>
+                    <p className="text-gray-800 font-normal text-sm">{t('hero:whatsapp.botReportResponse')}</p>
                     <div className="bg-Bilio-blue h-24 rounded-xl flex items-center justify-center shadow-inner relative overflow-hidden border border-gray-200">
                       <div className="absolute inset-0 bg-gradient-to-tr from-white/20 to-transparent"></div>
-                      <span className="text-white font-semibold text-xs relative z-10">📊 Gráfico del reporte semanal</span>
+                      <span className="text-white font-semibold text-xs relative z-10">{t('hero:whatsapp.chartLabel')}</span>
                     </div>
-                    <p className="text-xs text-gray-500 text-right">10:33</p>
+                    <p className="text-xs text-gray-500 text-right">{t('hero:whatsapp.timestamps.chart')}</p>
                   </div>
                 </div>
               </div>

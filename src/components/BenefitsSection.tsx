@@ -1,48 +1,33 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { MessageSquare, FileText, User, Calendar, Check, Plus } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
 const BenefitsSection = () => {
+  const { t } = useTranslation('benefits');
+  
   const benefits = [
     {
       icon: MessageSquare,
-      title: "Registro de gastos fácil y rápido",
-      description: "Registra gastos con un simple mensaje de WhatsApp, sin necesidad de abrir otra aplicación.",
+      title: t('items.0.title'),
+      description: t('items.0.description'),
       bgColor: "Bilio-blue",
       glowColor: "Bilio-blue"
     },
     {
       icon: Calendar,
-      title: "Plataforma web para análisis detallado",
-      description: "Accede a una plataforma web para ver todos tus datos financieros en detalle.",
+      title: t('items.1.title'),
+      description: t('items.1.description'),
       bgColor: "Bilio-yellow",
       glowColor: "Bilio-yellow"
     },
     {
       icon: User,
-      title: "Consejos personalizados de ahorro",
-      description: "Recibe recomendaciones basadas en tu comportamiento financiero para mejorar tus hábitos.",
+      title: t('items.2.title'),
+      description: t('items.2.description'),
       bgColor: "Bilio-green",
       glowColor: "Bilio-green"
     },
-    // {
-    //   icon: Check,
-    //   title: "Sin necesidad de instalar apps nuevas",
-    //   description: "Utiliza WhatsApp, la app de mensajería que ya usas todos los días.",
-    //   glowColor: "Bilio-cyan"
-    // },
-    // {
-    //   icon: Calendar,
-    //   title: "Plataforma web para análisis detallado",
-    //   description: "Accede a una plataforma web para ver todos tus datos financieros en detalle.",
-    //   glowColor: "Bilio-gold"
-    // },
-    // {
-    //   icon: Plus,
-    //   title: "Integración con tus cuentas bancarias",
-    //   description: "Conecta tus cuentas para un seguimiento automático y completo de tus finanzas (próximamente).",
-    //   glowColor: "Bilio-orange"
-    // }
   ];
 
   return (
@@ -50,10 +35,10 @@ const BenefitsSection = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center max-w-4xl mx-auto mb-20 animate-fade-in">
           <h2 className="text-4xl md:text-5xl font-bold mb-8 tracking-tight text-Bilio-gray-900">
-            <span className="text-Bilio-blue">Beneficios principales</span>
+            <span className="text-Bilio-blue">{t('title')}</span>
           </h2>
           <p className="text-xl text-Bilio-gray-600 leading-relaxed font-medium max-w-2xl mx-auto">
-            Controla tus finanzas de forma inteligente y disfruta de una experiencia sencilla y efectiva.
+            {t('subtitle')}
           </p>
         </div>
         

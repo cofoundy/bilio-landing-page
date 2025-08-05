@@ -1,6 +1,9 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 const AboutSection = () => {
+  const { t } = useTranslation('about');
+  
   return (
     <section id="about" className="py-20 bg-gradient-to-b from-white to-Bilio-gray-50 relative overflow-hidden">
       {/* Subtle background decoration with individual colors */}
@@ -10,11 +13,10 @@ const AboutSection = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-Bilio-gray-900 mb-6">
-            ¿Cómo funciona <span className="text-Bilio-blue">Bilio</span>?
+            {t('title')} <span className="text-Bilio-blue">{t('titleHighlight')}</span>{t('titleSuffix') ? ` ${t('titleSuffix')}` : '?'}
           </h2>
           <p className="text-xl text-Bilio-gray-600 mb-16 max-w-2xl mx-auto leading-relaxed">
-            Gestionar tus finanzas nunca fue tan simple. Con solo escribir a WhatsApp,
-            tendrás el control total de tus gastos e ingresos.
+            {t('subtitle')}
           </p>
         </div>
 
@@ -26,9 +28,9 @@ const AboutSection = () => {
                 1
               </div>
               <div className="space-y-2">
-                <h3 className="text-xl font-semibold text-Bilio-gray-900">Escribe tu gasto</h3>
+                <h3 className="text-xl font-semibold text-Bilio-gray-900">{t('steps.step1.title')}</h3>
                 <p className="text-Bilio-gray-600 leading-relaxed">
-                  Simplemente envía un mensaje: "Gasté S/50 en supermercado" y Bilio registrará automáticamente tu gasto.
+                  {t('steps.step1.description')}
                 </p>
               </div>
             </div>
@@ -38,9 +40,9 @@ const AboutSection = () => {
                 2
               </div>
               <div className="space-y-2">
-                <h3 className="text-xl font-semibold text-Bilio-gray-900">Categorización automática</h3>
+                <h3 className="text-xl font-semibold text-Bilio-gray-900">{t('steps.step2.title')}</h3>
                 <p className="text-Bilio-gray-600 leading-relaxed">
-                  Bilio identifica la categoría de tu gasto automáticamente y te sugiere cómo optimizar tu presupuesto.
+                  {t('steps.step2.description')}
                 </p>
               </div>
             </div>
@@ -50,9 +52,9 @@ const AboutSection = () => {
                 3
               </div>
               <div className="space-y-2">
-                <h3 className="text-xl font-semibold text-Bilio-gray-900">Recibe insights</h3>
+                <h3 className="text-xl font-semibold text-Bilio-gray-900">{t('steps.step3.title')}</h3>
                 <p className="text-Bilio-gray-600 leading-relaxed">
-                  Obtén reportes detallados, alertas de presupuesto y consejos personalizados para mejorar tu salud financiera.
+                  {t('steps.step3.description')}
                 </p>
               </div>
             </div>
