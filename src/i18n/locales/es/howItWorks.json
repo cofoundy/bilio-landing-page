@@ -1,0 +1,18 @@
+{
+  "title": "¿Cómo funciona?",
+  "subtitle": "Bilio es increíblemente sencillo de usar. Sigue estos tres simples pasos:",
+  "steps": {
+    "step1": {
+      "title": "Registra tu gasto enviando un mensaje",
+      "description": "Simplemente envía un mensaje o audio a Bilio con el monto y descripción de tu gasto o ingreso."
+    },
+    "step2": {
+      "title": "Bilio lo categoriza automáticamente", 
+      "description": "Nuestra IA detecta la categoría del gasto y lo registra en el lugar correcto."
+    },
+    "step3": {
+      "title": "Recibe reportes diarios y recomendaciones",
+      "description": "Obtén análisis periódicos de tus finanzas y consejos personalizados para mejorar."
+    }
+  }
+}

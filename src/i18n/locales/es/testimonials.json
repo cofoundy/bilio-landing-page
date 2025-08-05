@@ -1,0 +1,21 @@
+{
+  "title": "Lo que dicen nuestros usuarios",
+  "subtitle": "Testimonios de personas que ya están tomando control de sus finanzas con Bilio",
+  "testimonials": [
+    {
+      "quote": "Bilio ha cambiado mi forma de administrar mi dinero. Finalmente tengo control de mis finanzas sin tener que entrar a apps complicadas.",
+      "author": "Ana López",
+      "role": "Freelancer"
+    },
+    {
+      "quote": "Poder registrar mis gastos por WhatsApp es una maravilla. Las notificaciones diarias me ayudan a mantener mis finanzas bajo control.",
+      "author": "Carlos Mendoza", 
+      "role": "Profesional"
+    },
+    {
+      "quote": "Al fin una app financiera que no me da pereza usar. Los reportes semanales son súper útiles para identificar en qué gasto de más.",
+      "author": "María Torres",
+      "role": "Emprendedora"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "title": "How does it work?",
+  "subtitle": "Bilio is incredibly simple to use. Follow these three simple steps:",
+  "steps": {
+    "step1": {
+      "title": "Register your expense by sending a message",
+      "description": "Simply send a message or audio to Bilio with the amount and description of your expense or income."
+    },
+    "step2": {
+      "title": "Bilio categorizes it automatically",
+      "description": "Our AI detects the expense category and records it in the right place."
+    },
+    "step3": {
+      "title": "Receive daily reports and recommendations",
+      "description": "Get periodic analysis of your finances and personalized advice to improve."
+    }
+  }
+}
