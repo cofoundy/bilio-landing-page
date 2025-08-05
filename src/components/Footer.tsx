@@ -1,7 +1,10 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { MessageSquare, Mail, MapPin } from "lucide-react";
 
 const Footer = () => {
+  const { t } = useTranslation('footer');
+  
   // Footer structured data
   const footerStructuredData = {
     "@context": "https://schema.org",
@@ -35,46 +38,46 @@ const Footer = () => {
               <span className="text-2xl font-bold text-Bilio-gray-900">Bilio</span>
             </div>
             <p className="text-Bilio-gray-600 leading-relaxed max-w-md mb-6">
-              Tu asistente financiero inteligente en WhatsApp. Registra gastos, recibe reportes automáticos y mejora tus finanzas día a día.
+              {t('description')}
             </p>
             <div className="space-y-3">
               <div className="flex items-center gap-3 text-Bilio-gray-600">
                 <MessageSquare className="h-5 w-5 text-Bilio-blue" />
-                <span>WhatsApp: +51 963394426</span>
+                <span>{t('contact.whatsapp')}</span>
               </div>
               <div className="flex items-center gap-3 text-Bilio-gray-600">
                 <Mail className="h-5 w-5 text-Bilio-green" />
-                <span>info@bilio.lat</span>
+                <span>{t('contact.email')}</span>
               </div>
               <div className="flex items-center gap-3 text-Bilio-gray-600">
                 <MapPin className="h-5 w-5 text-Bilio-yellow-dark" />
-                <span>Lima, Perú</span>
+                <span>{t('contact.location')}</span>
               </div>
             </div>
           </div>
 
           {/* Enlaces rápidos */}
           <div>
-            <h3 className="text-lg font-semibold text-Bilio-gray-900 mb-6">Enlaces rápidos</h3>
+            <h3 className="text-lg font-semibold text-Bilio-gray-900 mb-6">{t('quickLinks.title')}</h3>
             <ul className="space-y-4">
               <li>
-                <a href="#about" className="text-Bilio-gray-600 hover:text-Bilio-blue transition-colors duration-300" aria-label="Ir a la sección Acerca de Bilio">
-                  ¿Cómo funciona?
+                <a href="#about" className="text-Bilio-gray-600 hover:text-Bilio-blue transition-colors duration-300" aria-label={t('ariaLabels.aboutSection')}>
+                  {t('quickLinks.howItWorks')}
                 </a>
               </li>
               <li>
-                <a href="#benefits" className="text-Bilio-gray-600 hover:text-Bilio-green transition-colors duration-300" aria-label="Ir a la sección Beneficios">
-                  Beneficios
+                <a href="#benefits" className="text-Bilio-gray-600 hover:text-Bilio-green transition-colors duration-300" aria-label={t('ariaLabels.benefitsSection')}>
+                  {t('quickLinks.benefits')}
                 </a>
               </li>
               <li>
-                <a href="#pricing" className="text-Bilio-gray-600 hover:text-Bilio-yellow-dark transition-colors duration-300" aria-label="Ir a la sección Planes y precios">
-                  Planes
+                <a href="#pricing" className="text-Bilio-gray-600 hover:text-Bilio-yellow-dark transition-colors duration-300" aria-label={t('ariaLabels.pricingSection')}>
+                  {t('quickLinks.plans')}
                 </a>
               </li>
               <li>
-                <a href="#faq" className="text-Bilio-gray-600 hover:text-Bilio-blue-light transition-colors duration-300" aria-label="Ir a la sección Preguntas frecuentes">
-                  FAQ
+                <a href="#faq" className="text-Bilio-gray-600 hover:text-Bilio-blue-light transition-colors duration-300" aria-label={t('ariaLabels.faqSection')}>
+                  {t('quickLinks.faq')}
                 </a>
               </li>
             </ul>
@@ -82,26 +85,26 @@ const Footer = () => {
 
           {/* Legal */}
           <div>
-            <h3 className="text-lg font-semibold text-Bilio-gray-900 mb-6">Legal</h3>
+            <h3 className="text-lg font-semibold text-Bilio-gray-900 mb-6">{t('legal.title')}</h3>
             <ul className="space-y-4">
               <li>
                 <a href="" className="text-Bilio-gray-600 hover:text-Bilio-blue transition-colors duration-300">
-                  Privacidad
+                  {t('legal.privacy')}
                 </a>
               </li>
               <li>
                 <a href="" className="text-Bilio-gray-600 hover:text-Bilio-green transition-colors duration-300">
-                  Términos de uso
+                  {t('legal.terms')}
                 </a>
               </li>
               <li>
                 <a href="" className="text-Bilio-gray-600 hover:text-Bilio-yellow-dark transition-colors duration-300">
-                  Cookies
+                  {t('legal.cookies')}
                 </a>
               </li>
               <li>
                 <a href="" className="text-Bilio-gray-600 hover:text-Bilio-blue-light transition-colors duration-300">
-                  Soporte
+                  {t('legal.support')}
                 </a>
               </li>
             </ul>
@@ -113,9 +116,9 @@ const Footer = () => {
 
         {/* Copyright */}
         <div className="flex flex-col md:flex-row justify-between items-center text-Bilio-gray-500 text-sm">
-          <p>© 2025 Bilio. Todos los derechos reservados.</p>
+          <p>{t('copyright.text')}</p>
           <p className="mt-4 md:mt-0">
-            Hecho con <span className="text-Bilio-green">❤️</span> en Lima, Perú
+            {t('copyright.madeWith', { heart: '❤️' })}
           </p>
         </div>
       </div>

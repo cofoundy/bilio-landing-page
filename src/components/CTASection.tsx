@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { MessageSquare } from "lucide-react";
 import { useBetaModal } from "@/hooks/useBetaModal";
 
 const CTASection = () => {
+  const { t } = useTranslation('cta');
   const { isModalOpen, openModal, closeModal } = useBetaModal();
   const [iframeKey, setIframeKey] = React.useState(0);
 
@@ -30,10 +32,10 @@ const CTASection = () => {
             <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-10">
               <div className="md:w-2/3">
                 <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                  ¡Empieza a controlar tus finanzas hoy mismo!
+                  {t('title')}
                 </h2>
                 <p className="text-white/90 text-lg max-w-lg">
-                  Únete a la beta privada de Bilio y sé de los primeros en experimentar una nueva forma de manejar tu dinero.
+                  {t('subtitle')}
                 </p>
               </div>
               
@@ -44,7 +46,7 @@ const CTASection = () => {
                   style={{ boxShadow: '0 0 30px rgba(255, 255, 255, 0.3), 0 20px 40px rgba(0, 0, 0, 0.3)' }}
                 >
                   <MessageSquare className="h-5 w-5" />
-                  <span>Únete a la beta privada</span>
+                  <span>{t('button')}</span>
                 </Button>
               </div>
             </div>
@@ -66,7 +68,7 @@ const CTASection = () => {
                 <span className="text-xl font-bold text-Bilio-gray-900">Bilio</span>
               </div>
               <DialogTitle className="text-2xl font-bold text-center text-Bilio-gray-900">
-                Únete a la lista de espera de Bilio
+                {t('modal.title')}
               </DialogTitle>
             </div>
           </DialogHeader>
@@ -79,7 +81,7 @@ const CTASection = () => {
               frameBorder="0" 
               marginHeight={0}
               marginWidth={0}
-              title="Únete a la lista de espera de Bilio"
+              title={t('modal.iframeTitle')}
               className="border-0 rounded-lg"
               style={{ minHeight: '500px' }}
               allow="payment"
