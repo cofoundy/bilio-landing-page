@@ -416,4 +416,34 @@
   .animate-orbit {
     animation: orbit 20s linear infinite;
   }
+
+  /* Border beam animation with fallback */
+  @keyframes border-beam {
+    0% {
+      offset-distance: 0%;
+    }
+    100% {
+      offset-distance: 100%;
+    }
+  }
+
+  @keyframes border-beam-fallback {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(400%);
+    }
+  }
+
+  .animate-border-beam {
+    animation: border-beam var(--duration) linear infinite;
+  }
+
+  /* Fallback for browsers without offset-path support */
+  @supports not (offset-path: rect(0 auto auto 0)) {
+    .animate-border-beam {
+      animation: border-beam-fallback var(--duration) linear infinite;
+    }
+  }
 }
