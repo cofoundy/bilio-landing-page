@@ -30,9 +30,7 @@ const BenefitsSection = () => {
   ];
 
   return (
-    <section id="benefits" className="py-24 relative overflow-hidden bg-gradient-to-br from-white via-gray-50/50 to-white">
-      {/* Beautiful diagonal gradient background */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right_bottom,rgba(255,199,0,0.05),rgba(0,47,108,0.05),rgba(10,173,110,0.05))]"></div>
+    <section id="benefits" className="py-24 bg-gradient-to-br from-white via-Bilio-gray-50 to-white relative overflow-hidden">
       
       {/* Subtle decorative elements */}
       <div className="absolute top-20 left-10 w-72 h-72 bg-Bilio-blue/5 rounded-full blur-3xl"></div>
