@@ -2,100 +2,56 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
-// We'll load resources dynamically to avoid build issues
+// Import all translations directly
+import commonES from './locales/es/common.json';
+import commonEN from './locales/en/common.json';
+import heroES from './locales/es/hero.json';
+import heroEN from './locales/en/hero.json';
+import navES from './locales/es/navigation.json';
+import navEN from './locales/en/navigation.json';
+import aboutES from './locales/es/about.json';
+import aboutEN from './locales/en/about.json';
+import benefitsES from './locales/es/benefits.json';
+import benefitsEN from './locales/en/benefits.json';
+import pricingES from './locales/es/pricing.json';
+import pricingEN from './locales/en/pricing.json';
+import faqES from './locales/es/faq.json';
+import faqEN from './locales/en/faq.json';
+import ctaES from './locales/es/cta.json';
+import ctaEN from './locales/en/cta.json';
+import footerES from './locales/es/footer.json';
+import footerEN from './locales/en/footer.json';
+import seoES from './locales/es/seo.json';
+import seoEN from './locales/en/seo.json';
+
+// Initialize resources synchronously
 const resources = {
   en: {
-    common: {},
-    hero: {},
-    navigation: {},
-    about: {},
-    benefits: {},
-    pricing: {},
-    faq: {},
-    cta: {},
-    footer: {},
-    seo: {},
+    common: commonEN,
+    hero: heroEN,
+    navigation: navEN,
+    about: aboutEN,
+    benefits: benefitsEN,
+    pricing: pricingEN,
+    faq: faqEN,
+    cta: ctaEN,
+    footer: footerEN,
+    seo: seoEN,
   },
   es: {
-    common: {},
-    hero: {},
-    navigation: {},
-    about: {},
-    benefits: {},
-    pricing: {},
-    faq: {},
-    cta: {},
-    footer: {},
-    seo: {},
+    common: commonES,
+    hero: heroES,
+    navigation: navES,
+    about: aboutES,
+    benefits: benefitsES,
+    pricing: pricingES,
+    faq: faqES,
+    cta: ctaES,
+    footer: footerES,
+    seo: seoES,
   },
 };
 
-// Load translation resources dynamically
-const loadTranslations = async () => {
-  try {
-    const [
-      commonES, commonEN,
-      heroES, heroEN,
-      navES, navEN,
-      aboutES, aboutEN,
-      benefitsES, benefitsEN,
-      pricingES, pricingEN,
-      faqES, faqEN,
-      ctaES, ctaEN,
-      footerES, footerEN,
-      seoES, seoEN
-    ] = await Promise.all([
-      import('./locales/es/common.json'),
-      import('./locales/en/common.json'),
-      import('./locales/es/hero.json'),
-      import('./locales/en/hero.json'),
-      import('./locales/es/navigation.json'),
-      import('./locales/en/navigation.json'),
-      import('./locales/es/about.json'),
-      import('./locales/en/about.json'),
-      import('./locales/es/benefits.json'),
-      import('./locales/en/benefits.json'),
-      import('./locales/es/pricing.json'),
-      import('./locales/en/pricing.json'),
-      import('./locales/es/faq.json'),
-      import('./locales/en/faq.json'),
-      import('./locales/es/cta.json'),
-      import('./locales/en/cta.json'),
-      import('./locales/es/footer.json'),
-      import('./locales/en/footer.json'),
-      import('./locales/es/seo.json'),
-      import('./locales/en/seo.json')
-    ]);
-
-    resources.es = {
-      common: commonES.default,
-      hero: heroES.default,
-      navigation: navES.default,
-      about: aboutES.default,
-      benefits: benefitsES.default,
-      pricing: pricingES.default,
-      faq: faqES.default,
-      cta: ctaES.default,
-      footer: footerES.default,
-      seo: seoES.default,
-    };
-
-    resources.en = {
-      common: commonEN.default,
-      hero: heroEN.default,
-      navigation: navEN.default,
-      about: aboutEN.default,
-      benefits: benefitsEN.default,
-      pricing: pricingEN.default,
-      faq: faqEN.default,
-      cta: ctaEN.default,
-      footer: footerEN.default,
-      seo: seoEN.default,
-    };
-  } catch (error) {
-    console.warn('Failed to load translations:', error);
-  }
-};
 
 i18n
   .use(LanguageDetector)
@@ -137,10 +93,5 @@ i18n
       useSuspense: false, // Disable suspense to avoid loading issues
     },
   });
-
-// Load translations after initialization
-loadTranslations().then(() => {
-  i18n.reloadResources();
-});
 
 export default i18n;
