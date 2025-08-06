@@ -30,7 +30,7 @@ const BenefitsSection = () => {
   ];
 
   return (
-    <section id="benefits" className="py-24 bg-gradient-to-br from-white via-Bilio-gray-50 to-white relative overflow-hidden">
+    <section id="benefits" className="py-24 section-premium relative overflow-hidden">
       
       {/* Subtle decorative elements */}
       <div className="absolute top-20 left-10 w-72 h-72 bg-Bilio-blue/5 rounded-full blur-3xl"></div>

@@ -6,7 +6,7 @@ import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
 import BenefitsSection from "@/components/BenefitsSection";
 import PricingSection from "@/components/PricingSection";
-import FAQSection from "@/components/FAQSection";
+import Faq1 from "@/components/mvpblocks/faq-1";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 import LocationSEOHead from "@/components/LocationSEOHead";
@@ -29,7 +29,7 @@ const LocationPage = () => {
         <AboutSection locationData={locationData} />
         <BenefitsSection locationData={locationData} />
         <PricingSection locationData={locationData} />
-        <FAQSection locationData={locationData} />
+        <Faq1 locationData={locationData} />
         <CTASection locationData={locationData} />
       </main>
       <Footer locationData={locationData} />

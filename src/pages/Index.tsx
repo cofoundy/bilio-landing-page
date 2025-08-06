@@ -7,7 +7,7 @@ import HowItWorksSection from "@/components/HowItWorksSection";
 import BenefitsSection from "@/components/BenefitsSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import PricingSection from "@/components/PricingSection";
-import FAQSection from "@/components/FAQSection";
+import Faq1 from "@/components/mvpblocks/faq-1";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
@@ -24,7 +24,7 @@ const Index = () => {
         <BenefitsSection />
         {/* <TestimonialsSection /> */}
         <PricingSection />
-        <FAQSection />
+        <Faq1 />
         <CTASection />
       </main>
       <Footer />

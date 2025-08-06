@@ -81,7 +81,7 @@ export const COMPARISONS: Record<string, ComparisonData> = {
         'Registro manual de transacciones',
         'Funciones premium requieren suscripción'
       ],
-      price: 'Gratis / S/16.99 premium',
+      price: 'Gratis / $4.99 premium',
       targetAudience: 'Usuarios de Latinoamérica que buscan simplicidad',
       platforms: ['WhatsApp', 'Web']
     },
@@ -192,7 +192,7 @@ export const COMPARISONS: Record<string, ComparisonData> = {
         'Personalidad menos "divertida"',
         'Registro manual requerido'
       ],
-      price: 'Gratis / S/16.99 premium',
+      price: 'Gratis / $4.99 premium',
       targetAudience: 'Usuarios serios sobre finanzas en Latinoamérica',
       platforms: ['WhatsApp', 'Web']
     },
@@ -296,7 +296,7 @@ export const COMPARISONS: Record<string, ComparisonData> = {
         'Metodología menos estructurada',
         'Sin sincronización bancaria'
       ],
-      price: 'S/204/año premium',
+      price: '$59.88/año premium',
       targetAudience: 'Usuarios que buscan simplicidad y resultados',
       platforms: ['WhatsApp', 'Web']
     },
@@ -320,7 +320,7 @@ export const COMPARISONS: Record<string, ComparisonData> = {
       },
       {
         feature: 'Precio anual',
-        bilio: '$60',
+        bilio: '$59.88',
         competitor: '$109',
         bilioAdvantage: true
       },
@@ -355,7 +355,7 @@ export const COMPARISONS: Record<string, ComparisonData> = {
       },
       {
         question: '¿Cuál es más barato?',
-        answer: 'Bilio es significativamente más barato: $60/año vs $109/año de YNAB.'
+        answer: 'Bilio es significativamente más barato: $59.88/año vs $109/año de YNAB.'
       },
       {
         question: '¿Puedo migrar de YNAB a Bilio?',
