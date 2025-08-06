@@ -1,6 +1,6 @@
 {
   "title": "Preguntas frecuentes",
-  "subtitle": "Encuentra respuestas a las preguntas más comunes sobre Bilio",
+  "subtitle": "Encuentra respuestas a las preguntas más comunes sobre Bilio, tu coach financiero con IA",
   "contact": {
     "notFound": "¿No encuentras la respuesta que buscas?",
     "supportMessage": "Escríbenos a nuestro WhatsApp y te ayudaremos personalmente",
@@ -19,7 +19,7 @@
     },
     {
       "question": "¿Cuánto cuesta usar Bilio?",
-      "answer": "Bilio tiene un plan gratuito que incluye registro ilimitado de gastos, categorización automática y reportes básicos. También ofrecemos planes premium con funciones avanzadas como reportes detallados, análisis de IA y más.",
+      "answer": "Bilio tiene un plan gratuito que incluye registro ilimitado de gastos, categorización automática y reportes básicos. Nuestro plan premium cuesta $4.99/mes e incluye funciones avanzadas como coaching de IA, reportes detallados, alertas inteligentes y soporte prioritario.",
       "category": "pricing"
     },
     {

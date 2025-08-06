@@ -1,6 +1,6 @@
 {
   "title": "Frequently Asked Questions",
-  "subtitle": "Find answers to common questions about Bilio, the AI financial assistant for WhatsApp",
+  "subtitle": "Find answers to common questions about Bilio, your AI finance coach for WhatsApp",
   "contact": {
     "notFound": "Can't find the answer you're looking for?",
     "supportMessage": "Contact us on WhatsApp and we'll help you personally",
@@ -19,7 +19,7 @@
     },
     {
       "question": "How much does Bilio cost?",
-      "answer": "Bilio has a free plan that includes unlimited expense tracking, automatic categorization, and basic reports. We also offer premium plans with advanced features like detailed reports, AI analysis, and more.",
+      "answer": "Bilio has a free plan that includes unlimited expense tracking, automatic categorization, and basic reports. Our premium plan costs $4.99/month and includes advanced features like AI coaching, detailed reports, smart alerts, and priority support.",
       "category": "pricing"
     },
     {

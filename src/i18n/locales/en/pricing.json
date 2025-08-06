@@ -1,12 +1,20 @@
 {
-  "title": "Plans and Pricing",
-  "subtitle": "Choose the plan that best fits your needs. You can change or cancel at any time.",
-  "popularLabel": "Most Popular",
+  "title": "Pick the perfect plan for your needs",
+  "subtitle": "Simple, transparent pricing that scales with your business. No hidden fees, no surprises.",
+  "popularLabel": "Popular",
+  "billing": {
+    "monthly": "Monthly",
+    "yearly": "Yearly",
+    "yearlyDiscount": "20% off"
+  },
   "plans": {
     "basic": {
       "name": "Basic",
-      "price": "Free",
-      "period": "forever",
+      "icon": "Star",
+      "price": {
+        "monthly": "Free forever",
+        "yearly": "Free forever"
+      },
       "description": "Perfect to start organizing your finances",
       "features": [
         "Unlimited expense tracking",
@@ -19,8 +27,11 @@
     },
     "premium": {
       "name": "Premium",
-      "price": "$19",
-      "period": "per month",
+      "icon": "Zap",
+      "price": {
+        "monthly": 4.99,
+        "yearly": 3.99
+      },
       "description": "For users who want total control of their finances",
       "features": [
         "Everything in Basic plan",
@@ -31,12 +42,16 @@
         "AI savings advice",
         "Priority support"
       ],
-      "button": "Choose Plan"
+      "button": "Choose Plan",
+      "popular": true
     },
     "enterprise": {
       "name": "Enterprise",
-      "price": "$99",
-      "period": "per month",
+      "icon": "Shield",
+      "price": {
+        "monthly": "Contact us for pricing",
+        "yearly": "Contact us for pricing"
+      },
       "description": "Ideal for teams and small businesses",
       "features": [
         "Everything in Premium plan",
@@ -47,7 +62,7 @@
         "Dedicated account manager",
         "Enterprise billing"
       ],
-      "button": "Choose Plan"
+      "button": "Contact Us"
     }
   },
   "footer": {

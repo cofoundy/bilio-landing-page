@@ -4,10 +4,10 @@
     "highlight": "Rápido. Simple.",
     "suffix": "Desde WhatsApp."
   },
-  "subtitle": "Registra tus gastos en segundos, recibe reportes automáticos y mejora tus finanzas día a día.",
+  "subtitle": "Tu coach financiero con IA en WhatsApp. Recibe consejos personalizados, presupuestos inteligentes y toma control de tu dinero con conversación inteligente.",
   "whatsapp": {
     "botName": "Bilio Bot",
-    "greeting": "¡Hola! Soy Bilio, tu asistente financiero. ¿En qué puedo ayudarte hoy?",
+    "greeting": "¡Hola! Soy Bilio, tu coach financiero con IA. ¿En qué puedo ayudarte hoy?",
     "userExpenseMessage": "Gasté S/35 en almuerzo",
     "botConfirmation": "¡Registrado! S/35 en categoría \"Alimentación\".",
     "userReportRequest": "Muéstrame mi reporte semanal",

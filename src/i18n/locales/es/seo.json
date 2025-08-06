@@ -1,18 +1,18 @@
 {
   "meta": {
-    "title": "Bilio | Tu asistente financiero en WhatsApp",
-    "description": "Controla tus finanzas desde WhatsApp. Registra gastos, recibe reportes automáticos y mejora tu salud financiera con inteligencia artificial.",
-    "keywords": "finanzas personales, WhatsApp, gastos, presupuesto, ahorro, Perú, soles, control financiero",
+    "title": "Bilio | Tu coach financiero con IA en WhatsApp",
+    "description": "Recibe coaching financiero personalizado desde WhatsApp. Tu coach financiero con IA te ayuda a tomar decisiones más inteligentes con tu dinero.",
+    "keywords": "coach financiero IA, finanzas personales, WhatsApp, coaching financiero, presupuesto, ahorro, Perú, soles, decisiones inteligentes dinero",
     "author": "Bilio"
   },
   "openGraph": {
-    "title": "Bilio - Asistente Financiero Inteligente",
-    "description": "Transforma tu relación con el dinero. Registra gastos desde WhatsApp y obtén insights personalizados para mejorar tus finanzas.",
+    "title": "Bilio - Coach Financiero con IA",
+    "description": "Transforma tu relación con el dinero. Recibe coaching financiero personalizado de tu coach con IA en WhatsApp.",
     "siteName": "Bilio"
   },
   "structured": {
     "organizationName": "Bilio",
-    "organizationDescription": "Asistente financiero con inteligencia artificial para WhatsApp",
-    "serviceDescription": "Asistente financiero en WhatsApp para control de gastos y finanzas personales"
+    "organizationDescription": "Coach financiero con inteligencia artificial para WhatsApp",
+    "serviceDescription": "Coach financiero con IA en WhatsApp para coaching personalizado y gestión inteligente del dinero"
   }
 }

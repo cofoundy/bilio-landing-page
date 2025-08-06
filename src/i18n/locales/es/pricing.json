@@ -1,12 +1,20 @@
 {
-  "title": "Planes y precios",
-  "subtitle": "Elige el plan que mejor se adapte a tus necesidades. Puedes cambiar o cancelar en cualquier momento.",
-  "popularLabel": "Más Popular",
+  "title": "Elige el plan perfecto para tus necesidades",
+  "subtitle": "Precios simples y transparentes que crecen con tu negocio. Sin tarifas ocultas, sin sorpresas.",
+  "popularLabel": "Popular",
+  "billing": {
+    "monthly": "Mensual",
+    "yearly": "Anual",
+    "yearlyDiscount": "20% descuento"
+  },
   "plans": {
     "basic": {
       "name": "Básico",
-      "price": "Gratis",
-      "period": "por siempre",
+      "icon": "Star",
+      "price": {
+        "monthly": "Gratis por siempre",
+        "yearly": "Gratis por siempre"
+      },
       "description": "Perfecto para comenzar a organizar tus finanzas",
       "features": [
         "Registro de gastos ilimitado",
@@ -19,8 +27,11 @@
     },
     "premium": {
       "name": "Premium",
-      "price": "S/19",
-      "period": "por mes",
+      "icon": "Zap",
+      "price": {
+        "monthly": 4.99,
+        "yearly": 3.99
+      },
       "description": "Para usuarios que quieren el control total de sus finanzas",
       "features": [
         "Todo lo del plan Básico",
@@ -31,12 +42,16 @@
         "Consejos de ahorro IA",
         "Soporte prioritario"
       ],
-      "button": "Elegir Plan"
+      "button": "Elegir Plan",
+      "popular": true
     },
     "enterprise": {
       "name": "Empresarial",
-      "price": "S/99",
-      "period": "por mes",
+      "icon": "Shield",
+      "price": {
+        "monthly": "Contáctanos para precios",
+        "yearly": "Contáctanos para precios"
+      },
       "description": "Ideal para equipos y pequeñas empresas",
       "features": [
         "Todo lo del plan Premium",
@@ -47,7 +62,7 @@
         "Gestor de cuenta dedicado",
         "Facturación empresarial"
       ],
-      "button": "Elegir Plan"
+      "button": "Contáctanos"
     }
   },
   "footer": {

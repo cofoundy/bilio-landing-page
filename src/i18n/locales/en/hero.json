@@ -4,10 +4,10 @@
     "highlight": "Fast. Simple.",
     "suffix": "From WhatsApp."
   },
-  "subtitle": "Record your expenses in seconds, receive automatic reports and improve your finances day by day.",
+  "subtitle": "Your AI finance coach in WhatsApp. Get personalized insights, smart budgeting advice, and take control of your money with intelligent conversation.",
   "whatsapp": {
     "botName": "Bilio Bot",
-    "greeting": "Hi! I'm Bilio, your financial assistant. How can I help you today?",
+    "greeting": "Hi! I'm Bilio, your AI finance coach. How can I help you today?",
     "userExpenseMessage": "Spent $35 on lunch",
     "botConfirmation": "Recorded! $35 in \"Food\" category.",
     "userReportRequest": "Show me my weekly report",
