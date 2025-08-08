@@ -207,12 +207,36 @@ export default {
     				'50%': {
     					boxShadow: '0 0 40px rgba(255, 199, 0, 0.4)'
     				}
+    			},
+    			'float-slow': {
+    				'0%, 100%': {
+    					transform: 'translateY(0) rotate(0deg)'
+    				},
+    				'33%': {
+    					transform: 'translateY(-15px) rotate(1deg)'
+    				},
+    				'66%': {
+    					transform: 'translateY(-8px) rotate(-1deg)'
+    				}
+    			},
+    			'float-reverse': {
+    				'0%, 100%': {
+    					transform: 'translateY(0) rotate(0deg)'
+    				},
+    				'33%': {
+    					transform: 'translateY(15px) rotate(-1deg)'
+    				},
+    				'66%': {
+    					transform: 'translateY(8px) rotate(1deg)'
+    				}
     			}
     		},
     		animation: {
     			'accordion-down': 'accordion-down 0.2s ease-out',
     			'accordion-up': 'accordion-up 0.2s ease-out',
     			float: 'float 6s ease-in-out infinite',
+    			'float-slow': 'float-slow 8s ease-in-out infinite',
+    			'float-reverse': 'float-reverse 8s ease-in-out infinite',
     			'pulse-soft': 'pulse-soft 4s ease-in-out infinite',
     			'slide-up': 'slide-up 0.8s cubic-bezier(0.16, 1, 0.3, 1)',
     			'slide-down': 'slide-down 0.8s cubic-bezier(0.16, 1, 0.3, 1)',
