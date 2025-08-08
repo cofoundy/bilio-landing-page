@@ -2,12 +2,10 @@
 import React from "react";
 import NavigationHeader from "@/components/NavigationHeader";
 import HeroSection from "@/components/HeroSection";
-import AboutSection from "@/components/AboutSection";
 import HowItWorksSection from "@/components/HowItWorksSection";
-import BenefitsSection from "@/components/BenefitsSection";
-import TestimonialsSection from "@/components/TestimonialsSection";
+import GlobalSection from "@/components/GlobalSection";
 import PricingSection from "@/components/PricingSection";
-import Faq1 from "@/components/mvpblocks/faq-1";
+import SocialProofBar from "@/components/SocialProofBar";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
@@ -19,12 +17,10 @@ const Index = () => {
       <NavigationHeader />
       <main role="main">
         <HeroSection />
-        <AboutSection />
-        {/* <HowItWorksSection /> */}
-        <BenefitsSection />
-        {/* <TestimonialsSection /> */}
+        <HowItWorksSection />
+        <GlobalSection />
         <PricingSection />
-        <Faq1 />
+        <SocialProofBar />
         <CTASection />
       </main>
       <Footer />

@@ -12,6 +12,7 @@ import BlogPost from "./pages/BlogPost";
 import ComparisonPage from "./pages/ComparisonPage";
 import UseCasePage from "./pages/UseCasePage";
 import NotFound from "./pages/NotFound";
+import AnimationDemo from "./components/AnimationDemo";
 import { getAllLocationCodes } from "./data/locations";
 
 const queryClient = new QueryClient();
@@ -65,6 +66,9 @@ const App = () => {
             <Route path="/expense-tracking" element={<UseCasePage />} />
             <Route path="/financial-coaching" element={<UseCasePage />} />
             <Route path="/whatsapp-finance" element={<UseCasePage />} />
+            
+            {/* Animation Demo (Development) */}
+            <Route path="/animation-demo" element={<AnimationDemo />} />
             
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
