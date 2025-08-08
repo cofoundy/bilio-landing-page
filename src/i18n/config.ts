@@ -35,6 +35,10 @@ import comparisonES from './locales/es/comparison.json';
 import comparisonEN from './locales/en/comparison.json';
 import blogES from './locales/es/blog.json';
 import blogEN from './locales/en/blog.json';
+import globalES from './locales/es/global.json';
+import globalEN from './locales/en/global.json';
+import socialProofES from './locales/es/socialProof.json';
+import socialProofEN from './locales/en/socialProof.json';
 
 // Initialize resources synchronously
 const resources = {
@@ -55,6 +59,8 @@ const resources = {
     useCases: useCasesEN,
     comparison: comparisonEN,
     blog: blogEN,
+    global: globalEN,
+    socialProof: socialProofEN,
   },
   es: {
     common: commonES,
@@ -73,6 +79,8 @@ const resources = {
     useCases: useCasesES,
     comparison: comparisonES,
     blog: blogES,
+    global: globalES,
+    socialProof: socialProofES,
   },
 };
 
@@ -98,7 +106,7 @@ i18n
 
     // Namespace configuration
     defaultNS: 'common',
-    ns: ['common', 'hero', 'navigation', 'about', 'benefits', 'pricing', 'faq', 'cta', 'footer', 'seo', 'howItWorks', 'testimonials', 'notFound', 'useCases', 'comparison', 'blog'],
+    ns: ['common', 'hero', 'navigation', 'about', 'benefits', 'pricing', 'faq', 'cta', 'footer', 'seo', 'howItWorks', 'testimonials', 'notFound', 'useCases', 'comparison', 'blog', 'global', 'socialProof'],
 
     // Missing key handling
     saveMissing: process.env.NODE_ENV === 'development',

@@ -1,18 +1,42 @@
 {
-  "title": "Beneficios principales",
-  "subtitle": "Controla tus finanzas de forma inteligente y disfruta de una experiencia sencilla y efectiva.",
+  "title": "Beneficios Bilio",
+  "subtitle": "Finanzas nueva generación. Máxima comodidad.",
   "items": [
     {
-      "title": "Registro de gastos fácil y rápido",
-      "description": "Registra gastos con un simple mensaje de WhatsApp, sin necesidad de abrir otra aplicación."
+      "title": "WhatsApp",
+      "description": "Escribe tus gastos. Listo.",
+      "icon": "whatsapp",
+      "color": "green"
     },
     {
-      "title": "Plataforma web para análisis detallado",
-      "description": "Accede a una plataforma web para ver todos tus datos financieros en detalle."
+      "title": "IA Inteligente",
+      "description": "Auto-categoriza gastos.",
+      "icon": "brain",
+      "color": "blue"
     },
     {
-      "title": "Consejos personalizados de ahorro",
-      "description": "Recibe recomendaciones basadas en tu comportamiento financiero para mejorar tus hábitos."
+      "title": "Global",
+      "description": "Todas las monedas.",
+      "icon": "globe",
+      "color": "yellow"
+    },
+    {
+      "title": "Sync Instantáneo",
+      "description": "WhatsApp + Web = Tiempo real.",
+      "icon": "sync",
+      "color": "blue"
+    },
+    {
+      "title": "Seguro",
+      "description": "Encriptación bancaria.",
+      "icon": "shield",
+      "color": "green"
+    },
+    {
+      "title": "Siempre Activo",
+      "description": "Rastrea cuando quieras.",
+      "icon": "clock",
+      "color": "yellow"
     }
   ]
 }

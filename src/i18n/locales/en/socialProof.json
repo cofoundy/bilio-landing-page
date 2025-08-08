@@ -1,0 +1,32 @@
+{
+  "testimonials": [
+    {
+      "id": 1,
+      "quote": "Changed my financial life completely",
+      "author": "Maria",
+      "location": "Mexico City",
+      "rating": 5
+    },
+    {
+      "id": 2,
+      "quote": "So simple, so powerful!",
+      "author": "João",
+      "location": "São Paulo",
+      "rating": 5
+    },
+    {
+      "id": 3,
+      "quote": "Finally, finance made easy",
+      "author": "Luis",
+      "location": "Lima",
+      "rating": 5
+    },
+    {
+      "id": 4,
+      "quote": "Best expense tracker ever",
+      "author": "Ana",
+      "location": "Buenos Aires",
+      "rating": 5
+    }
+  ]
+}

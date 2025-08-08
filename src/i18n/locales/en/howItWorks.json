@@ -1,18 +1,40 @@
 {
-  "title": "How does it work?",
-  "subtitle": "Bilio is incredibly simple to use. Follow these three simple steps:",
+  "title": {
+    "main": "How does",
+    "highlight": "Bilio",
+    "suffix": "work?"
+  },
+  "subtitle": "Get personalized financial coaching through AI-powered conversation. Your intelligent finance coach is ready to help you make smarter money decisions.",
   "steps": {
     "step1": {
-      "title": "Register your expense by sending a message",
-      "description": "Simply send a message or audio to Bilio with the amount and description of your expense or income."
+      "title": "Send your expense via WhatsApp",
+      "description": "Simply message \"Spent $50 at supermarket\" and Bilio records it automatically."
     },
     "step2": {
-      "title": "Bilio categorizes it automatically",
-      "description": "Our AI detects the expense category and records it in the right place."
+      "title": "AI categorizes automatically",
+      "description": "Bilio identifies your expense category and suggests budget optimizations."
     },
     "step3": {
-      "title": "Receive daily reports and recommendations",
-      "description": "Get periodic analysis of your finances and personalized advice to improve."
+      "title": "View insights on your dashboard",
+      "description": "Get detailed reports, alerts and personalized advice to improve your finances."
+    }
+  },
+  "globalReach": {
+    "title": "Global Finance",
+    "subtitle": "Multi-currency. Real-time insights.",
+    "features": {
+      "multiCurrency": {
+        "title": "Multi-Currency",
+        "description": "Auto-conversion. Smart reports."
+      },
+      "globalMarkets": {
+        "title": "Global Markets",
+        "description": "Worldwide financial centers."
+      },
+      "localAccess": {
+        "title": "Local Access",
+        "description": "WhatsApp anywhere. Full features."
+      }
     }
   }
 }

@@ -1,0 +1,32 @@
+{
+  "testimonials": [
+    {
+      "id": 1,
+      "quote": "Cambió mi vida financiera completamente",
+      "author": "María",
+      "location": "Ciudad de México",
+      "rating": 5
+    },
+    {
+      "id": 2,
+      "quote": "¡Tan simple, tan poderoso!",
+      "author": "João",
+      "location": "São Paulo",
+      "rating": 5
+    },
+    {
+      "id": 3,
+      "quote": "Por fin, finanzas fáciles",
+      "author": "Luis",
+      "location": "Lima",
+      "rating": 5
+    },
+    {
+      "id": 4,
+      "quote": "El mejor rastreador de gastos",
+      "author": "Ana",
+      "location": "Buenos Aires",
+      "rating": 5
+    }
+  ]
+}

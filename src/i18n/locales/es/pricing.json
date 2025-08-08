@@ -1,27 +1,21 @@
 {
-  "title": "Elige el plan perfecto para tus necesidades",
-  "subtitle": "Precios simples y transparentes que crecen con tu negocio. Sin tarifas ocultas, sin sorpresas.",
+  "title": "Elige Tu Plan",
+  "subtitle": "Precios simples. Sin sorpresas.",
   "popularLabel": "Popular",
-  "billing": {
-    "monthly": "Mensual",
-    "yearly": "Anual",
-    "yearlyDiscount": "20% descuento"
-  },
   "plans": {
     "basic": {
       "name": "Básico",
       "icon": "Star",
       "price": {
-        "monthly": "Gratis por siempre",
-        "yearly": "Gratis por siempre"
+        "monthly": "Gratis por siempre"
       },
-      "description": "Perfecto para comenzar a organizar tus finanzas",
+      "description": "Organiza tus finanzas",
       "features": [
-        "Registro de gastos ilimitado",
-        "Categorización automática",
-        "Reportes mensuales",
-        "Análisis básico de gastos",
-        "Soporte por WhatsApp"
+        "✅ Registro ilimitado",
+        "🤖 Auto-categorización",
+        "📊 Reportes mensuales",
+        "📈 Análisis básico",
+        "💬 Soporte WhatsApp"
       ],
       "button": "Comenzar Gratis"
     },
@@ -29,18 +23,17 @@
       "name": "Premium",
       "icon": "Zap",
       "price": {
-        "monthly": 4.99,
-        "yearly": 3.99
+        "monthly": 4.99
       },
-      "description": "Para usuarios que quieren el control total de sus finanzas",
+      "description": "Control total financiero",
       "features": [
-        "Todo lo del plan Básico",
-        "Reportes diarios y personalizados",
-        "Alertas de gastos inteligentes",
-        "Integración con bancos (próximamente)",
-        "Dashboard web completo",
-        "Consejos de ahorro IA",
-        "Soporte prioritario"
+        "⚡ Todo lo Básico",
+        "📱 Reportes diarios",
+        "🔔 Alertas inteligentes",
+        "🏦 Integración bancos*",
+        "🌐 Dashboard web",
+        "🧠 Consejos IA",
+        "🚀 Soporte prioritario"
       ],
       "button": "Elegir Plan",
       "popular": true
@@ -49,24 +42,23 @@
       "name": "Empresarial",
       "icon": "Shield",
       "price": {
-        "monthly": "Contáctanos para precios",
-        "yearly": "Contáctanos para precios"
+        "monthly": "Contáctanos para precios"
       },
-      "description": "Ideal para equipos y pequeñas empresas",
+      "description": "Equipos y empresas",
       "features": [
-        "Todo lo del plan Premium",
-        "Múltiples usuarios",
-        "Control de gastos por equipo",
-        "Reportes avanzados",
-        "Integración con sistemas contables",
-        "Gestor de cuenta dedicado",
-        "Facturación empresarial"
+        "💎 Todo Premium",
+        "👥 Múltiples usuarios",
+        "🎯 Control por equipo",
+        "📋 Reportes avanzados",
+        "🔗 Integración sistemas",
+        "🤝 Gestor dedicado",
+        "💼 Facturación empresarial"
       ],
       "button": "Contáctanos"
     }
   },
   "footer": {
-    "customPlan": "¿Necesitas algo diferente? Contáctanos para planes personalizados.",
-    "trial": "Todos los planes incluyen 30 días de prueba gratuita. Sin compromisos."
+    "customPlan": "Planes personalizados disponibles.",
+    "trial": "Prueba gratuita 30 días."
   }
 }

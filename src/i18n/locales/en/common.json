@@ -1,9 +1,9 @@
 {
   "buttons": {
-    "joinBeta": "Join Private Beta",
-    "watchDemo": "Watch Demo",
-    "getStarted": "Get Started",
-    "learnMore": "Learn More",
+    "joinBeta": "Join Beta",
+    "watchDemo": "Demo",
+    "getStarted": "Start",
+    "learnMore": "More",
     "readMore": "Read More",
     "close": "Close",
     "back": "Back",

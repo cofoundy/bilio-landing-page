@@ -1,18 +1,40 @@
 {
-  "title": "¿Cómo funciona?",
-  "subtitle": "Bilio es increíblemente sencillo de usar. Sigue estos tres simples pasos:",
+  "title": {
+    "main": "¿Cómo funciona",
+    "highlight": "Bilio",
+    "suffix": "?"
+  },
+  "subtitle": "Recibe coaching financiero personalizado a través de conversación con IA. Tu coach financiero inteligente está listo para ayudarte a tomar decisiones más inteligentes con tu dinero.",
   "steps": {
     "step1": {
-      "title": "Registra tu gasto enviando un mensaje",
-      "description": "Simplemente envía un mensaje o audio a Bilio con el monto y descripción de tu gasto o ingreso."
+      "title": "Envía tu gasto vía WhatsApp",
+      "description": "Simplemente escribe \"Gasté S/50 en supermercado\" y Bilio lo registra automáticamente."
     },
     "step2": {
-      "title": "Bilio lo categoriza automáticamente", 
-      "description": "Nuestra IA detecta la categoría del gasto y lo registra en el lugar correcto."
+      "title": "IA categoriza automáticamente",
+      "description": "Bilio identifica la categoría de tu gasto y sugiere optimizaciones de presupuesto."
     },
     "step3": {
-      "title": "Recibe reportes diarios y recomendaciones",
-      "description": "Obtén análisis periódicos de tus finanzas y consejos personalizados para mejorar."
+      "title": "Ve insights en tu dashboard",
+      "description": "Obtén reportes detallados, alertas y consejos personalizados para mejorar tus finanzas."
+    }
+  },
+  "globalReach": {
+    "title": "Finanzas Globales",
+    "subtitle": "Multi-moneda. Insights tiempo real.",
+    "features": {
+      "multiCurrency": {
+        "title": "Multi-Moneda",
+        "description": "Auto-conversión. Reportes smart."
+      },
+      "globalMarkets": {
+        "title": "Mercados Globales",
+        "description": "Centros financieros mundiales."
+      },
+      "localAccess": {
+        "title": "Acceso Local",
+        "description": "WhatsApp en cualquier lugar. Full."
+      }
     }
   }
 }

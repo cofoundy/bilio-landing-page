@@ -1,27 +1,21 @@
 {
-  "title": "Pick the perfect plan for your needs",
-  "subtitle": "Simple, transparent pricing that scales with your business. No hidden fees, no surprises.",
+  "title": "Choose Your Plan",
+  "subtitle": "Simple pricing. No surprises.",
   "popularLabel": "Popular",
-  "billing": {
-    "monthly": "Monthly",
-    "yearly": "Yearly",
-    "yearlyDiscount": "20% off"
-  },
   "plans": {
     "basic": {
       "name": "Basic",
       "icon": "Star",
       "price": {
-        "monthly": "Free forever",
-        "yearly": "Free forever"
+        "monthly": "Free forever"
       },
-      "description": "Perfect to start organizing your finances",
+      "description": "Start organizing finances",
       "features": [
-        "Unlimited expense tracking",
-        "Automatic categorization",
-        "Monthly reports",
-        "Basic expense analysis",
-        "WhatsApp support"
+        "✅ Unlimited tracking",
+        "🤖 Auto-categorization",
+        "📊 Monthly reports",
+        "📈 Basic analysis",
+        "💬 WhatsApp support"
       ],
       "button": "Start Free"
     },
@@ -29,18 +23,17 @@
       "name": "Premium",
       "icon": "Zap",
       "price": {
-        "monthly": 4.99,
-        "yearly": 3.99
+        "monthly": 4.99
       },
-      "description": "For users who want total control of their finances",
+      "description": "Total financial control",
       "features": [
-        "Everything in Basic plan",
-        "Daily and personalized reports",
-        "Smart expense alerts",
-        "Bank integration (coming soon)",
-        "Complete web dashboard",
-        "AI savings advice",
-        "Priority support"
+        "⚡ Everything in Basic",
+        "📱 Daily reports",
+        "🔔 Smart alerts",
+        "🏦 Bank integration*",
+        "🌐 Web dashboard",
+        "🧠 AI advice",
+        "🚀 Priority support"
       ],
       "button": "Choose Plan",
       "popular": true
@@ -49,24 +42,23 @@
       "name": "Enterprise",
       "icon": "Shield",
       "price": {
-        "monthly": "Contact us for pricing",
-        "yearly": "Contact us for pricing"
+        "monthly": "Contact us for pricing"
       },
-      "description": "Ideal for teams and small businesses",
+      "description": "Teams & businesses",
       "features": [
-        "Everything in Premium plan",
-        "Multiple users",
-        "Team expense control",
-        "Advanced reports",
-        "Accounting system integration",
-        "Dedicated account manager",
-        "Enterprise billing"
+        "💎 Everything Premium",
+        "👥 Multiple users",
+        "🎯 Team control",
+        "📋 Advanced reports",
+        "🔗 System integration",
+        "🤝 Account manager",
+        "💼 Enterprise billing"
       ],
       "button": "Contact Us"
     }
   },
   "footer": {
-    "customPlan": "Need something different? Contact us for custom plans.",
-    "trial": "All plans include 30 days free trial. No commitments."
+    "customPlan": "Custom plans available.",
+    "trial": "30-day free trial."
   }
 }

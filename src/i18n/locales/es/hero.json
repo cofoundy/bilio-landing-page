@@ -1,17 +1,17 @@
 {
   "headline": {
-    "main": "Toma el control de tus finanzas.",
-    "highlight": "Rápido. Simple.",
-    "suffix": "Desde WhatsApp."
+    "main": "Controla",
+    "highlight": "tu dinero.",
+    "suffix": "Vía WhatsApp."
   },
-  "subtitle": "Tu coach financiero con IA en WhatsApp. Recibe consejos personalizados, presupuestos inteligentes y toma control de tu dinero con conversación inteligente.",
+  "subtitle": "Registra gastos naturalmente. Ve insights al instante.",
   "whatsapp": {
     "botName": "Bilio Bot",
-    "greeting": "¡Hola! Soy Bilio, tu coach financiero con IA. ¿En qué puedo ayudarte hoy?",
+    "greeting": "¡Hola! Soy Bilio. ¿En qué te ayudo?",
     "userExpenseMessage": "Gasté S/35 en almuerzo",
-    "botConfirmation": "¡Registrado! S/35 en categoría \"Alimentación\".",
-    "userReportRequest": "Muéstrame mi reporte semanal",
-    "botReportResponse": "Aquí tienes tu reporte semanal:",
+    "botConfirmation": "✅ S/35 Alimentación",
+    "userReportRequest": "Reporte semanal",
+    "botReportResponse": "📊 Tu reporte semanal:",
     "chartLabel": "📊 Gráfico del reporte semanal",
     "timestamps": {
       "greeting": "10:30",
@@ -19,6 +19,14 @@
       "confirmation": "10:31",
       "report": "10:32",
       "chart": "10:33"
+    }
+  },
+  "globe": {
+    "title": "Gestión Financiera Global",
+    "subtitle": "Soporte multi-moneda conectándote con oportunidades financieras mundiales",
+    "legend": {
+      "centers": "Centros Financieros",
+      "markets": "Mercados Conectados"
     }
   }
 }

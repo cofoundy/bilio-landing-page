@@ -1,9 +1,31 @@
 {
-  "title": "Start controlling your finances today!",
-  "subtitle": "Join Bilio's private beta and be among the first to experience a new way to manage your money.",
-  "button": "Join Private Beta",
+  "title": "Control your finances today!",
+  "subtitle": "Join the beta and experience the future of personal finance. No complications, no confusing interfaces.",
+  "button": "Join Beta",
+  "value_proposition": "Manage your money with WhatsApp + AI",
   "modal": {
     "title": "Join Bilio's Waitlist",
     "iframeTitle": "Join Bilio's Waitlist"
+  },
+  "faq": {
+    "title": "Questions? We've got answers",
+    "questions": [
+      {
+        "question": "Is it really free?",
+        "answer": "Yes, completely free. No hidden costs, no fine print. We'll never charge you for basic features."
+      },
+      {
+        "question": "How secure is my data?",
+        "answer": "Maximum security with end-to-end encryption. Only you can see your financial data. We never share information with third parties."
+      },
+      {
+        "question": "Which countries are supported?",
+        "answer": "Available throughout Latin America with full support for local currencies. Starting in Peru and expanding progressively."
+      },
+      {
+        "question": "Can I cancel anytime?",
+        "answer": "Absolutely. It's free and you can stop using Bilio at any time. Your data stays secure until you decide to delete it."
+      }
+    ]
   }
 }

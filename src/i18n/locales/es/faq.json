@@ -1,50 +1,50 @@
 {
-  "title": "Preguntas frecuentes",
-  "subtitle": "Encuentra respuestas a las preguntas más comunes sobre Bilio, tu coach financiero con IA",
+  "title": "FAQ",
+  "subtitle": "Respuestas rápidas sobre Bilio",
   "contact": {
-    "notFound": "¿No encuentras la respuesta que buscas?",
-    "supportMessage": "Escríbenos a nuestro WhatsApp y te ayudaremos personalmente",
+    "notFound": "¿No encuentras tu respuesta?",
+    "supportMessage": "Escríbenos por WhatsApp",
     "contactButton": "Contactar Soporte"
   },
   "questions": [
     {
-      "question": "¿Cómo funciona Bilio?",
-      "answer": "Bilio es un bot de WhatsApp que te ayuda a registrar y categorizar tus gastos automáticamente. Simplemente envías un mensaje con tu gasto (ej: 'Gasté S/50 en almuerzo') y Bilio lo registra, categoriza y te ayuda a hacer seguimiento de tus finanzas.",
+      "question": "¿Cómo funciona?",
+      "answer": "Mensaje de gasto → IA categoriza → Insights. Así de simple.",
       "category": "basics"
     },
     {
-      "question": "¿Es seguro compartir mi información financiera?",
-      "answer": "Absolutamente. Bilio utiliza encriptación de extremo a extremo y no almacena información sensible como números de cuentas bancarias. Solo procesamos los datos de gastos que tú decides compartir voluntariamente para darte mejores reportes.",
+      "question": "¿Es seguro?",
+      "answer": "Sí. Encriptación extremo a extremo. Sin datos bancarios.",
       "category": "security"
     },
     {
-      "question": "¿Cuánto cuesta usar Bilio?",
-      "answer": "Bilio tiene un plan gratuito que incluye registro ilimitado de gastos, categorización automática y reportes básicos. Nuestro plan premium cuesta $4.99/mes e incluye funciones avanzadas como coaching de IA, reportes detallados, alertas inteligentes y soporte prioritario.",
+      "question": "¿Costo?",
+      "answer": "Gratis siempre. Premium $4.99/mes.",
       "category": "pricing"
     },
     {
-      "question": "¿Puedo usar Bilio en grupo familiar?",
-      "answer": "¡Sí! Los planes premium y empresarial permiten múltiples usuarios, perfecto para familias o equipos que quieren hacer seguimiento conjunto de sus gastos y presupuestos.",
+      "question": "¿Uso familiar?",
+      "answer": "Sí. Múltiples usuarios en planes Premium/Empresarial.",
       "category": "features"
     },
     {
-      "question": "¿Qué pasa si me equivoco en un gasto?",
-      "answer": "Puedes corregir cualquier gasto fácilmente enviando un mensaje a Bilio. Por ejemplo: 'Corrige el gasto de ayer, fueron S/45 no S/50'. El bot actualizará automáticamente tu registro.",
+      "question": "¿Corrección errores?",
+      "answer": "Mensaje de corrección. IA actualiza automático.",
       "category": "usage"
     },
     {
-      "question": "¿Puedo exportar mis datos?",
-      "answer": "Sí, en los planes premium puedes exportar todos tus datos en formatos Excel y PDF para tu uso personal o para compartir con tu contador.",
+      "question": "¿Exportar datos?",
+      "answer": "Sí. Excel/PDF con Premium.",
       "category": "features"
     },
     {
-      "question": "¿Hay límite en la cantidad de gastos que puedo registrar?",
-      "answer": "No hay límites en ningún plan. Puedes registrar tantos gastos como necesites, sin restricciones.",
+      "question": "¿Límites de gastos?",
+      "answer": "Ilimitado. Todos los planes.",
       "category": "usage"
     },
     {
-      "question": "¿Funciona Bilio en Perú?",
-      "answer": "¡Sí! Bilio funciona perfectamente en Perú con soporte completo para soles peruanos. Nuestras categorías están adaptadas al mercado peruano.",
+      "question": "¿Funciona en Perú?",
+      "answer": "Sí. Soporte completo soles peruanos.",
       "category": "location"
     }
   ]
