@@ -1,0 +1,8 @@
+{
+  "stats": {
+    "countries": "Países",
+    "currencies": "Monedas", 
+    "instantValue": "Sincronización",
+    "sync": "Instantánea"
+  }
+}
