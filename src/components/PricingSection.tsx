@@ -1,7 +1,6 @@
 'use client';
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { SafeNumberFlow } from '@/components/ui/safe-number-flow';
 import { Badge } from '@/components/ui/badge';
 import { Button } from "@/components/ui/button";
@@ -32,14 +31,6 @@ interface PricingSectionProps {
 
 const PricingSection: React.FC<PricingSectionProps> = ({ locationData }) => {
   const { t } = useTranslation('pricing');
-  const [frequency, setFrequency] = useState<string>('monthly');
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) return null;
   
   // Build plans from translation data
   const planKeys = ['basic', 'premium', 'enterprise'];
@@ -51,7 +42,7 @@ const PricingSection: React.FC<PricingSectionProps> = ({ locationData }) => {
       id: key,
       name: planData.name,
       icon: IconComponent,
-      price: planData.price,
+      price: planData.price.monthly,
       description: planData.description,
       features: planData.features,
       cta: planData.button,
@@ -73,7 +64,7 @@ const PricingSection: React.FC<PricingSectionProps> = ({ locationData }) => {
       "@type": "Offer",
       "name": plan.name,
       "description": plan.description,
-      "price": typeof plan.price.monthly === 'number' ? plan.price.monthly : "0",
+      "price": typeof plan.price === 'number' ? plan.price : "0",
       "priceCurrency": locationData?.currency || "USD",
       "priceValidUntil": "2025-12-31",
       "availability": "https://schema.org/InStock"
@@ -122,40 +113,8 @@ const PricingSection: React.FC<PricingSectionProps> = ({ locationData }) => {
           </motion.p>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.4, delay: 0.2 }}
-        >
-          <Tabs
-            defaultValue={frequency}
-            onValueChange={setFrequency}
-            className="bg-muted/30 inline-block rounded-full p-1 shadow-sm"
-          >
-            <TabsList className="bg-transparent">
-              <TabsTrigger
-                value="monthly"
-                className="data-[state=active]:bg-background rounded-full transition-all duration-300 data-[state=active]:shadow-sm"
-              >
-                {t('billing.monthly')}
-              </TabsTrigger>
-              <TabsTrigger
-                value="yearly"
-                className="data-[state=active]:bg-background rounded-full transition-all duration-300 data-[state=active]:shadow-sm"
-              >
-                {t('billing.yearly')}
-                <Badge
-                  variant="secondary"
-                  className="bg-primary/10 text-primary hover:bg-primary/15 ml-2"
-                >
-                  {t('billing.yearlyDiscount')}
-                </Badge>
-              </TabsTrigger>
-            </TabsList>
-          </Tabs>
-        </motion.div>
 
-        <div className="mt-8 grid w-full max-w-6xl grid-cols-1 gap-6 md:grid-cols-3">
+        <div className="mt-8 grid w-full max-w-7xl grid-cols-1 gap-8 md:grid-cols-3">
           {plans.map((plan, index) => (
             <motion.div
               key={plan.id}
@@ -167,7 +126,7 @@ const PricingSection: React.FC<PricingSectionProps> = ({ locationData }) => {
             >
               <Card
                 className={cn(
-                  'relative h-full w-full text-left transition-all duration-300 hover:shadow-lg',
+                  'relative h-full w-full text-left transition-all duration-300 hover:shadow-xl hover:scale-105',
                   // Different background colors for each plan
                   plan.id === 'basic' && 'bg-Bilio-blue-soft border-Bilio-blue/20',
                   plan.id === 'premium' && 'bg-Bilio-yellow-soft border-Bilio-yellow/30',
@@ -188,21 +147,21 @@ const PricingSection: React.FC<PricingSectionProps> = ({ locationData }) => {
                     </Badge>
                   </div>
                 )}
-                <CardHeader className={cn('pb-4', plan.popular && 'pt-8')}>
-                  <div className="flex items-center gap-2">
+                <CardHeader className={cn('pb-6', plan.popular && 'pt-10')}>
+                  <div className="flex items-center gap-3">
                     <div
                       className={cn(
-                        'flex h-8 w-8 items-center justify-center rounded-full',
+                        'flex h-10 w-10 items-center justify-center rounded-full',
                         plan.id === 'basic' && 'bg-Bilio-blue/10 text-Bilio-blue',
                         plan.id === 'premium' && 'bg-Bilio-yellow/20 text-Bilio-blue',
                         plan.id === 'enterprise' && 'bg-Bilio-green/10 text-Bilio-green',
                       )}
                     >
-                      <plan.icon className="h-4 w-4" />
+                      <plan.icon className="h-5 w-5" />
                     </div>
                     <CardTitle
                       className={cn(
-                        'text-xl font-bold',
+                        'text-2xl font-bold',
                         plan.id === 'basic' && 'text-Bilio-blue',
                         plan.id === 'premium' && 'text-Bilio-blue',
                         plan.id === 'enterprise' && 'text-Bilio-green',
@@ -211,16 +170,14 @@ const PricingSection: React.FC<PricingSectionProps> = ({ locationData }) => {
                       {plan.name}
                     </CardTitle>
                   </div>
-                  <div className="mt-3 space-y-2">
-                    <p className="text-sm text-muted-foreground">{plan.description}</p>
-                    <div className="pt-2">
-                      {typeof plan.price[
-                        frequency as keyof typeof plan.price
-                      ] === 'number' ? (
+                  <div className="mt-4 space-y-3">
+                    <p className="text-base text-muted-foreground">{plan.description}</p>
+                    <div className="pt-3">
+                      {typeof plan.price === 'number' ? (
                         <div className="flex items-baseline">
                           <SafeNumberFlow
                             className={cn(
-                              'text-3xl font-bold',
+                              'text-4xl font-bold',
                               plan.id === 'basic' && 'text-Bilio-blue',
                               plan.id === 'premium' && 'text-Bilio-yellow-dark',
                               plan.id === 'enterprise' && 'text-Bilio-green',
@@ -230,49 +187,45 @@ const PricingSection: React.FC<PricingSectionProps> = ({ locationData }) => {
                               currency: locationData?.currency || 'USD',
                               maximumFractionDigits: 0,
                             }}
-                            value={
-                              plan.price[
-                                frequency as keyof typeof plan.price
-                              ] as number
-                            }
+                            value={plan.price}
                           />
-                          <span className="text-muted-foreground ml-1 text-sm">
-                            /month, billed {frequency}
+                          <span className="text-muted-foreground ml-2 text-base font-medium">
+                            /month
                           </span>
                         </div>
                       ) : (
                         <span
                           className={cn(
-                            'text-2xl font-bold',
+                            'text-3xl font-bold',
                             plan.id === 'basic' && 'text-Bilio-blue',
                             plan.id === 'premium' && 'text-Bilio-yellow-dark',
                             plan.id === 'enterprise' && 'text-Bilio-green',
                           )}
                         >
-                          {plan.price[frequency as keyof typeof plan.price]}
+                          {plan.price}
                         </span>
                       )}
                     </div>
                   </div>
                 </CardHeader>
-                <CardContent className="grid gap-3 pb-6">
+                <CardContent className="grid gap-4 pb-8">
                   {plan.features.map((feature: string, featureIndex: number) => (
                     <motion.div
                       key={featureIndex}
                       initial={{ opacity: 0, x: -5 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.3, delay: 0.5 + featureIndex * 0.05 }}
-                      className="flex items-center gap-2 text-sm"
+                      className="flex items-center gap-3 text-base"
                     >
                       <div
                         className={cn(
-                          'flex h-5 w-5 items-center justify-center rounded-full',
+                          'flex h-6 w-6 items-center justify-center rounded-full',
                           plan.id === 'basic' && 'bg-Bilio-blue/10 text-Bilio-blue',
                           plan.id === 'premium' && 'bg-Bilio-yellow/20 text-Bilio-blue',
                           plan.id === 'enterprise' && 'bg-Bilio-green/10 text-Bilio-green',
                         )}
                       >
-                        <Check className="h-3.5 w-3.5" />
+                        <Check className="h-4 w-4" />
                       </div>
                       <span className="text-Bilio-gray-700">
                         {feature}
@@ -284,7 +237,7 @@ const PricingSection: React.FC<PricingSectionProps> = ({ locationData }) => {
                   <Button
                     variant={plan.popular ? 'default' : 'outline'}
                     className={cn(
-                      'group w-full font-medium transition-all duration-300',
+                      'group w-full font-semibold text-lg transition-all duration-300 py-3',
                       plan.id === 'basic' && 'border-Bilio-blue text-Bilio-blue hover:bg-Bilio-blue hover:text-white',
                       plan.id === 'premium' && 'bg-Bilio-yellow text-Bilio-blue hover:bg-Bilio-yellow-dark hover:shadow-Bilio-yellow/20 hover:shadow-md',
                       plan.id === 'enterprise' && 'border-Bilio-green text-Bilio-green hover:bg-Bilio-green hover:text-white',
@@ -292,7 +245,7 @@ const PricingSection: React.FC<PricingSectionProps> = ({ locationData }) => {
                     onClick={scrollToSectionAndOpenModal}
                   >
                     {plan.cta}
-                    <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                    <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
                   </Button>
                 </CardFooter>
 
