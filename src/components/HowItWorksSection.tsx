@@ -1,6 +1,7 @@
 import React from "react";
-import { ArrowRight, MessageSquare, CalendarDays, FileText } from "lucide-react";
+import { ArrowRight, MessageSquare, Brain, BarChart3 } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { Card, CardContent } from "@/components/ui/card";
 
 const HowItWorksSection = () => {
   const { t } = useTranslation('howItWorks');
@@ -11,64 +12,82 @@ const HowItWorksSection = () => {
       title: t('steps.step1.title'),
       description: t('steps.step1.description'),
       icon: MessageSquare,
-      color: "from-Bilio-purple to-Bilio-pink"
+      bgColor: "bg-Bilio-yellow",
+      glowColor: "shadow-Bilio-yellow/20"
     },
     {
       id: 2,
       title: t('steps.step2.title'),
       description: t('steps.step2.description'),
-      icon: FileText,
-      color: "from-Bilio-blue to-Bilio-cyan"
+      icon: Brain,
+      bgColor: "bg-Bilio-blue",
+      glowColor: "shadow-Bilio-blue/20"
     },
     {
       id: 3,
       title: t('steps.step3.title'),
       description: t('steps.step3.description'),
-      icon: CalendarDays,
-      color: "from-Bilio-gold to-Bilio-orange"
+      icon: BarChart3,
+      bgColor: "bg-Bilio-green",
+      glowColor: "shadow-Bilio-green/20"
     }
   ];
 
   return (
-    <section id="how-it-works" className="py-24 section-premium">
+    <section id="how-it-works" className="py-20 bg-gradient-to-b from-white to-Bilio-gray-50 relative overflow-hidden">
+      {/* Subtle background decoration with individual colors */}
+      <div className="absolute top-20 right-10 w-64 h-64 bg-Bilio-yellow/10 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-20 left-10 w-48 h-48 bg-Bilio-green/10 rounded-full blur-3xl"></div>
+
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center max-w-4xl mx-auto mb-20 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold mb-8 tracking-tight text-glow">
-            <span className="text-premium">{t('title')}</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-Bilio-gray-900 mb-6">
+            {t('title.main')} <span className="text-Bilio-blue">{t('title.highlight')}</span>{t('title.suffix')}
           </h2>
-          <p className="text-xl text-gray-400 leading-relaxed font-medium max-w-2xl mx-auto">
+          <p className="text-xl text-Bilio-gray-600 leading-relaxed max-w-2xl mx-auto">
             {t('subtitle')}
           </p>
         </div>
         
         <div className="relative">
-          {/* Enhanced connecting line with glow */}
-          <div className="hidden lg:block absolute top-1/2 left-[10%] right-[10%] h-0.5 bg-gradient-to-r from-Bilio-purple via-Bilio-pink to-Bilio-gold transform -translate-y-1/2 z-0 opacity-40 animate-gradient-shift shadow-lg shadow-Bilio-purple/20"></div>
-          <div className="hidden lg:block absolute top-1/2 left-[10%] right-[10%] h-px bg-gradient-to-r from-transparent via-white/20 to-transparent transform -translate-y-1/2 z-0 opacity-80"></div>
+          {/* Enhanced connecting arrows between steps */}
+          <div className="hidden lg:flex absolute top-1/2 left-0 right-0 justify-between items-center transform -translate-y-1/2 z-0 px-[12%]">
+            <ArrowRight className="text-Bilio-yellow h-8 w-8 animate-pulse" />
+            <ArrowRight className="text-Bilio-blue h-8 w-8 animate-pulse" style={{ animationDelay: '0.5s' }} />
+          </div>
           
-          <div className="grid md:grid-cols-3 gap-10 relative z-10">
+          <div className="space-y-8 md:space-y-0 md:grid md:grid-cols-3 gap-8 lg:gap-12 relative z-10">
             {steps.map((step, index) => (
-              <div key={step.id} className="card-premium p-8 animate-scale-in group" style={{ animationDelay: `${index * 0.2}s` }}>
-                <div className={`bg-gradient-to-r ${step.color} mb-8 w-20 h-20 rounded-2xl flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300`} style={{ boxShadow: '0 0 30px rgba(124, 58, 237, 0.3)' }}>
-                  <step.icon className="h-10 w-10 text-white" />
-                </div>
-                
-                <div className="bg-gradient-to-r from-Bilio-purple/5 to-Bilio-pink/10 absolute -right-6 -bottom-6 w-40 h-40 rounded-full blur-2xl opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
-                
-                <div className="space-y-4">
-                  <div className="flex items-center gap-4 mb-4">
-                    <span className="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-r from-Bilio-purple to-Bilio-blue text-white text-lg font-bold shadow-lg shadow-Bilio-purple/30">
-                      {step.id}
-                    </span>
-                    <div className="w-12 h-1 bg-gradient-to-r from-Bilio-purple to-Bilio-blue rounded-full shadow-md shadow-Bilio-purple/30"></div>
-                  </div>
-                  
-                  <h3 className="text-xl font-bold text-white mb-3 leading-tight text-glow">
-                    {step.title}
-                  </h3>
-                  
-                  <p className="text-gray-400 leading-relaxed">{step.description}</p>
-                </div>
+              <div key={step.id} className="group animate-scale-in" style={{ animationDelay: `${index * 0.2}s` }}>
+                <Card className="hover:shadow-2xl transition-all duration-500 border-0 bg-white h-full">
+                  <CardContent className="p-8 text-center relative overflow-hidden">
+                    {/* Background glow effect */}
+                    <div className={`absolute inset-0 ${step.bgColor} opacity-5 transition-opacity duration-300 group-hover:opacity-10`}></div>
+                    
+                    {/* Icon container */}
+                    <div className={`${step.bgColor} mb-6 w-20 h-20 mx-auto rounded-2xl flex items-center justify-center shadow-xl ${step.glowColor} group-hover:scale-110 transition-all duration-300`}>
+                      <step.icon className="h-10 w-10 text-white" />
+                    </div>
+                    
+                    {/* Step number badge */}
+                    <div className="flex items-center justify-center gap-3 mb-6">
+                      <span className={`flex items-center justify-center w-10 h-10 rounded-xl ${step.bgColor} text-white text-lg font-bold shadow-lg`}>
+                        {step.id}
+                      </span>
+                      <div className={`w-16 h-1 ${step.bgColor} rounded-full opacity-30`}></div>
+                    </div>
+                    
+                    {/* Title - Clean and prominent */}
+                    <h3 className="text-xl font-semibold text-Bilio-gray-900 mb-4 leading-tight">
+                      {step.title}
+                    </h3>
+                    
+                    {/* Description - Single sentence, always visible */}
+                    <p className="text-Bilio-gray-600 leading-relaxed">
+                      {step.description}
+                    </p>
+                  </CardContent>
+                </Card>
               </div>
             ))}
           </div>
