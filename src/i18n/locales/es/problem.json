@@ -1,0 +1,40 @@
+{
+  "title": "El Problema con las",
+  "titleHighlight": "Apps Financieras Tradicionales",
+  "subtitle": "La mayoría de apps de seguimiento de gastos te hacen trabajar más, no de manera más inteligente.",
+  "stats": [
+    {
+      "percentage": "96%",
+      "label": "encuentran el seguimiento tradicional de gastos tedioso y consume tiempo",
+      "icon": "clock-x",
+      "color": "red"
+    },
+    {
+      "percentage": "67%",
+      "label": "abandonan las apps financieras en la primera semana debido a su complejidad",
+      "icon": "trash-2",
+      "color": "orange"
+    },
+    {
+      "percentage": "80%",
+      "label": "prefieren interacciones por voz sobre escribir para tareas diarias",
+      "icon": "mic",
+      "color": "blue"
+    }
+  ],
+  "painPoints": {
+    "title": "Frustraciones Comunes",
+    "items": [
+      "Formularios interminables y entrada manual de datos",
+      "Tener que escribir cada detalle del gasto",
+      "Apps que no entienden lenguaje natural",
+      "Sin soporte para captura de voz o fotos",
+      "Solo se puede registrar un gasto a la vez",
+      "Menús y navegación complicados"
+    ]
+  },
+  "solution": {
+    "title": "La Diferencia Bilio",
+    "description": "IA 100% conversacional que entiende mensajes de voz, extrae datos de fotos y maneja múltiples transacciones de una sola vez. Sin formularios. Sin escribir. Solo conversación natural."
+  }
+}

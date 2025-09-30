@@ -1,0 +1,40 @@
+{
+  "title": "The Problem with",
+  "titleHighlight": "Traditional Finance Apps",
+  "subtitle": "Most expense tracking apps make you work harder, not smarter.",
+  "stats": [
+    {
+      "percentage": "96%",
+      "label": "find traditional expense tracking tedious and time-consuming",
+      "icon": "clock-x",
+      "color": "red"
+    },
+    {
+      "percentage": "67%",
+      "label": "abandon finance apps within the first week due to complexity",
+      "icon": "trash-2",
+      "color": "orange"
+    },
+    {
+      "percentage": "80%",
+      "label": "prefer voice-based interactions over typing for daily tasks",
+      "icon": "mic",
+      "color": "blue"
+    }
+  ],
+  "painPoints": {
+    "title": "Common Frustrations",
+    "items": [
+      "Endless forms and manual data entry",
+      "Having to type every expense detail",
+      "Apps that don't understand natural language",
+      "No support for voice or photo capture",
+      "Can only track one expense at a time",
+      "Complicated menus and navigation"
+    ]
+  },
+  "solution": {
+    "title": "The Bilio Difference",
+    "description": "100% conversational AI that understands voice messages, extracts data from photos, and handles multiple transactions in one go. No forms. No typing. Just natural conversation."
+  }
+}
