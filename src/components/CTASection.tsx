@@ -1,10 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { MessageSquare, PlusIcon } from "lucide-react";
-import { useBetaModal } from "@/hooks/useBetaModal";
+import { ArrowRight, PlusIcon } from "lucide-react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { LocationData } from "@/data/locations";
@@ -15,8 +13,6 @@ interface CTASectionProps {
 
 const CTASection = ({ locationData }: CTASectionProps) => {
   const { t } = useTranslation('cta');
-  const { isModalOpen, openModal, closeModal } = useBetaModal();
-  const [iframeKey, setIframeKey] = React.useState(0);
 
   // Get FAQ questions from translations
   const faqQuestions = t('faq.questions', { returnObjects: true }) as Array<{
@@ -24,12 +20,9 @@ const CTASection = ({ locationData }: CTASectionProps) => {
     answer: string;
   }>;
 
-  useEffect(() => {
-    // Reload iframe when modal opens to ensure proper loading
-    if (isModalOpen) {
-      setIframeKey(prev => prev + 1);
-    }
-  }, [isModalOpen]);
+  const handleGetStarted = () => {
+    window.location.href = 'https://app.bilio.lat';
+  };
 
   return (
     <section id="cta-section" className="py-20 bg-white relative">
@@ -68,13 +61,13 @@ const CTASection = ({ locationData }: CTASectionProps) => {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                <Button 
-                  onClick={openModal}
-                  className="bg-white text-Bilio-blue hover:bg-white/90 hover:text-Bilio-blue text-xl py-8 px-12 flex items-center space-x-3 font-bold shadow-2xl transition-all duration-300 hover:scale-105 mx-auto"
+                <Button
+                  onClick={handleGetStarted}
+                  className="bg-white text-Bilio-blue hover:bg-white/90 hover:text-Bilio-blue text-xl py-8 px-12 flex items-center space-x-3 font-bold shadow-2xl transition-all duration-300 hover:scale-105 mx-auto group"
                   style={{ boxShadow: '0 0 40px rgba(255, 255, 255, 0.4), 0 25px 50px rgba(0, 0, 0, 0.3)' }}
                 >
-                  <MessageSquare className="h-6 w-6" />
                   <span>{t('button')}</span>
+                  <ArrowRight className="ml-2 h-6 w-6 group-hover:translate-x-1 transition-transform duration-300" />
                 </Button>
               </motion.div>
             </div>
@@ -157,42 +150,6 @@ const CTASection = ({ locationData }: CTASectionProps) => {
           </div>
         </motion.div>
       </div>
-
-      {/* Modal with Tally Form - Light Theme */}
-      <Dialog open={isModalOpen} onOpenChange={(open) => !open && closeModal()}>
-        <DialogContent className="max-w-3xl max-h-[95vh] overflow-hidden p-0 border border-Bilio-gray-300">
-          <DialogHeader className="p-6 pb-0">
-            <div className="flex flex-col items-center gap-3">
-              <div className="flex items-center gap-3">
-                <img 
-                  src="/logoBilio.png" 
-                  alt="Bilio Logo" 
-                  className="h-8 w-auto"
-                />
-                <span className="text-xl font-bold text-Bilio-gray-900">Bilio</span>
-              </div>
-              <DialogTitle className="text-2xl font-bold text-center text-Bilio-gray-900">
-                {t('modal.title')}
-              </DialogTitle>
-            </div>
-          </DialogHeader>
-          <div className="p-6 pt-2">
-            <iframe 
-              key={iframeKey}
-              src="https://tally.so/embed/w7zzOa?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" 
-              width="100%" 
-              height="500" 
-              frameBorder="0" 
-              marginHeight={0}
-              marginWidth={0}
-              title={t('modal.iframeTitle')}
-              className="border-0 rounded-lg"
-              style={{ minHeight: '500px' }}
-              allow="payment"
-            />
-          </div>
-        </DialogContent>
-      </Dialog>
     </section>
   );
 };

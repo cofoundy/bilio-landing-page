@@ -2,7 +2,6 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import { scrollToSectionAndOpenModal } from "@/hooks/useBetaModal";
 
 const HeroSection = () => {
   const { t } = useTranslation(['hero', 'common']);
@@ -56,12 +55,12 @@ const HeroSection = () => {
             </header>
             
             <div className="flex flex-col sm:flex-row gap-4 pt-6">
-              <Button 
-                onClick={scrollToSectionAndOpenModal}
-                className="btn-premium text-lg py-6 px-8 font-bold group transition-all duration-300 hover:scale-105" 
+              <Button
+                onClick={() => window.location.href = 'https://app.bilio.lat'}
+                className="btn-premium text-lg py-6 px-8 font-bold group transition-all duration-300 hover:scale-105"
                 size="lg"
               >
-                {t('common:buttons.joinBeta')}
+                {t('common:buttons.getStarted')}
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
               </Button>
               <Button 
