@@ -2,9 +2,9 @@ import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
 import './i18n/config'
-import { initWebVitals } from './utils/reportWebVitals'
+// import { initWebVitals } from './utils/reportWebVitals'
 
 // Initialize Web Vitals monitoring
-initWebVitals();
+// initWebVitals(); // TEMPORARILY DISABLED - debugging blank page issue
 
 createRoot(document.getElementById("root")!).render(<App />);
