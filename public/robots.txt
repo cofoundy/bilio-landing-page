@@ -41,10 +41,8 @@ Allow: /bilio-vs-mint
 Allow: /bilio-vs-cleo
 Allow: /bilio-vs-ynab
 
-# Sitemap locations
+# Sitemap location
 Sitemap: https://bilio.lat/sitemap.xml
-Sitemap: https://bilio.lat/sitemap-blog.xml
-Sitemap: https://bilio.lat/sitemap-locations.xml
 
 # Additional SEO directives
 Host: https://bilio.lat

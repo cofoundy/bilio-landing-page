@@ -7,26 +7,26 @@ const HeroSection = () => {
   const { t } = useTranslation(['hero', 'common']);
   
   return (
-    <section className="pt-32 pb-20 bg-white relative overflow-hidden">
+    <section className="pt-32 pb-20 bg-white relative overflow-hidden" aria-label="Hero section">
       {/* Light background with subtle gradients */}
-      <div className="absolute inset-0 bg-Bilio-yellow-soft/30"></div>
-      
+      <div className="absolute inset-0 bg-Bilio-yellow-soft/30" aria-hidden="true"></div>
+
       {/* Subtle gradient orbs for additional depth */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0" aria-hidden="true">
         <div className="absolute top-20 right-20 w-[400px] h-[400px] bg-Bilio-yellow/5 rounded-full blur-3xl animate-float-slow"></div>
         <div className="absolute bottom-20 left-20 w-[300px] h-[300px] bg-Bilio-green/5 rounded-full blur-3xl animate-float-reverse" style={{ animationDelay: "2s" }}></div>
         <div className="absolute top-40 left-2/3 w-32 h-32 bg-Bilio-blue/3 rounded-full blur-2xl animate-float-reverse" style={{ animationDelay: "2s" }}></div>
       </div>
-      
+
       <div className="container mx-auto px-4 relative z-10">
         <div className="flex flex-col lg:flex-row items-center gap-12">
           {/* Left side content */}
           <div className="lg:w-1/2 space-y-8 animate-slide-in-left">
-            <header className="space-y-6">
+            <header className="space-y-6" role="banner">
               {/* Main headline - Larger text, less words on mobile */}
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] text-Bilio-gray-900 tracking-tight">
                 {t('hero:headline.main')}{" "}
-                <span className="text-Bilio-blue font-black">
+                <span className="text-Bilio-blue font-black" aria-label="IA">
                   {t('hero:headline.highlight')}
                 </span>{" "}
                 <span className="block sm:inline">{t('hero:headline.suffix')}</span>
