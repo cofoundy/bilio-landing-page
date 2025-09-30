@@ -2,19 +2,19 @@
   "title": "How does",
   "titleHighlight": "Bilio",
   "titleSuffix": "work?",
-  "subtitle": "Get personalized financial coaching through AI-powered conversation. Your intelligent finance coach is ready to help you make smarter money decisions.",
+  "subtitle": "Your AI financial copilot understands natural language. Voice, photos, multiple transactions—everything works conversationally.",
   "steps": {
     "step1": {
-      "title": "Write your expense",
-      "description": "Simply send a message: \"Spent $50 at supermarket\" and Bilio will automatically record your expense."
+      "title": "Press 🎤 and talk",
+      "description": "Say \"Spent $50 at supermarket and $20 on gas\" or snap a photo of your receipt. Bilio understands both."
     },
     "step2": {
-      "title": "Automatic categorization",
-      "description": "Bilio identifies your expense category automatically and suggests how to optimize your budget."
+      "title": "AI agent processes everything",
+      "description": "Your copilot extracts amounts, categories, dates, and context from voice or photos. Multi-transaction capability built-in."
     },
     "step3": {
-      "title": "Receive insights",
-      "description": "Get detailed reports, budget alerts and personalized advice to improve your financial health."
+      "title": "Instant insights & advice",
+      "description": "Get real-time balance updates, spending patterns, and personalized financial coaching—all through natural conversation."
     }
   }
 }

@@ -3,39 +3,39 @@
   "subtitle": "Finanzas nueva generación. Máxima comodidad.",
   "items": [
     {
-      "title": "WhatsApp",
-      "description": "Escribe tus gastos. Listo.",
-      "icon": "whatsapp",
+      "title": "Mensajes de Voz",
+      "description": "Presiona 🎤 y habla. Sin necesidad de escribir.",
+      "icon": "mic",
       "color": "green"
     },
     {
-      "title": "IA Inteligente",
-      "description": "Auto-categoriza gastos.",
+      "title": "Agente IA",
+      "description": "Tu copiloto financiero 24/7 aprende tus patrones.",
       "icon": "brain",
       "color": "blue"
     },
     {
-      "title": "Global",
-      "description": "Todas las monedas.",
-      "icon": "globe",
+      "title": "Fotos de Recibos",
+      "description": "Toma una foto. La IA extrae todos los detalles.",
+      "icon": "camera",
       "color": "yellow"
     },
     {
-      "title": "Sync Instantáneo",
-      "description": "WhatsApp + Web = Tiempo real.",
-      "icon": "sync",
+      "title": "Múltiples Transacciones",
+      "description": "Registra varios gastos en un solo mensaje.",
+      "icon": "list",
       "color": "blue"
     },
     {
-      "title": "Seguro",
-      "description": "Encriptación bancaria.",
-      "icon": "shield",
+      "title": "100% Conversacional",
+      "description": "Sin menús, botones o formularios. Solo conversación natural.",
+      "icon": "message-circle",
       "color": "green"
     },
     {
-      "title": "Siempre Activo",
-      "description": "Rastrea cuando quieras.",
-      "icon": "clock",
+      "title": "Todas las Monedas",
+      "description": "15+ monedas LATAM. Listo para todo el mundo.",
+      "icon": "globe",
       "color": "yellow"
     }
   ]

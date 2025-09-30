@@ -3,39 +3,39 @@
   "subtitle": "Next-gen finance. Maximum convenience.",
   "items": [
     {
-      "title": "WhatsApp",
-      "description": "Text your expenses. Done.",
-      "icon": "whatsapp",
+      "title": "Voice Messages",
+      "description": "Press 🎤 and talk. No typing needed.",
+      "icon": "mic",
       "color": "green"
     },
     {
-      "title": "AI Smart",
-      "description": "Auto-categorizes expenses.",
+      "title": "AI Agent",
+      "description": "Your 24/7 financial copilot learns your patterns.",
       "icon": "brain",
       "color": "blue"
     },
     {
-      "title": "Global",
-      "description": "All currencies supported.",
-      "icon": "globe",
+      "title": "Photo Receipts",
+      "description": "Snap a picture. AI extracts all details.",
+      "icon": "camera",
       "color": "yellow"
     },
     {
-      "title": "Instant Sync",
-      "description": "WhatsApp + Web = Real-time.",
-      "icon": "sync",
+      "title": "Multi-Transaction",
+      "description": "Track multiple expenses in one message.",
+      "icon": "list",
       "color": "blue"
     },
     {
-      "title": "Secure",
-      "description": "Bank-level encryption.",
-      "icon": "shield",
+      "title": "100% Conversational",
+      "description": "No menus, buttons, or forms. Just natural conversation.",
+      "icon": "message-circle",
       "color": "green"
     },
     {
-      "title": "Always On",
-      "description": "Track anytime, anywhere.",
-      "icon": "clock",
+      "title": "All Currencies",
+      "description": "15+ LATAM currencies. Global ready.",
+      "icon": "globe",
       "color": "yellow"
     }
   ]

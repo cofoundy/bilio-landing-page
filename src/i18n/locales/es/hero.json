@@ -1,10 +1,10 @@
 {
   "headline": {
-    "main": "Controla",
-    "highlight": "tu dinero.",
-    "suffix": "Vía WhatsApp."
+    "main": "Tu",
+    "highlight": "Copiloto Financiero IA.",
+    "suffix": "Habla, Captura, Listo."
   },
-  "subtitle": "Registra gastos naturalmente. Ve insights al instante.",
+  "subtitle": "100% conversacional. Mensajes de voz, fotos de recibos, múltiples transacciones. Tu agente IA hace el resto.",
   "whatsapp": {
     "botName": "Bilio Bot",
     "greeting": "¡Hola! Soy Bilio. ¿En qué te ayudo?",

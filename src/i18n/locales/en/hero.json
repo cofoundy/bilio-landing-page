@@ -1,10 +1,10 @@
 {
   "headline": {
-    "main": "Control",
-    "highlight": "your money.",
-    "suffix": "Via WhatsApp."
+    "main": "Your",
+    "highlight": "AI Financial Copilot.",
+    "suffix": "Speak, Snap, Done."
   },
-  "subtitle": "Track expenses naturally. See insights instantly.",
+  "subtitle": "100% conversational. Voice messages, photo receipts, multi-transaction. Your AI agent handles the rest.",
   "whatsapp": {
     "botName": "Bilio Bot",
     "greeting": "Hi! I'm Bilio. How can I help?",

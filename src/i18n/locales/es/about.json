@@ -1,19 +1,19 @@
 {
   "title": "¿Cómo funciona",
   "titleHighlight": "Bilio",
-  "subtitle": "Recibe coaching financiero personalizado a través de conversación con IA. Tu coach financiero inteligente está listo para ayudarte a tomar decisiones más inteligentes con tu dinero.",
+  "subtitle": "Tu copiloto financiero IA entiende lenguaje natural. Voz, fotos, múltiples transacciones—todo funciona conversacionalmente.",
   "steps": {
     "step1": {
-      "title": "Escribe tu gasto",
-      "description": "Simplemente envía un mensaje: \"Gasté S/50 en supermercado\" y Bilio registrará automáticamente tu gasto."
+      "title": "Presiona 🎤 y habla",
+      "description": "Di \"Gasté S/50 en supermercado y S/20 en gasolina\" o toma una foto de tu recibo. Bilio entiende ambos."
     },
     "step2": {
-      "title": "Categorización automática",
-      "description": "Bilio identifica la categoría de tu gasto automáticamente y te sugiere cómo optimizar tu presupuesto."
+      "title": "El agente IA procesa todo",
+      "description": "Tu copiloto extrae montos, categorías, fechas y contexto desde voz o fotos. Capacidad multi-transacción incluida."
     },
     "step3": {
-      "title": "Recibe insights",
-      "description": "Obtén reportes detallados, alertas de presupuesto y consejos personalizados para mejorar tu salud financiera."
+      "title": "Insights y consejos instantáneos",
+      "description": "Recibe actualizaciones de saldo en tiempo real, patrones de gastos y coaching financiero personalizado—todo mediante conversación natural."
     }
   }
 }
