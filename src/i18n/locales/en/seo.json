@@ -1,18 +1,18 @@
 {
   "meta": {
-    "title": "Bilio | Your AI Finance Coach on WhatsApp",
-    "description": "Get personalized financial coaching through WhatsApp. Your AI finance coach helps you make smarter money decisions with intelligent conversation.",
-    "keywords": "AI finance coach, personal finance, WhatsApp, financial coaching, budget, savings, USA, dollars, AI assistant, smart money decisions",
+    "title": "Bilio | Your AI Financial Copilot on WhatsApp",
+    "description": "100% conversational AI financial copilot. Voice messages, photo receipts, multi-transaction tracking. Press 🎤 and talk—your AI agent handles the rest.",
+    "keywords": "AI financial copilot, voice expense tracking, photo receipt scanner, WhatsApp finance, conversational AI, multi-transaction, personal finance, AI agent, voice messages, USA, dollars",
     "author": "Bilio"
   },
   "openGraph": {
-    "title": "Bilio - AI Finance Coach",
-    "description": "Transform your relationship with money. Get personalized financial coaching from your AI finance coach in WhatsApp.",
+    "title": "Bilio - AI Financial Copilot",
+    "description": "Speak, snap, done. Your 24/7 AI financial copilot understands voice messages, extracts data from photos, and tracks multiple expenses in one go.",
     "siteName": "Bilio"
   },
   "structured": {
     "organizationName": "Bilio",
-    "organizationDescription": "AI-powered finance coach for WhatsApp",
-    "serviceDescription": "WhatsApp AI finance coach for personalized financial coaching and smart money management"
+    "organizationDescription": "AI-powered financial copilot for WhatsApp with voice and photo recognition",
+    "serviceDescription": "100% conversational AI financial copilot that understands voice messages, photo receipts, and natural language for effortless expense tracking"
   }
 }
