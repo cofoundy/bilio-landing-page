@@ -6,7 +6,7 @@
   },
   "subtitle": "100% conversational. Voice messages, photo receipts, multi-transaction. Your AI agent handles the rest.",
   "whatsapp": {
-    "botName": "Bilio Bot",
+    "botName": "Bilio",
     "greeting": "Hi! I'm Bilio. How can I help?",
     "userExpenseMessage": "Spent $35 on lunch",
     "botConfirmation": "✅ $35 Food category",

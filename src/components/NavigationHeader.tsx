@@ -1,7 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
-import { scrollToSectionAndOpenModal } from "@/hooks/useBetaModal";
 import LanguageSwitcher from "./LanguageSwitcher";
 
 const NavigationHeader = () => {
@@ -47,11 +46,11 @@ const NavigationHeader = () => {
         
         <div className="flex items-center gap-4">
           <LanguageSwitcher />
-          <Button 
-            onClick={scrollToSectionAndOpenModal}
+          <Button
+            onClick={() => window.location.href = 'https://app.bilio.lat'}
             className="px-8 py-3 font-semibold group transition-all duration-500 hover:scale-105 bg-Bilio-yellow/90 hover:bg-Bilio-yellow backdrop-blur-sm border border-Bilio-yellow/50 text-white hover:shadow-lg hover:shadow-Bilio-yellow/30"
           >
-            {t('navigation:actions.joinBeta')}
+            {t('navigation:actions.getStarted')}
             <span className="ml-2 group-hover:translate-x-1 transition-transform duration-300 inline-block">→</span>
           </Button>
         </div>

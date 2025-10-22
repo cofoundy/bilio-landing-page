@@ -15,7 +15,6 @@ import {
 import { cn } from '@/lib/utils';
 import { Sparkles, ArrowRight, Check, Star, Zap, Shield } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { scrollToSectionAndOpenModal } from "@/hooks/useBetaModal";
 import { LocationData } from "@/data/locations";
 
 // Icon mapping for different plan types
@@ -93,7 +92,7 @@ const PricingSection: React.FC<PricingSectionProps> = ({ locationData }) => {
             className="border-primary/20 bg-primary/5 mb-4 rounded-full px-4 py-1 text-sm font-medium"
           >
             <Sparkles className="text-primary mr-1 h-3.5 w-3.5 animate-pulse" />
-            {t('popularLabel')} Plans
+            {t('popularBadge')}
           </Badge>
           <motion.h1
             initial={{ opacity: 0, y: 10 }}
@@ -242,7 +241,7 @@ const PricingSection: React.FC<PricingSectionProps> = ({ locationData }) => {
                       plan.id === 'premium' && 'bg-Bilio-yellow text-Bilio-blue hover:bg-Bilio-yellow-dark hover:shadow-Bilio-yellow/20 hover:shadow-md',
                       plan.id === 'enterprise' && 'border-Bilio-green text-Bilio-green hover:bg-Bilio-green hover:text-white',
                     )}
-                    onClick={scrollToSectionAndOpenModal}
+                    onClick={() => window.location.href = 'https://app.bilio.lat'}
                   >
                     {plan.cta}
                     <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />

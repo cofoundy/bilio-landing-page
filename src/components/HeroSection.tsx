@@ -63,13 +63,6 @@ const HeroSection = () => {
                 {t('common:buttons.getStarted')}
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
               </Button>
-              <Button 
-                variant="outline" 
-                className="border-2 border-Bilio-blue/30 text-Bilio-gray-700 hover:text-Bilio-blue hover:bg-Bilio-blue-soft/50 py-6 px-8 font-semibold transition-all duration-300 hover:border-Bilio-blue/60 backdrop-blur-sm bg-white/80" 
-                size="lg"
-              >
-                {t('common:buttons.watchDemo')}
-              </Button>
             </div>
           </div>
           

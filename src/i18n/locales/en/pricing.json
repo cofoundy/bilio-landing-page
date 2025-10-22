@@ -2,6 +2,7 @@
   "title": "Choose Your Plan",
   "subtitle": "Simple pricing. No surprises.",
   "popularLabel": "Popular",
+  "popularBadge": "Popular Plans",
   "plans": {
     "basic": {
       "name": "Basic",
