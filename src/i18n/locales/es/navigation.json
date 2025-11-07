@@ -7,7 +7,9 @@
     "faq": "FAQ"
   },
   "actions": {
-    "getStarted": "Comenzar"
+    "getStarted": "Comenzar",
+    "login": "Iniciar sesión",
+    "register": "Únete gratis"
   },
   "ariaLabels": {
     "logo": "Bilio Logo",

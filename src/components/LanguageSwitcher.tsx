@@ -17,7 +17,6 @@ const languages: Language[] = [
 
 const LanguageSwitcher = () => {
   const { i18n } = useTranslation();
-  const currentLanguage = languages.find(lang => lang.code === i18n.language) || languages[0];
 
   const changeLanguage = (languageCode: string) => {
     i18n.changeLanguage(languageCode);
@@ -40,13 +39,12 @@ const LanguageSwitcher = () => {
     <Popover>
       <PopoverTrigger asChild>
         <Button
-          variant="outline"
+          variant="ghost"
           size="sm"
-          className="border-Bilio-gray-300 text-Bilio-gray-700 hover:text-Bilio-blue hover:bg-Bilio-blue-soft/50 transition-all duration-300 hover:border-Bilio-blue/60 backdrop-blur-sm bg-white/80"
+          className="text-Bilio-gray-700 hover:text-Bilio-yellow hover:bg-Bilio-yellow/10 transition-all duration-300 backdrop-blur-sm"
+          aria-label="Change language"
         >
-          <Globe className="h-4 w-4 mr-2" />
-          <span className="mr-1">{currentLanguage.flag}</span>
-          <span className="hidden sm:inline">{currentLanguage.name}</span>
+          <Globe className="h-5 w-5" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-48 p-2 bg-white border border-Bilio-gray-200 shadow-xl">

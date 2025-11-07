@@ -7,7 +7,9 @@
     "faq": "FAQ"
   },
   "actions": {
-    "getStarted": "Get Started"
+    "getStarted": "Get Started",
+    "login": "Log In",
+    "register": "Join for Free"
   },
   "ariaLabels": {
     "logo": "Bilio Logo",

@@ -26,32 +26,38 @@ const NavigationHeader = () => {
         </a>
         
         <nav className="hidden md:flex items-center space-x-8 text-sm font-semibold" role="navigation" aria-label={t('navigation:ariaLabels.mainNav')}>
-          <a href="#about" className="transition-all duration-500 hover:scale-105 relative group text-Bilio-gray-700 hover:text-Bilio-blue drop-shadow-sm" aria-label={t('navigation:ariaLabels.aboutSection')}>
+          <a href="#how-it-works" className="transition-all duration-500 hover:scale-105 relative group text-Bilio-gray-700 hover:text-Bilio-blue drop-shadow-sm" aria-label={t('navigation:ariaLabels.aboutSection')}>
             {t('navigation:menu.howItWorks')}
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300 bg-Bilio-blue shadow-lg shadow-Bilio-blue/50"></span>
           </a>
-          <a href="#benefits" className="transition-all duration-500 hover:scale-105 relative group text-Bilio-gray-700 hover:text-Bilio-green drop-shadow-sm" aria-label={t('navigation:ariaLabels.benefitsSection')}>
+          {/* <a href="#benefits" className="transition-all duration-500 hover:scale-105 relative group text-Bilio-gray-700 hover:text-Bilio-green drop-shadow-sm" aria-label={t('navigation:ariaLabels.benefitsSection')}>
             {t('navigation:menu.benefits')}
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300 bg-Bilio-green shadow-lg shadow-Bilio-green/50"></span>
-          </a>
-          <a href="#pricing" className="transition-all duration-500 hover:scale-105 relative group text-Bilio-gray-700 hover:text-Bilio-yellow-dark drop-shadow-sm" aria-label={t('navigation:ariaLabels.pricingSection')}>
+          </a> */}
+          {/* <a href="#pricing" className="transition-all duration-500 hover:scale-105 relative group text-Bilio-gray-700 hover:text-Bilio-yellow-dark drop-shadow-sm" aria-label={t('navigation:ariaLabels.pricingSection')}>
             {t('navigation:menu.plans')}
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300 bg-Bilio-yellow shadow-lg shadow-Bilio-yellow/50"></span>
-          </a>
+          </a> */}
           <a href="#faq" className="transition-all duration-500 hover:scale-105 relative group text-Bilio-gray-700 hover:text-Bilio-blue-light drop-shadow-sm" aria-label={t('navigation:ariaLabels.faqSection')}>
             {t('navigation:menu.faq')}
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300 bg-Bilio-blue-light shadow-lg shadow-Bilio-blue-light/50"></span>
           </a>
         </nav>
         
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
           <LanguageSwitcher />
           <Button
-            onClick={() => window.location.href = 'https://app.bilio.lat'}
-            className="px-8 py-3 font-semibold group transition-all duration-500 hover:scale-105 bg-Bilio-yellow/90 hover:bg-Bilio-yellow backdrop-blur-sm border border-Bilio-yellow/50 text-white hover:shadow-lg hover:shadow-Bilio-yellow/30"
+            onClick={() => window.location.href = 'https://app.bilio.lat/login'}
+            variant="outline"
+            className="px-6 py-2.5 font-semibold transition-all duration-500 hover:scale-105 border-2 border-Bilio-yellow text-Bilio-gray-900 hover:!text-Bilio-gray-900 hover:bg-Bilio-yellow/10 backdrop-blur-sm"
           >
-            {t('navigation:actions.getStarted')}
-            <span className="ml-2 group-hover:translate-x-1 transition-transform duration-300 inline-block">→</span>
+            {t('navigation:actions.login')}
+          </Button>
+          <Button
+            onClick={() => window.location.href = 'https://app.bilio.lat/register'}
+            className="btn-premium px-6 py-2.5 font-semibold group transition-all duration-500 hover:scale-105"
+          >
+            {t('navigation:actions.register')}
           </Button>
         </div>
       </div>
