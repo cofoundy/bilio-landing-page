@@ -127,7 +127,7 @@ const PricingSection: React.FC<PricingSectionProps> = ({ locationData }) => {
                 className={cn(
                   'relative h-full w-full text-left transition-all duration-300 hover:shadow-xl hover:scale-105',
                   // Different background colors for each plan
-                  plan.id === 'basic' && 'bg-Bilio-blue-soft border-Bilio-blue/20',
+                  plan.id === 'basic' && 'bg-gradient-to-br from-Bilio-yellow/10 via-white to-Bilio-yellow/5 border-Bilio-yellow/30 ring-2 ring-Bilio-yellow/20',
                   plan.id === 'premium' && 'bg-Bilio-yellow-soft border-Bilio-yellow/30',
                   plan.id === 'enterprise' && 'bg-Bilio-green-soft border-Bilio-green/20',
                   // Popular plan styling
@@ -138,6 +138,14 @@ const PricingSection: React.FC<PricingSectionProps> = ({ locationData }) => {
                     'from-Bilio-yellow/[0.05] bg-gradient-to-b to-transparent',
                 )}
               >
+                {plan.id === 'basic' && (
+                  <div className="absolute -top-4 right-0 left-0 mx-auto w-fit z-10">
+                    <Badge className="bg-gradient-to-r from-Bilio-yellow to-Bilio-yellow-dark text-white rounded-full px-6 py-2 shadow-lg text-base font-bold animate-pulse">
+                      <Sparkles className="mr-2 h-4 w-4" />
+                      100% GRATIS
+                    </Badge>
+                  </div>
+                )}
                 {plan.popular && (
                   <div className="absolute -top-3 right-0 left-0 mx-auto w-fit">
                     <Badge className="bg-primary text-primary-foreground rounded-full px-4 py-1 shadow-sm">
@@ -146,7 +154,7 @@ const PricingSection: React.FC<PricingSectionProps> = ({ locationData }) => {
                     </Badge>
                   </div>
                 )}
-                <CardHeader className={cn('pb-6', plan.popular && 'pt-10')}>
+                <CardHeader className={cn('pb-6', (plan.popular || plan.id === 'basic') && 'pt-10')}>
                   <div className="flex items-center gap-3">
                     <div
                       className={cn(
@@ -193,16 +201,23 @@ const PricingSection: React.FC<PricingSectionProps> = ({ locationData }) => {
                           </span>
                         </div>
                       ) : (
-                        <span
-                          className={cn(
-                            'text-3xl font-bold',
-                            plan.id === 'basic' && 'text-Bilio-blue',
-                            plan.id === 'premium' && 'text-Bilio-yellow-dark',
-                            plan.id === 'enterprise' && 'text-Bilio-green',
+                        <div className="space-y-1">
+                          <span
+                            className={cn(
+                              'block font-black leading-tight',
+                              plan.id === 'basic' && 'text-3xl bg-gradient-to-r from-Bilio-yellow via-Bilio-yellow-dark to-Bilio-yellow bg-clip-text text-transparent',
+                              plan.id === 'premium' && 'text-3xl text-Bilio-yellow-dark',
+                              plan.id === 'enterprise' && 'text-3xl text-Bilio-green',
+                            )}
+                          >
+                            {plan.price}
+                          </span>
+                          {plan.id === 'basic' && (
+                            <p className="text-sm font-medium text-Bilio-gray-600 animate-pulse">
+                              🎉 Sin tarjeta de crédito
+                            </p>
                           )}
-                        >
-                          {plan.price}
-                        </span>
+                        </div>
                       )}
                     </div>
                   </div>
@@ -237,11 +252,11 @@ const PricingSection: React.FC<PricingSectionProps> = ({ locationData }) => {
                     variant={plan.popular ? 'default' : 'outline'}
                     className={cn(
                       'group w-full font-semibold text-lg transition-all duration-300 py-3',
-                      plan.id === 'basic' && 'border-Bilio-blue text-Bilio-blue hover:bg-Bilio-blue hover:text-white',
+                      plan.id === 'basic' && 'btn-premium',
                       plan.id === 'premium' && 'bg-Bilio-yellow text-Bilio-blue hover:bg-Bilio-yellow-dark hover:shadow-Bilio-yellow/20 hover:shadow-md',
                       plan.id === 'enterprise' && 'border-Bilio-green text-Bilio-green hover:bg-Bilio-green hover:text-white',
                     )}
-                    onClick={() => window.location.href = 'https://app.bilio.lat'}
+                    onClick={() => window.location.href = 'https://app.bilio.lat/register'}
                   >
                     {plan.cta}
                     <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
