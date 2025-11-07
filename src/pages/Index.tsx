@@ -3,8 +3,10 @@ import React from "react";
 import NavigationHeader from "@/components/NavigationHeader";
 import HeroSection from "@/components/HeroSection";
 import HowItWorksSection from "@/components/HowItWorksSection";
+// import BenefitsSection from "@/components/BenefitsSection";
 import GlobalSection from "@/components/GlobalSection";
-import PricingSection from "@/components/PricingSection";
+// import PricingSection from "@/components/PricingSection";
+import Faq1 from "@/components/mvpblocks/faq-1";
 import SocialProofBar from "@/components/SocialProofBar";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
@@ -18,8 +20,10 @@ const Index = () => {
       <main role="main">
         <HeroSection />
         <HowItWorksSection />
+        {/* <BenefitsSection /> */}
         <GlobalSection />
-        <PricingSection />
+        {/* <PricingSection /> */}
+        <Faq1 />
         <SocialProofBar />
         <CTASection />
       </main>
