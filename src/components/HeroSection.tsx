@@ -54,14 +54,14 @@ const HeroSection = () => {
               </div>
             </header>
             
-            <div className="flex flex-col sm:flex-row gap-4 pt-6">
+            <div className="pt-6">
               <Button
-                onClick={() => window.location.href = 'https://app.bilio.lat'}
-                className="btn-premium text-lg py-6 px-8 font-bold group transition-all duration-300 hover:scale-105"
+                onClick={() => window.location.href = 'https://app.bilio.lat/register'}
+                className="btn-premium text-xl py-7 px-12 font-bold group transition-all duration-300 hover:scale-105 shadow-2xl"
                 size="lg"
               >
-                {t('common:buttons.getStarted')}
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
+                {t('hero:cta.tryFree')}
+                <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-1 transition-transform duration-300" />
               </Button>
             </div>
           </div>

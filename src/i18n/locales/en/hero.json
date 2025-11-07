@@ -5,6 +5,11 @@
     "suffix": "Speak, Snap, Done."
   },
   "subtitle": "100% conversational. Voice messages, photo receipts, multi-transaction. Your AI agent handles the rest.",
+  "cta": {
+    "primary": "Join for Free",
+    "secondary": "Log In",
+    "tryFree": "Try it free now"
+  },
   "whatsapp": {
     "botName": "Bilio",
     "greeting": "Hi! I'm Bilio. How can I help?",

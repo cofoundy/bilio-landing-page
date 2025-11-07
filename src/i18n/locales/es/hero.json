@@ -5,6 +5,11 @@
     "suffix": "Habla, Captura, Listo."
   },
   "subtitle": "100% conversacional. Mensajes de voz, fotos de recibos, múltiples transacciones. Tu agente IA hace el resto.",
+  "cta": {
+    "primary": "Únete gratis",
+    "secondary": "Iniciar sesión",
+    "tryFree": "Pruébalo gratis ahora"
+  },
   "whatsapp": {
     "botName": "Bilio Bot",
     "greeting": "¡Hola! Soy Bilio. ¿En qué te ayudo?",
