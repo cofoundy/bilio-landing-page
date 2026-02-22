@@ -1,5 +1,9 @@
 import { useState } from "react";
+import { m as motion, AnimatePresence } from "framer-motion";
 import { cn } from "./ui/utils";
+import { spring } from "./motion/tokens";
+import { useReducedMotion } from "./motion/useReducedMotion";
+import { ScrollReveal } from "./motion/ScrollReveal";
 
 const faqs = [
   {
@@ -29,6 +33,8 @@ const faqs = [
 ];
 
 function AccordionItem({ q, a, isOpen, onToggle }: { q: string; a: string; isOpen: boolean; onToggle: () => void }) {
+  const reduced = useReducedMotion();
+
   return (
     <div
       className={cn(
@@ -52,21 +58,38 @@ function AccordionItem({ q, a, isOpen, onToggle }: { q: string; a: string; isOpe
             ? "bg-bilio-primary/[0.14] border border-bilio-primary/30"
             : "bg-white/5 border border-white/[0.08]"
         )}>
-          <svg
+          <motion.svg
             width="14" height="14" viewBox="0 0 14 14" fill="none"
-            className={cn("transition-transform duration-300", isOpen ? "rotate-45" : "rotate-0")}
+            animate={{ rotate: isOpen ? 45 : 0 }}
+            transition={reduced ? { duration: 0 } : { type: "spring", ...spring.gentle }}
             style={{ color: isOpen ? "#FECE00" : "rgba(255,255,255,0.45)" }}
           >
             <path d="M7 2V12M2 7H12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-          </svg>
+          </motion.svg>
         </div>
       </div>
 
-      <div className={cn("overflow-hidden transition-[max-height] duration-350", isOpen ? "max-h-[300px]" : "max-h-0")}>
-        <div className="px-[22px] pb-5 pt-4 text-white/[0.43] font-body text-[15px] leading-[1.75] tracking-[0.01em] border-t border-white/5">
-          {a}
-        </div>
-      </div>
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            initial={reduced ? { height: "auto", opacity: 1 } : { height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={reduced ? { height: 0, opacity: 0 } : { height: 0, opacity: 0 }}
+            transition={reduced ? { duration: 0 } : { height: { type: "spring", ...spring.gentle }, opacity: { duration: 0.2 } }}
+            className="overflow-hidden"
+          >
+            <motion.div
+              initial={reduced ? {} : { y: -8, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={reduced ? {} : { y: -8, opacity: 0 }}
+              transition={reduced ? { duration: 0 } : { duration: 0.25, ease: [0.33, 1, 0.68, 1] }}
+              className="px-[22px] pb-5 pt-4 text-white/[0.43] font-body text-[15px] leading-[1.75] tracking-[0.01em] border-t border-white/5"
+            >
+              {a}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
@@ -79,7 +102,7 @@ export function FAQSection() {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-px" style={{ background: "linear-gradient(90deg, transparent, rgba(254,206,0,0.4), transparent)" }} />
 
       <div className="max-w-[780px] mx-auto">
-        <div className="text-center mb-14">
+        <ScrollReveal className="text-center mb-14">
           <div className="inline-flex items-center gap-2 bg-bilio-success/10 border border-bilio-success/20 rounded-full px-3.5 py-[5px] mb-5">
             <span className="text-bilio-success font-body text-xs font-semibold tracking-[0.08em] uppercase">Preguntas frecuentes</span>
           </div>
@@ -89,7 +112,7 @@ export function FAQSection() {
           <p className="text-white/35 font-body text-[17px] leading-[1.6]">
             Sin letra pequeña. Sin tecnicismos.
           </p>
-        </div>
+        </ScrollReveal>
 
         <div className="flex flex-col gap-2.5">
           {faqs.map((faq, i) => (
