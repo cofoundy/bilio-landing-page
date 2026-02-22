@@ -1,7 +1,8 @@
-import { useState } from "react";
 import { Lock, ShieldOff, Gift, Heart, MapPin, type LucideIcon } from "lucide-react";
 import { BilioLogoFull } from "./BilioLogo";
 import { ScrollReveal } from "./motion/ScrollReveal";
+import { useWaitlist, useWaitlistDispatch } from "../waitlist/WaitlistContext";
+import { submitWaitlist } from "../waitlist/submitWaitlist";
 
 type FooterLink = { label: string; href: string };
 
@@ -55,12 +56,30 @@ function scrollTo(e: React.MouseEvent<HTMLAnchorElement>, href: string) {
 }
 
 export function Footer() {
-  const [email, setEmail] = useState("");
-  const [joined, setJoined] = useState(false);
+  const state = useWaitlist();
+  const dispatch = useWaitlistDispatch();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email.trim()) setJoined(true);
+    if (state.submitting) return;
+
+    dispatch({ type: 'SUBMIT_START' });
+
+    const result = await submitWaitlist({
+      name: state.name,
+      email: state.email,
+      phone: '',
+      countryCode: state.countryCode,
+      plan: state.plan,
+      lockPrice: false,
+      source: 'footer',
+    });
+
+    if (result.success) {
+      dispatch({ type: 'SUBMIT_SUCCESS' });
+    } else {
+      dispatch({ type: 'SUBMIT_ERROR', error: result.error || 'Error al enviar.' });
+    }
   };
 
   return (
@@ -93,21 +112,22 @@ export function Footer() {
             <div className="text-bilio-text font-heading text-sm font-bold tracking-tight mb-2">
               Únete a la lista de espera
             </div>
-            {!joined ? (
+            {!state.submitted ? (
               <form onSubmit={handleSubmit} className="flex gap-2 flex-wrap">
                 <input
                   type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  value={state.email}
+                  onChange={(e) => dispatch({ type: 'SET_EMAIL', email: e.target.value })}
                   placeholder="tu@correo.com"
                   required
                   className="bg-bilio-surface-light border border-white/[0.09] rounded-[10px] px-3.5 py-2.5 text-bilio-text font-body text-sm outline-none w-[210px] transition-[border-color] duration-200 focus:border-bilio-primary/30"
                 />
                 <button
                   type="submit"
-                  className="bg-gradient-gold border-none rounded-[10px] px-4 py-2.5 text-bilio-bg font-heading text-sm font-extrabold cursor-pointer whitespace-nowrap transition-all duration-200 btn-glow"
+                  disabled={state.submitting}
+                  className="bg-gradient-gold border-none rounded-[10px] px-4 py-2.5 text-bilio-bg font-heading text-sm font-extrabold cursor-pointer whitespace-nowrap transition-all duration-200 btn-glow disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  Quiero entrar
+                  {state.submitting ? 'Enviando...' : 'Quiero entrar'}
                 </button>
               </form>
             ) : (

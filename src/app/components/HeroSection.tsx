@@ -1,9 +1,11 @@
-import { useState } from "react";
 import { m as motion } from "framer-motion";
 import imgHeroBg from "@/assets/8d4d7d2a21d90b549fc4e0b21f5f2b2e452b0fa2.png";
 import { duration, ease } from "./motion/tokens";
 import { useReducedMotion } from "./motion/useReducedMotion";
 import { useParallax } from "./motion/useParallax";
+import { PlanSelector } from "./PlanSelector";
+import { useWaitlist, useWaitlistDispatch } from "../waitlist/WaitlistContext";
+import { submitWaitlist } from "../waitlist/submitWaitlist";
 
 const fadeBlurUp = (delay: number) => ({
   hidden: { opacity: 0, y: 24, filter: "blur(6px)" },
@@ -15,15 +17,40 @@ const fadeBlurUp = (delay: number) => ({
   },
 });
 
+const planLabels: Record<string, string> = {
+  gratis: 'Gratis',
+  plus: 'Plus',
+  premium: 'Premium',
+};
+
 export function HeroSection() {
-  const [email, setEmail] = useState("");
-  const [joined, setJoined] = useState(false);
+  const state = useWaitlist();
+  const dispatch = useWaitlistDispatch();
   const reduced = useReducedMotion();
   const { ref: gridRef, y: gridY } = useParallax(30);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email.trim()) setJoined(true);
+    if (state.submitting) return;
+
+    dispatch({ type: 'SET_SOURCE', source: 'hero' });
+    dispatch({ type: 'SUBMIT_START' });
+
+    const result = await submitWaitlist({
+      name: state.name,
+      email: state.email,
+      phone: '',
+      countryCode: state.countryCode,
+      plan: state.plan,
+      lockPrice: state.lockPrice,
+      source: 'hero',
+    });
+
+    if (result.success) {
+      dispatch({ type: 'SUBMIT_SUCCESS' });
+    } else {
+      dispatch({ type: 'SUBMIT_ERROR', error: result.error || 'Error al enviar.' });
+    }
   };
 
   return (
@@ -98,58 +125,115 @@ export function HeroSection() {
         </motion.p>
 
         {/* Waitlist form */}
-        <motion.div variants={reduced ? {} : fadeBlurUp(0.3)}>
-          {!joined ? (
-            <form
-              onSubmit={handleSubmit}
-              className="flex gap-2.5 flex-wrap justify-center mb-4 w-full max-w-[480px]"
-            >
-              <div className="flex-1 min-w-[220px] bg-white/5 border border-white/[0.12] rounded-[14px] p-1 pl-[18px] flex items-center gap-2 backdrop-blur-[16px] transition-[border-color] duration-200">
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="tu@correo.com"
-                  required
-                  className="flex-1 bg-transparent border-none outline-none text-bilio-text font-body text-[15px] min-w-0"
+        <motion.div className="w-full max-w-[520px]" variants={reduced ? {} : fadeBlurUp(0.3)}>
+          {!state.submitted ? (
+            <>
+              <form
+                onSubmit={handleSubmit}
+                className="flex flex-col gap-2.5 mb-3 w-full"
+              >
+                {/* Name input */}
+                <div className="bg-white/5 border border-white/[0.12] rounded-[14px] px-[18px] py-3 backdrop-blur-[16px] transition-[border-color] duration-200">
+                  <input
+                    type="text"
+                    value={state.name}
+                    onChange={(e) => dispatch({ type: 'SET_NAME', name: e.target.value })}
+                    placeholder="Tu nombre"
+                    className="w-full bg-transparent border-none outline-none text-bilio-text font-body text-[15px]"
+                  />
+                </div>
+
+                {/* Email + CTA row */}
+                <div className="flex gap-2.5 flex-wrap justify-center">
+                <div className="flex-1 min-w-[220px] bg-white/5 border border-white/[0.12] rounded-[14px] p-1 pl-[18px] flex items-center gap-2 backdrop-blur-[16px] transition-[border-color] duration-200">
+                  <input
+                    type="email"
+                    value={state.email}
+                    onChange={(e) => dispatch({ type: 'SET_EMAIL', email: e.target.value })}
+                    placeholder="tu@correo.com"
+                    required
+                    className="flex-1 bg-transparent border-none outline-none text-bilio-text font-body text-[15px] min-w-0"
+                  />
+                  {/* CTA with continuous glow pulse */}
+                  <motion.button
+                    type="submit"
+                    disabled={state.submitting}
+                    className="bg-gradient-gold border-none text-bilio-bg font-heading text-sm font-extrabold cursor-pointer px-[22px] py-3 rounded-[10px] tracking-tight whitespace-nowrap transition-all duration-200 btn-glow disabled:opacity-60 disabled:cursor-not-allowed"
+                    animate={
+                      reduced
+                        ? {}
+                        : {
+                            boxShadow: [
+                              "0 4px 20px rgba(254,206,0,0.2)",
+                              "0 4px 30px rgba(254,206,0,0.45)",
+                              "0 4px 20px rgba(254,206,0,0.2)",
+                            ],
+                          }
+                    }
+                    transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+                  >
+                    {state.submitting ? 'Enviando...' : 'Quiero ser el primero'}
+                  </motion.button>
+                </div>
+                </div>
+              </form>
+
+              {/* Error message */}
+              {state.error && (
+                <p className="text-bilio-danger font-body text-sm mb-2 text-center">{state.error}</p>
+              )}
+
+              {/* Plan selector (compact) */}
+              <div className="mb-3">
+                <PlanSelector
+                  value={state.plan}
+                  onChange={(plan) => dispatch({ type: 'SET_PLAN', plan })}
+                  size="sm"
                 />
-                {/* CTA with continuous glow pulse */}
-                <motion.button
-                  type="submit"
-                  className="bg-gradient-gold border-none text-bilio-bg font-heading text-sm font-extrabold cursor-pointer px-[22px] py-3 rounded-[10px] tracking-tight whitespace-nowrap transition-all duration-200 btn-glow"
-                  animate={
-                    reduced
-                      ? {}
-                      : {
-                          boxShadow: [
-                            "0 4px 20px rgba(254,206,0,0.2)",
-                            "0 4px 30px rgba(254,206,0,0.45)",
-                            "0 4px 20px rgba(254,206,0,0.2)",
-                          ],
-                        }
-                  }
-                  transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  Quiero ser el primero
-                </motion.button>
               </div>
-            </form>
+
+              {/* Lock price checkbox */}
+              <label className="flex items-center gap-2.5 justify-center cursor-pointer group">
+                <div className="relative flex-shrink-0">
+                  <input
+                    type="checkbox"
+                    checked={state.lockPrice}
+                    onChange={(e) => dispatch({ type: 'SET_LOCK_PRICE', lockPrice: e.target.checked })}
+                    className="sr-only peer"
+                  />
+                  <div className="w-5 h-5 rounded-[5px] border-2 border-white/20 bg-white/[0.04] transition-all duration-200 peer-checked:bg-bilio-primary peer-checked:border-bilio-primary peer-checked:shadow-[0_0_12px_rgba(254,206,0,0.35)]" />
+                  {state.lockPrice && (
+                    <svg
+                      className="absolute inset-0 w-5 h-5 p-[3px] text-bilio-bg pointer-events-none"
+                      viewBox="0 0 14 14"
+                      fill="none"
+                    >
+                      <path d="M3 7L6 10L11 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  )}
+                </div>
+                <span className="text-white/40 font-body text-[13px] group-hover:text-white/60 transition-colors">
+                  Quiero asegurar el precio de lanzamiento
+                </span>
+              </label>
+            </>
           ) : (
-            <div className="flex items-center gap-2.5 bg-bilio-success/10 border border-bilio-success/30 rounded-[14px] px-6 py-3.5 mb-4">
+            <div className="flex items-center gap-2.5 bg-bilio-success/10 border border-bilio-success/30 rounded-[14px] px-6 py-3.5 mb-4 justify-center">
               <div className="w-5 h-5 rounded-full bg-bilio-success flex items-center justify-center">
                 <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
                   <path d="M2 5.5L4.5 8L9 3" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </div>
               <span className="text-bilio-success font-body text-[15px] font-semibold">
-                ¡Listo! Te avisamos cuando Bilio esté disponible.
+                ¡Listo! Te guardamos el plan {planLabels[state.plan]}
+                {state.lockPrice ? ' a precio de lanzamiento' : ''}.
               </span>
             </div>
           )}
         </motion.div>
 
         <motion.p
-          className="text-bilio-text-ghost font-body text-[13px] mb-13"
+          className="text-bilio-text-ghost font-body text-[13px] mb-13 mt-4"
           variants={reduced ? {} : fadeBlurUp(0.38)}
         >
           Sin tarjeta. Sin compromiso. Cancela cuando quieras.
