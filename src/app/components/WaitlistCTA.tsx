@@ -1,5 +1,13 @@
 import { useState } from "react";
+import { Lock, MapPin, Gift } from "lucide-react";
 import imgHeroBg from "@/assets/8d4d7d2a21d90b549fc4e0b21f5f2b2e452b0fa2.png";
+import { ScrollReveal } from "./motion/ScrollReveal";
+
+const trustSignals = [
+  { icon: Lock, label: "Datos seguros" },
+  { icon: MapPin, label: "Hecho en Perú" },
+  { icon: Gift, label: "Gratis para empezar" },
+];
 
 export function WaitlistCTA() {
   const [email, setEmail] = useState("");
@@ -23,11 +31,11 @@ export function WaitlistCTA() {
       {/* Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] pointer-events-none" style={{ background: "radial-gradient(ellipse, rgba(254,206,0,0.1) 0%, transparent 65%)" }} />
 
-      <div className="max-w-[680px] mx-auto text-center relative z-[1]">
+      <ScrollReveal className="max-w-[680px] mx-auto text-center relative z-[1]">
         <div className="inline-flex items-center gap-2 bg-bilio-surface-gold border border-bilio-border-gold rounded-full px-4 py-1.5 mb-7">
           <div className="w-1.5 h-1.5 rounded-full bg-bilio-primary shadow-[0_0_8px_#FECE00]" />
           <span className="text-bilio-primary font-body text-[13px] font-semibold tracking-[0.02em]">
-            Sé de los primeros — Hecho en Perú 🇵🇪
+            Sé de los primeros — Hecho en Perú
           </span>
         </div>
 
@@ -79,11 +87,14 @@ export function WaitlistCTA() {
 
         {/* Trust micro signals */}
         <div className="flex justify-center gap-6 mt-10 flex-wrap">
-          {["🔒 Datos seguros", "🇵🇪 Hecho en Perú", "🆓 Gratis para empezar"].map((t) => (
-            <span key={t} className="text-bilio-text-ghost font-body text-[13px]">{t}</span>
+          {trustSignals.map((t) => (
+            <span key={t.label} className="flex items-center gap-1.5 text-bilio-text-ghost font-body text-[13px]">
+              <t.icon className="w-3.5 h-3.5 text-white/25" strokeWidth={1.8} />
+              {t.label}
+            </span>
           ))}
         </div>
-      </div>
+      </ScrollReveal>
     </section>
   );
 }

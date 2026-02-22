@@ -1,4 +1,6 @@
+import { Lock, ShieldOff, Gift, Heart, MapPin, type LucideIcon } from "lucide-react";
 import { BilioLogoFull } from "./BilioLogo";
+import { ScrollReveal } from "./motion/ScrollReveal";
 
 const columns = [
   {
@@ -7,7 +9,7 @@ const columns = [
   },
   {
     title: "Empresa",
-    links: ["Nosotros", "Blog", "Carreras 🇵🇪", "Prensa", "Contacto"],
+    links: ["Nosotros", "Blog", "Carreras", "Prensa", "Contacto"],
   },
   {
     title: "Comunidad",
@@ -17,6 +19,12 @@ const columns = [
     title: "Legal",
     links: ["Privacidad", "Términos de uso", "Cookies", "Seguridad", "Datos"],
   },
+];
+
+const trustBadges: { icon: LucideIcon; label: string }[] = [
+  { icon: Lock, label: "Datos seguros" },
+  { icon: ShieldOff, label: "Sin acceso bancario" },
+  { icon: Gift, label: "Gratis para empezar" },
 ];
 
 export function Footer() {
@@ -34,8 +42,10 @@ export function Footer() {
               Tu coach de finanzas que habla tu idioma, entiende tu plata y no te juzga.
             </p>
             <div className="flex items-center gap-2">
-              <span className="text-lg">🇵🇪</span>
-              <span className="text-white/[0.22] font-body text-[13px]">Hecho con 💛 en Lima, Perú</span>
+              <MapPin className="w-4 h-4 text-bilio-primary/50" strokeWidth={1.8} />
+              <span className="text-white/[0.22] font-body text-[13px]">
+                Hecho con <Heart className="inline w-3 h-3 text-bilio-primary/60 fill-bilio-primary/60" /> en Lima, Perú
+              </span>
             </div>
           </div>
 
@@ -62,26 +72,28 @@ export function Footer() {
         <div className="h-px mb-12" style={{ background: "linear-gradient(90deg, transparent, rgba(254,206,0,0.1), rgba(94,152,125,0.08), transparent)" }} />
 
         {/* Link columns */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-9 mb-13">
-          {columns.map((col) => (
-            <div key={col.title}>
-              <div className="text-white/55 font-heading text-[11px] font-bold tracking-[0.07em] uppercase mb-[18px]">
-                {col.title}
+        <ScrollReveal>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-9 mb-13">
+            {columns.map((col) => (
+              <div key={col.title}>
+                <div className="text-white/55 font-heading text-[11px] font-bold tracking-[0.07em] uppercase mb-[18px]">
+                  {col.title}
+                </div>
+                <div className="flex flex-col gap-[11px]">
+                  {col.links.map((link) => (
+                    <a
+                      key={link}
+                      href="#"
+                      className="text-white/30 font-body text-sm no-underline tracking-[0.01em] transition-colors duration-200 hover:text-bilio-primary"
+                    >
+                      {link}
+                    </a>
+                  ))}
+                </div>
               </div>
-              <div className="flex flex-col gap-[11px]">
-                {col.links.map((link) => (
-                  <a
-                    key={link}
-                    href="#"
-                    className="text-white/30 font-body text-sm no-underline tracking-[0.01em] transition-colors duration-200 hover:text-bilio-primary"
-                  >
-                    {link}
-                  </a>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        </ScrollReveal>
 
         {/* Divider */}
         <div className="h-px bg-white/5 mb-7" />
@@ -89,14 +101,15 @@ export function Footer() {
         {/* Bottom */}
         <div className="flex justify-between items-center flex-wrap gap-4">
           <div className="text-bilio-text-whisper font-body text-[13px]">
-            © 2025 Bilio · Lima, Perú 🇵🇪 · Todos los derechos reservados
+            © 2025 Bilio · Lima, Perú · Todos los derechos reservados
           </div>
 
           {/* Trust tags */}
           <div className="flex items-center gap-2 flex-wrap">
-            {["🔒 Datos seguros", "🚫🏦 Sin acceso bancario", "🆓 Gratis para empezar"].map((badge) => (
-              <div key={badge} className="bg-white/[0.03] border border-bilio-border rounded-full px-3 py-1">
-                <span className="text-bilio-text-ghost font-body text-[11px]">{badge}</span>
+            {trustBadges.map((badge) => (
+              <div key={badge.label} className="bg-white/[0.03] border border-bilio-border rounded-full px-3 py-1 flex items-center gap-1.5">
+                <badge.icon className="w-3 h-3 text-white/25" strokeWidth={1.8} />
+                <span className="text-bilio-text-ghost font-body text-[11px]">{badge.label}</span>
               </div>
             ))}
           </div>

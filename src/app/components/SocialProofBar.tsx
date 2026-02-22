@@ -1,15 +1,18 @@
-const stats = [
-  { icon: "🇵🇪", label: "Hecho en Perú" },
-  { icon: "💬", label: "Chat + WhatsApp" },
-  { icon: "🔒", label: "Datos encriptados" },
-  { icon: "🆓", label: "Empieza gratis" },
-  { icon: "🚫🏦", label: "Sin acceso bancario" },
-  { icon: "⚡", label: "Responde al instante" },
+import { MapPin, MessageSquare, Lock, Gift, ShieldOff, Zap, type LucideIcon } from "lucide-react";
+import { ScrollReveal } from "./motion/ScrollReveal";
+
+const stats: { icon: LucideIcon; label: string }[] = [
+  { icon: MapPin, label: "Hecho en Perú" },
+  { icon: MessageSquare, label: "Chat + WhatsApp" },
+  { icon: Lock, label: "Datos encriptados" },
+  { icon: Gift, label: "Empieza gratis" },
+  { icon: ShieldOff, label: "Sin acceso bancario" },
+  { icon: Zap, label: "Responde al instante" },
 ];
 
 export function SocialProofBar() {
   return (
-    <div className="bg-bilio-bg-dark border-y border-bilio-border-gold-faint px-6 py-4 overflow-hidden">
+    <ScrollReveal as="div" className="bg-bilio-bg-dark border-y border-bilio-border-gold-faint px-6 py-4 overflow-hidden" yOffset={10}>
       <div className="max-w-[1200px] mx-auto flex items-center justify-center flex-wrap">
         {stats.map((s, i) => (
           <div
@@ -18,13 +21,13 @@ export function SocialProofBar() {
               i < stats.length - 1 ? "border-r border-white/[0.07]" : ""
             }`}
           >
-            <span className="text-[15px]">{s.icon}</span>
+            <s.icon className="w-4 h-4 text-bilio-primary/70" strokeWidth={1.8} />
             <span className="text-white/40 font-body text-[13px] font-medium whitespace-nowrap">
               {s.label}
             </span>
           </div>
         ))}
       </div>
-    </div>
+    </ScrollReveal>
   );
 }

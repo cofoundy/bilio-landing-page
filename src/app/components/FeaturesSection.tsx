@@ -1,66 +1,286 @@
-/* ── Chat mockup ── */
-function ChatMockup() {
-  const messages = [
-    { from: "user", text: "Gaste 50 en almuerzo con Juan" },
-    { from: "bilio", text: "✓ Registrado → 🍕 Comida · S/50.00" },
-    { from: "user", text: "La cuenta fue 180, éramos 3" },
-    { from: "bilio", text: "✓ Tu parte: S/60.00 → 🍕 Comida" },
-    { from: "user", text: "¿Cuánto gasté en comida este mes?" },
-    { from: "bilio", text: "🍕 Comida este mes: S/320 · ↑15% vs anterior" },
-  ];
+"use client";
+
+import { useState, useEffect, useRef, useCallback } from "react";
+import { BilioLogoMark } from "./BilioLogo";
+import waBgDark from "@/assets/d36bcceceaa1d390489ec70d93154311.jpg";
+import { ScrollReveal } from "./motion/ScrollReveal";
+
+/* ── Message types ── */
+type Message = {
+  from: "user" | "bilio";
+  text: string;
+  time: string;
+  isAudio?: boolean;
+  isPhoto?: boolean;
+};
+
+/* ── Conversation scripts ── */
+const chatConversation: Message[] = [
+  { from: "user", text: "Gaste 50 en almuerzo con Juan", time: "10:31" },
+  { from: "bilio", text: "✓ Registrado → 🍕 Comida · S/50.00", time: "10:31" },
+  { from: "user", text: "La cuenta fue 180, éramos 3", time: "10:33" },
+  { from: "bilio", text: "✓ Tu parte: S/60.00 → 🍕 Comida", time: "10:33" },
+  { from: "user", text: "¿Cuánto gasté en comida este mes?", time: "10:35" },
+  { from: "bilio", text: "🍕 Comida este mes: S/320 · ↑15% vs anterior", time: "10:35" },
+];
+
+const whatsappConversation: Message[] = [
+  { from: "user", text: "Gaste 30 en taxi", time: "9:14" },
+  { from: "bilio", text: "✓ S/30 en 🚕 Transporte", time: "9:14" },
+  { from: "user", text: "🎤 Nota de voz — 0:08", time: "9:22", isAudio: true },
+  { from: "bilio", text: "Entendido: S/85 en 🛒 Supermercado ✓", time: "9:22" },
+  { from: "user", text: "📷 Foto del recibo", time: "9:45", isPhoto: true },
+  { from: "bilio", text: "Leí tu recibo: S/47.50 en 🍕 Comida ✓", time: "9:45" },
+];
+
+/* ── Typing indicator ── */
+function TypingDots() {
+  return (
+    <div className="flex justify-start">
+      <div className="bg-[#1f2c34] rounded-[12px_12px_12px_3px] px-4 py-2.5 flex items-center gap-[5px]">
+        {[0, 1, 2].map((d) => (
+          <div
+            key={d}
+            className="w-[6px] h-[6px] rounded-full bg-[#8696a0]"
+            style={{ animation: `wa-bounce 1.2s ${d * 0.15}s infinite` }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ── iOS Status Bar ── */
+function IosStatusBar() {
+  return (
+    <div className="flex items-center justify-between px-5 pt-3 pb-1">
+      <span className="text-white font-heading text-[13px] font-semibold">9:41</span>
+      <div className="flex items-center gap-[5px]">
+        {/* Signal */}
+        <svg width="16" height="12" viewBox="0 0 16 12" fill="white">
+          <rect x="0" y="8" width="3" height="4" rx="0.5" opacity="0.4"/>
+          <rect x="4.5" y="5" width="3" height="7" rx="0.5" opacity="0.6"/>
+          <rect x="9" y="2" width="3" height="10" rx="0.5" opacity="0.8"/>
+          <rect x="13.5" y="0" width="3" height="12" rx="0.5"/>
+        </svg>
+        {/* WiFi */}
+        <svg width="15" height="12" viewBox="0 0 15 12" fill="none">
+          <path d="M7.5 10.5a1 1 0 100 2 1 1 0 000-2z" fill="white"/>
+          <path d="M4.5 8.5a4.24 4.24 0 016 0" stroke="white" strokeWidth="1.2" strokeLinecap="round"/>
+          <path d="M2 6a7.07 7.07 0 0111 0" stroke="white" strokeWidth="1.2" strokeLinecap="round"/>
+        </svg>
+        {/* Battery */}
+        <svg width="25" height="12" viewBox="0 0 25 12" fill="none">
+          <rect x="0.5" y="0.5" width="21" height="11" rx="2" stroke="white" strokeWidth="1" opacity="0.35"/>
+          <rect x="2" y="2" width="17" height="8" rx="1" fill="white"/>
+          <path d="M23 4v4a1.5 1.5 0 000-4z" fill="white" opacity="0.4"/>
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+/* ── WA Contact Header ── */
+function WaHeader() {
+  return (
+    <div className="bg-[#1f2c34] flex items-center gap-2 px-2.5 py-2">
+      {/* Back arrow */}
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <path d="M12 5L7 10L12 15" stroke="#8696a0" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+      {/* Avatar */}
+      <div className="w-[34px] h-[34px] rounded-full bg-gradient-to-br from-bilio-whatsapp to-bilio-whatsapp-dark flex items-center justify-center overflow-hidden shrink-0">
+        <BilioLogoMark size={20} />
+      </div>
+      {/* Name */}
+      <div className="flex-1 min-w-0">
+        <div className="text-[#e9edef] font-heading text-[15px] font-semibold leading-tight">Bilio AI</div>
+        <div className="text-bilio-whatsapp font-body text-[12px] leading-tight">en línea</div>
+      </div>
+      {/* Action icons */}
+      <div className="flex items-center gap-4">
+        {/* Video */}
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <rect x="1" y="4" width="11" height="10" rx="1.5" stroke="#8696a0" strokeWidth="1.3"/>
+          <path d="M12 7.5L17 5v8l-5-2.5" stroke="#8696a0" strokeWidth="1.3" strokeLinejoin="round"/>
+        </svg>
+        {/* Phone */}
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <path d="M6.6 3H4.5A1.5 1.5 0 003 4.5c0 5.8 4.7 10.5 10.5 10.5a1.5 1.5 0 001.5-1.5v-2.1a1 1 0 00-.7-1l-2.4-.7a1 1 0 00-1 .3l-.8.8A8 8 0 016.2 6.8l.8-.8a1 1 0 00.3-1l-.7-2.4a1 1 0 00-1 .4z" stroke="#8696a0" strokeWidth="1.3"/>
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+/* ── WA Input Bar ── */
+function WaInputBar() {
+  return (
+    <div className="bg-[#1f2c34] px-2 py-1.5 flex items-center gap-1.5">
+      {/* Plus */}
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+        <circle cx="11" cy="11" r="9.5" stroke="#8696a0" strokeWidth="1.2"/>
+        <path d="M11 7v8M7 11h8" stroke="#8696a0" strokeWidth="1.3" strokeLinecap="round"/>
+      </svg>
+      {/* Text field */}
+      <div className="flex-1 bg-[#2a3942] rounded-[20px] px-3.5 py-[7px] flex items-center">
+        <span className="text-[#8696a0] font-body text-[14px]">Mensaje</span>
+      </div>
+      {/* Camera */}
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+        <rect x="2" y="5" width="18" height="13" rx="2" stroke="#8696a0" strokeWidth="1.2"/>
+        <circle cx="11" cy="11.5" r="3.5" stroke="#8696a0" strokeWidth="1.2"/>
+      </svg>
+      {/* Mic */}
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+        <rect x="8.5" y="3" width="5" height="9" rx="2.5" stroke="#8696a0" strokeWidth="1.2"/>
+        <path d="M6 11a5 5 0 0010 0" stroke="#8696a0" strokeWidth="1.2" strokeLinecap="round"/>
+        <path d="M11 16v3" stroke="#8696a0" strokeWidth="1.2" strokeLinecap="round"/>
+      </svg>
+    </div>
+  );
+}
+
+/* ── Animated WhatsApp Mockup ── */
+function WhatsAppAnimatedMockup({ conversation }: { conversation: Message[] }) {
+  const [visibleCount, setVisibleCount] = useState(0);
+  const [showTyping, setShowTyping] = useState(false);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout>[]>([]);
+
+  const clearTimeouts = useCallback(() => {
+    timeoutRef.current.forEach(clearTimeout);
+    timeoutRef.current = [];
+  }, []);
+
+  useEffect(() => {
+    const schedule = (fn: () => void, ms: number) => {
+      const id = setTimeout(fn, ms);
+      timeoutRef.current.push(id);
+      return id;
+    };
+
+    let delay = 800; // initial pause before first message
+
+    const runSequence = () => {
+      clearTimeouts();
+      setVisibleCount(0);
+      setShowTyping(false);
+      let d = delay;
+
+      for (let i = 0; i < conversation.length; i++) {
+        const msg = conversation[i];
+        const isBilio = msg.from === "bilio";
+
+        if (isBilio) {
+          // Show typing before bilio reply
+          const typingStart = d;
+          schedule(() => setShowTyping(true), typingStart);
+          d += 1200; // typing duration
+          schedule(() => {
+            setShowTyping(false);
+            setVisibleCount(i + 1);
+          }, d);
+          d += 600;
+        } else {
+          // Show user message immediately (with small delay)
+          schedule(() => setVisibleCount(i + 1), d);
+          d += 500;
+        }
+      }
+
+      // After all messages shown, wait then restart
+      schedule(() => {
+        setVisibleCount(0);
+        setShowTyping(false);
+        schedule(runSequence, 600);
+      }, d + 3000);
+    };
+
+    runSequence();
+    return clearTimeouts;
+  }, [conversation, clearTimeouts]);
+
+  // Auto-scroll when new messages appear
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
+    }
+  }, [visibleCount, showTyping]);
 
   return (
-    <div className="bg-[rgba(15,15,12,0.95)] border border-bilio-primary/15 rounded-3xl overflow-hidden shadow-[0_40px_80px_rgba(0,0,0,0.6),0_0_60px_rgba(254,206,0,0.08)] max-w-[360px] w-full">
-      {/* Chat header */}
-      <div className="bg-bilio-primary/[0.07] border-b border-bilio-primary/10 px-[18px] py-3.5 flex items-center gap-2.5">
-        <div className="w-9 h-9 rounded-full bg-gradient-gold flex items-center justify-center text-base">🐷</div>
-        <div>
-          <div className="text-bilio-text font-heading text-sm font-bold">Bilio</div>
-          <div className="flex items-center gap-[5px]">
-            <div className="w-1.5 h-1.5 rounded-full bg-bilio-success shadow-[0_0_6px_#5E987D]" />
-            <span className="text-bilio-success font-body text-[11px] font-semibold">en línea</span>
-          </div>
-        </div>
-      </div>
+    /* iPhone frame */
+    <div className="relative w-[280px] h-[580px] md:w-[300px] md:h-[620px] rounded-[44px] border-[3px] border-[#2a2a2a] bg-black shadow-[0_40px_80px_rgba(0,0,0,0.6),0_0_60px_rgba(37,211,102,0.06)] overflow-hidden flex flex-col">
+      {/* Notch */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[120px] h-[28px] bg-black rounded-b-[16px] z-10" />
 
-      {/* Messages */}
-      <div className="px-3.5 py-[18px] flex flex-col gap-2.5">
-        {messages.map((msg, i) => (
-          <div key={i} className={`flex ${msg.from === "user" ? "justify-end" : "justify-start"}`}>
+      {/* iOS status bar */}
+      <IosStatusBar />
+
+      {/* WA header */}
+      <WaHeader />
+
+      {/* Messages area */}
+      <div
+        ref={scrollRef}
+        className="flex-1 overflow-y-auto overflow-x-hidden p-2.5 flex flex-col gap-[6px]"
+        style={{
+          backgroundImage: `url(${waBgDark})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        {conversation.slice(0, visibleCount).map((msg, i) => {
+          const isUser = msg.from === "user";
+          return (
             <div
-              className={`max-w-[78%] px-3.5 py-[9px] font-body text-[13px] leading-[1.4] ${
-                msg.from === "user"
-                  ? "rounded-[16px_16px_4px_16px] bg-white/[0.08] border border-white/[0.08] text-white/75"
-                  : "rounded-[16px_16px_16px_4px] bg-bilio-primary/10 border border-bilio-primary/20 text-bilio-primary font-semibold"
-              }`}
+              key={i}
+              className={`flex ${isUser ? "justify-end" : "justify-start"}`}
+              style={{ animation: `${isUser ? "wa-slide-right" : "wa-slide-left"} 0.3s ease-out` }}
             >
-              {msg.text}
+              <div
+                className={`max-w-[82%] px-[10px] py-[6px] font-body text-[12.5px] leading-[1.45] text-[#e9edef] ${
+                  isUser
+                    ? "rounded-[10px_10px_3px_10px] bg-[#005c4b]"
+                    : "rounded-[10px_10px_10px_3px] bg-[#1f2c34]"
+                }`}
+              >
+                {msg.isAudio && (
+                  <div className="flex items-center gap-2 text-bilio-whatsapp">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5">
+                      <path d="M7 2v6M5 4v4M3 5v2M9 4v4M11 5v2"/>
+                    </svg>
+                    <span className="text-[#8696a0] text-[12px]">Nota de voz · 0:08</span>
+                  </div>
+                )}
+                {msg.isPhoto && (
+                  <div className="flex items-center gap-1.5 text-[#8696a0]">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5">
+                      <rect x="1" y="2" width="12" height="10" rx="2"/>
+                      <circle cx="4.5" cy="5.5" r="1"/>
+                      <path d="M1 9l3-3 2 2 2-3 4 4"/>
+                    </svg>
+                    <span className="text-[12px]">Foto del recibo</span>
+                  </div>
+                )}
+                {!msg.isAudio && !msg.isPhoto && msg.text}
+                <div className="flex justify-end mt-[2px]">
+                  <span className="text-[#8696a0] text-[9.5px]">{msg.time}</span>
+                </div>
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
 
-        {/* Typing indicator */}
-        <div className="flex gap-[5px] items-center pl-1">
-          {[0,1,2].map((d) => (
-            <div
-              key={d}
-              className="w-1.5 h-1.5 rounded-full bg-bilio-primary/35 animate-bounce-dot"
-              style={{ animationDuration: `${0.6 + d * 0.15}s` }}
-            />
-          ))}
-        </div>
+        {showTyping && <TypingDots />}
       </div>
 
-      {/* Input bar */}
-      <div className="border-t border-white/5 px-3.5 py-3 flex items-center gap-2.5">
-        <div className="flex-1 bg-white/5 border border-white/[0.08] rounded-[20px] px-3.5 py-2">
-          <span className="text-white/20 font-body text-[13px]">Escribe algo...</span>
-        </div>
-        <div className="w-[34px] h-[34px] rounded-full bg-gradient-gold flex items-center justify-center shrink-0">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-            <path d="M2 7H12M12 7L8 3M12 7L8 11" stroke="#151515" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        </div>
+      {/* WA input bar */}
+      <WaInputBar />
+
+      {/* Home indicator */}
+      <div className="flex justify-center py-1.5 bg-[#1f2c34]">
+        <div className="w-[100px] h-[4px] rounded-full bg-white/20" />
       </div>
     </div>
   );
@@ -122,79 +342,6 @@ function ExpenseMockup() {
   );
 }
 
-/* ── WhatsApp mockup ── */
-function WhatsAppMockup() {
-  const msgs: { from: string; text: string; time: string; isAudio?: boolean; isPhoto?: boolean }[] = [
-    { from: "user", text: "Gaste 30 en taxi", time: "9:14" },
-    { from: "bilio", text: "✓ S/30 en 🚕 Transporte", time: "9:14" },
-    { from: "user", text: "🎤 [Nota de voz — 0:08]", time: "9:22", isAudio: true },
-    { from: "bilio", text: "Entendido: S/85 en 🛒 Supermercado ✓", time: "9:22" },
-    { from: "user", text: "📷 [Foto del recibo]", time: "9:45", isPhoto: true },
-    { from: "bilio", text: "Leí tu recibo: S/47.50 en 🍕 Comida ✓", time: "9:45" },
-  ];
-
-  return (
-    <div className="bg-[#0b1014] border border-white/[0.08] rounded-3xl overflow-hidden max-w-[360px] w-full shadow-[0_40px_80px_rgba(0,0,0,0.6)]">
-      {/* WA header */}
-      <div className="bg-[#1a2a22] px-[18px] py-3.5 flex items-center gap-2.5">
-        <div className="w-[38px] h-[38px] rounded-full bg-gradient-to-br from-bilio-whatsapp to-bilio-whatsapp-dark flex items-center justify-center text-lg">🐷</div>
-        <div className="flex-1">
-          <div className="text-bilio-text font-heading text-sm font-bold">Bilio</div>
-          <div className="text-bilio-whatsapp font-body text-[11px] font-semibold">en línea</div>
-        </div>
-        <div className="bg-bilio-whatsapp rounded-md px-2 py-[3px]">
-          <span className="text-bilio-text font-heading text-[10px] font-extrabold">WhatsApp</span>
-        </div>
-      </div>
-
-      {/* WA messages */}
-      <div
-        className="bg-[#0d1117] p-3.5 flex flex-col gap-2"
-        style={{ backgroundImage: "radial-gradient(rgba(37,211,102,0.025) 1px, transparent 1px)", backgroundSize: "20px 20px" }}
-      >
-        {msgs.map((msg, i) => (
-          <div key={i} className={`flex ${msg.from === "user" ? "justify-end" : "justify-start"}`}>
-            <div
-              className={`max-w-[78%] px-3 py-2 font-body text-[13px] leading-[1.4] text-[#e9edef] ${
-                msg.from === "user"
-                  ? "rounded-[12px_12px_3px_12px] bg-[#005c4b]"
-                  : "rounded-[12px_12px_12px_3px] bg-[#1f2c34]"
-              }`}
-            >
-              {msg.isAudio && (
-                <div className="flex items-center gap-2 text-bilio-whatsapp">
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M7 2v6M5 4v4M3 5v2M9 4v4M11 5v2"/></svg>
-                  <span className="text-[#8696a0]">Nota de voz · 0:08</span>
-                </div>
-              )}
-              {msg.isPhoto && (
-                <div className="flex items-center gap-1.5 text-[#8696a0]">
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="1" y="2" width="12" height="10" rx="2"/><circle cx="4.5" cy="5.5" r="1"/><path d="M1 9l3-3 2 2 2-3 4 4"/></svg>
-                  Foto del recibo
-                </div>
-              )}
-              {!msg.isAudio && !msg.isPhoto && msg.text}
-              <div className="flex justify-end mt-[3px]">
-                <span className="text-[#8696a0] text-[10px]">{msg.time}</span>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* WA input */}
-      <div className="bg-[#1f2c34] px-3 py-2.5 flex items-center gap-2.5">
-        <div className="flex-1 bg-[#2a3942] rounded-[20px] px-3.5 py-2">
-          <span className="text-[#8696a0] font-body text-[13px]">Mensaje</span>
-        </div>
-        <div className="w-[38px] h-[38px] rounded-full bg-bilio-whatsapp flex items-center justify-center">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M7 9H2L1 14L15 8L1 2L2 7H7" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 /* ── Section wrapper ── */
 function FeatureRow({
   tag, tagColor, headline, highlightWord, description, proof, mockup, reversed = false,
@@ -206,7 +353,7 @@ function FeatureRow({
     <div
       className={`grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-[72px] items-center max-w-[1100px] mx-auto ${reversed ? "md:[direction:rtl]" : ""}`}
     >
-      <div className={reversed ? "md:[direction:ltr]" : ""}>
+      <ScrollReveal className={reversed ? "md:[direction:ltr]" : ""}>
         <div
           className="inline-flex items-center gap-2 rounded-full px-3.5 py-[5px] mb-[22px]"
           style={{ background: `${tagColor}12`, border: `1px solid ${tagColor}28` }}
@@ -234,11 +381,11 @@ function FeatureRow({
           </svg>
           <span className="text-white/[0.38] font-body text-[13px] leading-[1.5]">{proof}</span>
         </div>
-      </div>
+      </ScrollReveal>
 
-      <div className={`flex justify-center ${reversed ? "md:[direction:ltr]" : ""}`}>
+      <ScrollReveal className={`flex justify-center ${reversed ? "md:[direction:ltr]" : ""}`}>
         {mockup}
-      </div>
+      </ScrollReveal>
     </div>
   );
 }
@@ -252,7 +399,7 @@ export function FeaturesSection() {
       highlightWord: "cuánto gastaste.",
       description: "Sin menús, sin formularios, sin categorías que llenar. Escribe como le escribirías a un amigo. Bilio entiende, clasifica y registra — todo en segundos.",
       proof: "Texto, fotos o audio — como quieras. Bilio entiende lenguaje natural en español.",
-      mockup: <ChatMockup />,
+      mockup: <WhatsAppAnimatedMockup conversation={chatConversation} />,
       reversed: false,
       bg: "bg-bilio-bg",
     },
@@ -274,7 +421,7 @@ export function FeaturesSection() {
       highlightWord: "Sin descargar nada.",
       description: "Manda un mensaje, una nota de voz o una foto del recibo por WhatsApp. Bilio lee todo. Si ya usas WhatsApp, ya sabes usar Bilio.",
       proof: "Mismas funciones que la web. Texto, fotos y audio — todo por WhatsApp.",
-      mockup: <WhatsAppMockup />,
+      mockup: <WhatsAppAnimatedMockup conversation={whatsappConversation} />,
       reversed: false,
       bg: "bg-bilio-bg",
     },
