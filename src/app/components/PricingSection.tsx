@@ -1,9 +1,23 @@
 import { cn } from "./ui/utils";
 import { ScrollReveal } from "./motion/ScrollReveal";
+import { useWaitlistDispatch } from "../waitlist/WaitlistContext";
+import type { PlanId } from "../waitlist/types";
 
-const plans = [
+const plans: {
+  name: string;
+  planId: PlanId;
+  price: string;
+  period: string;
+  tag?: string;
+  description: string;
+  highlight: boolean;
+  cta: string;
+  features: string[];
+  missing: string[];
+}[] = [
   {
     name: "Gratis",
+    planId: "gratis",
     price: "S/0",
     period: "para siempre",
     description: "Para empezar sin riesgo. Sin tarjeta.",
@@ -21,6 +35,7 @@ const plans = [
   },
   {
     name: "Plus",
+    planId: "plus",
     price: "S/14.90",
     period: "/ mes",
     tag: "Más popular",
@@ -41,6 +56,7 @@ const plans = [
   },
   {
     name: "Premium",
+    planId: "premium",
     price: "S/24.90",
     period: "/ mes",
     description: "Todo ilimitado. Tu asistente financiero completo.",
@@ -61,6 +77,13 @@ const plans = [
 ];
 
 export function PricingSection() {
+  const dispatch = useWaitlistDispatch();
+
+  const handlePlanSelect = (planId: PlanId) => {
+    dispatch({ type: 'SET_PLAN', plan: planId });
+    document.getElementById('waitlist')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
   return (
     <section id="precios" className="bg-bilio-bg-card py-[100px] px-6 relative overflow-hidden">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-px" style={{ background: "linear-gradient(90deg, transparent, rgba(254,206,0,0.4), transparent)" }} />
@@ -138,21 +161,18 @@ export function PricingSection() {
                 </p>
 
                 {/* CTA */}
-                <a
-                  href="#waitlist"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    document.getElementById("waitlist")?.scrollIntoView({ behavior: "smooth", block: "start" });
-                  }}
+                <button
+                  type="button"
+                  onClick={() => handlePlanSelect(plan.planId)}
                   className={cn(
-                    "block w-full py-3.5 rounded-xl font-heading text-sm font-extrabold cursor-pointer tracking-tight transition-all duration-200 mb-7 text-center no-underline",
+                    "block w-full py-3.5 rounded-xl font-heading text-sm font-extrabold cursor-pointer tracking-tight transition-all duration-200 mb-7 text-center",
                     plan.highlight
                       ? "bg-gradient-gold border-none text-bilio-bg btn-glow"
                       : "bg-bilio-surface-light border border-white/10 text-white/60 hover:bg-bilio-surface-gold hover:text-bilio-primary hover:border-bilio-primary/20"
                   )}
                 >
                   {plan.cta}
-                </a>
+                </button>
 
                 {/* Features list */}
                 <div className="flex flex-col gap-2.5">

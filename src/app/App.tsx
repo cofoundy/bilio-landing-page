@@ -11,26 +11,29 @@ import { WaitlistCTA } from "./components/WaitlistCTA";
 import { FAQSection } from "./components/FAQSection";
 import { Footer } from "./components/Footer";
 import { AnimatedBackground } from "./components/motion/AnimatedBackground";
+import { WaitlistProvider } from "./waitlist/WaitlistContext";
 
 export default function App() {
   return (
-    <LazyMotion features={domAnimation} strict>
-      <div className="relative min-h-screen bg-bilio-bg font-body overflow-x-hidden">
-        <AnimatedBackground />
-        <div className="relative" style={{ zIndex: 1 }}>
-          <Navbar />
-          <HeroSection />
-          <SocialProofBar />
-          <ProblemSection />
-          <FeaturesSection />
-          <FeaturesBento />
-          <HowItWorks />
-          <PricingSection />
-          <WaitlistCTA />
-          <FAQSection />
-          <Footer />
+    <WaitlistProvider>
+      <LazyMotion features={domAnimation} strict>
+        <div className="relative min-h-screen bg-bilio-bg font-body overflow-x-hidden">
+          <AnimatedBackground />
+          <div className="relative" style={{ zIndex: 1 }}>
+            <Navbar />
+            <HeroSection />
+            <SocialProofBar />
+            <ProblemSection />
+            <FeaturesSection />
+            <FeaturesBento />
+            <HowItWorks />
+            <PricingSection />
+            <WaitlistCTA />
+            <FAQSection />
+            <Footer />
+          </div>
         </div>
-      </div>
-    </LazyMotion>
+      </LazyMotion>
+    </WaitlistProvider>
   );
 }

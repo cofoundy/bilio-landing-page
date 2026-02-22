@@ -3,7 +3,7 @@ import { useInView } from "framer-motion";
 import { Flame } from "lucide-react";
 import { ScrollReveal } from "./motion/ScrollReveal";
 import { useTilt3D } from "./motion/useTilt3D";
-import { VirtualCreditCard } from "./motion/VirtualCreditCard";
+
 
 /* ── Tilt wrapper for bento cards ── */
 function TiltCard({ children, colClass }: { children: React.ReactNode; colClass: string }) {
@@ -258,14 +258,6 @@ export function FeaturesBento() {
     { content: <SavingsCard />, colClass: "col-span-12 lg:col-span-5" },
     { content: <StreakCard />, colClass: "col-span-12 sm:col-span-6 lg:col-span-3" },
     { content: <EmotionalCard />, colClass: "col-span-12 sm:col-span-6 lg:col-span-4" },
-    {
-      content: (
-        <div className="flex items-center justify-center h-full">
-          <VirtualCreditCard />
-        </div>
-      ),
-      colClass: "col-span-12 lg:col-span-5",
-    },
   ];
 
   return (
