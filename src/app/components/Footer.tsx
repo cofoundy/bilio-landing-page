@@ -1,23 +1,40 @@
+import { useState } from "react";
 import { Lock, ShieldOff, Gift, Heart, MapPin, type LucideIcon } from "lucide-react";
 import { BilioLogoFull } from "./BilioLogo";
 import { ScrollReveal } from "./motion/ScrollReveal";
 
-const columns = [
+type FooterLink = { label: string; href: string };
+
+const columns: { title: string; links: FooterLink[] }[] = [
   {
     title: "Producto",
-    links: ["Características", "Precios", "WhatsApp", "Gmail automático", "Hoja de ruta"],
+    links: [
+      { label: "Características", href: "#caracteristicas" },
+      { label: "Precios", href: "#precios" },
+      { label: "Cómo funciona", href: "#como-funciona" },
+      { label: "FAQ", href: "#faq" },
+    ],
   },
   {
     title: "Empresa",
-    links: ["Nosotros", "Blog", "Carreras", "Prensa", "Contacto"],
+    links: [
+      { label: "Contacto", href: "mailto:hola@bilio.app" },
+    ],
   },
   {
     title: "Comunidad",
-    links: ["Twitter / X", "Instagram", "Discord", "WhatsApp Channel", "YouTube"],
+    links: [
+      { label: "Twitter / X", href: "https://x.com" },
+      { label: "Instagram", href: "https://instagram.com" },
+      { label: "WhatsApp Channel", href: "https://whatsapp.com" },
+    ],
   },
   {
     title: "Legal",
-    links: ["Privacidad", "Términos de uso", "Cookies", "Seguridad", "Datos"],
+    links: [
+      { label: "Privacidad", href: "#" },
+      { label: "Términos de uso", href: "#" },
+    ],
   },
 ];
 
@@ -27,7 +44,25 @@ const trustBadges: { icon: LucideIcon; label: string }[] = [
   { icon: Gift, label: "Gratis para empezar" },
 ];
 
+function scrollTo(e: React.MouseEvent<HTMLAnchorElement>, href: string) {
+  if (!href.startsWith("#")) return; // let external links work normally
+  e.preventDefault();
+  const id = href.replace("#", "");
+  const el = document.getElementById(id);
+  if (el) {
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+}
+
 export function Footer() {
+  const [email, setEmail] = useState("");
+  const [joined, setJoined] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (email.trim()) setJoined(true);
+  };
+
   return (
     <footer className="bg-bilio-bg-footer border-t border-bilio-primary/[0.07] pt-[72px] pb-9 px-6 relative overflow-hidden">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[180px] pointer-events-none" style={{ background: "radial-gradient(ellipse at top center, rgba(254,206,0,0.04) 0%, transparent 70%)" }} />
@@ -37,7 +72,11 @@ export function Footer() {
         <div className="flex justify-between items-start mb-14 flex-wrap gap-10">
           {/* Brand */}
           <div className="max-w-[320px]">
-            <div className="mb-3.5"><BilioLogoFull size={40} /></div>
+            <div className="mb-3.5">
+              <a href="#hero" onClick={(e) => scrollTo(e, "#hero")}>
+                <BilioLogoFull size={40} />
+              </a>
+            </div>
             <p className="text-white/30 font-body text-sm leading-[1.7] tracking-[0.01em] mb-[18px]">
               Tu coach de finanzas que habla tu idioma, entiende tu plata y no te juzga.
             </p>
@@ -54,16 +93,31 @@ export function Footer() {
             <div className="text-bilio-text font-heading text-sm font-bold tracking-tight mb-2">
               Únete a la lista de espera
             </div>
-            <div className="flex gap-2 flex-wrap">
-              <input
-                type="email"
-                placeholder="tu@correo.com"
-                className="bg-bilio-surface-light border border-white/[0.09] rounded-[10px] px-3.5 py-2.5 text-bilio-text font-body text-sm outline-none w-[210px] transition-[border-color] duration-200 focus:border-bilio-primary/30"
-              />
-              <button className="bg-gradient-gold border-none rounded-[10px] px-4 py-2.5 text-bilio-bg font-heading text-sm font-extrabold cursor-pointer whitespace-nowrap transition-all duration-200 btn-glow">
-                Quiero entrar
-              </button>
-            </div>
+            {!joined ? (
+              <form onSubmit={handleSubmit} className="flex gap-2 flex-wrap">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="tu@correo.com"
+                  required
+                  className="bg-bilio-surface-light border border-white/[0.09] rounded-[10px] px-3.5 py-2.5 text-bilio-text font-body text-sm outline-none w-[210px] transition-[border-color] duration-200 focus:border-bilio-primary/30"
+                />
+                <button
+                  type="submit"
+                  className="bg-gradient-gold border-none rounded-[10px] px-4 py-2.5 text-bilio-bg font-heading text-sm font-extrabold cursor-pointer whitespace-nowrap transition-all duration-200 btn-glow"
+                >
+                  Quiero entrar
+                </button>
+              </form>
+            ) : (
+              <div className="flex items-center gap-2 bg-bilio-success/10 border border-bilio-success/30 rounded-[10px] px-4 py-2.5">
+                <div className="w-[18px] h-[18px] rounded-full bg-bilio-success flex items-center justify-center">
+                  <svg width="10" height="10" viewBox="0 0 12 12" fill="none"><path d="M2 6L5 9L10 3" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                </div>
+                <span className="text-bilio-success font-body text-sm font-semibold">¡Listo! Te avisamos pronto.</span>
+              </div>
+            )}
             <p className="text-bilio-text-whisper font-body text-xs mt-[7px]">Sin spam. Sin tarjeta. Sin rodeos.</p>
           </div>
         </div>
@@ -82,11 +136,13 @@ export function Footer() {
                 <div className="flex flex-col gap-[11px]">
                   {col.links.map((link) => (
                     <a
-                      key={link}
-                      href="#"
+                      key={link.label}
+                      href={link.href}
+                      onClick={(e) => scrollTo(e, link.href)}
+                      {...(link.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                       className="text-white/30 font-body text-sm no-underline tracking-[0.01em] transition-colors duration-200 hover:text-bilio-primary"
                     >
-                      {link}
+                      {link.label}
                     </a>
                   ))}
                 </div>

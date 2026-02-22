@@ -2,6 +2,22 @@ import { useState, useEffect } from "react";
 import { BilioLogoFull } from "./BilioLogo";
 import { cn } from "./ui/utils";
 
+const navLinks = [
+  { label: "Características", href: "#caracteristicas" },
+  { label: "Precios", href: "#precios" },
+  { label: "Cómo funciona", href: "#como-funciona" },
+  { label: "FAQ", href: "#faq" },
+];
+
+function scrollTo(e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>, href: string) {
+  e.preventDefault();
+  const id = href.replace("#", "");
+  const el = document.getElementById(id);
+  if (el) {
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+}
+
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
@@ -21,30 +37,41 @@ export function Navbar() {
       )}
     >
       <div className="max-w-[1200px] mx-auto px-6 h-[72px] flex items-center justify-between">
-        {/* Logo */}
-        <BilioLogoFull size={38} />
+        {/* Logo — scroll to top */}
+        <a href="#hero" onClick={(e) => scrollTo(e, "#hero")}>
+          <BilioLogoFull size={38} />
+        </a>
 
         {/* Nav Links */}
         <div className="hidden md:flex items-center gap-9">
-          {["Características", "Precios", "Seguridad", "Docs", "Blog"].map((item) => (
+          {navLinks.map((item) => (
             <a
-              key={item}
-              href="#"
+              key={item.label}
+              href={item.href}
+              onClick={(e) => scrollTo(e, item.href)}
               className="text-bilio-text-muted font-body text-sm font-medium no-underline tracking-[0.01em] transition-colors duration-200 hover:text-bilio-primary"
             >
-              {item}
+              {item.label}
             </a>
           ))}
         </div>
 
         {/* CTA Buttons */}
         <div className="flex items-center gap-3">
-          <button className="hidden md:block bg-transparent border-none text-white/55 font-body text-sm font-medium cursor-pointer px-4 py-2">
+          <a
+            href="#waitlist"
+            onClick={(e) => scrollTo(e, "#waitlist")}
+            className="hidden md:block bg-transparent border-none text-white/55 font-body text-sm font-medium cursor-pointer px-4 py-2 no-underline transition-colors duration-200 hover:text-bilio-primary"
+          >
             Iniciar Sesión
-          </button>
-          <button className="bg-gradient-gold border-none text-bilio-bg font-heading text-sm font-bold cursor-pointer px-[22px] py-2.5 rounded-[10px] tracking-tight transition-all duration-200 btn-glow">
+          </a>
+          <a
+            href="#waitlist"
+            onClick={(e) => scrollTo(e, "#waitlist")}
+            className="bg-gradient-gold border-none text-bilio-bg font-heading text-sm font-bold cursor-pointer px-[22px] py-2.5 rounded-[10px] tracking-tight transition-all duration-200 btn-glow no-underline"
+          >
             Unirme a la lista
-          </button>
+          </a>
         </div>
       </div>
     </nav>

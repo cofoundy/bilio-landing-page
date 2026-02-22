@@ -27,7 +27,7 @@ export function HeroSection() {
   };
 
   return (
-    <section className="min-h-screen bg-bilio-bg-deep flex flex-col overflow-hidden">
+    <section id="hero" className="min-h-screen bg-bilio-bg-deep flex flex-col overflow-hidden">
       {/* ── TOP ZONE: background image only ── */}
       <div className="relative h-[58vh] min-h-[380px] shrink-0">
         <img

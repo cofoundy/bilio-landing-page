@@ -436,9 +436,10 @@ export function FeaturesSection() {
 
   return (
     <>
-      {sections.map((s) => (
+      {sections.map((s, i) => (
         <section
           key={s.tag}
+          id={i === 0 ? "caracteristicas" : undefined}
           className={`${s.bg} py-[100px] px-6 relative overflow-hidden`}
         >
           <div

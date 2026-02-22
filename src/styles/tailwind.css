@@ -3,6 +3,12 @@
 
 @import 'tw-animate-css';
 
+/* ── Smooth scroll with navbar offset ── */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
 /* ── Bilio Design Tokens ── */
 @theme {
   /* Primary palette */

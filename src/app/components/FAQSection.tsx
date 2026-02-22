@@ -98,7 +98,7 @@ export function FAQSection() {
   const [openIdx, setOpenIdx] = useState<number | null>(0);
 
   return (
-    <section className="bg-bilio-bg py-[100px] px-6 relative overflow-hidden">
+    <section id="faq" className="bg-bilio-bg py-[100px] px-6 relative overflow-hidden">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-px" style={{ background: "linear-gradient(90deg, transparent, rgba(254,206,0,0.4), transparent)" }} />
 
       <div className="max-w-[780px] mx-auto">
@@ -130,9 +130,12 @@ export function FAQSection() {
           <p className="text-bilio-text-faint font-body text-[15px] mb-3.5">
             ¿Tienes otra pregunta? Escríbenos directamente.
           </p>
-          <button className="bg-transparent border border-bilio-border-gold text-bilio-primary font-heading text-sm font-bold cursor-pointer px-[22px] py-[11px] rounded-[10px] transition-all duration-200 tracking-tight hover:bg-bilio-surface-gold">
+          <a
+            href="mailto:hola@bilio.app"
+            className="inline-block bg-transparent border border-bilio-border-gold text-bilio-primary font-heading text-sm font-bold cursor-pointer px-[22px] py-[11px] rounded-[10px] transition-all duration-200 tracking-tight hover:bg-bilio-surface-gold no-underline"
+          >
             Contactar al equipo →
-          </button>
+          </a>
         </div>
       </div>
     </section>

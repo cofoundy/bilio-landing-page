@@ -27,7 +27,7 @@ const steps: { number: string; icon: LucideIcon; title: string; description: str
 
 export function HowItWorks() {
   return (
-    <section className="bg-bilio-bg py-[100px] px-6 relative overflow-hidden">
+    <section id="como-funciona" className="bg-bilio-bg py-[100px] px-6 relative overflow-hidden">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-px" style={{ background: "linear-gradient(90deg, transparent, rgba(94,152,125,0.4), transparent)" }} />
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] pointer-events-none" style={{ background: "radial-gradient(ellipse, rgba(254,206,0,0.04) 0%, transparent 70%)" }} />
 

@@ -62,7 +62,7 @@ const plans = [
 
 export function PricingSection() {
   return (
-    <section className="bg-bilio-bg-card py-[100px] px-6 relative overflow-hidden">
+    <section id="precios" className="bg-bilio-bg-card py-[100px] px-6 relative overflow-hidden">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-px" style={{ background: "linear-gradient(90deg, transparent, rgba(254,206,0,0.4), transparent)" }} />
       <div className="absolute top-[30%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[500px] pointer-events-none" style={{ background: "radial-gradient(ellipse, rgba(254,206,0,0.04) 0%, transparent 65%)" }} />
 
@@ -138,16 +138,21 @@ export function PricingSection() {
                 </p>
 
                 {/* CTA */}
-                <button
+                <a
+                  href="#waitlist"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document.getElementById("waitlist")?.scrollIntoView({ behavior: "smooth", block: "start" });
+                  }}
                   className={cn(
-                    "w-full py-3.5 rounded-xl font-heading text-sm font-extrabold cursor-pointer tracking-tight transition-all duration-200 mb-7",
+                    "block w-full py-3.5 rounded-xl font-heading text-sm font-extrabold cursor-pointer tracking-tight transition-all duration-200 mb-7 text-center no-underline",
                     plan.highlight
                       ? "bg-gradient-gold border-none text-bilio-bg btn-glow"
                       : "bg-bilio-surface-light border border-white/10 text-white/60 hover:bg-bilio-surface-gold hover:text-bilio-primary hover:border-bilio-primary/20"
                   )}
                 >
                   {plan.cta}
-                </button>
+                </a>
 
                 {/* Features list */}
                 <div className="flex flex-col gap-2.5">

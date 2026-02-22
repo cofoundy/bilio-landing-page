@@ -19,7 +19,7 @@ export function WaitlistCTA() {
   };
 
   return (
-    <section className="bg-bilio-bg-deep py-[100px] px-6 relative overflow-hidden">
+    <section id="waitlist" className="bg-bilio-bg-deep py-[100px] px-6 relative overflow-hidden">
       {/* Arc bg image faint */}
       <img
         src={imgHeroBg}

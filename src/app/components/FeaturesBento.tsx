@@ -269,7 +269,7 @@ export function FeaturesBento() {
   ];
 
   return (
-    <section className="bg-bilio-bg-card py-[100px] px-6 relative overflow-hidden">
+    <section id="bento" className="bg-bilio-bg-card py-[100px] px-6 relative overflow-hidden">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-px" style={{ background: "linear-gradient(90deg, transparent, rgba(254,206,0,0.4), transparent)" }} />
       <div className="absolute top-[30%] right-[-5%] w-[500px] h-[500px] pointer-events-none" style={{ background: "radial-gradient(circle, rgba(18,49,73,0.5) 0%, transparent 70%)" }} />
 
