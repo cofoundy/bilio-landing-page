@@ -1,4 +1,5 @@
 import { cn } from "./ui/utils";
+import { ScrollReveal } from "./motion/ScrollReveal";
 
 const plans = [
   {
@@ -48,7 +49,7 @@ const plans = [
     features: [
       "Gastos ilimitados",
       "Audios ilimitados",
-      "Gmail automático 📧",
+      "Gmail automático",
       "Aprobación por lote",
       "Vendors de confianza",
       "Cuentas compartidas",
@@ -67,7 +68,7 @@ export function PricingSection() {
 
       <div className="max-w-[1100px] mx-auto">
         {/* Header */}
-        <div className="text-center mb-16">
+        <ScrollReveal className="text-center mb-16">
           <div className="inline-flex items-center gap-2 bg-bilio-surface-gold border border-bilio-border-gold rounded-full px-3.5 py-[5px] mb-5">
             <span className="text-bilio-primary font-body text-xs font-semibold tracking-[0.08em] uppercase">Precios</span>
           </div>
@@ -78,89 +79,102 @@ export function PricingSection() {
           <p className="text-bilio-text-faint font-body text-lg leading-[1.6]">
             Sin tarjeta para empezar. Cancela cuando quieras.
           </p>
-        </div>
+        </ScrollReveal>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 items-start">
+        <ScrollReveal>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 items-start">
           {plans.map((plan) => (
             <div
               key={plan.name}
               className={cn(
-                "rounded-[22px] px-7 py-8 relative transition-all duration-300",
+                "group rounded-[22px] px-7 py-8 relative transition-all duration-300 overflow-hidden",
                 plan.highlight
                   ? "bg-gradient-to-br from-bilio-primary/10 to-bilio-secondary/[0.06] border border-bilio-primary/30 scale-[1.03] shadow-[0_0_60px_rgba(254,206,0,0.1),0_20px_40px_rgba(0,0,0,0.4)]"
-                  : "bg-bilio-surface border border-bilio-border hover:-translate-y-1 hover:border-bilio-border-gold"
+                  : "bg-bilio-surface border border-bilio-border hover:-translate-y-2 hover:border-bilio-border-gold"
               )}
             >
-              {/* Popular badge */}
-              {plan.tag && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-gold rounded-full px-4 py-1 whitespace-nowrap">
-                  <span className="text-bilio-bg font-heading text-[11px] font-extrabold tracking-[0.02em]">⭐ {plan.tag}</span>
-                </div>
+              {/* Shimmer sweep on non-highlighted cards */}
+              {!plan.highlight && (
+                <div
+                  className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out pointer-events-none"
+                  style={{ background: "linear-gradient(105deg, transparent 40%, rgba(254,206,0,0.06) 50%, transparent 60%)" }}
+                  aria-hidden="true"
+                />
               )}
 
-              {/* Plan name */}
-              <div className="text-bilio-text-muted font-body text-xs font-bold tracking-[0.08em] uppercase mb-3">
-                {plan.name}
-              </div>
-
-              {/* Price */}
-              <div className="flex items-baseline gap-1 mb-2">
-                <span className={cn(
-                  "font-heading text-[40px] font-extrabold tracking-[-0.04em] leading-none",
-                  plan.highlight ? "text-bilio-primary" : "text-bilio-text"
-                )}>
-                  {plan.price}
-                </span>
-                <span className="text-white/30 font-body text-sm">{plan.period}</span>
-              </div>
-
-              {plan.price === "S/14.90" && (
-                <div className="text-white/30 font-body text-xs mb-2">
-                  Menos de un café al día
-                </div>
-              )}
-
-              <p className="text-bilio-text-faint font-body text-sm leading-[1.5] mb-6">
-                {plan.description}
-              </p>
-
-              {/* CTA */}
-              <button
-                className={cn(
-                  "w-full py-3.5 rounded-xl font-heading text-sm font-extrabold cursor-pointer tracking-tight transition-all duration-200 mb-7",
-                  plan.highlight
-                    ? "bg-gradient-gold border-none text-bilio-bg btn-glow"
-                    : "bg-bilio-surface-light border border-white/10 text-white/60 hover:bg-bilio-surface-gold hover:text-bilio-primary hover:border-bilio-primary/20"
+              <div className="relative z-[1]">
+                {/* Popular badge */}
+                {plan.tag && (
+                  <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-gradient-gold rounded-full px-4 py-1 whitespace-nowrap">
+                    <span className="text-bilio-bg font-heading text-[11px] font-extrabold tracking-[0.02em]">{plan.tag}</span>
+                  </div>
                 )}
-              >
-                {plan.cta}
-              </button>
 
-              {/* Features list */}
-              <div className="flex flex-col gap-2.5">
-                {plan.features.map((f) => (
-                  <div key={f} className="flex items-center gap-[9px]">
-                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                      <circle cx="7" cy="7" r="6" fill={plan.highlight ? "rgba(254,206,0,0.15)" : "rgba(94,152,125,0.12)"}/>
-                      <path d="M4.5 7L6.5 9L9.5 5" stroke={plan.highlight ? "#FECE00" : "#5E987D"} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                    <span className="text-white/55 font-body text-[13px] font-medium">{f}</span>
+                {/* Plan name */}
+                <div className="text-bilio-text-muted font-body text-xs font-bold tracking-[0.08em] uppercase mb-3">
+                  {plan.name}
+                </div>
+
+                {/* Price */}
+                <div className="flex items-baseline gap-1 mb-2">
+                  <span className={cn(
+                    "font-heading text-[40px] font-extrabold tracking-[-0.04em] leading-none",
+                    plan.highlight ? "text-bilio-primary" : "text-bilio-text"
+                  )}>
+                    {plan.price}
+                  </span>
+                  <span className="text-white/30 font-body text-sm">{plan.period}</span>
+                </div>
+
+                {plan.price === "S/14.90" && (
+                  <div className="text-white/30 font-body text-xs mb-2">
+                    Menos de un café al día
                   </div>
-                ))}
-                {plan.missing.map((f) => (
-                  <div key={f} className="flex items-center gap-[9px] opacity-35">
-                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                      <circle cx="7" cy="7" r="6" fill="rgba(255,255,255,0.05)"/>
-                      <path d="M5 5l4 4M9 5L5 9" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" strokeLinecap="round"/>
-                    </svg>
-                    <span className="text-white/[0.28] font-body text-[13px] line-through decoration-white/10">{f}</span>
-                  </div>
-                ))}
+                )}
+
+                <p className="text-bilio-text-faint font-body text-sm leading-[1.5] mb-6">
+                  {plan.description}
+                </p>
+
+                {/* CTA */}
+                <button
+                  className={cn(
+                    "w-full py-3.5 rounded-xl font-heading text-sm font-extrabold cursor-pointer tracking-tight transition-all duration-200 mb-7",
+                    plan.highlight
+                      ? "bg-gradient-gold border-none text-bilio-bg btn-glow"
+                      : "bg-bilio-surface-light border border-white/10 text-white/60 hover:bg-bilio-surface-gold hover:text-bilio-primary hover:border-bilio-primary/20"
+                  )}
+                >
+                  {plan.cta}
+                </button>
+
+                {/* Features list */}
+                <div className="flex flex-col gap-2.5">
+                  {plan.features.map((f) => (
+                    <div key={f} className="flex items-center gap-[9px]">
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                        <circle cx="7" cy="7" r="6" fill={plan.highlight ? "rgba(254,206,0,0.15)" : "rgba(94,152,125,0.12)"}/>
+                        <path d="M4.5 7L6.5 9L9.5 5" stroke={plan.highlight ? "#FECE00" : "#5E987D"} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                      <span className="text-white/55 font-body text-[13px] font-medium">{f}</span>
+                    </div>
+                  ))}
+                  {plan.missing.map((f) => (
+                    <div key={f} className="flex items-center gap-[9px] opacity-35">
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                        <circle cx="7" cy="7" r="6" fill="rgba(255,255,255,0.05)"/>
+                        <path d="M5 5l4 4M9 5L5 9" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" strokeLinecap="round"/>
+                      </svg>
+                      <span className="text-white/[0.28] font-body text-[13px] line-through decoration-white/10">{f}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           ))}
-        </div>
+          </div>
+        </ScrollReveal>
 
         <p className="text-center text-white/20 font-body text-[13px] mt-9">
           Todos los planes incluyen: datos encriptados · sin acceso bancario · cancela cuando quieras
