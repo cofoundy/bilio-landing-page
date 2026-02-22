@@ -19,20 +19,12 @@ type Message = {
 const chatConversation: Message[] = [
   { from: "user", text: "Gaste 50 en almuerzo con Juan", time: "10:31" },
   { from: "bilio", text: "✓ Registrado → 🍕 Comida · S/50.00", time: "10:31" },
-  { from: "user", text: "La cuenta fue 180, éramos 3", time: "10:33" },
-  { from: "bilio", text: "✓ Tu parte: S/60.00 → 🍕 Comida", time: "10:33" },
-  { from: "user", text: "¿Cuánto gasté en comida este mes?", time: "10:35" },
-  { from: "bilio", text: "🍕 Comida este mes: S/320 · ↑15% vs anterior", time: "10:35" },
+  { from: "user", text: "🎤 Nota de voz — 0:08", time: "10:33", isAudio: true },
+  { from: "bilio", text: "Entendido: S/85 en 🛒 Supermercado ✓", time: "10:33" },
+  { from: "user", text: "📷 Foto del recibo", time: "10:35", isPhoto: true },
+  { from: "bilio", text: "Leí tu recibo: S/47.50 en 🍕 Comida ✓", time: "10:35" },
 ];
 
-const whatsappConversation: Message[] = [
-  { from: "user", text: "Gaste 30 en taxi", time: "9:14" },
-  { from: "bilio", text: "✓ S/30 en 🚕 Transporte", time: "9:14" },
-  { from: "user", text: "🎤 Nota de voz — 0:08", time: "9:22", isAudio: true },
-  { from: "bilio", text: "Entendido: S/85 en 🛒 Supermercado ✓", time: "9:22" },
-  { from: "user", text: "📷 Foto del recibo", time: "9:45", isPhoto: true },
-  { from: "bilio", text: "Leí tu recibo: S/47.50 en 🍕 Comida ✓", time: "9:45" },
-];
 
 /* ── Typing indicator ── */
 function TypingDots() {
@@ -416,10 +408,10 @@ export function FeaturesSection() {
     {
       tag: "Tan fácil como chatear",
       tagColor: "#FECE00",
-      headline: "Solo dile cuánto gastaste.",
-      highlightWord: "cuánto gastaste.",
-      description: "Sin menús, sin formularios, sin categorías que llenar. Escribe como le escribirías a un amigo. Bilio entiende, clasifica y registra — todo en segundos.",
-      proof: "Texto, fotos o audio — como quieras. Bilio entiende lenguaje natural en español.",
+      headline: "Solo dile cuánto gastaste. Sin descargar nada.",
+      highlightWord: "Sin descargar nada.",
+      description: "Texto, nota de voz o foto del recibo — por web o WhatsApp. Sin menús, sin formularios. Escribe como le escribirías a un amigo. Bilio entiende, clasifica y registra en segundos.",
+      proof: "Funciona por WhatsApp y web. Si ya usas WhatsApp, ya sabes usar Bilio.",
       mockup: <WhatsAppAnimatedMockup conversation={chatConversation} />,
       reversed: false,
       bg: "bg-bilio-bg",
@@ -436,17 +428,6 @@ export function FeaturesSection() {
       mockup: <ExpenseMockup />,
       reversed: true,
       bg: "bg-bilio-bg-card",
-    },
-    {
-      tag: "También por WhatsApp",
-      tagColor: "#25D366",
-      headline: "Funciona por WhatsApp. Sin descargar nada.",
-      highlightWord: "Sin descargar nada.",
-      description: "Manda un mensaje, una nota de voz o una foto del recibo por WhatsApp. Bilio lee todo. Si ya usas WhatsApp, ya sabes usar Bilio.",
-      proof: "Mismas funciones que la web. Texto, fotos y audio — todo por WhatsApp.",
-      mockup: <WhatsAppAnimatedMockup conversation={whatsappConversation} />,
-      reversed: false,
-      bg: "bg-bilio-bg",
     },
   ];
 
