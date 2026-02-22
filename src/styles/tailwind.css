@@ -2,3 +2,80 @@
 @source '../**/*.{js,ts,jsx,tsx}';
 
 @import 'tw-animate-css';
+
+/* ── Bilio Design Tokens ── */
+@theme {
+  /* Primary palette */
+  --color-bilio-primary: #FECE00;
+  --color-bilio-secondary: #FEB601;
+  --color-bilio-bronze: #B86A00;
+  --color-bilio-success: #5E987D;
+  --color-bilio-danger: #ef4444;
+  --color-bilio-whatsapp: #25D366;
+  --color-bilio-whatsapp-dark: #128C7E;
+  --color-bilio-navy: #123149;
+
+  /* Backgrounds */
+  --color-bilio-bg: #151515;
+  --color-bilio-bg-deep: #0a0900;
+  --color-bilio-bg-dark: #111111;
+  --color-bilio-bg-card: #1A1A1A;
+  --color-bilio-bg-footer: #0d0d0d;
+
+  /* Text with opacity — use as color values */
+  --color-bilio-text: #ffffff;
+  --color-bilio-text-muted: rgba(255, 255, 255, 0.5);
+  --color-bilio-text-faint: rgba(255, 255, 255, 0.38);
+  --color-bilio-text-ghost: rgba(255, 255, 255, 0.25);
+  --color-bilio-text-whisper: rgba(255, 255, 255, 0.18);
+
+  /* Borders */
+  --color-bilio-border: rgba(255, 255, 255, 0.07);
+  --color-bilio-border-light: rgba(255, 255, 255, 0.12);
+  --color-bilio-border-gold: rgba(254, 206, 0, 0.22);
+  --color-bilio-border-gold-faint: rgba(254, 206, 0, 0.08);
+
+  /* Surfaces (card fills) */
+  --color-bilio-surface: rgba(255, 255, 255, 0.025);
+  --color-bilio-surface-light: rgba(255, 255, 255, 0.04);
+  --color-bilio-surface-hover: rgba(254, 206, 0, 0.06);
+  --color-bilio-surface-gold: rgba(254, 206, 0, 0.08);
+
+  /* Fonts */
+  --font-heading: 'Archivo', sans-serif;
+  --font-body: 'Hind Vadodara', sans-serif;
+
+  /* Bounce-dot keyframes */
+  --animate-bounce-dot: bounce-dot 0.6s infinite alternate;
+}
+
+@keyframes bounce-dot {
+  from { transform: translateY(0); opacity: 1; }
+  to { transform: translateY(-5px); opacity: 0.6; }
+}
+
+/* ── Custom Utilities ── */
+@utility text-gradient-gold {
+  background: linear-gradient(90deg, #FECE00, #FEB601);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@utility bg-gradient-gold {
+  background: linear-gradient(135deg, #FECE00 0%, #FEB601 100%);
+}
+
+@utility glass-card {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(20px);
+}
+
+@utility btn-glow {
+  box-shadow: 0 4px 20px rgba(254, 206, 0, 0.2);
+  &:hover {
+    box-shadow: 0 6px 28px rgba(254, 206, 0, 0.45);
+    transform: translateY(-1px);
+  }
+}
