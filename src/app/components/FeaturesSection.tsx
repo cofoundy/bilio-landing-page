@@ -351,10 +351,11 @@ function ExpenseMockup() {
 
 /* ── Section wrapper ── */
 function FeatureRow({
-  tag, tagColor, headline, highlightWord, description, proof, mockup, reversed = false,
+  tag, tagColor, headline, highlightWord, description, proof, mockup, reversed = false, ctaLabel, ctaHref,
 }: {
   tag: string; tagColor: string; headline: string; highlightWord: string;
   description: string; proof: string; mockup: React.ReactNode; reversed?: boolean;
+  ctaLabel?: string; ctaHref?: string;
 }) {
   return (
     <div
@@ -388,6 +389,19 @@ function FeatureRow({
           </svg>
           <span className="text-white/[0.38] font-body text-[13px] leading-[1.5]">{proof}</span>
         </div>
+
+        {ctaLabel && ctaHref && (
+          <a
+            href={ctaHref}
+            onClick={(e) => {
+              e.preventDefault();
+              document.getElementById(ctaHref.replace('#', ''))?.scrollIntoView({ behavior: 'smooth' });
+            }}
+            className="inline-block mt-6 bg-gradient-gold text-bilio-bg font-heading text-sm font-extrabold px-6 py-3 rounded-[12px] tracking-tight transition-all duration-200 btn-glow hover:shadow-[0_4px_24px_rgba(254,206,0,0.35)]"
+          >
+            {ctaLabel}
+          </a>
+        )}
       </ScrollReveal>
 
       <ScrollReveal className={`flex justify-center ${reversed ? "md:[direction:ltr]" : ""}`}>
@@ -400,7 +414,7 @@ function FeatureRow({
 export function FeaturesSection() {
   const sections = [
     {
-      tag: "Chat primero",
+      tag: "Tan fácil como chatear",
       tagColor: "#FECE00",
       headline: "Solo dile cuánto gastaste.",
       highlightWord: "cuánto gastaste.",
@@ -409,6 +423,8 @@ export function FeaturesSection() {
       mockup: <WhatsAppAnimatedMockup conversation={chatConversation} />,
       reversed: false,
       bg: "bg-bilio-bg",
+      ctaLabel: "Quiero acceso anticipado →",
+      ctaHref: "#waitlist",
     },
     {
       tag: "Gastos inteligentes",

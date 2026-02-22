@@ -2,10 +2,10 @@ import { TableProperties, CircleHelp, ShieldAlert, Smartphone } from "lucide-rea
 import { ScrollReveal } from "./motion/ScrollReveal";
 
 const painPoints = [
-  { icon: TableProperties, pain: "Planillas que nunca llenas", fix: "Solo escribe en el chat" },
-  { icon: CircleHelp, pain: "No sabes en qué gastas", fix: "Bilio te lo dice al toque" },
-  { icon: ShieldAlert, pain: "Vergüenza con el dinero", fix: "Bilio no te juzga, nunca" },
-  { icon: Smartphone, pain: "Apps complicadas de aprender", fix: "Si usas WhatsApp, ya sabes" },
+  { icon: TableProperties, emoji: "📊", pain: "Planillas que nunca llenas", fix: "Solo escribe en el chat", fixEmoji: "💬" },
+  { icon: CircleHelp, emoji: "🤷", pain: "No sabes en qué gastas", fix: "Bilio te lo dice al toque", fixEmoji: "✅" },
+  { icon: ShieldAlert, emoji: "😣", pain: "Vergüenza con el dinero", fix: "Bilio no te juzga, nunca", fixEmoji: "🤝" },
+  { icon: Smartphone, emoji: "😵‍💫", pain: "Apps complicadas de aprender", fix: "Si usas WhatsApp, ya sabes", fixEmoji: "📱" },
 ];
 
 export function ProblemSection() {
@@ -64,11 +64,13 @@ export function ProblemSection() {
                 <div className="mb-4 w-10 h-10 rounded-xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-center transition-all duration-300 group-hover:border-bilio-primary/20">
                   <item.icon className="w-5 h-5 text-white/35 group-hover:text-bilio-primary/80 transition-colors duration-300" strokeWidth={1.5} />
                 </div>
-                <div className="text-white/[0.28] font-body text-[13px] line-through decoration-white/15 mb-2">
+                <div className="text-white/[0.28] font-body text-[13px] line-through decoration-white/15 mb-2 flex items-center gap-1.5">
+                  <span className="no-underline">{item.emoji}</span>
                   {item.pain}
                 </div>
-                <div className="text-bilio-primary font-heading text-sm font-bold tracking-tight">
-                  → {item.fix}
+                <div className="text-bilio-primary font-heading text-sm font-bold tracking-tight flex items-center gap-1.5">
+                  <span>{item.fixEmoji}</span>
+                  {item.fix}
                 </div>
               </div>
             </div>
