@@ -3,7 +3,6 @@ import imgHeroBg from "@/assets/8d4d7d2a21d90b549fc4e0b21f5f2b2e452b0fa2.png";
 import { duration, ease } from "./motion/tokens";
 import { useReducedMotion } from "./motion/useReducedMotion";
 import { useParallax } from "./motion/useParallax";
-import { PlanSelector } from "./PlanSelector";
 import { useWaitlist, useWaitlistDispatch } from "../waitlist/WaitlistContext";
 import { submitWaitlist } from "../waitlist/submitWaitlist";
 
@@ -130,21 +129,8 @@ export function HeroSection() {
             <>
               <form
                 onSubmit={handleSubmit}
-                className="flex flex-col gap-2.5 mb-3 w-full"
+                className="flex gap-2.5 flex-wrap justify-center mb-3 w-full"
               >
-                {/* Name input */}
-                <div className="bg-white/5 border border-white/[0.12] rounded-[14px] px-[18px] py-3 backdrop-blur-[16px] transition-[border-color] duration-200">
-                  <input
-                    type="text"
-                    value={state.name}
-                    onChange={(e) => dispatch({ type: 'SET_NAME', name: e.target.value })}
-                    placeholder="Tu nombre"
-                    className="w-full bg-transparent border-none outline-none text-bilio-text font-body text-[15px]"
-                  />
-                </div>
-
-                {/* Email + CTA row */}
-                <div className="flex gap-2.5 flex-wrap justify-center">
                 <div className="flex-1 min-w-[220px] bg-white/5 border border-white/[0.12] rounded-[14px] p-1 pl-[18px] flex items-center gap-2 backdrop-blur-[16px] transition-[border-color] duration-200">
                   <input
                     type="email"
@@ -175,47 +161,12 @@ export function HeroSection() {
                     {state.submitting ? 'Enviando...' : 'Quiero ser el primero'}
                   </motion.button>
                 </div>
-                </div>
               </form>
 
               {/* Error message */}
               {state.error && (
                 <p className="text-bilio-danger font-body text-sm mb-2 text-center">{state.error}</p>
               )}
-
-              {/* Plan selector (compact) */}
-              <div className="mb-3">
-                <PlanSelector
-                  value={state.plan}
-                  onChange={(plan) => dispatch({ type: 'SET_PLAN', plan })}
-                  size="sm"
-                />
-              </div>
-
-              {/* Lock price checkbox */}
-              <label className="flex items-center gap-2.5 justify-center cursor-pointer group">
-                <div className="relative flex-shrink-0">
-                  <input
-                    type="checkbox"
-                    checked={state.lockPrice}
-                    onChange={(e) => dispatch({ type: 'SET_LOCK_PRICE', lockPrice: e.target.checked })}
-                    className="sr-only peer"
-                  />
-                  <div className="w-5 h-5 rounded-[5px] border-2 border-white/20 bg-white/[0.04] transition-all duration-200 peer-checked:bg-bilio-primary peer-checked:border-bilio-primary peer-checked:shadow-[0_0_12px_rgba(254,206,0,0.35)]" />
-                  {state.lockPrice && (
-                    <svg
-                      className="absolute inset-0 w-5 h-5 p-[3px] text-bilio-bg pointer-events-none"
-                      viewBox="0 0 14 14"
-                      fill="none"
-                    >
-                      <path d="M3 7L6 10L11 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  )}
-                </div>
-                <span className="text-white/40 font-body text-[13px] group-hover:text-white/60 transition-colors">
-                  Quiero asegurar el precio de lanzamiento
-                </span>
-              </label>
             </>
           ) : (
             <div className="flex items-center gap-2.5 bg-bilio-success/10 border border-bilio-success/30 rounded-[14px] px-6 py-3.5 mb-4 justify-center">
