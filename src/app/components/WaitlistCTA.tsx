@@ -196,7 +196,7 @@ export function WaitlistCTA() {
         )}
 
         <p className={`text-white/20 font-body text-[13px] ${state.submitted ? "mt-4" : ""}`}>
-          Sin tarjeta · Sin spam · Cancela cuando quieras
+          Unirse es 100% gratis · Sin spam · Solo novedades
         </p>
 
         {/* Trust micro signals */}

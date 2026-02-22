@@ -158,7 +158,7 @@ export function HeroSection() {
                     }
                     transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
                   >
-                    {state.submitting ? 'Enviando...' : 'Quiero ser el primero'}
+                    {state.submitting ? 'Enviando...' : 'Quiero acceso anticipado'}
                   </motion.button>
                 </div>
               </form>
@@ -187,7 +187,7 @@ export function HeroSection() {
           className="text-bilio-text-ghost font-body text-[13px] mb-13 mt-4"
           variants={reduced ? {} : fadeBlurUp(0.38)}
         >
-          Sin tarjeta. Sin compromiso. Cancela cuando quieras.
+          Unirse es 100% gratis. Te avisamos cuando esté listo.
         </motion.p>
 
         {/* Social proof */}
@@ -196,13 +196,19 @@ export function HeroSection() {
           variants={reduced ? {} : fadeBlurUp(0.45)}
         >
           <div className="flex">
-            {["#FECE00", "#5E987D", "#123149", "#FEB601", "#B86A00"].map((color, i) => (
+            {[
+              { bg: "#FECE00", emoji: "\ud83d\ude0a" },
+              { bg: "#5E987D", emoji: "\ud83d\ude04" },
+              { bg: "#123149", emoji: "\ud83d\ude0e" },
+              { bg: "#FEB601", emoji: "\ud83e\udd29" },
+              { bg: "#B86A00", emoji: "\ud83d\ude09" },
+            ].map((avatar, i) => (
               <div
                 key={i}
-                className="w-8 h-8 rounded-full border-2 border-bilio-bg-deep flex items-center justify-center text-[10px] font-extrabold font-heading"
-                style={{ background: color, marginLeft: i === 0 ? 0 : -9, color: i === 0 || i === 3 ? "#151515" : "#fff" }}
+                className="w-8 h-8 rounded-full border-2 border-bilio-bg-deep flex items-center justify-center text-[14px] leading-none"
+                style={{ background: avatar.bg, marginLeft: i === 0 ? 0 : -9 }}
               >
-                {String.fromCharCode(65 + i)}
+                {avatar.emoji}
               </div>
             ))}
           </div>

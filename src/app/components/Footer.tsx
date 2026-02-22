@@ -138,7 +138,7 @@ export function Footer() {
                 <span className="text-bilio-success font-body text-sm font-semibold">¡Listo! Te avisamos pronto.</span>
               </div>
             )}
-            <p className="text-bilio-text-whisper font-body text-xs mt-[7px]">Sin spam. Sin tarjeta. Sin rodeos.</p>
+            <p className="text-bilio-text-whisper font-body text-xs mt-[7px]">Sin spam. Solo novedades de Bilio.</p>
           </div>
         </div>
 
