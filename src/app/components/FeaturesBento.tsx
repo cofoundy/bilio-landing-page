@@ -1,5 +1,32 @@
+import { useRef } from "react";
+import { useInView } from "framer-motion";
+import { Flame } from "lucide-react";
+import { ScrollReveal } from "./motion/ScrollReveal";
+import { useTilt3D } from "./motion/useTilt3D";
+import { VirtualCreditCard } from "./motion/VirtualCreditCard";
+
+/* ── Tilt wrapper for bento cards ── */
+function TiltCard({ children, colClass }: { children: React.ReactNode; colClass: string }) {
+  const { ref, style, lightStyle, handlers } = useTilt3D();
+
+  return (
+    <div
+      ref={ref}
+      className={`${colClass} glass-card rounded-[20px] p-6 transition-[background-color,border-color] duration-300 min-h-[220px] relative overflow-hidden`}
+      style={style}
+      {...handlers}
+    >
+      <div style={lightStyle} aria-hidden="true" />
+      <div className="relative z-[1] h-full">{children}</div>
+    </div>
+  );
+}
+
 /* ── Budget card ── */
 function BudgetCard() {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, amount: 0.4 });
+
   const items = [
     { emoji: "🍕", name: "Comida", used: 320, max: 500, pct: 64 },
     { emoji: "🎮", name: "Ocio", used: 195, max: 200, pct: 97 },
@@ -7,7 +34,7 @@ function BudgetCard() {
   ];
 
   return (
-    <div className="flex flex-col gap-4 h-full">
+    <div ref={ref} className="flex flex-col gap-4 h-full">
       <div className="flex justify-between items-center">
         <div>
           <div className="text-bilio-text font-heading text-base font-bold tracking-tight">Te avisa antes de pasarte</div>
@@ -18,7 +45,7 @@ function BudgetCard() {
         </div>
       </div>
 
-      {items.map((item) => {
+      {items.map((item, i) => {
         const color = item.pct >= 90 ? "#ef4444" : item.pct >= 75 ? "#FEB601" : "#5E987D";
         return (
           <div key={item.name}>
@@ -28,7 +55,7 @@ function BudgetCard() {
                 <span className="text-white/65 font-body text-[13px]">{item.name}</span>
                 {item.pct >= 90 && (
                   <span className="bg-bilio-danger/[0.12] border border-bilio-danger/25 rounded-full px-[7px] py-0.5 text-bilio-danger text-[10px] font-body font-bold">
-                    ⚠ Cuidado
+                    Cuidado
                   </span>
                 )}
               </div>
@@ -36,8 +63,12 @@ function BudgetCard() {
             </div>
             <div className="h-1.5 bg-white/[0.06] rounded-full overflow-hidden">
               <div
-                className="h-full rounded-full transition-[width] duration-500"
-                style={{ width: `${item.pct}%`, background: `linear-gradient(90deg, ${color}99, ${color})` }}
+                className="h-full rounded-full"
+                style={{
+                  width: inView ? `${item.pct}%` : "0%",
+                  background: `linear-gradient(90deg, ${color}99, ${color})`,
+                  transition: `width 0.8s cubic-bezier(0.33, 1, 0.68, 1) ${0.2 + i * 0.15}s`,
+                }}
               />
             </div>
           </div>
@@ -101,19 +132,22 @@ function DebtsCard() {
 
 /* ── Savings card ── */
 function SavingsCard() {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, amount: 0.4 });
+
   const goals = [
-    { name: "Vacaciones Japón 🗾", saved: 4000, target: 10000, months: 6 },
-    { name: "Laptop nueva 💻", saved: 1800, target: 2500, months: 2 },
+    { name: "Vacaciones Japon", saved: 4000, target: 10000, months: 6 },
+    { name: "Laptop nueva", saved: 1800, target: 2500, months: 2 },
   ];
 
   return (
-    <div className="flex flex-col gap-4 h-full">
+    <div ref={ref} className="flex flex-col gap-4 h-full">
       <div>
         <div className="text-bilio-text font-heading text-base font-bold tracking-tight">Ahorra para lo que importa</div>
         <div className="text-white/30 font-body text-xs mt-[3px]">Metas de ahorro</div>
       </div>
 
-      {goals.map((g) => {
+      {goals.map((g, i) => {
         const pct = Math.round((g.saved / g.target) * 100);
         return (
           <div key={g.name} className="bg-white/[0.03] border border-bilio-border rounded-[14px] px-4 py-3.5">
@@ -122,7 +156,13 @@ function SavingsCard() {
               <div className="text-bilio-primary font-heading text-[13px] font-extrabold">{pct}%</div>
             </div>
             <div className="h-1.5 bg-white/[0.06] rounded-full mb-2 overflow-hidden">
-              <div className="h-full bg-gradient-gold rounded-full" style={{ width: `${pct}%` }} />
+              <div
+                className="h-full bg-gradient-gold rounded-full"
+                style={{
+                  width: inView ? `${pct}%` : "0%",
+                  transition: `width 0.8s cubic-bezier(0.33, 1, 0.68, 1) ${0.2 + i * 0.15}s`,
+                }}
+              />
             </div>
             <div className="flex justify-between">
               <span className="text-white/35 font-body text-[11px]">S/{g.saved.toLocaleString()} / S/{g.target.toLocaleString()}</span>
@@ -137,15 +177,17 @@ function SavingsCard() {
 
 /* ── Streak card ── */
 function StreakCard() {
-  const levels = ["❄️ Frío", "🌤 Tibio", "🔥 Caliente", "⚡ En Llamas", "🏆 Legendario"];
+  const levels = ["Frio", "Tibio", "Caliente", "En Llamas", "Legendario"];
   const currentLevel = 2;
 
   return (
     <div className="flex flex-col items-center justify-center gap-4 h-full text-center">
-      <div className="text-[48px] leading-none">🔥</div>
+      <div className="w-14 h-14 rounded-2xl bg-bilio-primary/10 border border-bilio-primary/20 flex items-center justify-center">
+        <Flame className="w-7 h-7 text-bilio-primary" strokeWidth={1.8} />
+      </div>
       <div>
         <div className="text-bilio-primary font-heading text-[42px] font-extrabold tracking-[-0.04em] leading-none">15</div>
-        <div className="text-white/35 font-body text-[13px] mt-1">días seguidos</div>
+        <div className="text-white/35 font-body text-[13px] mt-1">dias seguidos</div>
       </div>
 
       <div className="bg-bilio-surface-gold border border-bilio-primary/20 rounded-[10px] px-3.5 py-1.5">
@@ -162,7 +204,7 @@ function StreakCard() {
       </div>
 
       <p className="text-white/[0.28] font-body text-xs leading-[1.5]">
-        Usuarios con 7+ días registran <span className="text-bilio-primary font-bold">3x más</span>. El hábito se vuelve automático.
+        Usuarios con 7+ dias registran <span className="text-bilio-primary font-bold">3x más</span>. El hábito se vuelve automático.
       </p>
     </div>
   );
@@ -171,8 +213,8 @@ function StreakCard() {
 /* ── Emotional card ── */
 function EmotionalCard() {
   const exchanges = [
-    { from: "user", text: "Gasté 200 en ropa, tenía un día horrible 😔" },
-    { from: "bilio", text: "Días así pasan 💛 Registrado: S/200 en 🛍 Ropa. ¿Quieres ver cómo vas con tu presupuesto?" },
+    { from: "user", text: "Gasté 200 en ropa, tenía un día horrible" },
+    { from: "bilio", text: "Días así pasan. Registrado: S/200 en Ropa. ¿Quieres ver cómo vas con tu presupuesto?" },
   ];
 
   return (
@@ -201,7 +243,7 @@ function EmotionalCard() {
       <div className="mt-auto flex flex-wrap gap-1.5">
         {["Nunca dice 'deberías'", "Celebra tus logros", "Respuestas cortas"].map((tag) => (
           <div key={tag} className="bg-bilio-success/10 border border-bilio-success/20 rounded-full px-2.5 py-1">
-            <span className="text-bilio-success font-body text-[11px] font-semibold">✓ {tag}</span>
+            <span className="text-bilio-success font-body text-[11px] font-semibold">{tag}</span>
           </div>
         ))}
       </div>
@@ -216,6 +258,14 @@ export function FeaturesBento() {
     { content: <SavingsCard />, colClass: "col-span-12 lg:col-span-5" },
     { content: <StreakCard />, colClass: "col-span-12 sm:col-span-6 lg:col-span-3" },
     { content: <EmotionalCard />, colClass: "col-span-12 sm:col-span-6 lg:col-span-4" },
+    {
+      content: (
+        <div className="flex items-center justify-center h-full">
+          <VirtualCreditCard />
+        </div>
+      ),
+      colClass: "col-span-12 lg:col-span-5",
+    },
   ];
 
   return (
@@ -225,7 +275,7 @@ export function FeaturesBento() {
 
       <div className="max-w-[1200px] mx-auto">
         {/* Header */}
-        <div className="text-center mb-16">
+        <ScrollReveal className="text-center mb-16">
           <div className="inline-flex items-center gap-2 bg-bilio-secondary/[0.08] border border-bilio-secondary/[0.18] rounded-full px-3.5 py-[5px] mb-5">
             <span className="text-bilio-secondary font-body text-xs font-semibold tracking-[0.08em] uppercase">Todo lo demás</span>
           </div>
@@ -236,19 +286,18 @@ export function FeaturesBento() {
           <p className="text-bilio-text-faint font-body text-lg max-w-[500px] mx-auto leading-[1.6]">
             Presupuestos, deudas, ahorro, rachas y coacheo emocional — todo en una sola conversación.
           </p>
-        </div>
+        </ScrollReveal>
 
         {/* Grid */}
-        <div className="grid grid-cols-12 gap-4">
-          {cards.map((card, i) => (
-            <div
-              key={i}
-              className={`${card.colClass} glass-card rounded-[20px] p-6 transition-all duration-300 min-h-[220px] hover:bg-bilio-surface-hover hover:border-bilio-border-gold hover:-translate-y-[3px]`}
-            >
-              {card.content}
-            </div>
-          ))}
-        </div>
+        <ScrollReveal>
+          <div className="grid grid-cols-12 gap-4">
+            {cards.map((card, i) => (
+              <TiltCard key={i} colClass={card.colClass}>
+                {card.content}
+              </TiltCard>
+            ))}
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );
