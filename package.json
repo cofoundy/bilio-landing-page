@@ -9,6 +9,8 @@
   },
   "dependencies": {
     "clsx": "2.1.1",
+    "framer-motion": "^12.34.3",
+    "lucide-react": "^0.575.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "tailwind-merge": "3.2.0",
@@ -23,6 +25,9 @@
     "vite": "6.3.5"
   },
   "pnpm": {
-    "onlyBuiltDependencies": ["@tailwindcss/oxide", "esbuild"]
+    "onlyBuiltDependencies": [
+      "@tailwindcss/oxide",
+      "esbuild"
+    ]
   }
 }
