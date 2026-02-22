@@ -45,19 +45,26 @@ export function ProblemSection() {
           {painPoints.map((item) => (
             <div
               key={item.pain}
-              className="group glass-card rounded-2xl p-5 relative overflow-hidden transition-all duration-300 shadow-[0_4px_24px_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.05)] hover:bg-bilio-surface-hover hover:border-bilio-border-gold hover:-translate-y-2 hover:shadow-[0_8px_32px_rgba(254,206,0,0.08),inset_0_1px_0_rgba(255,255,255,0.08)]"
+              className="group rounded-2xl p-5 relative overflow-hidden transition-all duration-300 bg-white/[0.02] border border-transparent hover:border-transparent hover:-translate-y-1 hover:shadow-[0_8px_32px_rgba(0,0,0,0.3)]"
+              style={{ backgroundClip: "padding-box" }}
             >
-              {/* Shimmer sweep on hover */}
+              {/* Gradient border overlay */}
               <div
-                className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out pointer-events-none"
-                style={{ background: "linear-gradient(105deg, transparent 40%, rgba(254,206,0,0.06) 50%, transparent 60%)" }}
+                className="absolute inset-0 rounded-2xl pointer-events-none opacity-30 group-hover:opacity-100 transition-opacity duration-500"
+                style={{
+                  padding: "1px",
+                  background: "linear-gradient(135deg, transparent 20%, rgba(254,206,0,0.4) 50%, transparent 80%)",
+                  WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                  WebkitMaskComposite: "xor",
+                  maskComposite: "exclude",
+                }}
                 aria-hidden="true"
               />
               <div className="relative z-[1]">
-                <div className="mb-3 w-10 h-10 rounded-xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-center transition-transform duration-300 group-hover:rotate-[3deg]">
-                  <item.icon className="w-5 h-5 text-white/40 group-hover:text-bilio-primary transition-colors duration-300" strokeWidth={1.5} />
+                <div className="mb-4 w-10 h-10 rounded-xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-center transition-all duration-300 group-hover:border-bilio-primary/20">
+                  <item.icon className="w-5 h-5 text-white/35 group-hover:text-bilio-primary/80 transition-colors duration-300" strokeWidth={1.5} />
                 </div>
-                <div className="text-white/[0.28] font-body text-[13px] line-through decoration-white/15 mb-1.5">
+                <div className="text-white/[0.28] font-body text-[13px] line-through decoration-white/15 mb-2">
                   {item.pain}
                 </div>
                 <div className="text-bilio-primary font-heading text-sm font-bold tracking-tight">
