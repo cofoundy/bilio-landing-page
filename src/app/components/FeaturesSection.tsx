@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
+import { useInView } from "framer-motion";
 import { BilioLogoMark } from "./BilioLogo";
 import waBgDark from "@/assets/d36bcceceaa1d390489ec70d93154311.jpg";
 import { ScrollReveal } from "./motion/ScrollReveal";
@@ -288,6 +289,9 @@ function WhatsAppAnimatedMockup({ conversation }: { conversation: Message[] }) {
 
 /* ── Expense breakdown mockup ── */
 function ExpenseMockup() {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, amount: 0.4 });
+
   const cats = [
     { emoji: "🍕", name: "Comida", pct: 35, amount: "S/420" },
     { emoji: "🚕", name: "Transporte", pct: 20, amount: "S/240" },
@@ -297,7 +301,7 @@ function ExpenseMockup() {
   ];
 
   return (
-    <div className="bg-[rgba(15,15,12,0.95)] border border-bilio-success/20 rounded-3xl p-6 max-w-[360px] w-full shadow-[0_40px_80px_rgba(0,0,0,0.5),0_0_60px_rgba(94,152,125,0.07)]">
+    <div ref={ref} className="bg-[rgba(15,15,12,0.95)] border border-bilio-success/20 rounded-3xl p-6 max-w-[360px] w-full shadow-[0_40px_80px_rgba(0,0,0,0.5),0_0_60px_rgba(94,152,125,0.07)]">
       <div className="flex justify-between items-start mb-5">
         <div>
           <div className="text-white/[0.38] font-body text-[11px] font-semibold tracking-[0.08em] uppercase mb-1">Este mes</div>
@@ -310,7 +314,7 @@ function ExpenseMockup() {
       </div>
 
       <div className="flex flex-col gap-2.5">
-        {cats.map((c) => (
+        {cats.map((c, i) => (
           <div key={c.name}>
             <div className="flex justify-between items-center mb-[5px]">
               <div className="flex items-center gap-2">
@@ -325,7 +329,10 @@ function ExpenseMockup() {
             <div className="h-[5px] bg-white/[0.06] rounded-full overflow-hidden">
               <div
                 className="h-full bg-gradient-gold rounded-full opacity-80"
-                style={{ width: `${c.pct * 2.8}%` }}
+                style={{
+                  width: inView ? `${c.pct * 2.8}%` : "0%",
+                  transition: `width 0.8s cubic-bezier(0.33, 1, 0.68, 1) ${0.2 + i * 0.12}s`,
+                }}
               />
             </div>
           </div>
