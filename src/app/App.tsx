@@ -12,7 +12,7 @@ import { Footer } from "./components/Footer";
 
 export default function App() {
   return (
-    <div style={{ minHeight: "100vh", background: "#151515", fontFamily: "Hind Vadodara, sans-serif", overflowX: "hidden" }}>
+    <div className="min-h-screen bg-bilio-bg font-body overflow-x-hidden">
       <Navbar />
       <HeroSection />
       <SocialProofBar />

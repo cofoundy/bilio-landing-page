@@ -21,67 +21,59 @@ const columns = [
 
 export function Footer() {
   return (
-    <footer style={{ background: "#0d0d0d", borderTop: "1px solid rgba(254,206,0,0.07)", padding: "72px 24px 36px", position: "relative", overflow: "hidden" }}>
-      <div style={{ position: "absolute", top: 0, left: "50%", transform: "translateX(-50%)", width: 700, height: 180, background: "radial-gradient(ellipse at top center, rgba(254,206,0,0.04) 0%, transparent 70%)", pointerEvents: "none" }} />
+    <footer className="bg-bilio-bg-footer border-t border-bilio-primary/[0.07] pt-[72px] pb-9 px-6 relative overflow-hidden">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[180px] pointer-events-none" style={{ background: "radial-gradient(ellipse at top center, rgba(254,206,0,0.04) 0%, transparent 70%)" }} />
 
-      <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+      <div className="max-w-[1200px] mx-auto">
         {/* Top row */}
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 56, flexWrap: "wrap", gap: 40 }}>
+        <div className="flex justify-between items-start mb-14 flex-wrap gap-10">
           {/* Brand */}
-          <div style={{ maxWidth: 320 }}>
-            <div style={{ marginBottom: 14 }}><BilioLogoFull size={40} /></div>
-            <p style={{ color: "rgba(255,255,255,0.3)", fontFamily: "Hind Vadodara, sans-serif", fontSize: 14, lineHeight: 1.7, letterSpacing: "0.01em", marginBottom: 18 }}>
+          <div className="max-w-[320px]">
+            <div className="mb-3.5"><BilioLogoFull size={40} /></div>
+            <p className="text-white/30 font-body text-sm leading-[1.7] tracking-[0.01em] mb-[18px]">
               Tu coach de finanzas que habla tu idioma, entiende tu plata y no te juzga.
             </p>
-            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-              <span style={{ fontSize: 18 }}>🇵🇪</span>
-              <span style={{ color: "rgba(255,255,255,0.22)", fontFamily: "Hind Vadodara, sans-serif", fontSize: 13 }}>Hecho con 💛 en Lima, Perú</span>
+            <div className="flex items-center gap-2">
+              <span className="text-lg">🇵🇪</span>
+              <span className="text-white/[0.22] font-body text-[13px]">Hecho con 💛 en Lima, Perú</span>
             </div>
           </div>
 
           {/* Waitlist mini form */}
           <div>
-            <div style={{ color: "#ffffff", fontFamily: "Archivo, sans-serif", fontSize: 14, fontWeight: 700, letterSpacing: "-0.01em", marginBottom: 8 }}>
+            <div className="text-bilio-text font-heading text-sm font-bold tracking-tight mb-2">
               Únete a la lista de espera
             </div>
-            <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+            <div className="flex gap-2 flex-wrap">
               <input
                 type="email"
                 placeholder="tu@correo.com"
-                style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.09)", borderRadius: 10, padding: "10px 14px", color: "#ffffff", fontFamily: "Hind Vadodara, sans-serif", fontSize: 14, outline: "none", width: 210, transition: "border-color 0.2s" }}
-                onFocus={(e) => (e.currentTarget.style.borderColor = "rgba(254,206,0,0.3)")}
-                onBlur={(e) => (e.currentTarget.style.borderColor = "rgba(255,255,255,0.09)")}
+                className="bg-bilio-surface-light border border-white/[0.09] rounded-[10px] px-3.5 py-2.5 text-bilio-text font-body text-sm outline-none w-[210px] transition-[border-color] duration-200 focus:border-bilio-primary/30"
               />
-              <button
-                style={{ background: "linear-gradient(135deg, #FECE00, #FEB601)", border: "none", borderRadius: 10, padding: "10px 16px", color: "#151515", fontFamily: "Archivo, sans-serif", fontSize: 14, fontWeight: 800, cursor: "pointer", whiteSpace: "nowrap", boxShadow: "0 4px 16px rgba(254,206,0,0.2)", transition: "all 0.2s ease" }}
-                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.boxShadow = "0 6px 24px rgba(254,206,0,0.35)"; }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 16px rgba(254,206,0,0.2)"; }}
-              >
+              <button className="bg-gradient-gold border-none rounded-[10px] px-4 py-2.5 text-bilio-bg font-heading text-sm font-extrabold cursor-pointer whitespace-nowrap transition-all duration-200 btn-glow">
                 Quiero entrar
               </button>
             </div>
-            <p style={{ color: "rgba(255,255,255,0.18)", fontFamily: "Hind Vadodara, sans-serif", fontSize: 12, marginTop: 7 }}>Sin spam. Sin tarjeta. Sin rodeos.</p>
+            <p className="text-bilio-text-whisper font-body text-xs mt-[7px]">Sin spam. Sin tarjeta. Sin rodeos.</p>
           </div>
         </div>
 
         {/* Divider */}
-        <div style={{ height: 1, background: "linear-gradient(90deg, transparent, rgba(254,206,0,0.1), rgba(94,152,125,0.08), transparent)", marginBottom: 48 }} />
+        <div className="h-px mb-12" style={{ background: "linear-gradient(90deg, transparent, rgba(254,206,0,0.1), rgba(94,152,125,0.08), transparent)" }} />
 
         {/* Link columns */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))", gap: 36, marginBottom: 52 }}>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-9 mb-13">
           {columns.map((col) => (
             <div key={col.title}>
-              <div style={{ color: "rgba(255,255,255,0.55)", fontFamily: "Archivo, sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: "0.07em", textTransform: "uppercase", marginBottom: 18 }}>
+              <div className="text-white/55 font-heading text-[11px] font-bold tracking-[0.07em] uppercase mb-[18px]">
                 {col.title}
               </div>
-              <div style={{ display: "flex", flexDirection: "column", gap: 11 }}>
+              <div className="flex flex-col gap-[11px]">
                 {col.links.map((link) => (
                   <a
                     key={link}
                     href="#"
-                    style={{ color: "rgba(255,255,255,0.3)", fontFamily: "Hind Vadodara, sans-serif", fontSize: 14, textDecoration: "none", transition: "color 0.2s ease", letterSpacing: "0.01em" }}
-                    onMouseEnter={(e) => ((e.target as HTMLElement).style.color = "#FECE00")}
-                    onMouseLeave={(e) => ((e.target as HTMLElement).style.color = "rgba(255,255,255,0.3)")}
+                    className="text-white/30 font-body text-sm no-underline tracking-[0.01em] transition-colors duration-200 hover:text-bilio-primary"
                   >
                     {link}
                   </a>
@@ -92,19 +84,19 @@ export function Footer() {
         </div>
 
         {/* Divider */}
-        <div style={{ height: 1, background: "rgba(255,255,255,0.05)", marginBottom: 28 }} />
+        <div className="h-px bg-white/5 mb-7" />
 
         {/* Bottom */}
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 16 }}>
-          <div style={{ color: "rgba(255,255,255,0.18)", fontFamily: "Hind Vadodara, sans-serif", fontSize: 13 }}>
+        <div className="flex justify-between items-center flex-wrap gap-4">
+          <div className="text-bilio-text-whisper font-body text-[13px]">
             © 2025 Bilio · Lima, Perú 🇵🇪 · Todos los derechos reservados
           </div>
 
           {/* Trust tags */}
-          <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
+          <div className="flex items-center gap-2 flex-wrap">
             {["🔒 Datos seguros", "🚫🏦 Sin acceso bancario", "🆓 Gratis para empezar"].map((badge) => (
-              <div key={badge} style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: 100, padding: "4px 12px" }}>
-                <span style={{ color: "rgba(255,255,255,0.25)", fontFamily: "Hind Vadodara, sans-serif", fontSize: 11 }}>{badge}</span>
+              <div key={badge} className="bg-white/[0.03] border border-bilio-border rounded-full px-3 py-1">
+                <span className="text-bilio-text-ghost font-body text-[11px]">{badge}</span>
               </div>
             ))}
           </div>

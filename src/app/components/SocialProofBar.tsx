@@ -9,39 +9,17 @@ const stats = [
 
 export function SocialProofBar() {
   return (
-    <div
-      style={{
-        background: "#111111",
-        borderTop: "1px solid rgba(254,206,0,0.08)",
-        borderBottom: "1px solid rgba(254,206,0,0.08)",
-        padding: "16px 24px",
-        overflow: "hidden",
-      }}
-    >
-      <div
-        style={{
-          maxWidth: 1200,
-          margin: "0 auto",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          flexWrap: "wrap",
-          gap: 0,
-        }}
-      >
+    <div className="bg-bilio-bg-dark border-y border-bilio-border-gold-faint px-6 py-4 overflow-hidden">
+      <div className="max-w-[1200px] mx-auto flex items-center justify-center flex-wrap">
         {stats.map((s, i) => (
           <div
             key={s.label}
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 8,
-              padding: "6px 28px",
-              borderRight: i < stats.length - 1 ? "1px solid rgba(255,255,255,0.07)" : "none",
-            }}
+            className={`flex items-center gap-2 px-7 py-1.5 ${
+              i < stats.length - 1 ? "border-r border-white/[0.07]" : ""
+            }`}
           >
-            <span style={{ fontSize: 15 }}>{s.icon}</span>
-            <span style={{ color: "rgba(255,255,255,0.4)", fontFamily: "Hind Vadodara, sans-serif", fontSize: 13, fontWeight: 500, whiteSpace: "nowrap" }}>
+            <span className="text-[15px]">{s.icon}</span>
+            <span className="text-white/40 font-body text-[13px] font-medium whitespace-nowrap">
               {s.label}
             </span>
           </div>

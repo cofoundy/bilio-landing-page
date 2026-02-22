@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { cn } from "./ui/utils";
 
 const faqs = [
   {
@@ -30,42 +31,39 @@ const faqs = [
 function AccordionItem({ q, a, isOpen, onToggle }: { q: string; a: string; isOpen: boolean; onToggle: () => void }) {
   return (
     <div
-      style={{
-        background: isOpen ? "rgba(254,206,0,0.04)" : "rgba(255,255,255,0.02)",
-        border: `1px solid ${isOpen ? "rgba(254,206,0,0.22)" : "rgba(255,255,255,0.07)"}`,
-        borderRadius: 16,
-        overflow: "hidden",
-        transition: "all 0.3s ease",
-        cursor: "pointer",
-      }}
+      className={cn(
+        "rounded-2xl overflow-hidden transition-all duration-300 cursor-pointer",
+        isOpen
+          ? "bg-bilio-primary/[0.04] border border-bilio-border-gold"
+          : "bg-white/[0.02] border border-bilio-border"
+      )}
       onClick={onToggle}
     >
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "20px 22px", gap: 16 }}>
-        <div style={{ color: isOpen ? "#ffffff" : "rgba(255,255,255,0.72)", fontFamily: "Archivo, sans-serif", fontSize: 16, fontWeight: 600, letterSpacing: "-0.01em", lineHeight: 1.4, flex: 1 }}>
+      <div className="flex justify-between items-center px-[22px] py-5 gap-4">
+        <div className={cn(
+          "font-heading text-base font-semibold tracking-tight leading-[1.4] flex-1",
+          isOpen ? "text-bilio-text" : "text-white/[0.72]"
+        )}>
           {q}
         </div>
-        <div
-          style={{
-            width: 28,
-            height: 28,
-            borderRadius: 8,
-            background: isOpen ? "rgba(254,206,0,0.14)" : "rgba(255,255,255,0.05)",
-            border: `1px solid ${isOpen ? "rgba(254,206,0,0.3)" : "rgba(255,255,255,0.08)"}`,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            flexShrink: 0,
-            transition: "all 0.3s ease",
-          }}
-        >
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style={{ transition: "transform 0.3s ease", transform: isOpen ? "rotate(45deg)" : "rotate(0deg)", color: isOpen ? "#FECE00" : "rgba(255,255,255,0.45)" }}>
+        <div className={cn(
+          "w-7 h-7 rounded-lg flex items-center justify-center shrink-0 transition-all duration-300",
+          isOpen
+            ? "bg-bilio-primary/[0.14] border border-bilio-primary/30"
+            : "bg-white/5 border border-white/[0.08]"
+        )}>
+          <svg
+            width="14" height="14" viewBox="0 0 14 14" fill="none"
+            className={cn("transition-transform duration-300", isOpen ? "rotate-45" : "rotate-0")}
+            style={{ color: isOpen ? "#FECE00" : "rgba(255,255,255,0.45)" }}
+          >
             <path d="M7 2V12M2 7H12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
           </svg>
         </div>
       </div>
 
-      <div style={{ maxHeight: isOpen ? 300 : 0, overflow: "hidden", transition: "max-height 0.35s ease" }}>
-        <div style={{ padding: "0 22px 20px", color: "rgba(255,255,255,0.43)", fontFamily: "Hind Vadodara, sans-serif", fontSize: 15, lineHeight: 1.75, letterSpacing: "0.01em", borderTop: "1px solid rgba(255,255,255,0.05)", paddingTop: 16 }}>
+      <div className={cn("overflow-hidden transition-[max-height] duration-350", isOpen ? "max-h-[300px]" : "max-h-0")}>
+        <div className="px-[22px] pb-5 pt-4 text-white/[0.43] font-body text-[15px] leading-[1.75] tracking-[0.01em] border-t border-white/5">
           {a}
         </div>
       </div>
@@ -77,23 +75,23 @@ export function FAQSection() {
   const [openIdx, setOpenIdx] = useState<number | null>(0);
 
   return (
-    <section style={{ background: "#151515", padding: "100px 24px", position: "relative", overflow: "hidden" }}>
-      <div style={{ position: "absolute", top: 0, left: "50%", transform: "translateX(-50%)", width: 600, height: 1, background: "linear-gradient(90deg, transparent, rgba(254,206,0,0.4), transparent)" }} />
+    <section className="bg-bilio-bg py-[100px] px-6 relative overflow-hidden">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-px" style={{ background: "linear-gradient(90deg, transparent, rgba(254,206,0,0.4), transparent)" }} />
 
-      <div style={{ maxWidth: 780, margin: "0 auto" }}>
-        <div style={{ textAlign: "center", marginBottom: 56 }}>
-          <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(94,152,125,0.1)", border: "1px solid rgba(94,152,125,0.2)", borderRadius: 100, padding: "5px 14px", marginBottom: 20 }}>
-            <span style={{ color: "#5E987D", fontFamily: "Hind Vadodara, sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase" }}>Preguntas frecuentes</span>
+      <div className="max-w-[780px] mx-auto">
+        <div className="text-center mb-14">
+          <div className="inline-flex items-center gap-2 bg-bilio-success/10 border border-bilio-success/20 rounded-full px-3.5 py-[5px] mb-5">
+            <span className="text-bilio-success font-body text-xs font-semibold tracking-[0.08em] uppercase">Preguntas frecuentes</span>
           </div>
-          <h2 style={{ color: "#ffffff", fontFamily: "Archivo, sans-serif", fontSize: "clamp(32px, 4vw, 52px)", fontWeight: 800, letterSpacing: "-0.03em", lineHeight: 1.1, marginBottom: 14 }}>
+          <h2 className="text-bilio-text font-heading font-extrabold tracking-[-0.03em] leading-[1.1] mb-3.5 text-[clamp(32px,4vw,52px)]">
             Lo que todos preguntan
           </h2>
-          <p style={{ color: "rgba(255,255,255,0.35)", fontFamily: "Hind Vadodara, sans-serif", fontSize: 17, lineHeight: 1.6 }}>
+          <p className="text-white/35 font-body text-[17px] leading-[1.6]">
             Sin letra pequeña. Sin tecnicismos.
           </p>
         </div>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+        <div className="flex flex-col gap-2.5">
           {faqs.map((faq, i) => (
             <AccordionItem
               key={i}
@@ -105,15 +103,11 @@ export function FAQSection() {
           ))}
         </div>
 
-        <div style={{ marginTop: 48, textAlign: "center", padding: "28px", background: "rgba(254,206,0,0.03)", border: "1px solid rgba(254,206,0,0.08)", borderRadius: 18 }}>
-          <p style={{ color: "rgba(255,255,255,0.38)", fontFamily: "Hind Vadodara, sans-serif", fontSize: 15, marginBottom: 14 }}>
+        <div className="mt-12 text-center p-7 bg-bilio-primary/[0.03] border border-bilio-border-gold-faint rounded-[18px]">
+          <p className="text-bilio-text-faint font-body text-[15px] mb-3.5">
             ¿Tienes otra pregunta? Escríbenos directamente.
           </p>
-          <button
-            style={{ background: "transparent", border: "1px solid rgba(254,206,0,0.22)", color: "#FECE00", fontFamily: "Archivo, sans-serif", fontSize: 14, fontWeight: 700, cursor: "pointer", padding: "11px 22px", borderRadius: 10, transition: "all 0.2s ease", letterSpacing: "-0.01em" }}
-            onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "rgba(254,206,0,0.08)"; }}
-            onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "transparent"; }}
-          >
+          <button className="bg-transparent border border-bilio-border-gold text-bilio-primary font-heading text-sm font-bold cursor-pointer px-[22px] py-[11px] rounded-[10px] transition-all duration-200 tracking-tight hover:bg-bilio-surface-gold">
             Contactar al equipo →
           </button>
         </div>

@@ -10,67 +10,29 @@ function ChatMockup() {
   ];
 
   return (
-    <div
-      style={{
-        background: "rgba(15,15,12,0.95)",
-        border: "1px solid rgba(254,206,0,0.15)",
-        borderRadius: 24,
-        overflow: "hidden",
-        boxShadow: "0 40px 80px rgba(0,0,0,0.6), 0 0 60px rgba(254,206,0,0.08)",
-        maxWidth: 360,
-        width: "100%",
-      }}
-    >
+    <div className="bg-[rgba(15,15,12,0.95)] border border-bilio-primary/15 rounded-3xl overflow-hidden shadow-[0_40px_80px_rgba(0,0,0,0.6),0_0_60px_rgba(254,206,0,0.08)] max-w-[360px] w-full">
       {/* Chat header */}
-      <div
-        style={{
-          background: "rgba(254,206,0,0.07)",
-          borderBottom: "1px solid rgba(254,206,0,0.1)",
-          padding: "14px 18px",
-          display: "flex",
-          alignItems: "center",
-          gap: 10,
-        }}
-      >
-        <div style={{ width: 36, height: 36, borderRadius: "50%", background: "linear-gradient(135deg, #FECE00, #FEB601)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16 }}>🐷</div>
+      <div className="bg-bilio-primary/[0.07] border-b border-bilio-primary/10 px-[18px] py-3.5 flex items-center gap-2.5">
+        <div className="w-9 h-9 rounded-full bg-gradient-gold flex items-center justify-center text-base">🐷</div>
         <div>
-          <div style={{ color: "#ffffff", fontFamily: "Archivo, sans-serif", fontSize: 14, fontWeight: 700 }}>Bilio</div>
-          <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
-            <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#5E987D", boxShadow: "0 0 6px #5E987D" }} />
-            <span style={{ color: "#5E987D", fontFamily: "Hind Vadodara, sans-serif", fontSize: 11, fontWeight: 600 }}>en línea</span>
+          <div className="text-bilio-text font-heading text-sm font-bold">Bilio</div>
+          <div className="flex items-center gap-[5px]">
+            <div className="w-1.5 h-1.5 rounded-full bg-bilio-success shadow-[0_0_6px_#5E987D]" />
+            <span className="text-bilio-success font-body text-[11px] font-semibold">en línea</span>
           </div>
         </div>
       </div>
 
       {/* Messages */}
-      <div style={{ padding: "18px 14px", display: "flex", flexDirection: "column", gap: 10 }}>
+      <div className="px-3.5 py-[18px] flex flex-col gap-2.5">
         {messages.map((msg, i) => (
-          <div
-            key={i}
-            style={{
-              display: "flex",
-              justifyContent: msg.from === "user" ? "flex-end" : "flex-start",
-            }}
-          >
+          <div key={i} className={`flex ${msg.from === "user" ? "justify-end" : "justify-start"}`}>
             <div
-              style={{
-                maxWidth: "78%",
-                padding: "9px 14px",
-                borderRadius: msg.from === "user"
-                  ? "16px 16px 4px 16px"
-                  : "16px 16px 16px 4px",
-                background: msg.from === "user"
-                  ? "rgba(255,255,255,0.08)"
-                  : "rgba(254,206,0,0.1)",
-                border: msg.from === "user"
-                  ? "1px solid rgba(255,255,255,0.08)"
-                  : "1px solid rgba(254,206,0,0.2)",
-                color: msg.from === "user" ? "rgba(255,255,255,0.75)" : "#FECE00",
-                fontFamily: "Hind Vadodara, sans-serif",
-                fontSize: 13,
-                fontWeight: msg.from === "bilio" ? 600 : 400,
-                lineHeight: 1.4,
-              }}
+              className={`max-w-[78%] px-3.5 py-[9px] font-body text-[13px] leading-[1.4] ${
+                msg.from === "user"
+                  ? "rounded-[16px_16px_4px_16px] bg-white/[0.08] border border-white/[0.08] text-white/75"
+                  : "rounded-[16px_16px_16px_4px] bg-bilio-primary/10 border border-bilio-primary/20 text-bilio-primary font-semibold"
+              }`}
             >
               {msg.text}
             </div>
@@ -78,35 +40,28 @@ function ChatMockup() {
         ))}
 
         {/* Typing indicator */}
-        <div style={{ display: "flex", gap: 5, alignItems: "center", paddingLeft: 4 }}>
+        <div className="flex gap-[5px] items-center pl-1">
           {[0,1,2].map((d) => (
-            <div key={d} style={{ width: 6, height: 6, borderRadius: "50%", background: "rgba(254,206,0,0.35)", animation: `bounce ${0.6 + d * 0.15}s infinite alternate` }} />
+            <div
+              key={d}
+              className="w-1.5 h-1.5 rounded-full bg-bilio-primary/35 animate-bounce-dot"
+              style={{ animationDuration: `${0.6 + d * 0.15}s` }}
+            />
           ))}
         </div>
       </div>
 
       {/* Input bar */}
-      <div
-        style={{
-          borderTop: "1px solid rgba(255,255,255,0.05)",
-          padding: "12px 14px",
-          display: "flex",
-          alignItems: "center",
-          gap: 10,
-        }}
-      >
-        <div style={{ flex: 1, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 20, padding: "8px 14px" }}>
-          <span style={{ color: "rgba(255,255,255,0.2)", fontFamily: "Hind Vadodara, sans-serif", fontSize: 13 }}>Escribe algo...</span>
+      <div className="border-t border-white/5 px-3.5 py-3 flex items-center gap-2.5">
+        <div className="flex-1 bg-white/5 border border-white/[0.08] rounded-[20px] px-3.5 py-2">
+          <span className="text-white/20 font-body text-[13px]">Escribe algo...</span>
         </div>
-        <div style={{ width: 34, height: 34, borderRadius: "50%", background: "linear-gradient(135deg, #FECE00, #FEB601)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+        <div className="w-[34px] h-[34px] rounded-full bg-gradient-gold flex items-center justify-center shrink-0">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
             <path d="M2 7H12M12 7L8 3M12 7L8 11" stroke="#151515" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         </div>
       </div>
-      <style>{`
-        @keyframes bounce { from { transform: translateY(0); } to { transform: translateY(-5px); opacity: 0.6; } }
-      `}</style>
     </div>
   );
 }
@@ -122,51 +77,44 @@ function ExpenseMockup() {
   ];
 
   return (
-    <div
-      style={{
-        background: "rgba(15,15,12,0.95)",
-        border: "1px solid rgba(94,152,125,0.2)",
-        borderRadius: 24,
-        padding: 24,
-        maxWidth: 360,
-        width: "100%",
-        boxShadow: "0 40px 80px rgba(0,0,0,0.5), 0 0 60px rgba(94,152,125,0.07)",
-      }}
-    >
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 20 }}>
+    <div className="bg-[rgba(15,15,12,0.95)] border border-bilio-success/20 rounded-3xl p-6 max-w-[360px] w-full shadow-[0_40px_80px_rgba(0,0,0,0.5),0_0_60px_rgba(94,152,125,0.07)]">
+      <div className="flex justify-between items-start mb-5">
         <div>
-          <div style={{ color: "rgba(255,255,255,0.38)", fontFamily: "Hind Vadodara, sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 4 }}>Este mes</div>
-          <div style={{ color: "#ffffff", fontFamily: "Archivo, sans-serif", fontSize: 28, fontWeight: 800, letterSpacing: "-0.03em" }}>S/1,200</div>
+          <div className="text-white/[0.38] font-body text-[11px] font-semibold tracking-[0.08em] uppercase mb-1">Este mes</div>
+          <div className="text-bilio-text font-heading text-[28px] font-extrabold tracking-[-0.03em]">S/1,200</div>
         </div>
-        <div style={{ background: "rgba(254,206,0,0.1)", border: "1px solid rgba(254,206,0,0.2)", borderRadius: 10, padding: "5px 10px", display: "flex", alignItems: "center", gap: 4 }}>
+        <div className="bg-bilio-primary/10 border border-bilio-primary/20 rounded-[10px] px-2.5 py-[5px] flex items-center gap-1">
           <svg width="10" height="10" viewBox="0 0 10 10" fill="#FECE00"><path d="M5 1L9 5H6V9H4V5H1L5 1Z"/></svg>
-          <span style={{ color: "#FECE00", fontFamily: "Archivo, sans-serif", fontSize: 11, fontWeight: 700 }}>+8% vs anterior</span>
+          <span className="text-bilio-primary font-heading text-[11px] font-bold">+8% vs anterior</span>
         </div>
       </div>
 
-      <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+      <div className="flex flex-col gap-2.5">
         {cats.map((c) => (
           <div key={c.name}>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 5 }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                <span style={{ fontSize: 14 }}>{c.emoji}</span>
-                <span style={{ color: "rgba(255,255,255,0.65)", fontFamily: "Hind Vadodara, sans-serif", fontSize: 13, fontWeight: 500 }}>{c.name}</span>
+            <div className="flex justify-between items-center mb-[5px]">
+              <div className="flex items-center gap-2">
+                <span className="text-sm">{c.emoji}</span>
+                <span className="text-white/65 font-body text-[13px] font-medium">{c.name}</span>
               </div>
-              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                <span style={{ color: "rgba(255,255,255,0.3)", fontFamily: "Hind Vadodara, sans-serif", fontSize: 12 }}>{c.pct}%</span>
-                <span style={{ color: "#ffffff", fontFamily: "Archivo, sans-serif", fontSize: 13, fontWeight: 700 }}>{c.amount}</span>
+              <div className="flex items-center gap-2">
+                <span className="text-white/30 font-body text-xs">{c.pct}%</span>
+                <span className="text-bilio-text font-heading text-[13px] font-bold">{c.amount}</span>
               </div>
             </div>
-            <div style={{ height: 5, background: "rgba(255,255,255,0.06)", borderRadius: 100, overflow: "hidden" }}>
-              <div style={{ height: "100%", width: `${c.pct * 2.8}%`, background: "linear-gradient(90deg, #FECE00, #FEB601)", borderRadius: 100, opacity: 0.8 }} />
+            <div className="h-[5px] bg-white/[0.06] rounded-full overflow-hidden">
+              <div
+                className="h-full bg-gradient-gold rounded-full opacity-80"
+                style={{ width: `${c.pct * 2.8}%` }}
+              />
             </div>
           </div>
         ))}
       </div>
 
-      <div style={{ marginTop: 18, background: "rgba(94,152,125,0.08)", border: "1px solid rgba(94,152,125,0.15)", borderRadius: 12, padding: "10px 14px", display: "flex", alignItems: "center", gap: 8 }}>
-        <span style={{ fontSize: 14 }}>💡</span>
-        <span style={{ color: "#5E987D", fontFamily: "Hind Vadodara, sans-serif", fontSize: 12, fontWeight: 600 }}>
+      <div className="mt-[18px] bg-bilio-success/[0.08] border border-bilio-success/15 rounded-xl px-3.5 py-2.5 flex items-center gap-2">
+        <span className="text-sm">💡</span>
+        <span className="text-bilio-success font-body text-xs font-semibold">
           Comida subió 15% esta semana. ¿Todo bien?
         </span>
       </div>
@@ -176,7 +124,7 @@ function ExpenseMockup() {
 
 /* ── WhatsApp mockup ── */
 function WhatsAppMockup() {
-  const msgs = [
+  const msgs: { from: string; text: string; time: string; isAudio?: boolean; isPhoto?: boolean }[] = [
     { from: "user", text: "Gaste 30 en taxi", time: "9:14" },
     { from: "bilio", text: "✓ S/30 en 🚕 Transporte", time: "9:14" },
     { from: "user", text: "🎤 [Nota de voz — 0:08]", time: "9:22", isAudio: true },
@@ -186,60 +134,48 @@ function WhatsAppMockup() {
   ];
 
   return (
-    <div
-      style={{
-        background: "#0b1014",
-        border: "1px solid rgba(255,255,255,0.08)",
-        borderRadius: 24,
-        overflow: "hidden",
-        maxWidth: 360,
-        width: "100%",
-        boxShadow: "0 40px 80px rgba(0,0,0,0.6)",
-      }}
-    >
+    <div className="bg-[#0b1014] border border-white/[0.08] rounded-3xl overflow-hidden max-w-[360px] w-full shadow-[0_40px_80px_rgba(0,0,0,0.6)]">
       {/* WA header */}
-      <div style={{ background: "#1a2a22", padding: "14px 18px", display: "flex", alignItems: "center", gap: 10 }}>
-        <div style={{ width: 38, height: 38, borderRadius: "50%", background: "linear-gradient(135deg, #25D366, #128C7E)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18 }}>🐷</div>
-        <div style={{ flex: 1 }}>
-          <div style={{ color: "#ffffff", fontFamily: "Archivo, sans-serif", fontSize: 14, fontWeight: 700 }}>Bilio</div>
-          <div style={{ color: "#25D366", fontFamily: "Hind Vadodara, sans-serif", fontSize: 11, fontWeight: 600 }}>en línea</div>
+      <div className="bg-[#1a2a22] px-[18px] py-3.5 flex items-center gap-2.5">
+        <div className="w-[38px] h-[38px] rounded-full bg-gradient-to-br from-bilio-whatsapp to-bilio-whatsapp-dark flex items-center justify-center text-lg">🐷</div>
+        <div className="flex-1">
+          <div className="text-bilio-text font-heading text-sm font-bold">Bilio</div>
+          <div className="text-bilio-whatsapp font-body text-[11px] font-semibold">en línea</div>
         </div>
-        <div style={{ background: "#25D366", borderRadius: 6, padding: "3px 8px" }}>
-          <span style={{ color: "#ffffff", fontFamily: "Archivo, sans-serif", fontSize: 10, fontWeight: 800 }}>WhatsApp</span>
+        <div className="bg-bilio-whatsapp rounded-md px-2 py-[3px]">
+          <span className="text-bilio-text font-heading text-[10px] font-extrabold">WhatsApp</span>
         </div>
       </div>
 
       {/* WA messages */}
-      <div style={{ background: "#0d1117", backgroundImage: "radial-gradient(rgba(37,211,102,0.025) 1px, transparent 1px)", backgroundSize: "20px 20px", padding: "14px", display: "flex", flexDirection: "column", gap: 8 }}>
+      <div
+        className="bg-[#0d1117] p-3.5 flex flex-col gap-2"
+        style={{ backgroundImage: "radial-gradient(rgba(37,211,102,0.025) 1px, transparent 1px)", backgroundSize: "20px 20px" }}
+      >
         {msgs.map((msg, i) => (
-          <div key={i} style={{ display: "flex", justifyContent: msg.from === "user" ? "flex-end" : "flex-start" }}>
+          <div key={i} className={`flex ${msg.from === "user" ? "justify-end" : "justify-start"}`}>
             <div
-              style={{
-                maxWidth: "78%",
-                padding: "8px 12px",
-                borderRadius: msg.from === "user" ? "12px 12px 3px 12px" : "12px 12px 12px 3px",
-                background: msg.from === "user" ? "#005c4b" : "#1f2c34",
-                color: "#e9edef",
-                fontFamily: "Hind Vadodara, sans-serif",
-                fontSize: 13,
-                lineHeight: 1.4,
-              }}
+              className={`max-w-[78%] px-3 py-2 font-body text-[13px] leading-[1.4] text-[#e9edef] ${
+                msg.from === "user"
+                  ? "rounded-[12px_12px_3px_12px] bg-[#005c4b]"
+                  : "rounded-[12px_12px_12px_3px] bg-[#1f2c34]"
+              }`}
             >
               {msg.isAudio && (
-                <div style={{ display: "flex", alignItems: "center", gap: 8, color: "#25D366" }}>
+                <div className="flex items-center gap-2 text-bilio-whatsapp">
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M7 2v6M5 4v4M3 5v2M9 4v4M11 5v2"/></svg>
-                  <span style={{ color: "#8696a0" }}>Nota de voz · 0:08</span>
+                  <span className="text-[#8696a0]">Nota de voz · 0:08</span>
                 </div>
               )}
               {msg.isPhoto && (
-                <div style={{ display: "flex", alignItems: "center", gap: 6, color: "#8696a0" }}>
+                <div className="flex items-center gap-1.5 text-[#8696a0]">
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="1" y="2" width="12" height="10" rx="2"/><circle cx="4.5" cy="5.5" r="1"/><path d="M1 9l3-3 2 2 2-3 4 4"/></svg>
                   Foto del recibo
                 </div>
               )}
               {!msg.isAudio && !msg.isPhoto && msg.text}
-              <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 3 }}>
-                <span style={{ color: "#8696a0", fontSize: 10 }}>{msg.time}</span>
+              <div className="flex justify-end mt-[3px]">
+                <span className="text-[#8696a0] text-[10px]">{msg.time}</span>
               </div>
             </div>
           </div>
@@ -247,11 +183,11 @@ function WhatsAppMockup() {
       </div>
 
       {/* WA input */}
-      <div style={{ background: "#1f2c34", padding: "10px 12px", display: "flex", alignItems: "center", gap: 10 }}>
-        <div style={{ flex: 1, background: "#2a3942", borderRadius: 20, padding: "8px 14px" }}>
-          <span style={{ color: "#8696a0", fontFamily: "Hind Vadodara, sans-serif", fontSize: 13 }}>Mensaje</span>
+      <div className="bg-[#1f2c34] px-3 py-2.5 flex items-center gap-2.5">
+        <div className="flex-1 bg-[#2a3942] rounded-[20px] px-3.5 py-2">
+          <span className="text-[#8696a0] font-body text-[13px]">Mensaje</span>
         </div>
-        <div style={{ width: 38, height: 38, borderRadius: "50%", background: "#25D366", display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <div className="w-[38px] h-[38px] rounded-full bg-bilio-whatsapp flex items-center justify-center">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M7 9H2L1 14L15 8L1 2L2 7H7" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
         </div>
       </div>
@@ -268,83 +204,41 @@ function FeatureRow({
 }) {
   return (
     <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr",
-        gap: 72,
-        alignItems: "center",
-        maxWidth: 1100,
-        margin: "0 auto",
-        direction: reversed ? "rtl" : "ltr",
-      }}
-      className="feature-row"
+      className={`grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-[72px] items-center max-w-[1100px] mx-auto ${reversed ? "md:[direction:rtl]" : ""}`}
     >
-      <div style={{ direction: "ltr" }}>
+      <div className={reversed ? "md:[direction:ltr]" : ""}>
         <div
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: 8,
-            background: `${tagColor}12`,
-            border: `1px solid ${tagColor}28`,
-            borderRadius: 100,
-            padding: "5px 14px",
-            marginBottom: 22,
-          }}
+          className="inline-flex items-center gap-2 rounded-full px-3.5 py-[5px] mb-[22px]"
+          style={{ background: `${tagColor}12`, border: `1px solid ${tagColor}28` }}
         >
-          <span style={{ color: tagColor, fontFamily: "Hind Vadodara, sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase" }}>{tag}</span>
+          <span className="font-body text-xs font-semibold tracking-[0.08em] uppercase" style={{ color: tagColor }}>{tag}</span>
         </div>
 
-        <h2
-          style={{
-            color: "#ffffff",
-            fontFamily: "Archivo, sans-serif",
-            fontSize: "clamp(32px, 4vw, 52px)",
-            fontWeight: 800,
-            letterSpacing: "-0.03em",
-            lineHeight: 1.08,
-            marginBottom: 18,
-          }}
-          dangerouslySetInnerHTML={{
-            __html: headline.replace(
-              highlightWord,
-              `<span style="background: linear-gradient(90deg, #FECE00, #FEB601); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">${highlightWord}</span>`
-            ),
-          }}
-        />
+        <h2 className="text-bilio-text font-heading font-extrabold tracking-[-0.03em] leading-[1.08] mb-[18px] text-[clamp(32px,4vw,52px)]">
+          {headline.split(highlightWord).map((part, i, arr) => (
+            <span key={i}>
+              {part}
+              {i < arr.length - 1 && <span className="text-gradient-gold">{highlightWord}</span>}
+            </span>
+          ))}
+        </h2>
 
-        <p style={{ color: "rgba(255,255,255,0.43)", fontFamily: "Hind Vadodara, sans-serif", fontSize: 17, lineHeight: 1.75, marginBottom: 28, letterSpacing: "0.01em" }}>
+        <p className="text-white/[0.43] font-body text-[17px] leading-[1.75] mb-7 tracking-[0.01em]">
           {description}
         </p>
 
-        <div
-          style={{
-            display: "flex",
-            alignItems: "flex-start",
-            gap: 10,
-            background: "rgba(255,255,255,0.025)",
-            border: "1px solid rgba(255,255,255,0.07)",
-            borderRadius: 12,
-            padding: "12px 16px",
-          }}
-        >
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ flexShrink: 0, marginTop: 2 }}>
+        <div className="flex items-start gap-2.5 bg-white/[0.025] border border-bilio-border rounded-xl px-4 py-3">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="shrink-0 mt-0.5">
             <circle cx="8" cy="8" r="7" stroke={tagColor} strokeWidth="1.2"/>
             <path d="M5 8l2 2 4-4" stroke={tagColor} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
-          <span style={{ color: "rgba(255,255,255,0.38)", fontFamily: "Hind Vadodara, sans-serif", fontSize: 13, lineHeight: 1.5 }}>{proof}</span>
+          <span className="text-white/[0.38] font-body text-[13px] leading-[1.5]">{proof}</span>
         </div>
       </div>
 
-      <div style={{ direction: "ltr", display: "flex", justifyContent: "center" }}>
+      <div className={`flex justify-center ${reversed ? "md:[direction:ltr]" : ""}`}>
         {mockup}
       </div>
-
-      <style>{`
-        @media (max-width: 768px) {
-          .feature-row { grid-template-columns: 1fr !important; direction: ltr !important; gap: 40px !important; }
-        }
-      `}</style>
     </div>
   );
 }
@@ -360,7 +254,7 @@ export function FeaturesSection() {
       proof: "Texto, fotos o audio — como quieras. Bilio entiende lenguaje natural en español.",
       mockup: <ChatMockup />,
       reversed: false,
-      bg: "#151515",
+      bg: "bg-bilio-bg",
     },
     {
       tag: "Gastos inteligentes",
@@ -371,7 +265,7 @@ export function FeaturesSection() {
       proof: "18 categorías en español. Bilio clasifica tus gastos solo — sin que hagas nada.",
       mockup: <ExpenseMockup />,
       reversed: true,
-      bg: "#1A1A1A",
+      bg: "bg-bilio-bg-card",
     },
     {
       tag: "También por WhatsApp",
@@ -382,7 +276,7 @@ export function FeaturesSection() {
       proof: "Mismas funciones que la web. Texto, fotos y audio — todo por WhatsApp.",
       mockup: <WhatsAppMockup />,
       reversed: false,
-      bg: "#151515",
+      bg: "bg-bilio-bg",
     },
   ];
 
@@ -391,9 +285,12 @@ export function FeaturesSection() {
       {sections.map((s) => (
         <section
           key={s.tag}
-          style={{ background: s.bg, padding: "100px 24px", position: "relative", overflow: "hidden" }}
+          className={`${s.bg} py-[100px] px-6 relative overflow-hidden`}
         >
-          <div style={{ position: "absolute", top: 0, left: "50%", transform: "translateX(-50%)", width: 600, height: 1, background: `linear-gradient(90deg, transparent, ${s.tagColor}40, transparent)` }} />
+          <div
+            className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-px"
+            style={{ background: `linear-gradient(90deg, transparent, ${s.tagColor}40, transparent)` }}
+          />
           <FeatureRow {...s} />
         </section>
       ))}
