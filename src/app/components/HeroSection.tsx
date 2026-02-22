@@ -1,9 +1,25 @@
 import { useState } from "react";
+import { m as motion } from "framer-motion";
 import imgHeroBg from "@/assets/8d4d7d2a21d90b549fc4e0b21f5f2b2e452b0fa2.png";
+import { duration, ease } from "./motion/tokens";
+import { useReducedMotion } from "./motion/useReducedMotion";
+import { useParallax } from "./motion/useParallax";
+
+const fadeBlurUp = (delay: number) => ({
+  hidden: { opacity: 0, y: 24, filter: "blur(6px)" },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: duration.entrance, ease: ease.outCubic, delay },
+  },
+});
 
 export function HeroSection() {
   const [email, setEmail] = useState("");
   const [joined, setJoined] = useState(false);
+  const reduced = useReducedMotion();
+  const { ref: gridRef, y: gridY } = useParallax(30);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -21,73 +37,129 @@ export function HeroSection() {
         />
         <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(90deg, #0a0900 0%, transparent 18%, transparent 82%, #0a0900 100%)" }} />
         <div className="absolute bottom-0 left-0 right-0 h-[55%] pointer-events-none" style={{ background: "linear-gradient(to bottom, transparent 0%, #0a0900 100%)" }} />
-        <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: "linear-gradient(rgba(254,206,0,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(254,206,0,0.025) 1px, transparent 1px)", backgroundSize: "60px 60px" }} />
+
+        {/* Parallax grid overlay */}
+        <motion.div
+          ref={gridRef}
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage: "linear-gradient(rgba(254,206,0,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(254,206,0,0.025) 1px, transparent 1px)",
+            backgroundSize: "60px 60px",
+            y: gridY,
+          }}
+        />
+
+        {/* Ambient glow orbs */}
+        <div
+          className="absolute top-[20%] left-[10%] w-[300px] h-[300px] rounded-full pointer-events-none"
+          style={{ background: "radial-gradient(circle, rgba(254,206,0,0.05) 0%, transparent 70%)" }}
+          aria-hidden="true"
+        />
+        <div
+          className="absolute top-[30%] right-[10%] w-[250px] h-[250px] rounded-full pointer-events-none"
+          style={{ background: "radial-gradient(circle, rgba(18,49,73,0.08) 0%, transparent 70%)" }}
+          aria-hidden="true"
+        />
       </div>
 
       {/* ── BOTTOM ZONE: all content ── */}
-      <div className="flex-1 bg-bilio-bg-deep flex flex-col items-center px-6 pb-20 -mt-10">
+      <motion.div
+        className="flex-1 bg-bilio-bg-deep flex flex-col items-center px-6 pb-20 -mt-10"
+        initial="hidden"
+        animate="visible"
+      >
         {/* Badge */}
-        <div className="inline-flex items-center gap-2 bg-bilio-surface-gold border border-bilio-border-gold rounded-full px-4 py-1.5 mb-7 backdrop-blur-[10px]">
+        <motion.div
+          className="inline-flex items-center gap-2 bg-bilio-surface-gold border border-bilio-border-gold rounded-full px-4 py-1.5 mb-7 backdrop-blur-[10px]"
+          variants={reduced ? {} : fadeBlurUp(0)}
+        >
           <div className="w-1.5 h-1.5 rounded-full bg-bilio-primary shadow-[0_0_8px_#FECE00]" />
           <span className="text-bilio-primary font-body text-[13px] font-semibold tracking-[0.02em]">
-            Lista de espera abierta — Hecho en Perú 🇵🇪
+            Lista de espera abierta — Hecho en Peru
           </span>
-        </div>
+        </motion.div>
 
         {/* Headline */}
-        <h1 className="font-heading font-extrabold text-bilio-text text-center leading-[1.02] tracking-[-0.03em] max-w-[860px] mx-auto mb-5 text-[clamp(44px,7vw,88px)]">
+        <motion.h1
+          className="font-heading font-extrabold text-bilio-text text-center leading-[1.02] tracking-[-0.03em] max-w-[860px] mx-auto mb-5 text-[clamp(44px,7vw,88px)]"
+          variants={reduced ? {} : fadeBlurUp(0.1)}
+        >
           Por fin, alguien que{" "}
           <span className="text-gradient-gold">entiende tu plata.</span>
-        </h1>
+        </motion.h1>
 
         {/* Subheadline */}
-        <p className="font-body text-bilio-text-muted text-center max-w-[580px] mx-auto mb-10 leading-[1.7] tracking-[0.01em] text-[clamp(16px,2vw,19px)]">
+        <motion.p
+          className="font-body text-bilio-text-muted text-center max-w-[580px] mx-auto mb-10 leading-[1.7] tracking-[0.01em] text-[clamp(16px,2vw,19px)]"
+          variants={reduced ? {} : fadeBlurUp(0.2)}
+        >
           Registra gastos, controla presupuestos, maneja deudas y ahorra — todo
           hablando con Bilio por chat o WhatsApp.
-        </p>
+        </motion.p>
 
         {/* Waitlist form */}
-        {!joined ? (
-          <form
-            onSubmit={handleSubmit}
-            className="flex gap-2.5 flex-wrap justify-center mb-4 w-full max-w-[480px]"
-          >
-            <div className="flex-1 min-w-[220px] bg-white/5 border border-white/[0.12] rounded-[14px] p-1 pl-[18px] flex items-center gap-2 backdrop-blur-[16px] transition-[border-color] duration-200">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="tu@correo.com"
-                required
-                className="flex-1 bg-transparent border-none outline-none text-bilio-text font-body text-[15px] min-w-0"
-              />
-              <button
-                type="submit"
-                className="bg-gradient-gold border-none text-bilio-bg font-heading text-sm font-extrabold cursor-pointer px-[22px] py-3 rounded-[10px] tracking-tight whitespace-nowrap transition-all duration-200 btn-glow"
-              >
-                Quiero ser el primero
-              </button>
+        <motion.div variants={reduced ? {} : fadeBlurUp(0.3)}>
+          {!joined ? (
+            <form
+              onSubmit={handleSubmit}
+              className="flex gap-2.5 flex-wrap justify-center mb-4 w-full max-w-[480px]"
+            >
+              <div className="flex-1 min-w-[220px] bg-white/5 border border-white/[0.12] rounded-[14px] p-1 pl-[18px] flex items-center gap-2 backdrop-blur-[16px] transition-[border-color] duration-200">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="tu@correo.com"
+                  required
+                  className="flex-1 bg-transparent border-none outline-none text-bilio-text font-body text-[15px] min-w-0"
+                />
+                {/* CTA with continuous glow pulse */}
+                <motion.button
+                  type="submit"
+                  className="bg-gradient-gold border-none text-bilio-bg font-heading text-sm font-extrabold cursor-pointer px-[22px] py-3 rounded-[10px] tracking-tight whitespace-nowrap transition-all duration-200 btn-glow"
+                  animate={
+                    reduced
+                      ? {}
+                      : {
+                          boxShadow: [
+                            "0 4px 20px rgba(254,206,0,0.2)",
+                            "0 4px 30px rgba(254,206,0,0.45)",
+                            "0 4px 20px rgba(254,206,0,0.2)",
+                          ],
+                        }
+                  }
+                  transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  Quiero ser el primero
+                </motion.button>
+              </div>
+            </form>
+          ) : (
+            <div className="flex items-center gap-2.5 bg-bilio-success/10 border border-bilio-success/30 rounded-[14px] px-6 py-3.5 mb-4">
+              <div className="w-5 h-5 rounded-full bg-bilio-success flex items-center justify-center">
+                <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+                  <path d="M2 5.5L4.5 8L9 3" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
+              <span className="text-bilio-success font-body text-[15px] font-semibold">
+                ¡Listo! Te avisamos cuando Bilio esté disponible.
+              </span>
             </div>
-          </form>
-        ) : (
-          <div className="flex items-center gap-2.5 bg-bilio-success/10 border border-bilio-success/30 rounded-[14px] px-6 py-3.5 mb-4">
-            <div className="w-5 h-5 rounded-full bg-bilio-success flex items-center justify-center">
-              <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
-                <path d="M2 5.5L4.5 8L9 3" stroke="#fff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </div>
-            <span className="text-bilio-success font-body text-[15px] font-semibold">
-              ¡Listo! Te avisamos cuando Bilio esté disponible.
-            </span>
-          </div>
-        )}
+          )}
+        </motion.div>
 
-        <p className="text-bilio-text-ghost font-body text-[13px] mb-13">
+        <motion.p
+          className="text-bilio-text-ghost font-body text-[13px] mb-13"
+          variants={reduced ? {} : fadeBlurUp(0.38)}
+        >
           Sin tarjeta. Sin compromiso. Cancela cuando quieras.
-        </p>
+        </motion.p>
 
         {/* Social proof */}
-        <div className="flex items-center gap-6 flex-wrap justify-center">
+        <motion.div
+          className="flex items-center gap-6 flex-wrap justify-center"
+          variants={reduced ? {} : fadeBlurUp(0.45)}
+        >
           <div className="flex">
             {["#FECE00", "#5E987D", "#123149", "#FEB601", "#B86A00"].map((color, i) => (
               <div
@@ -119,8 +191,8 @@ export function HeroSection() {
               </div>
             ))}
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }
