@@ -1,86 +1,12 @@
-import { cn } from "./ui/utils";
 import { ScrollReveal } from "./motion/ScrollReveal";
 import { useWaitlistDispatch } from "../waitlist/WaitlistContext";
-import type { PlanId } from "../waitlist/types";
-
-const plans: {
-  name: string;
-  planId: PlanId;
-  price: string;
-  period: string;
-  tag?: string;
-  description: string;
-  highlight: boolean;
-  cta: string;
-  features: string[];
-  missing: string[];
-}[] = [
-  {
-    name: "Gratis",
-    planId: "gratis",
-    price: "S/0",
-    period: "para siempre",
-    description: "Para empezar sin riesgo. Sin tarjeta.",
-    highlight: false,
-    cta: "Unirme a la lista",
-    features: [
-      "30 gastos por mes",
-      "Categorías automáticas",
-      "Presupuestos mensuales",
-      "Chat en la web",
-      "Resumen financiero básico",
-      "1 cuenta personal",
-    ],
-    missing: ["Audio y fotos", "WhatsApp", "Gmail automático"],
-  },
-  {
-    name: "Plus",
-    planId: "plus",
-    price: "S/14.90",
-    period: "/ mes",
-    tag: "Más popular",
-    description: "Para quienes registran todos los días.",
-    highlight: true,
-    cta: "Quiero el Plus",
-    features: [
-      "200 gastos por mes",
-      "30 notas de voz / mes",
-      "Fotos de recibos",
-      "WhatsApp incluido",
-      "Múltiples cuentas",
-      "Metas de ahorro",
-      "Racha diaria + niveles",
-      "Recordatorios de deudas",
-    ],
-    missing: ["Gmail automático"],
-  },
-  {
-    name: "Premium",
-    planId: "premium",
-    price: "S/24.90",
-    period: "/ mes",
-    description: "Todo ilimitado. Tu asistente financiero completo.",
-    highlight: false,
-    cta: "Quiero el Premium",
-    features: [
-      "Gastos ilimitados",
-      "Audios ilimitados",
-      "Gmail automático",
-      "Aprobación por lote",
-      "Vendors de confianza",
-      "Cuentas compartidas",
-      "Análisis avanzados",
-      "Soporte prioritario",
-    ],
-    missing: [],
-  },
-];
 
 export function PricingSection() {
   const dispatch = useWaitlistDispatch();
 
-  const handlePlanSelect = (planId: PlanId) => {
-    dispatch({ type: 'SET_PLAN', plan: planId });
+  const handleCTA = () => {
+    dispatch({ type: 'SET_PLAN', plan: 'plus' });
+    dispatch({ type: 'SET_LOCK_PRICE', lockPrice: true });
     document.getElementById('waitlist')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
@@ -89,121 +15,72 @@ export function PricingSection() {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-px" style={{ background: "linear-gradient(90deg, transparent, rgba(254,206,0,0.4), transparent)" }} />
       <div className="absolute top-[30%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[500px] pointer-events-none" style={{ background: "radial-gradient(ellipse, rgba(254,206,0,0.04) 0%, transparent 65%)" }} />
 
-      <div className="max-w-[1100px] mx-auto">
-        {/* Header */}
-        <ScrollReveal className="text-center mb-16">
+      <div className="max-w-[640px] mx-auto relative">
+        <ScrollReveal className="text-center">
           <div className="inline-flex items-center gap-2 bg-bilio-surface-gold border border-bilio-border-gold rounded-full px-3.5 py-[5px] mb-5">
-            <span className="text-bilio-primary font-body text-xs font-semibold tracking-[0.08em] uppercase">Precios</span>
+            <span className="text-bilio-primary font-body text-xs font-semibold tracking-[0.08em] uppercase">Precio de lanzamiento</span>
           </div>
-          <h2 className="text-bilio-text font-heading font-extrabold tracking-[-0.03em] leading-[1.1] mb-4 text-[clamp(32px,4vw,52px)]">
+
+          <h2 className="text-bilio-text font-heading font-extrabold tracking-[-0.03em] leading-[1.1] mb-5 text-[clamp(32px,4vw,52px)]">
             Empieza gratis.{" "}
-            <span className="text-white/30">Crece cuando quieras.</span>
+            <span className="text-gradient-gold">Crece cuando quieras.</span>
           </h2>
-          <p className="text-bilio-text-faint font-body text-lg leading-[1.6]">
-            Sin tarjeta para empezar. Cancela cuando quieras.
+
+          <p className="text-white/[0.42] font-body text-lg leading-[1.7] mb-10">
+            Bilio es 100% gratis para empezar. Cuando quieras más, el plan Plus
+            estará disponible a un precio especial de lanzamiento solo para quienes
+            se inscriban a la lista de espera.
           </p>
-        </ScrollReveal>
 
-        {/* Cards */}
-        <ScrollReveal>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 items-start">
-          {plans.map((plan) => (
-            <div
-              key={plan.name}
-              className={cn(
-                "group rounded-[22px] px-7 py-8 relative transition-all duration-300 overflow-hidden",
-                plan.highlight
-                  ? "bg-gradient-to-br from-bilio-primary/10 to-bilio-secondary/[0.06] border border-bilio-primary/30 scale-[1.03] shadow-[0_0_60px_rgba(254,206,0,0.1),0_20px_40px_rgba(0,0,0,0.4)]"
-                  : "bg-bilio-surface border border-bilio-border hover:-translate-y-2 hover:border-bilio-border-gold"
-              )}
-            >
-              {/* Shimmer sweep on non-highlighted cards */}
-              {!plan.highlight && (
-                <div
-                  className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out pointer-events-none"
-                  style={{ background: "linear-gradient(105deg, transparent 40%, rgba(254,206,0,0.06) 50%, transparent 60%)" }}
-                  aria-hidden="true"
-                />
-              )}
-
-              <div className="relative z-[1]">
-                {/* Popular badge */}
-                {plan.tag && (
-                  <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-gradient-gold rounded-full px-4 py-1 whitespace-nowrap">
-                    <span className="text-bilio-bg font-heading text-[11px] font-extrabold tracking-[0.02em]">{plan.tag}</span>
-                  </div>
-                )}
-
-                {/* Plan name */}
-                <div className="text-bilio-text-muted font-body text-xs font-bold tracking-[0.08em] uppercase mb-3">
-                  {plan.name}
+          {/* Launch price card */}
+          <div className="bg-gradient-to-br from-bilio-primary/10 to-bilio-secondary/[0.06] border border-bilio-primary/30 rounded-[22px] px-8 py-8 mb-8 shadow-[0_0_60px_rgba(254,206,0,0.08)]">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
+              <div className="text-left">
+                <div className="text-bilio-primary font-heading text-xs font-bold tracking-[0.08em] uppercase mb-2">
+                  Plan Plus
                 </div>
-
-                {/* Price */}
-                <div className="flex items-baseline gap-1 mb-2">
-                  <span className={cn(
-                    "font-heading text-[40px] font-extrabold tracking-[-0.04em] leading-none",
-                    plan.highlight ? "text-bilio-primary" : "text-bilio-text"
-                  )}>
-                    {plan.price}
+                <div className="flex items-baseline gap-2 mb-1">
+                  <span className="text-bilio-primary font-heading text-[42px] font-extrabold tracking-[-0.04em] leading-none">
+                    S/14.90
                   </span>
-                  <span className="text-white/30 font-body text-sm">{plan.period}</span>
+                  <span className="text-white/30 font-body text-sm">/ mes</span>
                 </div>
-
-                {plan.price === "S/14.90" && (
-                  <div className="text-white/30 font-body text-xs mb-2">
-                    Menos de un café al día
-                  </div>
-                )}
-
-                <p className="text-bilio-text-faint font-body text-sm leading-[1.5] mb-6">
-                  {plan.description}
-                </p>
-
-                {/* CTA */}
-                <button
-                  type="button"
-                  onClick={() => handlePlanSelect(plan.planId)}
-                  className={cn(
-                    "block w-full py-3.5 rounded-xl font-heading text-sm font-extrabold cursor-pointer tracking-tight transition-all duration-200 mb-7 text-center",
-                    plan.highlight
-                      ? "bg-gradient-gold border-none text-bilio-bg btn-glow"
-                      : "bg-bilio-surface-light border border-white/10 text-white/60 hover:bg-bilio-surface-gold hover:text-bilio-primary hover:border-bilio-primary/20"
-                  )}
-                >
-                  {plan.cta}
-                </button>
-
-                {/* Features list */}
-                <div className="flex flex-col gap-2.5">
-                  {plan.features.map((f) => (
-                    <div key={f} className="flex items-center gap-[9px]">
-                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                        <circle cx="7" cy="7" r="6" fill={plan.highlight ? "rgba(254,206,0,0.15)" : "rgba(94,152,125,0.12)"}/>
-                        <path d="M4.5 7L6.5 9L9.5 5" stroke={plan.highlight ? "#FECE00" : "#5E987D"} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                      <span className="text-white/55 font-body text-[13px] font-medium">{f}</span>
-                    </div>
-                  ))}
-                  {plan.missing.map((f) => (
-                    <div key={f} className="flex items-center gap-[9px] opacity-35">
-                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                        <circle cx="7" cy="7" r="6" fill="rgba(255,255,255,0.05)"/>
-                        <path d="M5 5l4 4M9 5L5 9" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5" strokeLinecap="round"/>
-                      </svg>
-                      <span className="text-white/[0.28] font-body text-[13px] line-through decoration-white/10">{f}</span>
-                    </div>
-                  ))}
+                <div className="text-white/35 font-body text-sm">
+                  Menos de un café al día
                 </div>
               </div>
-            </div>
-          ))}
-          </div>
-        </ScrollReveal>
 
-        <p className="text-center text-white/20 font-body text-[13px] mt-9">
-          Todos los planes incluyen: datos encriptados · sin acceso bancario · cancela cuando quieras
-        </p>
+              <div className="flex flex-col gap-2 text-left">
+                {[
+                  "Gastos ilimitados",
+                  "WhatsApp + audio + fotos",
+                  "Presupuestos y metas de ahorro",
+                ].map((f) => (
+                  <div key={f} className="flex items-center gap-2">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                      <circle cx="7" cy="7" r="6" fill="rgba(254,206,0,0.15)"/>
+                      <path d="M4.5 7L6.5 9L9.5 5" stroke="#FECE00" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                    <span className="text-white/60 font-body text-sm">{f}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* CTA */}
+          <button
+            type="button"
+            onClick={handleCTA}
+            className="bg-gradient-gold border-none text-bilio-bg font-heading text-sm font-extrabold cursor-pointer px-8 py-3.5 rounded-[14px] tracking-tight transition-all duration-200 btn-glow hover:shadow-[0_4px_24px_rgba(254,206,0,0.35)] mb-5"
+          >
+            Asegurar precio de lanzamiento →
+          </button>
+
+          <p className="text-white/20 font-body text-[13px]">
+            Inscríbete gratis · El precio de lanzamiento es exclusivo para la lista de espera
+          </p>
+        </ScrollReveal>
       </div>
     </section>
   );
