@@ -6,23 +6,58 @@ import { BilioLogoMark } from "./BilioLogo";
 import waBgDark from "@/assets/d36bcceceaa1d390489ec70d93154311.jpg";
 import { ScrollReveal } from "./motion/ScrollReveal";
 
-/* ── Message types ── */
-type Message = {
-  from: "user" | "bilio";
-  text: string;
-  time: string;
-  isAudio?: boolean;
-  isPhoto?: boolean;
-};
+/* ── Conversation Pool Types ── */
+type VoiceContent = { type: "voice"; duration: string };
+type UserContent = string | VoiceContent;
 
-/* ── Conversation scripts ── */
-const chatConversation: Message[] = [
-  { from: "user", text: "Gaste 50 en almuerzo con Juan", time: "10:31" },
-  { from: "bilio", text: "✓ Registrado → 🍕 Comida · S/50.00", time: "10:31" },
-  { from: "user", text: "🎤 Nota de voz — 0:08", time: "10:33", isAudio: true },
-  { from: "bilio", text: "Entendido: S/85 en 🛒 Supermercado ✓", time: "10:33" },
-  { from: "user", text: "📷 Foto del recibo", time: "10:35", isPhoto: true },
-  { from: "bilio", text: "Leí tu recibo: S/47.50 en 🍕 Comida ✓", time: "10:35" },
+type BotExpense = { text: string; card: "expense"; category: string; amount: string; budgetPct: number; budgetText: string };
+type BotDebt = { text: string; card: "debt"; label: string; who: string; amount: string };
+type BotAnalytics = { text: string; card: "analytics"; rows: { cat: string; val: string; pct: number }[] };
+type BotPlain = { text: string; card?: undefined };
+type BotResponse = BotExpense | BotDebt | BotAnalytics | BotPlain;
+
+type Conversation = { user: UserContent; bot: BotResponse };
+type ChatMsg = { id: number; from: "user" | "bilio"; user?: UserContent; bot?: BotResponse; time: string };
+
+const MAX_VISIBLE = 14;
+
+/* ── Conversation Pool — 6 features × 2-3 variations each ── */
+const conversationPool: Conversation[][] = [
+  // EXPENSE TRACKING
+  [
+    { user: "Gasté 50 en almuerzo", bot: { text: "¡Registrado! 👍", card: "expense", category: "Comida 🍔", amount: "S/50.00", budgetPct: 64, budgetText: "Llevas S/320 de S/500 en Comida" } },
+    { user: "Pagué 35 por el café y sandwich", bot: { text: "Listo ✅", card: "expense", category: "Comida 🍔", amount: "S/35.00", budgetPct: 71, budgetText: "Llevas S/355 de S/500 en Comida" } },
+    { user: "120 en el super", bot: { text: "Anotado 🛒", card: "expense", category: "Comida 🍔", amount: "S/120.00", budgetPct: 88, budgetText: "Llevas S/440 de S/500 en Comida ⚠️" } },
+  ],
+  // VOICE MESSAGE
+  [
+    { user: { type: "voice", duration: "0:03" }, bot: { text: '🎤 "Uber al trabajo, quince soles"', card: "expense", category: "Transporte 🚗", amount: "S/15.00", budgetPct: 45, budgetText: "Llevas S/90 de S/200 en Transporte" } },
+    { user: { type: "voice", duration: "0:04" }, bot: { text: '🎤 "Netflix, cuarenta y cuatro soles"', card: "expense", category: "Suscripciones 📱", amount: "S/44.90", budgetPct: 60, budgetText: "Llevas S/90 de S/150 en Suscripciones" } },
+    { user: { type: "voice", duration: "0:02" }, bot: { text: '🎤 "Taxi a casa, diez soles"', card: "expense", category: "Transporte 🚗", amount: "S/10.00", budgetPct: 50, budgetText: "Llevas S/100 de S/200 en Transporte" } },
+  ],
+  // BUDGET CHECK
+  [
+    { user: "¿Puedo gastar 200 en zapatillas?", bot: { text: "Mmm, te quedarían solo S/30 en Compras este mes. Yo lo pensaría 🤔" } },
+    { user: "¿Me alcanza para salir a cenar?", bot: { text: "Te quedan S/180 en Comida. Sí alcanza, pero sin pasarte 😉" } },
+    { user: "¿Puedo pedir delivery hoy?", bot: { text: "Vas bien! Te quedan S/150 en Comida. Dale nomás 🍕" } },
+  ],
+  // DEBT TRACKING
+  [
+    { user: "Le presté 100 a Carlos", bot: { text: "Anotado ✅", card: "debt", label: "Te debe", who: "Carlos", amount: "S/100.00" } },
+    { user: "María me pagó los 50", bot: { text: "¡Saldado! 🎉 María ya no te debe nada" } },
+    { user: "Le debo 80 a Diego por la cena", bot: { text: "Anotado 📝", card: "debt", label: "Le debes a", who: "Diego", amount: "S/80.00" } },
+  ],
+  // ANALYTICS
+  [
+    { user: "¿En qué se me va la plata?", bot: { text: "Este mes llevas S/1,250:", card: "analytics", rows: [{ cat: "Comida 🍔", val: "S/420", pct: 100 }, { cat: "Transporte 🚗", val: "S/280", pct: 67 }, { cat: "Entretenimiento 🎬", val: "S/190", pct: 45 }, { cat: "Compras 🛍️", val: "S/170", pct: 40 }] } },
+    { user: "¿Cómo voy este mes?", bot: { text: "Llevas S/980 de S/2,000. Vas bien 👌", card: "analytics", rows: [{ cat: "Vivienda 🏠", val: "S/350", pct: 100 }, { cat: "Comida 🍔", val: "S/310", pct: 89 }, { cat: "Transporte 🚗", val: "S/180", pct: 51 }, { cat: "Salud 💊", val: "S/140", pct: 40 }] } },
+  ],
+  // STREAK
+  [
+    { user: "¿Cómo va mi racha?", bot: { text: "🔥 17 días seguidos registrando. ¡Vas volando! Tu récord es 23, ya casi lo rompes 💪" } },
+    { user: "¿Cuántos días llevo?", bot: { text: "🔥 24 días seguidos. ¡NUEVO RÉCORD! Eres imparable 🏆" } },
+    { user: "Racha", bot: { text: "🔥 8 días. La semana pasada perdiste la racha un miércoles. ¡Esta vez no! 💪" } },
+  ],
 ];
 
 
@@ -134,100 +169,123 @@ function WaInputBar() {
   );
 }
 
-/* ── Animated WhatsApp Mockup ── */
-function WhatsAppAnimatedMockup({ conversation }: { conversation: Message[] }) {
-  const [visibleCount, setVisibleCount] = useState(0);
+/* ── Budget progress bar (animates from 0 on mount) ── */
+function BudgetBar({ pct }: { pct: number }) {
+  const [width, setWidth] = useState(0);
+  useEffect(() => {
+    const id = setTimeout(() => setWidth(pct), 300);
+    return () => clearTimeout(id);
+  }, [pct]);
+  return (
+    <div className="h-1 rounded-full bg-white/10 mt-1.5 overflow-hidden">
+      <div
+        className="h-full rounded-full transition-[width] duration-1000 ease-out"
+        style={{ width: `${width}%`, background: "linear-gradient(90deg, #FECE00, #FEB601)" }}
+      />
+    </div>
+  );
+}
+
+/* ── Animated WhatsApp Mockup — Sliding Window ── */
+function WhatsAppAnimatedMockup() {
+  const [messages, setMessages] = useState<ChatMsg[]>([]);
   const [showTyping, setShowTyping] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
-  const timeoutRef = useRef<ReturnType<typeof setTimeout>[]>([]);
+  const msgId = useRef(0);
+  const timeRef = useRef({ h: 9, m: 41 });
+  const varIdx = useRef(conversationPool.map(() => 0));
 
-  const clearTimeouts = useCallback(() => {
-    timeoutRef.current.forEach(clearTimeout);
-    timeoutRef.current = [];
+  const getTime = useCallback((): string => {
+    const { h, m } = timeRef.current;
+    const t = `${h}:${String(m).padStart(2, "0")}`;
+    timeRef.current.m++;
+    if (timeRef.current.m >= 60) { timeRef.current.m = 0; timeRef.current.h++; }
+    if (timeRef.current.h > 23) timeRef.current.h = 0;
+    return t;
   }, []);
 
+  const pick = useCallback((fi: number): Conversation => {
+    const vars = conversationPool[fi]!;
+    const idx = varIdx.current[fi] ?? 0;
+    varIdx.current[fi] = (idx + 1) % vars.length;
+    return vars[idx]!;
+  }, []);
+
+  const addMsg = useCallback((msg: ChatMsg) => {
+    setMessages((prev) => {
+      const next = [...prev, msg];
+      return next.length > MAX_VISIBLE ? next.slice(next.length - MAX_VISIBLE) : next;
+    });
+  }, []);
+
+  // Auto-scroll
   useEffect(() => {
-    const schedule = (fn: () => void, ms: number) => {
-      const id = setTimeout(fn, ms);
-      timeoutRef.current.push(id);
-      return id;
-    };
+    scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
+  }, [messages, showTyping]);
 
-    let delay = 800; // initial pause before first message
+  // Infinite animation loop
+  useEffect(() => {
+    let active = true;
+    const sleep = (ms: number) => new Promise<void>((r) => setTimeout(r, ms));
 
-    const runSequence = () => {
-      clearTimeouts();
-      setVisibleCount(0);
-      setShowTyping(false);
-      let d = delay;
+    async function loop() {
+      await sleep(1200);
+      let fi = 0;
 
-      for (let i = 0; i < conversation.length; i++) {
-        const msg = conversation[i];
-        const isBilio = msg.from === "bilio";
+      while (active) {
+        const conv = pick(fi);
 
-        if (isBilio) {
-          // Show typing before bilio reply
-          const typingStart = d;
-          schedule(() => setShowTyping(true), typingStart);
-          d += 1200; // typing duration
-          schedule(() => {
-            setShowTyping(false);
-            setVisibleCount(i + 1);
-          }, d);
-          d += 600;
-        } else {
-          // Show user message immediately (with small delay)
-          schedule(() => setVisibleCount(i + 1), d);
-          d += 500;
-        }
-      }
+        // User message
+        addMsg({ id: msgId.current++, from: "user", user: conv.user, time: getTime() });
+        await sleep(600);
+        if (!active) return;
 
-      // After all messages shown, wait then restart
-      schedule(() => {
-        setVisibleCount(0);
+        // Typing indicator
+        setShowTyping(true);
+        await sleep(conv.bot.card ? 1400 : 1000);
+        if (!active) return;
         setShowTyping(false);
-        schedule(runSequence, 600);
-      }, d + 3000);
-    };
+        await sleep(150);
+        if (!active) return;
 
-    runSequence();
-    return clearTimeouts;
-  }, [conversation, clearTimeouts]);
+        // Bot response
+        addMsg({ id: msgId.current++, from: "bilio", bot: conv.bot, time: getTime() });
+        await sleep(1800);
+        if (!active) return;
 
-  // Auto-scroll when new messages appear
-  useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
+        fi = (fi + 1) % conversationPool.length;
+      }
     }
-  }, [visibleCount, showTyping]);
+
+    loop();
+    return () => { active = false; };
+  }, [pick, getTime, addMsg]);
 
   return (
-    /* iPhone frame */
     <div className="relative w-[280px] h-[580px] md:w-[300px] md:h-[620px] rounded-[44px] border-[3px] border-[#2a2a2a] bg-black shadow-[0_40px_80px_rgba(0,0,0,0.6),0_0_60px_rgba(37,211,102,0.06)] overflow-hidden flex flex-col">
       {/* Notch */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[120px] h-[28px] bg-black rounded-b-[16px] z-10" />
 
-      {/* iOS status bar */}
       <IosStatusBar />
-
-      {/* WA header */}
       <WaHeader />
 
       {/* Messages area */}
       <div
         ref={scrollRef}
-        className="flex-1 overflow-y-auto overflow-x-hidden p-2.5 flex flex-col gap-[6px]"
+        className="flex-1 overflow-y-auto overflow-x-hidden p-2.5 flex flex-col gap-[6px] [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
         style={{
           backgroundImage: `url(${waBgDark})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       >
-        {conversation.slice(0, visibleCount).map((msg, i) => {
+        {messages.map((msg) => {
           const isUser = msg.from === "user";
+          const isVoice = isUser && typeof msg.user === "object" && msg.user?.type === "voice";
+
           return (
             <div
-              key={i}
+              key={msg.id}
               className={`flex ${isUser ? "justify-end" : "justify-start"}`}
               style={{ animation: `${isUser ? "wa-slide-right" : "wa-slide-left"} 0.3s ease-out` }}
             >
@@ -238,27 +296,66 @@ function WhatsAppAnimatedMockup({ conversation }: { conversation: Message[] }) {
                     : "rounded-[10px_10px_10px_3px] bg-[#1f2c34]"
                 }`}
               >
-                {msg.isAudio && (
+                {/* User: voice */}
+                {isUser && isVoice && (
                   <div className="flex items-center gap-2 text-bilio-whatsapp">
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5">
-                      <path d="M7 2v6M5 4v4M3 5v2M9 4v4M11 5v2"/>
+                      <path d="M7 2v6M5 4v4M3 5v2M9 4v4M11 5v2" />
                     </svg>
-                    <span className="text-[#8696a0] text-[12px]">Nota de voz · 0:08</span>
+                    <span className="text-[#8696a0] text-[12px]">
+                      Nota de voz · {(msg.user as VoiceContent).duration}
+                    </span>
                   </div>
                 )}
-                {msg.isPhoto && (
-                  <div className="flex items-center gap-1.5 text-[#8696a0]">
-                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5">
-                      <rect x="1" y="2" width="12" height="10" rx="2"/>
-                      <circle cx="4.5" cy="5.5" r="1"/>
-                      <path d="M1 9l3-3 2 2 2-3 4 4"/>
-                    </svg>
-                    <span className="text-[12px]">Foto del recibo</span>
-                  </div>
+
+                {/* User: text */}
+                {isUser && !isVoice && (msg.user as string)}
+
+                {/* Bot: text + optional card */}
+                {!isUser && msg.bot && (
+                  <>
+                    {msg.bot.text}
+
+                    {msg.bot.card === "expense" && (
+                      <div className="bg-[rgba(254,206,0,0.08)] border border-[rgba(254,206,0,0.15)] rounded-lg p-2 mt-1">
+                        <div className="text-[13px] font-semibold text-bilio-primary">{msg.bot.category}</div>
+                        <div className="text-[18px] font-bold text-white my-0.5">{msg.bot.amount}</div>
+                        <BudgetBar pct={msg.bot.budgetPct} />
+                        <div className="text-[9.5px] text-white/40 mt-1">{msg.bot.budgetText}</div>
+                      </div>
+                    )}
+
+                    {msg.bot.card === "debt" && (
+                      <div className="bg-[rgba(94,152,125,0.08)] border border-[rgba(94,152,125,0.2)] rounded-lg p-2 mt-1">
+                        <div className="text-[11px] text-white/40">{msg.bot.label}</div>
+                        <div className="text-[14px] font-semibold text-bilio-success">{msg.bot.who}</div>
+                        <div className="text-[16px] font-bold text-white my-0.5">{msg.bot.amount}</div>
+                      </div>
+                    )}
+
+                    {msg.bot.card === "analytics" && (
+                      <div className="bg-[rgba(254,206,0,0.05)] border border-[rgba(254,206,0,0.1)] rounded-lg p-2 mt-1">
+                        {msg.bot.rows.map((r, ri) => (
+                          <div key={ri}>
+                            <div className="flex justify-between items-center py-0.5 text-[11px]">
+                              <span className="text-white/60">{r.cat}</span>
+                              <span className="text-bilio-primary font-semibold">{r.val}</span>
+                            </div>
+                            <div className="h-[3px] rounded-full bg-white/[0.06] overflow-hidden mt-0.5">
+                              <div className="h-full rounded-full bg-bilio-primary" style={{ width: `${r.pct}%` }} />
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </>
                 )}
-                {!msg.isAudio && !msg.isPhoto && msg.text}
+
                 <div className="flex justify-end mt-[2px]">
-                  <span className="text-[#8696a0] text-[9.5px]">{msg.time}</span>
+                  <span className="text-[#8696a0] text-[9.5px]">
+                    {msg.time}
+                    {isUser && <span className="text-[#53bdeb] ml-0.5 text-[9px]">✓✓</span>}
+                  </span>
                 </div>
               </div>
             </div>
@@ -268,7 +365,6 @@ function WhatsAppAnimatedMockup({ conversation }: { conversation: Message[] }) {
         {showTyping && <TypingDots />}
       </div>
 
-      {/* WA input bar */}
       <WaInputBar />
 
       {/* Home indicator */}
@@ -412,7 +508,7 @@ export function FeaturesSection() {
       highlightWord: "Sin descargar nada.",
       description: "Texto, nota de voz o foto del recibo — por web o WhatsApp. Sin menús, sin formularios. Escribe como le escribirías a un amigo. Bilio entiende, clasifica y registra en segundos.",
       proof: "Funciona por WhatsApp y web. Si ya usas WhatsApp, ya sabes usar Bilio.",
-      mockup: <WhatsAppAnimatedMockup conversation={chatConversation} />,
+      mockup: <WhatsAppAnimatedMockup />,
       reversed: false,
       bg: "bg-bilio-bg",
       ctaLabel: "Quiero acceso anticipado →",
