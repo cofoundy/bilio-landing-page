@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bilio — Chat Hero Animado</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@100..900&family=Hind+Vadodara:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;overflow-x:hidden;background:#0a0900;color:#fff;font-family:'Hind Vadodara',sans-serif}
+
+/* ── LAYOUT ── */
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:clamp(40px,6vw,100px);
+  padding:40px clamp(20px,5vw,80px);
+  position:relative;
+  overflow:hidden;
+}
+
+/* ── LEFT: Copy ── */
+.hero-copy{
+  max-width:520px;
+  flex-shrink:0;
+  z-index:2;
+}
+.badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(254,206,0,0.06);border:1px solid rgba(254,206,0,0.15);
+  border-radius:100px;padding:6px 16px;margin-bottom:28px;
+  backdrop-filter:blur(10px);
+  opacity:0;animation:fadeUp .7s ease-out forwards;animation-delay:.2s;
+}
+.badge-dot{width:6px;height:6px;border-radius:50%;background:#FECE00;box-shadow:0 0 8px #FECE00;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.6}50%{opacity:1}}
+.badge span{color:#FECE00;font-size:13px;font-weight:600;letter-spacing:.02em}
+
+.headline{
+  font-family:'Archivo',sans-serif;font-weight:800;
+  line-height:1.05;letter-spacing:-.03em;
+  font-size:clamp(36px,5.5vw,72px);margin-bottom:20px;
+  opacity:0;animation:fadeUp .7s ease-out forwards;animation-delay:.35s;
+}
+.headline .gold{
+  background:linear-gradient(135deg,#FECE00,#FEB601 50%,#FFD54F);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.subtitle{
+  max-width:440px;line-height:1.7;letter-spacing:.01em;
+  font-size:clamp(15px,1.8vw,18px);color:rgba(255,255,255,.5);margin-bottom:32px;
+  opacity:0;animation:fadeUp .7s ease-out forwards;animation-delay:.5s;
+}
+.form-row{
+  display:flex;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);
+  border-radius:14px;padding:4px;padding-left:18px;backdrop-filter:blur(16px);
+  transition:border-color .2s;max-width:440px;
+  opacity:0;animation:fadeUp .7s ease-out forwards;animation-delay:.65s;
+}
+.form-row:focus-within{border-color:rgba(254,206,0,.4)}
+.form-row input{flex:1;min-width:0;background:transparent;border:none;outline:none;color:#fff;font-family:'Hind Vadodara',sans-serif;font-size:15px}
+.form-row input::placeholder{color:rgba(255,255,255,.3)}
+.form-row button{
+  background:linear-gradient(135deg,#FECE00,#FEB601);border:none;color:#0a0900;
+  font-family:'Archivo',sans-serif;font-size:14px;font-weight:800;cursor:pointer;
+  padding:12px 22px;border-radius:10px;white-space:nowrap;transition:all .2s;
+  box-shadow:0 4px 20px rgba(254,206,0,.25);
+}
+.form-row button:hover{transform:translateY(-1px);box-shadow:0 6px 30px rgba(254,206,0,.4)}
+.hint{color:rgba(255,255,255,.18);font-size:13px;margin-top:12px;opacity:0;animation:fadeUp .7s ease-out forwards;animation-delay:.8s}
+
+.social-proof{
+  display:flex;align-items:center;gap:16px;margin-top:28px;
+  opacity:0;animation:fadeUp .7s ease-out forwards;animation-delay:.9s;
+}
+.avatars{display:flex}
+.avatar{width:28px;height:28px;border-radius:50%;border:2px solid #0a0900;display:flex;align-items:center;justify-content:center;font-size:12px}
+.avatar+.avatar{margin-left:-8px}
+.social-proof .text{color:rgba(255,255,255,.35);font-size:12px}
+.social-proof .text strong{color:rgba(255,255,255,.6)}
+
+/* ── RIGHT: Phone ── */
+.phone-wrap{
+  position:relative;z-index:2;
+  opacity:0;animation:phoneIn 1s ease-out forwards;animation-delay:.4s;
+}
+@keyframes phoneIn{
+  from{opacity:0;transform:translateY(40px) scale(.95)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+
+/* Ambient glow — large soft gold behind everything */
+.phone-glow{
+  position:absolute;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:550px;height:700px;
+  border-radius:50%;
+  background:radial-gradient(ellipse,rgba(254,206,0,.10) 0%,rgba(254,182,1,.04) 40%,transparent 70%);
+  pointer-events:none;
+  z-index:0;
+  animation:glowPulse 4s ease-in-out infinite;
+}
+@keyframes glowPulse{
+  0%,100%{opacity:.7;transform:translate(-50%,-50%) scale(1)}
+  50%{opacity:1;transform:translate(-50%,-50%) scale(1.06)}
+}
+
+/* Screen light — tighter glow simulating screen illumination */
+.phone-screen-light{
+  position:absolute;
+  top:40%;left:50%;
+  transform:translate(-50%,-50%);
+  width:320px;height:500px;
+  border-radius:40px;
+  background:radial-gradient(ellipse,rgba(254,206,0,.06) 0%,transparent 60%);
+  pointer-events:none;
+  z-index:0;
+  filter:blur(30px);
+}
+
+/* Volumetric rays — subtle golden light beams from behind */
+.phone-rays{
+  position:absolute;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:500px;height:500px;
+  pointer-events:none;
+  z-index:0;
+  opacity:.4;
+  background:
+    conic-gradient(from 0deg at 50% 50%,
+      transparent 0deg,rgba(254,206,0,.04) 15deg,transparent 30deg,
+      transparent 60deg,rgba(254,206,0,.03) 75deg,transparent 90deg,
+      transparent 120deg,rgba(254,206,0,.04) 135deg,transparent 150deg,
+      transparent 180deg,rgba(254,206,0,.03) 195deg,transparent 210deg,
+      transparent 240deg,rgba(254,206,0,.04) 255deg,transparent 270deg,
+      transparent 300deg,rgba(254,206,0,.03) 315deg,transparent 330deg,
+      transparent 360deg
+    );
+  filter:blur(20px);
+  animation:raysSpin 60s linear infinite;
+}
+@keyframes raysSpin{from{transform:translate(-50%,-50%) rotate(0deg)}to{transform:translate(-50%,-50%) rotate(360deg)}}
+
+/* Reflection below phone — glossy surface illusion */
+.phone-reflection{
+  position:absolute;
+  bottom:-80px;left:50%;
+  transform:translateX(-50%) scaleY(-1);
+  width:260px;height:200px;
+  border-radius:40px 40px 0 0;
+  background:linear-gradient(to bottom,rgba(254,206,0,.04) 0%,transparent 60%);
+  pointer-events:none;
+  z-index:0;
+  filter:blur(12px);
+  opacity:.5;
+  -webkit-mask-image:linear-gradient(to bottom,rgba(0,0,0,.5) 0%,transparent 100%);
+  mask-image:linear-gradient(to bottom,rgba(0,0,0,.5) 0%,transparent 100%);
+}
+
+/* Phone frame */
+.phone{
+  position:relative;
+  width:280px;
+  height:580px;
+  border-radius:40px;
+  background:#1a1a1a;
+  border:1.5px solid rgba(255,255,255,.08);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.04),
+    0 4px 16px rgba(0,0,0,.4),
+    0 25px 80px rgba(0,0,0,.6),
+    0 0 80px rgba(254,206,0,.06),
+    inset 0 1px 0 rgba(255,255,255,.06);
+  overflow:hidden;
+  z-index:1;
+}
+
+/* Notch */
+.phone-notch{
+  position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:120px;height:28px;
+  background:#1a1a1a;
+  border-radius:0 0 18px 18px;
+  z-index:10;
+}
+.phone-notch::after{
+  content:'';position:absolute;
+  top:8px;left:50%;transform:translateX(-50%);
+  width:60px;height:6px;border-radius:3px;
+  background:#333;
+}
+
+/* Status bar */
+.status-bar{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:8px 24px 0;
+  font-size:11px;font-weight:600;color:rgba(255,255,255,.6);
+  height:44px;
+  position:relative;z-index:5;
+}
+
+/* Chat header */
+.chat-header{
+  display:flex;align-items:center;gap:10px;
+  padding:8px 14px 10px;
+  background:rgba(30,30,30,.95);
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.chat-header .back{color:rgba(255,255,255,.5);font-size:18px}
+.chat-avatar{
+  width:32px;height:32px;border-radius:50%;
+  background:linear-gradient(135deg,#FECE00,#FEB601);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Archivo',sans-serif;font-weight:800;font-size:14px;color:#0a0900;
+}
+.chat-name{font-size:14px;font-weight:600;color:#fff}
+.chat-status{font-size:10px;color:rgba(255,255,255,.35)}
+
+/* Chat area */
+.chat-area{
+  flex:1;
+  height:calc(100% - 44px - 52px - 52px);
+  overflow-y:auto;
+  overflow-x:hidden;
+  padding:12px 10px;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  background:#0b0b0b;
+  scroll-behavior:smooth;
+  /* Hide scrollbar but keep functionality */
+  scrollbar-width:none;
+  -ms-overflow-style:none;
+}
+.chat-area::-webkit-scrollbar{display:none}
+.chat-scroll{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  min-height:min-content;
+}
+
+/* Messages */
+.msg{
+  max-width:85%;
+  padding:7px 10px;
+  border-radius:12px;
+  font-size:12.5px;
+  line-height:1.45;
+  opacity:0;
+  transform:translateY(12px);
+  transition:opacity .4s ease-out, transform .4s ease-out;
+  position:relative;
+}
+.msg.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+.msg.user{
+  align-self:flex-end;
+  background:#005c4b;
+  color:#fff;
+  border-bottom-right-radius:4px;
+}
+.msg.bot{
+  align-self:flex-start;
+  background:#1e1e1e;
+  color:rgba(255,255,255,.9);
+  border-bottom-left-radius:4px;
+}
+.msg .time{
+  font-size:9px;
+  color:rgba(255,255,255,.3);
+  text-align:right;
+  margin-top:2px;
+}
+.msg .check{color:rgba(80,180,255,.7);font-size:9px}
+
+/* Special message types */
+.msg .expense-card{
+  background:rgba(254,206,0,.08);
+  border:1px solid rgba(254,206,0,.15);
+  border-radius:8px;
+  padding:8px 10px;
+  margin-top:4px;
+}
+.msg .expense-card .category{font-size:13px;font-weight:600;color:#FECE00}
+.msg .expense-card .amount{font-size:18px;font-weight:700;color:#fff;margin:2px 0}
+.msg .expense-card .budget-bar{
+  height:4px;border-radius:2px;background:rgba(255,255,255,.1);margin-top:6px;overflow:hidden;
+}
+.msg .expense-card .budget-bar .fill{height:100%;border-radius:2px;background:linear-gradient(90deg,#FECE00,#FEB601);transition:width 1s ease-out .3s}
+.msg .expense-card .budget-text{font-size:9.5px;color:rgba(255,255,255,.4);margin-top:3px}
+
+.msg .debt-card{
+  background:rgba(94,152,125,.08);
+  border:1px solid rgba(94,152,125,.2);
+  border-radius:8px;
+  padding:8px 10px;
+  margin-top:4px;
+}
+.msg .debt-card .label{font-size:11px;color:rgba(255,255,255,.4)}
+.msg .debt-card .who{font-size:14px;font-weight:600;color:#5E987D}
+.msg .debt-card .amt{font-size:16px;font-weight:700;color:#fff;margin:2px 0}
+
+.msg .analytics-card{
+  background:rgba(254,206,0,.05);
+  border:1px solid rgba(254,206,0,.1);
+  border-radius:8px;
+  padding:8px 10px;
+  margin-top:4px;
+}
+.msg .analytics-card .row{display:flex;justify-content:space-between;align-items:center;padding:3px 0;font-size:11px}
+.msg .analytics-card .row .cat{color:rgba(255,255,255,.6)}
+.msg .analytics-card .row .val{color:#FECE00;font-weight:600}
+.msg .analytics-card .mini-bar{height:3px;border-radius:1.5px;background:rgba(255,255,255,.06);margin-top:2px;overflow:hidden}
+.msg .analytics-card .mini-bar .fill{height:100%;border-radius:1.5px;background:#FECE00}
+
+.msg .voice-wave{
+  display:flex;align-items:center;gap:6px;
+  padding:2px 0;
+}
+.msg .voice-wave .play{
+  width:24px;height:24px;border-radius:50%;
+  background:#FECE00;
+  display:flex;align-items:center;justify-content:center;
+}
+.msg .voice-wave .play::after{
+  content:'';
+  width:0;height:0;
+  border-left:8px solid #0a0900;border-top:5px solid transparent;border-bottom:5px solid transparent;
+  margin-left:2px;
+}
+.msg .voice-wave .bars{display:flex;align-items:center;gap:1.5px;height:20px}
+.msg .voice-wave .bars .bar{
+  width:2.5px;border-radius:1.5px;background:rgba(255,255,255,.3);
+  animation:waveBar .6s ease-in-out infinite alternate;
+}
+@keyframes waveBar{from{height:4px}to{height:var(--h,12px)}}
+
+/* Typing indicator */
+.typing{
+  align-self:flex-start;
+  background:#1e1e1e;
+  border-radius:12px;
+  border-bottom-left-radius:4px;
+  padding:10px 14px;
+  display:flex;gap:4px;
+  opacity:0;
+  transform:translateY(8px);
+  transition:opacity .3s,transform .3s;
+}
+.typing.visible{opacity:1;transform:translateY(0)}
+.typing .dot{
+  width:6px;height:6px;border-radius:50%;
+  background:rgba(255,255,255,.3);
+  animation:typingDot 1.2s ease-in-out infinite;
+}
+.typing .dot:nth-child(2){animation-delay:.2s}
+.typing .dot:nth-child(3){animation-delay:.4s}
+@keyframes typingDot{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-4px)}}
+
+/* Input bar */
+.chat-input{
+  display:flex;align-items:center;gap:8px;
+  padding:8px 10px;
+  background:rgba(30,30,30,.95);
+  border-top:1px solid rgba(255,255,255,.06);
+}
+.chat-input .input-field{
+  flex:1;height:32px;border-radius:16px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.08);
+  padding:0 12px;
+  font-size:12px;color:rgba(255,255,255,.3);
+  display:flex;align-items:center;
+}
+.chat-input .mic{
+  width:28px;height:28px;border-radius:50%;
+  background:#FECE00;
+  display:flex;align-items:center;justify-content:center;
+}
+.chat-input .mic::after{
+  content:'';display:block;
+  width:8px;height:12px;border-radius:4px;
+  border:2px solid #0a0900;
+}
+
+/* ── DUST PARTICLES ── */
+#dustCanvas{position:fixed;inset:0;z-index:0;pointer-events:none}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);filter:blur(4px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
+
+/* ── RESPONSIVE ── */
+@media(max-width:860px){
+  .hero{flex-direction:column;text-align:center;gap:40px;padding-top:60px}
+  .subtitle{margin-left:auto;margin-right:auto}
+  .form-row{max-width:100%}
+  .social-proof{justify-content:center}
+  .phone{width:240px;height:500px}
+}
+</style>
+</head>
+<body>
+
+<canvas id="dustCanvas"></canvas>
+
+<section class="hero">
+  <!-- Left: Copy -->
+  <div class="hero-copy">
+    <div class="badge"><div class="badge-dot"></div><span>Lista de espera abierta — Hecho en Peru</span></div>
+    <h1 class="headline">Por fin, alguien que <span class="gold">entiende tu plata.</span></h1>
+    <p class="subtitle">Registra gastos, controla presupuestos, maneja deudas y ahorra — todo hablando con Bilio por chat o WhatsApp.</p>
+    <div class="form-row"><input type="email" placeholder="tu@correo.com" /><button>Quiero acceso anticipado</button></div>
+    <p class="hint">Unirse es 100% gratis. Te avisamos cuando esté listo.</p>
+    <div class="social-proof">
+      <div class="avatars">
+        <div class="avatar" style="background:#FECE00">&#128522;</div>
+        <div class="avatar" style="background:#5E987D">&#128516;</div>
+        <div class="avatar" style="background:#123149">&#128526;</div>
+        <div class="avatar" style="background:#FEB601">&#129321;</div>
+      </div>
+      <span class="text"><strong>+2,000 personas</strong> ya en la lista</span>
+    </div>
+  </div>
+
+  <!-- Right: Phone -->
+  <div class="phone-wrap">
+    <div class="phone-rays"></div>
+    <div class="phone-glow"></div>
+    <div class="phone-screen-light"></div>
+    <div class="phone-reflection"></div>
+    <div class="phone">
+      <div class="phone-notch"></div>
+      <div class="status-bar">
+        <span>9:41</span>
+        <span style="letter-spacing:1px">●●●●</span>
+      </div>
+      <div class="chat-header">
+        <span class="back">‹</span>
+        <div class="chat-avatar">B</div>
+        <div>
+          <div class="chat-name">Bilio</div>
+          <div class="chat-status">en línea</div>
+        </div>
+      </div>
+      <div class="chat-area" id="chatArea">
+        <div class="chat-scroll" id="chatScroll">
+          <!-- Messages injected by JS -->
+        </div>
+        <div class="typing" id="typing">
+          <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        </div>
+      </div>
+      <div class="chat-input">
+        <div class="input-field">Mensaje</div>
+        <div class="mic"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+// ═══════════════════════════════════════
+// CHAT ANIMATION ENGINE — Sliding Window
+// ═══════════════════════════════════════
+const chatScroll = document.getElementById('chatScroll');
+const chatArea = document.getElementById('chatArea');
+const typing = document.getElementById('typing');
+
+// Multiple variations per feature so loops never feel repetitive
+const conversationPool = [
+  // ── EXPENSE TRACKING (3 variations) ──
+  [
+    {
+      user: 'Gasté 50 en almuerzo',
+      bot: { text: '¡Registrado! 👍', card: 'expense', category: 'Comida 🍔', amount: 'S/50.00', budgetPct: 64, budgetText: 'Llevas S/320 de S/500 en Comida' }
+    },
+    {
+      user: 'Pagué 35 por el café y sandwich',
+      bot: { text: 'Listo ✅', card: 'expense', category: 'Comida 🍔', amount: 'S/35.00', budgetPct: 71, budgetText: 'Llevas S/355 de S/500 en Comida' }
+    },
+    {
+      user: '120 en el super',
+      bot: { text: 'Anotado 🛒', card: 'expense', category: 'Comida 🍔', amount: 'S/120.00', budgetPct: 88, budgetText: 'Llevas S/440 de S/500 en Comida ⚠️' }
+    },
+  ],
+  // ── VOICE MESSAGE (3 variations) ──
+  [
+    {
+      user: { type: 'voice', duration: '0:03' },
+      bot: { text: '🎤 "Uber al trabajo, quince soles"', card: 'expense', category: 'Transporte 🚗', amount: 'S/15.00', budgetPct: 45, budgetText: 'Llevas S/90 de S/200 en Transporte' }
+    },
+    {
+      user: { type: 'voice', duration: '0:04' },
+      bot: { text: '🎤 "Netflix, cuarenta y cuatro soles"', card: 'expense', category: 'Suscripciones 📱', amount: 'S/44.90', budgetPct: 60, budgetText: 'Llevas S/90 de S/150 en Suscripciones' }
+    },
+    {
+      user: { type: 'voice', duration: '0:02' },
+      bot: { text: '🎤 "Taxi a casa, diez soles"', card: 'expense', category: 'Transporte 🚗', amount: 'S/10.00', budgetPct: 50, budgetText: 'Llevas S/100 de S/200 en Transporte' }
+    },
+  ],
+  // ── BUDGET CHECK (3 variations) ──
+  [
+    {
+      user: '¿Puedo gastar 200 en zapatillas?',
+      bot: { text: 'Mmm, te quedarían solo S/30 en Compras este mes. Yo lo pensaría 🤔', card: null }
+    },
+    {
+      user: '¿Me alcanza para salir a cenar?',
+      bot: { text: 'Te quedan S/180 en Comida. Sí alcanza, pero sin pasarte 😉', card: null }
+    },
+    {
+      user: '¿Puedo pedir delivery hoy?',
+      bot: { text: 'Vas bien! Te quedan S/150 en Comida. Dale nomás 🍕', card: null }
+    },
+  ],
+  // ── DEBT TRACKING (3 variations) ──
+  [
+    {
+      user: 'Le presté 100 a Carlos',
+      bot: { text: 'Anotado ✅', card: 'debt', label: 'Te debe', who: 'Carlos', amount: 'S/100.00' }
+    },
+    {
+      user: 'María me pagó los 50',
+      bot: { text: '¡Saldado! 🎉 María ya no te debe nada', card: null }
+    },
+    {
+      user: 'Le debo 80 a Diego por la cena',
+      bot: { text: 'Anotado 📝', card: 'debt', label: 'Le debes a', who: 'Diego', amount: 'S/80.00' }
+    },
+  ],
+  // ── ANALYTICS (2 variations) ──
+  [
+    {
+      user: '¿En qué se me va la plata?',
+      bot: {
+        text: 'Este mes llevas S/1,250:',
+        card: 'analytics',
+        rows: [
+          { cat: 'Comida 🍔', val: 'S/420', pct: 100 },
+          { cat: 'Transporte 🚗', val: 'S/280', pct: 67 },
+          { cat: 'Entretenimiento 🎬', val: 'S/190', pct: 45 },
+          { cat: 'Compras 🛍️', val: 'S/170', pct: 40 },
+        ]
+      }
+    },
+    {
+      user: '¿Cómo voy este mes?',
+      bot: {
+        text: 'Llevas S/980 de S/2,000. Vas bien 👌',
+        card: 'analytics',
+        rows: [
+          { cat: 'Vivienda 🏠', val: 'S/350', pct: 100 },
+          { cat: 'Comida 🍔', val: 'S/310', pct: 89 },
+          { cat: 'Transporte 🚗', val: 'S/180', pct: 51 },
+          { cat: 'Salud 💊', val: 'S/140', pct: 40 },
+        ]
+      }
+    },
+  ],
+  // ── STREAK (3 variations) ──
+  [
+    {
+      user: '¿Cómo va mi racha?',
+      bot: { text: '🔥 17 días seguidos registrando. ¡Vas volando! Tu récord es 23, ya casi lo rompes 💪', card: null }
+    },
+    {
+      user: '¿Cuántos días llevo?',
+      bot: { text: '🔥 24 días seguidos. ¡NUEVO RÉCORD! Eres imparable 🏆', card: null }
+    },
+    {
+      user: 'Racha',
+      bot: { text: '🔥 8 días. La semana pasada perdiste la racha un miércoles. ¡Esta vez no! 💪', card: null }
+    },
+  ],
+];
+
+// Track which variation was last used per feature
+const variationIndex = conversationPool.map(() => 0);
+const MAX_VISIBLE_MSGS = 14; // Max DOM nodes before cleanup
+
+function pickConversation(featureIdx) {
+  const variations = conversationPool[featureIdx];
+  const idx = variationIndex[featureIdx];
+  variationIndex[featureIdx] = (idx + 1) % variations.length;
+  return variations[idx];
+}
+
+function createUserMsg(content) {
+  const div = document.createElement('div');
+  div.className = 'msg user';
+
+  if (typeof content === 'object' && content.type === 'voice') {
+    const bars = Array.from({length: 22}, () => {
+      const h = 4 + Math.random() * 14;
+      return `<div class="bar" style="--h:${h}px;animation-delay:${Math.random()*0.6}s"></div>`;
+    }).join('');
+    div.innerHTML = `
+      <div class="voice-wave">
+        <div class="play"></div>
+        <div class="bars">${bars}</div>
+        <span style="font-size:10px;color:rgba(255,255,255,.4);margin-left:4px">${content.duration}</span>
+      </div>
+      <div class="time">${getTime()} <span class="check">✓✓</span></div>
+    `;
+  } else {
+    div.innerHTML = `${content}<div class="time">${getTime()} <span class="check">✓✓</span></div>`;
+  }
+  return div;
+}
+
+function createBotMsg(data) {
+  const div = document.createElement('div');
+  div.className = 'msg bot';
+
+  let cardHtml = '';
+  if (data.card === 'expense') {
+    cardHtml = `
+      <div class="expense-card">
+        <div class="category">${data.category}</div>
+        <div class="amount">${data.amount}</div>
+        <div class="budget-bar"><div class="fill" style="width:0%"></div></div>
+        <div class="budget-text">${data.budgetText}</div>
+      </div>
+    `;
+  } else if (data.card === 'debt') {
+    cardHtml = `
+      <div class="debt-card">
+        <div class="label">${data.label}</div>
+        <div class="who">${data.who}</div>
+        <div class="amt">${data.amount}</div>
+      </div>
+    `;
+  } else if (data.card === 'analytics') {
+    const rows = data.rows.map(r => `
+      <div class="row"><span class="cat">${r.cat}</span><span class="val">${r.val}</span></div>
+      <div class="mini-bar"><div class="fill" style="width:${r.pct}%"></div></div>
+    `).join('');
+    cardHtml = `<div class="analytics-card">${rows}</div>`;
+  }
+
+  div.innerHTML = `${data.text}${cardHtml}<div class="time">${getTime()}</div>`;
+  return div;
+}
+
+let timeMinutes = 41;
+let timeHours = 9;
+function getTime() {
+  const t = `${timeHours}:${String(timeMinutes).padStart(2,'0')}`;
+  timeMinutes++;
+  if (timeMinutes >= 60) { timeMinutes = 0; timeHours++; }
+  if (timeHours > 23) timeHours = 0;
+  return t;
+}
+
+function showTyping() { typing.classList.add('visible'); }
+function hideTyping() { typing.classList.remove('visible'); }
+
+function pruneOldMessages() {
+  const msgs = chatScroll.querySelectorAll('.msg');
+  if (msgs.length > MAX_VISIBLE_MSGS) {
+    const toRemove = msgs.length - MAX_VISIBLE_MSGS;
+    for (let i = 0; i < toRemove; i++) {
+      msgs[i].remove();
+    }
+  }
+}
+
+function autoScroll() {
+  chatArea.scrollTo({ top: chatArea.scrollHeight, behavior: 'smooth' });
+}
+
+async function sleep(ms) {
+  return new Promise(r => setTimeout(r, ms));
+}
+
+async function playConversation(conv) {
+  // User message
+  const userMsg = createUserMsg(conv.user);
+  chatScroll.appendChild(userMsg);
+  await sleep(100);
+  userMsg.classList.add('visible');
+  autoScroll();
+  pruneOldMessages();
+
+  // Typing
+  await sleep(600);
+  showTyping();
+  autoScroll();
+  const typingTime = conv.bot.card ? 1400 : 1000;
+  await sleep(typingTime);
+  hideTyping();
+
+  // Bot response
+  await sleep(150);
+  const botMsg = createBotMsg(conv.bot);
+  chatScroll.appendChild(botMsg);
+  await sleep(100);
+  botMsg.classList.add('visible');
+  autoScroll();
+  pruneOldMessages();
+
+  // Animate budget bar
+  if (conv.bot.card === 'expense') {
+    await sleep(200);
+    const fill = botMsg.querySelector('.budget-bar .fill');
+    if (fill) fill.style.width = conv.bot.budgetPct + '%';
+  }
+}
+
+async function runLoop() {
+  await sleep(1200);
+
+  let featureIdx = 0;
+  while (true) {
+    const conv = pickConversation(featureIdx);
+    await playConversation(conv);
+    await sleep(1800);
+
+    featureIdx = (featureIdx + 1) % conversationPool.length;
+  }
+}
+
+runLoop();
+
+
+// ═══════════════════════════════════════
+// DUST PARTICLES (from canvas showcase)
+// ═══════════════════════════════════════
+const canvas = document.getElementById('dustCanvas');
+const ctx = canvas.getContext('2d');
+let W, H, dpr;
+let mouse = { x: -9999, y: -9999 };
+let rawMouse = { x: -9999, y: -9999 };
+let particles = [];
+
+function resize() {
+  dpr = Math.min(window.devicePixelRatio || 1, 2);
+  W = window.innerWidth;
+  H = window.innerHeight;
+  canvas.width = W * dpr;
+  canvas.height = H * dpr;
+  canvas.style.width = W + 'px';
+  canvas.style.height = H + 'px';
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+}
+
+class Dust {
+  constructor(init) {
+    this.x = Math.random() * W;
+    this.y = init ? Math.random() * H : H + 20 + Math.random() * 40;
+    this.size = 0.6 + Math.random() * 2;
+    this.speed = 0.12 + Math.random() * 0.35;
+    this.drift = (Math.random() - 0.5) * 0.25;
+    this.phase = Math.random() * Math.PI * 2;
+    this.phaseSpd = 0.005 + Math.random() * 0.012;
+    this.opacity = 0;
+    this.maxOp = 0.1 + Math.random() * 0.25;
+    this.fadeRate = 0.002 + Math.random() * 0.003;
+    this.life = 0;
+    this.maxLife = 500 + Math.random() * 700;
+    const r = Math.random();
+    this.color = r < 0.5 ? '254,206,0' : r < 0.8 ? '254,182,1' : '255,213,79';
+    this.hasGlow = this.size > 1.8;
+  }
+  update() {
+    this.life++;
+    this.phase += this.phaseSpd;
+    if (this.life < 80) this.opacity = Math.min(this.opacity + this.fadeRate, this.maxOp);
+    else if (this.life > this.maxLife * 0.75) this.opacity *= 0.995;
+    this.y -= this.speed;
+    this.x += this.drift + Math.sin(this.phase) * 0.25;
+    const dx = this.x - mouse.x, dy = this.y - mouse.y;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+    if (dist < 140 && dist > 0) {
+      const f = (1 - dist / 140) * 0.6;
+      this.x += (dx / dist) * f;
+      this.y += (dy / dist) * f;
+    }
+    if (this.y < -20 || this.life > this.maxLife || this.opacity < 0.003) {
+      Object.assign(this, new Dust(false));
+    }
+  }
+  draw() {
+    if (this.opacity < 0.003) return;
+    if (this.hasGlow) {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size * 3.5, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${this.color},${this.opacity * 0.12})`;
+      ctx.fill();
+    }
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(${this.color},${this.opacity})`;
+    ctx.fill();
+  }
+}
+
+function initDust() {
+  particles = [];
+  for (let i = 0; i < 90; i++) particles.push(new Dust(true));
+}
+
+function animateDust() {
+  ctx.clearRect(0, 0, W, H);
+  for (const p of particles) { p.update(); p.draw(); }
+  requestAnimationFrame(animateDust);
+}
+
+document.addEventListener('mousemove', e => { rawMouse.x = e.clientX; rawMouse.y = e.clientY; });
+document.addEventListener('mouseleave', () => { rawMouse.x = -9999; rawMouse.y = -9999; });
+function updateMouse() {
+  mouse.x += (rawMouse.x - mouse.x) * 0.08;
+  mouse.y += (rawMouse.y - mouse.y) * 0.08;
+  requestAnimationFrame(updateMouse);
+}
+
+window.addEventListener('resize', resize);
+resize();
+initDust();
+animateDust();
+updateMouse();
+</script>
+</body>
+</html>
